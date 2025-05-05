@@ -13,24 +13,49 @@
       color: #f9f9f9;
       font-family: "UD Digi Kyokasho N-R", "Yu Gothic", Meiryo, sans-serif;
     }
+
     .banner {
       background: url('images/banner_1.png') center center / cover no-repeat;
       height: 300px;
       position: relative;
     }
+
     .banner-text {
       position: absolute;
       bottom: 20px;
       left: 20px;
-      font-size: 24px;
-      font-weight: bold;
-      text-shadow: 1px 1px 4px #000;
+      font-size: 22px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.8);
+      text-shadow: 0 0 4px #000;
+      letter-spacing: 1px;
     }
+
+    .nav-bar {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      background-color: #111;
+      padding: 10px;
+      flex-wrap: wrap;
+    }
+
+    .nav-bar a {
+      color: #f9f9f9;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .nav-bar a:hover {
+      text-decoration: underline;
+    }
+
     .content {
       padding: 20px;
       max-width: 800px;
       margin: auto;
     }
+
     .accordion {
       background-color: #2a2a2a;
       color: #f9f9f9;
@@ -43,9 +68,12 @@
       font-size: 16px;
       margin-top: 10px;
     }
-    .accordion.active, .accordion:hover {
+
+    .accordion.active,
+    .accordion:hover {
       background-color: #333;
     }
+
     .panel {
       padding: 0 20px;
       background-color: #1c1c1c;
@@ -53,22 +81,42 @@
       overflow: hidden;
       border-left: 4px solid #f9f9f9;
     }
+
     @media screen and (max-width: 600px) {
       .banner {
         height: 200px;
       }
+
       .banner-text {
         font-size: 18px;
+        left: 10px;
+      }
+
+      .nav-bar {
+        flex-direction: column;
+        align-items: center;
       }
     }
   </style>
 </head>
 <body>
 
+  <!-- バナー -->
   <div class="banner">
-    <div class="banner-text">NEWS / お知らせ</div>
+    <div class="banner-text">PRIVATE SHIROKANE</div>
   </div>
 
+  <!-- ナビゲーション -->
+  <div class="nav-bar">
+    <a href="index.html">Home</a>
+    <a href="top.html">お知らせ</a>
+    <a href="guidance_men.html">男性会員入会</a>
+    <a href="guidance_women.html">女性会員入会</a>
+    <a href="system.html">料金・システム</a>
+    <a href="contact.html">お問合せ</a>
+  </div>
+
+  <!-- コンテンツ -->
   <div class="content">
     <h2>最新のお知らせ</h2>
 
@@ -76,7 +124,6 @@
     <div class="panel">
       <p>本サイト（プライベート白金・PRIVATE SHIROKANE）をオープンしました。</p>
     </div>
-
   </div>
 
   <script>
