@@ -1,0 +1,49 @@
+
+/* index.html 用スタイル */
+
+.intro-page {
+  background: #f9f9f9;
+  font-family: 'Helvetica Neue', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.intro-container {
+  background: #ffffff;
+  padding: 40px 60px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 500px;
+  width: 90%;
+}
+
+.intro-container h1 {
+  font-size: 1.8em;
+  margin-bottom: 20px;
+  color: #333333;
+}
+
+.intro-container p {
+  font-size: 1.1em;
+  margin-bottom: 30px;
+  color: #555555;
+}
+
+.enter-button {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #007acc;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
+}
+
+.enter-button:hover {
+  background-color: #005fa3;
+}
