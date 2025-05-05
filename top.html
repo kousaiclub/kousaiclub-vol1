@@ -1,98 +1,103 @@
-<!-- ナビゲーション -->
-<header class="nav-container">
-  <div class="nav-logo">
-    <a href="top.html">
-      <img src="images/logo_1.png" alt="PRIVATE SHIROKANE Logo" />
-    </a>
-  </div>
-  <nav class="nav-links" id="navLinks">
-    <a href="top.html">Top</a>
-    <a href="guidance_men.html">男性入会</a>
-    <a href="guidance_women.html">女性入会</a>
-    <a href="system.html">料金・システム</a>
-    <a href="contact.html">お問合せ</a>
-  </nav>
-  <div class="hamburger" onclick="toggleMenu()">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-</header>
+<body>
 
-<style>
-  .nav-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: rgba(0, 0, 0, 0.6);
-    padding: 5px 20px;
-    min-height: 48px;
-    font-family: 'Cormorant Garamond', serif;
-    position: relative;
-    z-index: 10;
-  }
+  <!-- ナビゲーション -->
+  <header class="nav-container">
+    <div class="nav-logo">
+      <a href="top.html">
+        <img src="images/logo_1.png" alt="PRIVATE SHIROKANE Logo" />
+      </a>
+    </div>
+    <nav class="nav-links" id="navLinks">
+      <a href="top.html">Top</a>
+      <a href="guidance_men.html">男性入会</a>
+      <a href="guidance_women.html">女性入会</a>
+      <a href="system.html">料金・システム</a>
+      <a href="contact.html">お問合せ</a>
+    </nav>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </header>
 
-  .nav-logo img {
-    height: 50px;
-    object-fit: contain;
-    filter: brightness(90%) drop-shadow(0 1px 1px #ccc);
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 30px;
-    font-size: 17px;
-  }
-
-  .nav-links a {
-    color: #f0f0f0;
-    text-decoration: none;
-    position: relative;
-    transition: color 0.3s ease;
-  }
-
-  .nav-links a:hover {
-    color: #ffffff;
-  }
-
-  .hamburger {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-  }
-
-  .hamburger span {
-    height: 3px;
-    width: 25px;
-    background: #f9f9f9;
-    margin: 4px 0;
-  }
-
-  @media screen and (max-width: 768px) {
-    .nav-links {
-      display: none;
-      flex-direction: column;
-      width: 100%;
-      position: absolute;
-      top: 60px;
-      left: 0;
-      background-color: rgba(0, 0, 0, 0.9);
-      padding: 15px;
+  <style>
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 5px 20px;
+      min-height: 48px;
+      font-family: 'Cormorant Garamond', serif;
+      position: relative;
+      z-index: 10;
     }
 
-    .nav-links.active {
+    .nav-logo img {
+      height: 50px;
+      object-fit: contain;
+      filter: brightness(90%) drop-shadow(0 1px 1px #ccc);
+    }
+
+    .nav-links {
       display: flex;
+      gap: 30px;
+      font-size: 17px;
+    }
+
+    .nav-links a {
+      color: #f0f0f0;
+      text-decoration: none;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #ffffff;
     }
 
     .hamburger {
-      display: flex;
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
     }
-  }
-</style>
 
-<script>
-  function toggleMenu() {
-    const nav = document.getElementById("navLinks");
-    nav.classList.toggle("active");
-  }
-</script>
+    .hamburger span {
+      height: 3px;
+      width: 25px;
+      background: #f9f9f9;
+      margin: 4px 0;
+    }
+
+    @media screen and (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.9);
+        padding: 15px;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+    }
+  </style>
+
+  <script>
+    function toggleMenu() {
+      const nav = document.getElementById("navLinks");
+      nav.classList.toggle("active");
+    }
+  </script>
+
+  <!-- ▼この下にバナーや本文などを続けて記述してください ▼ -->
+
