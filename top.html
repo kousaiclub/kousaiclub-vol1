@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PRIVATE SHIROKANE</title>
+  <title>PRIVATE SHIROKANE | Top</title>
   <link rel="icon" href="images/logo_1.png" type="image/png" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     body {
       margin: 0;
@@ -13,40 +15,32 @@
       color: #f9f9f9;
     }
 
-    /* バナー画像 */
-    .banner {
-      background: url('images/banner_1.png') no-repeat center center/cover;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-    }
-
-    /* ナビゲーションバー */
     .nav-container {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background-color: rgba(0, 0, 0, 0.7);
+      background-color: rgba(0, 0, 0, 0.6);
       padding: 10px 20px;
-      position: relative;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 10;
     }
 
     .nav-logo img {
-      height: 50px;
-      filter: brightness(90%) drop-shadow(0 1px 1px #ccc);
+      height: 40px;
+      object-fit: contain;
     }
 
     .nav-links {
       display: flex;
       gap: 30px;
-      font-size: 17px;
+      font-size: 16px;
     }
 
     .nav-links a {
       color: #f0f0f0;
       text-decoration: none;
-      transition: color 0.3s ease;
     }
 
     .nav-links a:hover {
@@ -57,6 +51,7 @@
       display: none;
       flex-direction: column;
       cursor: pointer;
+      margin-right: auto;
     }
 
     .hamburger span {
@@ -66,16 +61,36 @@
       margin: 4px 0;
     }
 
+    .banner {
+      width: 100%;
+      height: 100vh;
+      background-image: url('images/banner_1.jpg');
+      background-position: center center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .brand-text {
+      font-size: 4vw;
+      margin-right: 5vw;
+      color: #f9f9f9;
+      font-weight: 600;
+      text-shadow: 0 1px 2px #000;
+    }
+
     @media screen and (max-width: 768px) {
       .nav-links {
         display: none;
         flex-direction: column;
-        width: 100%;
+        background-color: rgba(0, 0, 0, 0.95);
         position: absolute;
         top: 60px;
         left: 0;
-        background-color: rgba(0, 0, 0, 0.9);
-        padding: 15px;
+        width: 100%;
+        padding: 10px 20px;
       }
 
       .nav-links.active {
@@ -84,78 +99,42 @@
 
       .hamburger {
         display: flex;
+        position: absolute;
+        left: 15px;
+        top: 15px;
       }
-    }
 
-    /* ニュースセクション */
-    .news-section {
-      padding: 50px 20px;
-      background-color: #1c1c1c;
-    }
-
-    .news-title {
-      font-size: 24px;
-      text-align: center;
-      margin-bottom: 30px;
-      border-bottom: 1px solid #ccc;
-      padding-bottom: 10px;
-    }
-
-    details {
-      margin: 10px 0;
-      background: #2a2a2a;
-      padding: 10px 15px;
-      border-radius: 6px;
-    }
-
-    summary {
-      font-size: 16px;
-      cursor: pointer;
+      .banner {
+        background-position: 40% center;
+      }
     }
   </style>
 </head>
+
 <body>
+  <header class="nav-container">
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="nav-logo">
+      <a href="index.html">
+        <img src="images/logo_1.png" alt="PRIVATE SHIROKANE Logo" />
+      </a>
+    </div>
+    <nav class="nav-links" id="navLinks">
+      <a href="top.html">Top</a>
+      <a href="guidance_men.html">男性入会</a>
+      <a href="guidance_women.html">女性入会</a>
+      <a href="system.html">料金・システム</a>
+      <a href="contact.html">お問合せ</a>
+    </nav>
+  </header>
 
-  <!-- バナー -->
   <div class="banner">
-    <!-- ナビゲーション（バナー下部） -->
-    <header class="nav-container">
-      <div class="nav-logo">
-        <a href="top.html">
-          <img src="images/logo_1.png" alt="PRIVATE SHIROKANE Logo" />
-        </a>
-      </div>
-      <nav class="nav-links" id="navLinks">
-        <a href="top.html">Top</a>
-        <a href="guidance_men.html">男性入会</a>
-        <a href="guidance_women.html">女性入会</a>
-        <a href="system.html">料金・システム</a>
-        <a href="contact.html">お問合せ</a>
-      </nav>
-      <div class="hamburger" onclick="toggleMenu()">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </header>
+    <div class="brand-text">PRIVATE SHIROKANE</div>
   </div>
-
-  <!-- ニュースセクション -->
-  <section class="news-section">
-    <div class="news-title">最新のお知らせ</div>
-    <details>
-      <summary>2025年5月5日　本サイト（PRIVATE SHIROKANE）をオープンしました。</summary>
-      <p>ご利用ありがとうございます。今後ともよろしくお願いいたします。</p>
-    </details>
-    <details>
-      <summary>2025年5月10日　キャンペーン情報の掲載スペースを設けました。</summary>
-      <p>QRコード・割引制度などに対応予定です。</p>
-    </details>
-    <details>
-      <summary>2025年5月15日　今後のアップデートではアーカイブページ機能を提供予定です。</summary>
-      <p>過去の情報も随時確認可能になります。</p>
-    </details>
-  </section>
 
   <script>
     function toggleMenu() {
@@ -163,6 +142,6 @@
       nav.classList.toggle("active");
     }
   </script>
-
 </body>
+
 </html>
