@@ -1,16 +1,22 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PRIVATE SHIROKANE</title>
   <link rel="icon" href="images/logo_1.png" type="image/png" />
   <style>
-    body {
+    * {
       margin: 0;
-      background-color: #1c1c1c;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
       font-family: 'Cormorant Garamond', serif;
-      color: #f0f0f0;
+      background-color: #1c1c1c;
+      color: #f9f9f9;
     }
 
     .nav-container {
@@ -20,8 +26,9 @@
       background-color: rgba(0, 0, 0, 0.6);
       padding: 5px 20px;
       min-height: 48px;
-      position: relative;
-      z-index: 10;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
     .nav-logo img {
@@ -39,7 +46,6 @@
     .nav-links a {
       color: #f0f0f0;
       text-decoration: none;
-      position: relative;
       transition: color 0.3s ease;
     }
 
@@ -80,14 +86,60 @@
         display: flex;
       }
     }
+
+    .banner {
+      position: relative;
+      width: 100%;
+      height: auto;
+    }
+
+    .banner img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .banner-text {
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
+      text-align: center;
+      font-size: 36px;
+      color: #1c1c1c;
+      text-shadow: 0 1px 4px rgba(255, 255, 255, 0.6);
+    }
+
+    .news-section {
+      padding: 40px 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .news-section h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .news-item {
+      background: #333;
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 6px;
+    }
+
+    .news-item span {
+      display: block;
+      font-size: 14px;
+      color: #ccc;
+    }
   </style>
 </head>
-<body>
 
-  <!-- ナビゲーション -->
+<body>
   <header class="nav-container">
     <div class="nav-logo">
-      <a href="top.html">
+      <a href="index.html">
         <img src="images/logo_1.png" alt="PRIVATE SHIROKANE Logo" />
       </a>
     </div>
@@ -105,10 +157,26 @@
     </div>
   </header>
 
-  <!-- バナー画像 -->
-  <img src="images/banner_1.png" alt="バナー" style="width: 100%; display: block;" />
+  <div class="banner">
+    <img src="images/banner_1.png" alt="PRIVATE SHIROKANE バナー">
+    <div class="banner-text">PRIVATE SHIROKANE</div>
+  </div>
 
-  <!-- ▼この下に本文・ニュースセクションなどを追記していきます ▼ -->
+  <section class="news-section">
+    <h2>最新のお知らせ</h2>
+    <div class="news-item">
+      <span>2025年5月5日</span>
+      本サイト（PRIVATE SHIROKANE）をオープンしました。
+    </div>
+    <div class="news-item">
+      <span>2025年5月10日</span>
+      キャンペーン情報の掲載スペースを設けました。QRコードなども対応予定です。
+    </div>
+    <div class="news-item">
+      <span>2025年5月15日</span>
+      今後のアップデートではアーカイブページ機能を提供予定です。
+    </div>
+  </section>
 
   <script>
     function toggleMenu() {
@@ -116,6 +184,6 @@
       nav.classList.toggle("active");
     }
   </script>
-
 </body>
+
 </html>
