@@ -1,44 +1,94 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>交際クラブ | トップページ</title>
-  <link rel="stylesheet" href="style_combined.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>お知らせ - PRIVATE SHIROKANE</title>
+  <link rel="icon" href="images/logo_2.jpg" type="image/jpeg" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #1c1c1c;
+      color: #f9f9f9;
+      font-family: "UD Digi Kyokasho N-R", "Yu Gothic", Meiryo, sans-serif;
+    }
+    .banner {
+      background: url('images/banner_1.png') center center / cover no-repeat;
+      height: 300px;
+      position: relative;
+    }
+    .banner-text {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      font-size: 24px;
+      font-weight: bold;
+      text-shadow: 1px 1px 4px #000;
+    }
+    .content {
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+    .accordion {
+      background-color: #2a2a2a;
+      color: #f9f9f9;
+      cursor: pointer;
+      padding: 14px 20px;
+      width: 100%;
+      border: none;
+      text-align: left;
+      outline: none;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    .accordion.active, .accordion:hover {
+      background-color: #333;
+    }
+    .panel {
+      padding: 0 20px;
+      background-color: #1c1c1c;
+      display: none;
+      overflow: hidden;
+      border-left: 4px solid #f9f9f9;
+    }
+    @media screen and (max-width: 600px) {
+      .banner {
+        height: 200px;
+      }
+      .banner-text {
+        font-size: 18px;
+      }
+    }
+  </style>
 </head>
-<body class="top-page">
+<body>
 
-  <header class="site-header">
-    <h1>交際クラブ</h1>
-    <nav class="main-nav">
-      <ul>
-        <li><a href="top.html">トップ</a></li>
-        <li><a href="member_list.html">会員一覧</a></li>
-        <li><a href="guidance_men.html">男性ガイダンス</a></li>
-        <li><a href="guidance_women.html">女性ガイダンス</a></li>
-        <li><a href="contact.html">お問い合わせ</a></li>
-      </ul>
-    </nav>
-  </header>
+  <div class="banner">
+    <div class="banner-text">NEWS / お知らせ</div>
+  </div>
 
-  <main class="main-content">
-    <section class="hero-section">
-      <h2>最新ニュース</h2>
-      <p>交際クラブの新着情報やお知らせをこちらに掲載します。</p>
-    </section>
+  <div class="content">
+    <h2>最新のお知らせ</h2>
 
-    <section class="navigation-links">
-      <h3>各種ページ</h3>
-      <ul>
-        <li><a href="member_list.html">▶ 会員一覧を見る</a></li>
-        <li><a href="guidance_men.html">▶ 男性のご利用ガイド</a></li>
-        <li><a href="guidance_women.html">▶ 女性のご登録について</a></li>
-      </ul>
-    </section>
-  </main>
+    <button class="accordion">2025年5月5日</button>
+    <div class="panel">
+      <p>本サイト（プライベート白金・PRIVATE SHIROKANE）をオープンしました。</p>
+    </div>
 
-  <footer class="site-footer">
-    <p>&copy; 2025 Kousai Club. All rights reserved.</p>
-  </footer>
+  </div>
+
+  <script>
+    const acc = document.getElementsByClassName("accordion");
+    for (let i = 0; i < acc.length; i++) {
+      acc[i].addEventListener("click", function () {
+        this.classList.toggle("active");
+        const panel = this.nextElementSibling;
+        panel.style.display = panel.style.display === "block" ? "none" : "block";
+      });
+    }
+  </script>
 
 </body>
 </html>
