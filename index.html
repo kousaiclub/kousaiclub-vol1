@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Top - PRIVATE SHIROKANE</title>
+  <title>PRIVATE SHIROKANE - Home</title>
   <link rel="icon" href="images/logo_1.png" type="image/png" />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
   <style>
@@ -13,6 +13,7 @@
       background-color: #1c1c1c;
       color: #f9f9f9;
       font-family: 'Cormorant Garamond', serif;
+      text-align: center;
     }
 
     header {
@@ -40,31 +41,47 @@
 
     .banner {
       background: url('images/banner_1.png') center center / cover no-repeat;
-      height: 680px;
+      height: 500px;
     }
 
-    .content {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
-
-    .news-card {
-      background-color: #333;
-      border-radius: 10px;
-      padding: 15px;
-      margin-bottom: 20px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
-    }
-
-    .news-card h3 {
+    .age-warning {
       font-size: 18px;
-      margin-bottom: 10px;
+      margin: 30px 20px 10px;
+      color: #ff4c4c;
     }
 
-    .news-card p {
+    .age-confirmation {
       font-size: 14px;
-      line-height: 1.6;
+      margin: 10px 0;
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin: 20px 0;
+    }
+
+    .button-group button {
+      padding: 10px 30px;
+      font-size: 16px;
+      background-color: #f9f9f9;
+      color: #1c1c1c;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .button-label {
+      font-size: 12px;
+      margin-top: 5px;
+    }
+
+    .footer-text {
+      margin-top: 30px;
+      font-style: italic;
+      font-size: 14px;
+      color: #aaa;
     }
   </style>
 </head>
@@ -84,19 +101,20 @@
 
   <div class="banner"></div>
 
-  <div class="content">
-    <div class="news-card">
-      <h3>📌 最新ニュース：2025年5月 最新特別プランご案内</h3>
-      <p>春の特別登録キャンペーンを実施中。詳細はお問合せページよりご確認ください。</p>
+  <div class="age-warning">当サイトは18歳以上を対象とした交際クラブです。安心・安全・所轄届出済</div>
+  <div class="age-confirmation">このコンテンツは18歳以上の方が対象となります。<br>18歳未満の方はご利用になれません。</div>
+
+  <div class="button-group">
+    <div>
+      <button onclick="location.href='top.html'">Enter</button>
+      <div class="button-label">18over</div>
     </div>
-    <div class="news-card">
-      <h3>📌 交際クラブ届出済み・所轄警察署に提出済</h3>
-      <p>安心・安全の運営を徹底しています。</p>
-    </div>
-    <div class="news-card">
-      <h3>📌 新規女性会員が多数登録中</h3>
-      <p>注目女性の特集ページもご覧ください。</p>
+    <div>
+      <button onclick="location.href='https://www.google.com/'">Leave</button>
+      <div class="button-label">18under</div>
     </div>
   </div>
+
+  <div class="footer-text">扉の向こうには、選ばれた大人しかいない･･･</div>
 </body>
 </html>
