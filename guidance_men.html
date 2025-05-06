@@ -69,9 +69,34 @@
       border-bottom: 1px solid #f9f9f9;
     }
 
+    .section-text {
+      display: flex;
+    }
+
+    .section-text::before {
+      content: "　";
+      flex-shrink: 0;
+      width: 2em;
+      display: block;
+    }
+
     .section-text p {
-      padding-left: 2em;
-      margin: 5px 0;
+      margin: 0;
+      padding: 0;
+      text-align: justify;
+    }
+
+    .entry-button {
+      display: block;
+      margin: 40px auto;
+      padding: 12px 30px;
+      background-color: #ccc;
+      color: #000;
+      text-align: center;
+      width: fit-content;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 5px;
     }
   </style>
 </head>
@@ -134,21 +159,9 @@
       <div class="section-text">
         <p>入会金、及び年会費、セッティング費用のお支払いに関しては面談時に現金でのお支払い、または、銀行振り込みでお支払いください。</p>
       </div>
+    </div>
 
     <a class="entry-button" href="contact.html">▶ 入会フォームへ</a>
   </div>
-
-    <a class="entry-button" href="contact.html">▶ 入会フォームへ</a>
-  </div>
-
-  <a class="entry-button" href="contact.html">▶ 入会フォームへ</a>
-  </div>
-
-  <script>
-    function toggleMenu() {
-      const nav = document.getElementById("navLinks");
-      nav.classList.toggle("active");
-    }
-  </script>
 </body>
 </html>
