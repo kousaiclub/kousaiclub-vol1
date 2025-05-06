@@ -1,140 +1,110 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GUIDANCE MEN - PRIVATE SHIROKANE</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>男性入会のご案内 - PRIVATE SHIROKANE</title>
   <link rel="icon" href="images/logo_1.png" type="image/png" />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/style.css">
   <style>
     body {
-      margin: 0;
-      padding: 0;
       background-color: #1c1c1c;
       color: #f9f9f9;
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'UD新ゴ', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .banner {
+      width: 100%;
+      height: 320px;
+      background: url("images/banner_2.png") center center / cover no-repeat;
+    }
+    .content {
+      padding: 30px 20px;
       font-size: 14px;
       line-height: 1.8;
-    }
-
-    header {
-      background-color: #000;
-      padding: 10px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    header img {
-      height: 40px;
-    }
-
-    nav a {
-      color: #f9f9f9;
-      text-decoration: none;
-      margin: 0 10px;
-      font-size: 16px;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    .banner {
-      background: url('images/banner_2.png') center center / cover no-repeat;
-      height: 300px;
-    }
-
-    .content {
       max-width: 900px;
-      margin: 40px auto;
-      padding: 0 20px;
+      margin: 0 auto;
     }
-
     .content h2 {
-      text-align: center;
-      font-size: 24px;
-      margin-bottom: 30px;
-    }
-
-    .section {
-      margin-bottom: 40px;
-    }
-
-    .section-title {
-      font-size: 16px;
-      font-weight: bold;
-      margin-bottom: 10px;
-      border-bottom: 1px solid #f9f9f9;
-      padding-bottom: 5px;
-    }
-
-    .section-text p {
-      text-indent: 2em;
-      margin: 5px 0;
+      font-size: 18px;
+      border-bottom: 1px solid #888;
+      padding-bottom: 8px;
+      margin-top: 30px;
     }
   </style>
 </head>
 <body>
-  <header>
-    <img src="images/logo_1.png" alt="PRIVATE SHIROKANE">
-    <nav>
-      <a href="index.html">Home</a>
+
+  <!-- ナビゲーション -->
+  <header class="nav-container">
+    <div class="nav-logo">
+      <a href="index.html">
+        <img src="images/logo_1.png" alt="PRIVATE SHIROKANE Logo" />
+      </a>
+    </div>
+    <nav class="nav-links" id="navLinks">
       <a href="top.html">Top</a>
-      <a href="entry_men.html">男性入会</a>
-      <a href="entry_women.html">女性入会</a>
-      <a href="system.html">料金・システム</a>
-      <a href="members.html">会員専用</a>
+      <a href="guidance_men.html">男性入会</a>
+      <a href="guidance_women.html">女性入会</a>
+      <a href="pricing.html">料金・システム</a>
       <a href="contact.html">お問合せ</a>
     </nav>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
   </header>
 
+  <!-- バナー画像 -->
   <div class="banner"></div>
 
+  <!-- 本文エリア -->
   <div class="content">
-    <h2>GUIDANCE MEN</h2>
+    <h1>GUIDANCE MEN</h1>
 
-    <div class="section">
-      <div class="section-title">1. ご入会申し込み</div>
-      <div class="section-text">
-        <p>お電話、メール、ラインのいずれかでお申し込み下さい。面談の日程調整をさせて頂きます。事情によっては不安を部分ケアしながら配慮を踏まえてご説明いたします。</p>
-      </div>
-    </div>
+    <h2>1. ご入会申し込み</h2>
+    <p>
+      お電話、メール、ラインのいずれかでお申し込み下さい。<br>
+      面談の日時調整をさせて頂きます。事前になにか不安な部分や心配な部分があれば備考欄に記載いただければ事前にご説明も可能です。
+    </p>
 
-    <div class="section">
-      <div class="section-title">2. 面談</div>
-      <div class="section-text">
-        <p>面談では、当会事務所もしくはホテルのカフェやラウンジで行わせていただいております。交際クラブでの活動の注意事項やルールのご説明など、ご入会される際の会員画面の使用手順についてもご説明させていただきます。（顔写真付きの身分証明書をご持参ください）</p>
-      </div>
-    </div>
+    <h2>2. 面談</h2>
+    <p>
+      面談では、当会事務所もしくはホテルのカフェやラウンジで行わせていただいております。<br>
+      交際クラブでの活動の注意事項やルールの説明など、ご入会であれば実際の会員画面の使用手順についてもご説明させていただきます。
+      （顔写真付きの身分証明書をご持参ください）
+    </p>
 
-    <div class="section">
-      <div class="section-title">3. 女性会員プロフィール閲覧</div>
-      <div class="section-text">
-        <p>入会審査を無事通過し、ご入金の確認ができましたら、会員専用サイトのログインID・パスワードをお渡し致します。素敵な女性が見つけるといいですね。</p>
-      </div>
-    </div>
+    <h2>3. 女性会員プロフィール閲覧</h2>
+    <p>
+      入会審査を無事通過し、ご入会金をお支払いいただきましたら、会員専用サイトのログインID・パスワードをお渡しいたします。<br>
+      素敵な女性が見つかるといいですね。
+    </p>
 
-    <div class="section">
-      <div class="section-title">4. セッティングのお申し込み</div>
-      <div class="section-text">
-        <p>会員様専用ページには、現在登録中の女性の一覧がございますのでお好みの会員様の検索し、ご自身の好みをタイプの女性を探してご覧ください。決まりましたらライン又は電話にてお知らせ下さい。</p>
-      </div>
-    </div>
+    <h2>4. セッティングのお申し込み</h2>
+    <p>
+      会員様専用ページには、現在登録中の女性の一覧がございますのでお好みの検索で、ご自身の好きなタイプの女性を探してください。<br>
+      決まりましたらライン又はお電話にてお申込みをして下さい。
+    </p>
 
-    <div class="section">
-      <div class="section-title">5. 初めての出会い</div>
-      <div class="section-text">
-        <p>前日に確認を行います。当日はセッティング場所にて合流して下さい。その後の行動は当会では一切関知しませんのでお二人の時間をお過ごしください。</p>
-      </div>
-    </div>
+    <h2>5. 初めての出会い</h2>
+    <p>
+      セッティング場所にて合流して下さい。その後の行動は当会では一切関知しませんのでお二人の時間をお過ごしください。
+    </p>
 
-    <div class="section">
-      <div class="section-title">6. 補足事項</div>
-      <div class="section-text">
-        <p>入会金、及び年会費、セッティング費用のお支払いに関しては面談時に現金でのお支払い、または、銀行振り込みでお支払いください。</p>
-      </div>
-    </div>
+    <h2>6. 補足事項</h2>
+    <p>
+      入会金、及び年会費、セッティング費用のお支払いに関しては面談時にお支払い又は銀行振り込み、またはクレジットカードでお支払いが可能です。
+    </p>
   </div>
+
+  <script>
+    function toggleMenu() {
+      const nav = document.getElementById("navLinks");
+      nav.classList.toggle("active");
+    }
+  </script>
 </body>
 </html>
