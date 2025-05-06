@@ -1,92 +1,108 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>男性入会のご案内 - PRIVATE SHIROKANE</title>
-  <link rel="icon" href="images/logo_1.png" type="image/png" />
-  <link rel="stylesheet" href="styles/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>男性入会案内 - PRIVATE SHIROKANE</title>
+  <link rel="stylesheet" href="styles/style.css" />
   <style>
     body {
       background-color: #1c1c1c;
       color: #f9f9f9;
-      font-family: 'UD新ゴ', sans-serif;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14px;
       margin: 0;
-      padding: 0;
+    }
+    .logo {
+      width: 100px;
+      margin: 10px;
+    }
+    .nav {
+      display: flex;
+      justify-content: flex-end;
+      gap: 20px;
+      padding: 10px 20px;
+      background-color: transparent;
+      font-size: 14px;
+    }
+    .nav a {
+      color: #f9f9f9;
+      text-decoration: none;
     }
     .banner {
-      width: 100%;
-      height: 320px;
-      background: url("images/banner_2.png") center center / cover no-repeat;
+      background: url('images/banner_2.png') no-repeat center center/cover;
+      height: 300px;
+      position: relative;
     }
-    .content {
+    .container {
       padding: 30px 20px;
-      font-size: 14px;
-      line-height: 1.8;
       max-width: 900px;
-      margin: 0 auto;
+      margin: auto;
     }
-    .content h2 {
-      font-size: 18px;
-      border-bottom: 1px solid #888;
-      padding-bottom: 8px;
+    h1 {
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 30px;
+    }
+    h2 {
       margin-top: 30px;
+      font-size: 18px;
+      border-bottom: 1px solid #f9f9f9;
+    }
+    p {
+      margin-top: 10px;
+      line-height: 1.6;
+    }
+    .cta {
+      text-align: center;
+      margin: 40px 0;
+    }
+    .cta a {
+      background: #f9f9f9;
+      color: #1c1c1c;
+      padding: 10px 30px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-
-  <!-- ナビゲーション -->
-  <header class="nav-container">
-    <div class="nav-logo">
-      <a href="index.html">
-        <img src="images/logo_1.png" alt="PRIVATE SHIROKANE Logo" />
-      </a>
-    </div>
-    <nav class="nav-links" id="navLinks">
+  <header>
+    <img src="images/logo.png" alt="PRIVATE SHIROKANE" class="logo" />
+    <nav class="nav">
       <a href="top.html">Top</a>
       <a href="guidance_men.html">男性入会</a>
       <a href="guidance_women.html">女性入会</a>
       <a href="pricing.html">料金・システム</a>
       <a href="contact.html">お問合せ</a>
     </nav>
-    <div class="hamburger" onclick="toggleMenu()">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
   </header>
 
-  <!-- バナー画像 -->
   <div class="banner"></div>
 
-  <!-- 本文エリア -->
-  <div class="content">
+  <div class="container">
     <h1>GUIDANCE MEN</h1>
 
     <h2>1. ご入会申し込み</h2>
     <p>
-      お電話、メール、ラインのいずれかでお申し込み下さい。<br>
+      お電話、メール、ラインのいずれかでお申し込み下さい。<br />
       面談の日時調整をさせて頂きます。事前になにか不安な部分や心配な部分があれば備考欄に記載いただければ事前にご説明も可能です。
     </p>
 
     <h2>2. 面談</h2>
     <p>
-      面談では、当会事務所もしくはホテルのカフェやラウンジで行わせていただいております。<br>
-      交際クラブでの活動の注意事項やルールの説明など、ご入会であれば実際の会員画面の使用手順についてもご説明させていただきます。
-      （顔写真付きの身分証明書をご持参ください）
+      面談では、当会事務所もしくはホテルのカフェやラウンジで行わせていただいております。交際クラブでの活動の注意事項やルールの説明など、ご入会であれば実際の会員画面の使用手順についてもご説明させていただきます。（顔写真付きの身分証明書をご持参ください）
     </p>
 
     <h2>3. 女性会員プロフィール閲覧</h2>
     <p>
-      入会審査を無事通過し、ご入会金をお支払いいただきましたら、会員専用サイトのログインID・パスワードをお渡しいたします。<br>
-      素敵な女性が見つかるといいですね。
+      入会審査を無事通過し、ご入会金をお支払いいただきましたら、会員専用サイトのログインID・パスワードをお渡しいたします。素敵な女性が見つかるといいですね。
     </p>
 
     <h2>4. セッティングのお申し込み</h2>
     <p>
-      会員様専用ページには、現在登録中の女性の一覧がございますのでお好みの検索で、ご自身の好きなタイプの女性を探してください。<br>
-      決まりましたらライン又はお電話にてお申込みをして下さい。
+      会員様専用ページには、現在登録中の女性の一覧がございますのでお好みの検索で、ご自身の好きなタイプの女性を探してください。決まりましたらライン又はお電話にてお申込みをして下さい。
     </p>
 
     <h2>5. 初めての出会い</h2>
@@ -98,13 +114,10 @@
     <p>
       入会金、及び年会費、セッティング費用のお支払いに関しては面談時にお支払い又は銀行振り込み、またはクレジットカードでお支払いが可能です。
     </p>
-  </div>
 
-  <script>
-    function toggleMenu() {
-      const nav = document.getElementById("navLinks");
-      nav.classList.toggle("active");
-    }
-  </script>
+    <div class="cta">
+      <a href="contact.html">入会申込フォームへ</a>
+    </div>
+  </div>
 </body>
 </html>
