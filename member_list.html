@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GUIDANCE MEN - PRIVATE SHIROKANE</title>
-  <link rel="icon" href="images/logo_1.png" type="image/png" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>お問合せ - PRIVATE SHIROKANE</title>
+  <link rel="icon" href="images/logo_1.png">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
@@ -13,10 +13,7 @@
       background-color: #1c1c1c;
       color: #f9f9f9;
       font-family: 'Cormorant Garamond', serif;
-      font-size: 14px;
-      line-height: 1.8;
     }
-
     header {
       background-color: #000;
       padding: 10px 20px;
@@ -24,79 +21,65 @@
       align-items: center;
       justify-content: space-between;
     }
-
     header img {
       height: 40px;
     }
-
     nav a {
       color: #f9f9f9;
       text-decoration: none;
       margin: 0 10px;
-      font-size: 16px;
+      font-size: 18px;
     }
-
     nav a:hover {
       text-decoration: underline;
     }
-
     .banner {
-      background: url('images/banner_2.png') center center / cover no-repeat;
+      width: 100%;
       height: 300px;
+      background: url('images/banner_3.png') center/cover no-repeat;
     }
-
-    .content {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 20px;
+    .form-container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      background-color: #2a2a2a;
+      border: 1px solid #f9f9f9;
     }
-
-    .content h2 {
+    h2 {
       text-align: center;
-      font-size: 24px;
-      margin-bottom: 30px;
+      font-size: 28px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 10px;
     }
-
-    .section {
-      margin-bottom: 40px;
-    }
-
-    .section-title {
-      font-size: 16px;
-      font-weight: bold;
-      margin-bottom: 10px;
-      padding-bottom: 5px;
-      border-bottom: 1px solid #f9f9f9;
-    }
-
-    .section-text {
+    form {
       display: flex;
+      flex-direction: column;
     }
-
-    .section-text::before {
-      content: "　";
-      flex-shrink: 0;
-      width: 2em;
-      display: block;
+    input, select, textarea {
+      margin-bottom: 20px;
+      padding: 10px;
+      font-size: 16px;
+      border: none;
+      font-family: 'Cormorant Garamond', serif;
     }
-
-    .section-text p {
-      margin: 0;
-      padding: 0;
-      text-align: justify;
+    textarea {
+      height: 120px;
     }
-
-    .entry-button {
-      display: block;
-      margin: 40px auto;
-      padding: 12px 30px;
-      background-color: #ccc;
+    .submit-btn {
+      background-color: #fff;
       color: #000;
+      padding: 12px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .line-link {
       text-align: center;
-      width: fit-content;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+    .line-link a {
+      color: #00ff00;
       text-decoration: none;
-      font-weight: bold;
-      border-radius: 5px;
     }
   </style>
 </head>
@@ -113,18 +96,6 @@
       <a href="contact.html">お問合せ</a>
     </nav>
   </header>
-    <img src="images/logo_1.png" alt="PRIVATE SHIROKANE">
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="top.html">Top</a>
-      <a href="entry_men.html">男性入会</a>
-      <a href="entry_women.html">女性入会</a>
-      <a href="system.html">料金・システム</a>
-      <a href="members.html">会員専用</a>
-      <a href="contact.html">お問合せ</a>
-    </nav>
-  </header>
-
   <div class="banner"></div>
 
   <!DOCTYPE html>
