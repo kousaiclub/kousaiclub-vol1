@@ -42,6 +42,8 @@
       max-width: 600px;
       margin: 0 auto;
       padding: 40px 20px;
+      background-color: #2a2a2a;
+      border: 1px solid #f9f9f9;
     }
     h2 {
       text-align: center;
@@ -52,15 +54,13 @@
     form {
       display: flex;
       flex-direction: column;
-      gap: 15px;
     }
     input, select, textarea {
-      padding: 12px;
+      margin-bottom: 20px;
+      padding: 10px;
       font-size: 16px;
-      background-color: #333;
-      color: #f9f9f9;
       border: none;
-      border-radius: 4px;
+      font-family: 'Cormorant Garamond', serif;
     }
     textarea {
       height: 120px;
@@ -68,16 +68,18 @@
     .submit-btn {
       background-color: #fff;
       color: #000;
-      font-weight: bold;
       padding: 12px;
-      border: none;
+      font-size: 16px;
       cursor: pointer;
-      text-align: center;
     }
     .line-link {
       text-align: center;
-      margin-top: 20px;
-      color: #0f0;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+    .line-link a {
+      color: #00ff00;
+      text-decoration: none;
     }
   </style>
 </head>
@@ -111,7 +113,9 @@
       <textarea name="message" placeholder="お問合せ内容（必須）" required></textarea>
       <button type="submit" class="submit-btn">送信 ▶</button>
     </form>
-    <div class="line-link">LINEでのお問合せはこちら → <a href="#" style="color: #0f0;">LINE公式アカウント</a></div>
+    <div class="line-link">
+      LINEでのお問合せはこちら → <a href="#">LINE公式アカウント</a>
+    </div>
   </div>
 </body>
 </html>
