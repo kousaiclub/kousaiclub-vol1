@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>members_list - PRIVATE SHIROKANE</title>
-  <link rel="icon" href="images/logo_1.png" type="image/png" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>member102 - PRIVATE SHIROKANE</title>
+  <link rel="icon" href="images/logo_1.png">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
@@ -13,238 +13,126 @@
       background-color: #1c1c1c;
       color: #f9f9f9;
       font-family: 'Cormorant Garamond', serif;
-      font-size: 14px;
-      line-height: 1.8;
     }
-
-    .nav-container {
+    header {
+      background-color: #000;
+      padding: 10px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background-color: rgba(0, 0, 0, 0.6);
-      padding: 5px 20px;
-      font-size: 16px;
-      position: relative;
-      z-index: 10;
     }
-
-    .nav-logo img {
-      height: 50px;
-      object-fit: contain;
-      filter: brightness(90%) drop-shadow(0 1px 1px #ccc);
+    header img {
+      height: 40px;
     }
-
-    .nav-links {
-      display: flex;
-      gap: 30px;
+    nav a {
+      color: #f9f9f9;
+      text-decoration: none;
+      margin: 0 10px;
+      font-size: 18px;
       font-family: 'Cormorant Garamond', serif;
     }
-
-    .nav-links a {
-      color: #f0f0f0;
-      text-decoration: none;
+    nav a:hover {
+      text-decoration: underline;
     }
-
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-    }
-
-    .hamburger span {
-      height: 3px;
-      width: 25px;
-      background: #f9f9f9;
-      margin: 4px 0;
-    }
-
-    @media screen and (max-width: 768px) {
-      .nav-links {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        background-color: rgba(0, 0, 0, 0.9);
-        padding: 15px;
-      }
-      .nav-links.active {
-        display: flex;
-      }
-      .hamburger {
-        display: flex;
-      }
-    }
-
     .banner {
-      background: url('images/banner_3.png') center center / cover no-repeat;
-      height: 300px;
-    }
-
-    .card-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 1%;
-      padding: 20px;
-    }
-
-    .card {
-      width: 22%;
-      background-color: #1c1c1c;
-      border: 1px solid #f9f9f9;
-      color: #FFFFFF;
-      font-size: 13px;
-      border-radius: 12px;
-      overflow: hidden;
-      margin-bottom: 20px;
-    }
-
-    .card-image {
-      position: relative;
-      height: auto;
-      aspect-ratio: 3 / 4;
-      overflow: hidden;
-      cursor: pointer;
-    }
-
-    .slide {
-      position: absolute;
-      top: 0;
-      left: 0;
       width: 100%;
-      height: 100%;
-      opacity: 0;
-      transition: opacity 0.6s ease-in-out;
+      height: 300px;
+      background: url('images/banner_3.png') center/cover no-repeat;
     }
-
-    .slide.active {
-      opacity: 1;
+    .container {
+      display: flex;
+      flex-direction: row;
+      padding: 20px;
+      gap: 20px;
+      background-color: #1c1c1c;
     }
-
+    .slider {
+      flex: 1;
+      max-width: 50%;
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+    }
+    .slide {
+      display: none;
+      width: 100%;
+    }
     .slide img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      border-radius: 12px;
     }
-
-    .card-text {
-      padding: 8px;
-      text-align: center;
+    .info {
+      flex: 1;
+      background-color: #2a2a2a;
+      padding: 20px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-family: 'Cormorant Garamond', serif;
     }
-
-    .favorite-btn {
-      font-size: 18px;
-      color: #FF69B4;
-      cursor: pointer;
+    .info p {
+      margin: 10px 0;
     }
-
-    .comment {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
     @media (max-width: 768px) {
-      .card {
-        width: 48%;
+      .container {
+        flex-direction: column;
+      }
+      .slider, .info {
+        max-width: 100%;
       }
     }
   </style>
 </head>
 <body>
-  <header class="nav-container">
-    <div class="nav-logo">
-      <a href="top.html">
-        <img src="images/logo_1.png" alt="PRIVATE SHIROKANE Logo" />
-      </a>
-    </div>
-    <nav class="nav-links" id="navLinks">
+  <header>
+    <img src="images/logo_1.png" alt="PRIVATE SHIROKANE">
+    <nav>
+      <a href="index.html">Home</a>
       <a href="top.html">Top</a>
-      <a href="guidance_men.html">男性入会</a>
-      <a href="guidance_women.html">女性入会</a>
+      <a href="entry_men.html">男性入会</a>
+      <a href="entry_women.html">女性入会</a>
       <a href="system.html">料金・システム</a>
-      <a href="members_only.html">会員専用</a>
+      <a href="members.html">会員専用</a>
       <a href="contact.html">お問合せ</a>
     </nav>
-    <div class="hamburger" onclick="toggleMenu()">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
   </header>
-
   <div class="banner"></div>
 
-  <div class="card-container" id="cardContainer"></div>
+  <div class="container">
+    <div class="slider" id="slider">
+      <div class="slide"><img src="https://i.imgur.com/BWqeNt6.jpeg" /></div>
+      <div class="slide"><img src="https://i.imgur.com/W84FDvL.jpeg" /></div>
+      <div class="slide"><img src="https://i.imgur.com/ZvYttoT.jpeg" /></div>
+    </div>
+    <div class="info">
+      <p><strong>登録No.：</strong>101</p>
+      <p><strong>氏名：</strong>1</p>
+      <p><strong>年齢：</strong>21</p>
+      <p><strong>身長：</strong>150</p>
+      <p><strong>スリーサイズ：</strong>90 / H / 57 / 87</p>
+      <p><strong>趣味：</strong>パーソナルジム、エステ</p>
+      <p><strong>性格：</strong>癒し系</p>
+      <p><strong>タバコ：</strong>吸いません。</p>
+      <p><strong>お酒：</strong>飲めます。</p>
+      <p><strong>セッティング費用：</strong>7</p>
+      <p><strong>デート代：</strong>7</p>
+      <p><strong>【本人コメント】</strong><br>わたしは1です</p>
+      <p><strong>【スタッフコメント】</strong><br>パーソナルジムやエステなど自分磨きを頑張る品があり容姿端麗美女のひよりさんのご紹介です✨ 高身長のスレンダー体型でクビレラインがとても綺麗でスタイル抜群！！ 自慢の天然美巨乳のHcupな文句無しで、巨乳好きにはたまりません❤️ ふんわりとした見た目が好印象で、色白の艶のあるお肌と可愛らしくも大人っぽい、整ったお顔立ちをしています😊 誰にでも優しくおっとりとした性格で、話しているだけで癒されちゃいます✨ そんなひよりさんへのオファー、是非お待ちしています🙇‍♀️</p>
+    </div>
+  </div>
 
   <script>
-    function toggleMenu() {
-      document.getElementById("navLinks").classList.toggle("active");
+    const slides = document.querySelectorAll('.slide');
+    let currentSlide = 0;
+    if (slides.length > 1) {
+      slides[currentSlide].style.display = 'block';
+      setInterval(() => {
+        slides[currentSlide].style.display = 'none';
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].style.display = 'block';
+      }, 3000);
+    } else if (slides.length === 1) {
+      slides[0].style.display = 'block';
     }
-
-    function setupSlides() {
-      document.querySelectorAll('.card-image').forEach(container => {
-        const slides = container.querySelectorAll('.slide');
-        let idx = 0;
-        if (slides.length === 1) {
-          slides[0].classList.add('active');
-          return;
-        }
-        slides[0].classList.add('active');
-        setInterval(() => {
-          slides[idx].classList.remove('active');
-          idx = (idx + 1) % slides.length;
-          slides[idx].classList.add('active');
-        }, 3000);
-      });
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      const container = document.getElementById('cardContainer');
-      const baseUrl = "https://kousaiclub.github.io/kousaiclub-vol1/member";
-      for (let i = 1; i <= 32; i++) {
-        const id = 100 + i;
-        const height = 149 + i;
-        const age = 20 + i;
-        const name = `わたしは${i}です`;
-        const card = document.createElement('div');
-        card.className = 'card';
-        card.innerHTML = `
-          <div class="card-image" onclick="window.open('${baseUrl}${i}.html', '_blank')">
-            <div class='slide'><img src='https://i.imgur.com/BWqeNt6.jpeg'></div>
-            <div class='slide'><img src='https://i.imgur.com/W84FDvL.jpeg'></div>
-            <div class='slide'><img src='https://i.imgur.com/ZvYttoT.jpeg'></div>
-          </div>
-          <div class="card-text">
-            <p><strong>No.</strong> ${id} ${i}</p>
-            <p>${height} (${age})</p>
-            <p>90, 57, 87, Hカップ</p>
-            <p class="comment">${name}</p>
-            <p><span class="favorite-btn" data-id="${id}">♡</span></p>
-          </div>
-        `;
-        container.appendChild(card);
-      }
-
-      document.querySelectorAll('.favorite-btn').forEach(btn => {
-        const id = btn.dataset.id;
-        if (localStorage.getItem('fav-' + id)) btn.textContent = '❤️';
-        btn.addEventListener('click', () => {
-          if (localStorage.getItem('fav-' + id)) {
-            localStorage.removeItem('fav-' + id);
-            btn.textContent = '♡';
-          } else {
-            localStorage.setItem('fav-' + id, '1');
-            btn.textContent = '❤️';
-          }
-        });
-      });
-
-      setupSlides();
-    });
   </script>
-
 </body>
 </html>
