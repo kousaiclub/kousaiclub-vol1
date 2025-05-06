@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PRIVATE SHIROKANE - Home</title>
-  <link rel="icon" href="images/logo_1.png" type="image/png" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PRIVATE SHIROKANE - HOME</title>
+  <link rel="icon" href="images/logo_1.png" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
@@ -13,6 +13,7 @@
       background-color: #1c1c1c;
       color: #f9f9f9;
       font-family: 'Cormorant Garamond', serif;
+      text-align: center;
     }
 
     header {
@@ -43,30 +44,49 @@
       height: 500px;
     }
 
-    .content {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 20px;
+    .main-message {
+      margin: 30px 20px 10px;
+      font-size: 16px;
+      color: #e0e0e0;
     }
 
-    .news-card {
-      background-color: #333;
-      border-radius: 10px;
-      padding: 15px;
-      margin-bottom: 20px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
-    }
-
-    .news-card h3 {
-      font-size: 18px;
-      margin-bottom: 10px;
-      color: #f9f9f9;
-    }
-
-    .news-card p {
+    .age-warning {
       font-size: 14px;
-      line-height: 1.6;
-      color: #cccccc;
+      color: #ccc;
+      margin-bottom: 20px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .buttons button {
+      padding: 10px 30px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      background-color: #f9f9f9;
+      color: #1c1c1c;
+    }
+
+    .buttons button:hover {
+      background-color: #ccc;
+    }
+
+    .button-label {
+      font-size: 12px;
+      color: #999;
+    }
+
+    .footer-message {
+      font-style: italic;
+      font-size: 14px;
+      color: #777;
+      margin-bottom: 30px;
     }
   </style>
 </head>
@@ -86,19 +106,28 @@
 
   <div class="banner"></div>
 
-  <div class="content">
-    <div class="news-card">
-      <h3>📌 最新ニュース：2025年5月 最新特別プランご案内</h3>
-      <p>春の特別登録キャンペーンを実施中。詳細はお問合せページよりご確認ください。</p>
+  <div class="main-message">
+    当サイトは18歳以上を対象とした交際クラブです。安心・安全・所轄届出済
+  </div>
+
+  <div class="age-warning">
+    このコンテンツは18歳以上の方が対象となります。<br>
+    18歳未満の方はご利用になれません。
+  </div>
+
+  <div class="buttons">
+    <div>
+      <button onclick="location.href='top.html'">Enter</button>
+      <div class="button-label">18over</div>
     </div>
-    <div class="news-card">
-      <h3>📌 交際クラブ届出済み・所轄警察署に提出済</h3>
-      <p>安心・安全の運営を徹底しています。</p>
+    <div>
+      <button onclick="location.href='https://www.google.com'">Leave</button>
+      <div class="button-label">18under</div>
     </div>
-    <div class="news-card">
-      <h3>📌 新規女性会員が多数登録中</h3>
-      <p>注目女性の特集ページもご覧ください。</p>
-    </div>
+  </div>
+
+  <div class="footer-message">
+    扉の向こうには、選ばれた大人しかいない･･･。
   </div>
 </body>
 </html>
