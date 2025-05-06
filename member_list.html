@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>members_list - PRIVATE SHIROKANE</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>会員一覧 - PRIVATE SHIROKANE</title>
   <link rel="icon" href="images/logo_1.png" type="image/png" />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
   <style>
@@ -37,7 +37,6 @@
     .nav-links {
       display: flex;
       gap: 30px;
-      font-family: 'Cormorant Garamond', serif;
     }
 
     .nav-links a {
@@ -102,31 +101,14 @@
     }
 
     .card-image {
-      position: relative;
-      height: auto;
-      aspect-ratio: 3 / 4;
-      overflow: hidden;
       cursor: pointer;
     }
 
-    .slide {
-      position: absolute;
-      top: 0;
-      left: 0;
+    .card-image img {
       width: 100%;
-      height: 100%;
-      opacity: 0;
-      transition: opacity 0.6s ease-in-out;
-    }
-
-    .slide.active {
-      opacity: 1;
-    }
-
-    .slide img {
-      width: 100%;
-      height: 100%;
+      aspect-ratio: 3 / 4;
       object-fit: cover;
+      display: block;
     }
 
     .card-text {
@@ -154,7 +136,6 @@
   </style>
 </head>
 <body>
-
   <header class="nav-container">
     <div class="nav-logo">
       <a href="top.html">
@@ -179,28 +160,12 @@
   <div class="banner"></div>
 
   <div class="card-container">
-    <!-- 以下カードは自動生成または手動コピペで挿入 -->
-    <!-- 例： -->
-    <div class="card">
-      <div class="card-image" onclick="window.open('https://sites.google.com/view/kousai-club-vol2/101?authuser=0', '_blank')">
-        <div class='slide active'><img src='https://i.imgur.com/BWqeNt6.jpeg'></div>
-        <div class='slide'><img src='https://i.imgur.com/W84FDvL.jpeg'></div>
-        <div class='slide'><img src='https://i.imgur.com/ZvYttoT.jpeg'></div>
-      </div>
-      <div class="card-text">
-        <p><strong>No.</strong> 101 1</p>
-        <p>150 (21)</p>
-        <p>90, 57, 87, Hカップ</p>
-        <p class="comment">わたしは1です</p>
-        <p><span class="favorite-btn" data-id="101">♡</span></p>
-      </div>
-    </div>
-    <!-- ここまで例 -->
+    <!-- ここに32名分のカードが続きます（省略） -->
   </div>
 
   <script>
     function toggleMenu() {
-      document.getElementById("navLinks").classList.toggle("active");
+      document.getElementById('navLinks').classList.toggle('active');
     }
 
     document.querySelectorAll('.favorite-btn').forEach(btn => {
@@ -220,18 +185,14 @@
     document.querySelectorAll('.card-image').forEach(container => {
       const slides = container.querySelectorAll('.slide');
       let idx = 0;
-      if (slides.length === 1) {
-        slides[0].classList.add('active');
-        return;
-      }
-      slides[0].classList.add('active');
+      if (slides.length === 1) return;
+      slides[idx].style.display = 'block';
       setInterval(() => {
-        slides[idx].classList.remove('active');
+        slides[idx].style.display = 'none';
         idx = (idx + 1) % slides.length;
-        slides[idx].classList.add('active');
+        slides[idx].style.display = 'block';
       }, 3000);
     });
   </script>
-
 </body>
 </html>
