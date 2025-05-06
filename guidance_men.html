@@ -1,1 +1,208 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>男性入会 - PRIVATE SHIROKANE</title>
+  <link rel="icon" href="images/logo_1.png" type="image/png" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #1c1c1c;
+      color: #f9f9f9;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14px;
+      line-height: 1.8;
+    }
 
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 5px 20px;
+      font-size: 16px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .nav-logo img {
+      height: 50px;
+      object-fit: contain;
+      filter: brightness(90%) drop-shadow(0 1px 1px #ccc);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-links a {
+      color: #f0f0f0;
+      text-decoration: none;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .hamburger span {
+      height: 3px;
+      width: 25px;
+      background: #f9f9f9;
+      margin: 4px 0;
+    }
+
+    @media screen and (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.9);
+        padding: 15px;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+    }
+
+    .banner {
+      background: url('images/banner_2.png') center center / cover no-repeat;
+      height: 300px;
+    }
+
+    .content {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .content h2 {
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 30px;
+    }
+
+    .section {
+      margin-bottom: 40px;
+    }
+
+    .section-title {
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid #f9f9f9;
+    }
+
+    .section-text p {
+      text-indent: 2em !important;
+      margin: 5px 0 !important;
+    }
+
+    .entry-button {
+      display: block;
+      margin: 40px auto;
+      padding: 12px 30px;
+      background-color: #ccc;
+      color: #000;
+      text-align: center;
+      width: fit-content;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="nav-container">
+    <div class="nav-logo">
+      <a href="top.html">
+        <img src="images/logo_1.png" alt="PRIVATE SHIROKANE Logo" />
+      </a>
+    </div>
+    <nav class="nav-links" id="navLinks">
+      <a href="top.html">Top</a>
+      <a href="entry_men.html">男性入会</a>
+      <a href="entry_women.html">女性入会</a>
+      <a href="system.html">料金・システム</a>
+      <a href="contact.html">お問合せ</a>
+    </nav>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </header>
+
+  <div class="banner"></div>
+
+  <div class="content">
+    <h2>GUIDANCE MEN</h2>
+
+    <div class="section">
+      <div class="section-title">1. ご入会申し込み</div>
+      <div class="section-text">
+        <p>お電話、メール、ラインのいずれかでお申し込み下さい。面談の日程調整をさせて頂きます。事情によっては不安を部分ケアしながら配慮を踏まえてご説明いたします。</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">2. 面談</div>
+      <div class="section-text">
+        <p>面談では、当会事務所もしくはホテルのカフェやラウンジで行わせていただいております。交際クラブでの活動の注意事項やルールのご説明など、ご入会される際の会員画面の使用手順についてもご説明させていただきます。（顔写真付きの身分証明書をご持参ください）</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">3. 女性会員プロフィール閲覧</div>
+      <div class="section-text">
+        <p>入会審査を無事通過し、ご入金の確認ができましたら、会員専用サイトのログインID・パスワードをお渡し致します。素敵な女性が見つけるといいですね。</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">4. セッティングのお申し込み</div>
+      <div class="section-text">
+        <p>会員様専用ページには、現在登録中の女性の一覧がございますのでお好みの会員様の検索し、ご自身の好みをタイプの女性を探してご覧ください。決まりましたらライン又は電話にてお知らせ下さい。</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">5. 初めての出会い</div>
+      <div class="section-text">
+        <p>前日に確認を行います。当日はセッティング場所にて合流して下さい。その後の行動は当会では一切関知しませんのでお二人の時間をお過ごしください。</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">6. 補足事項</div>
+      <div class="section-text">
+        <p>入会金、及び年会費、セッティング費用のお支払いに関しては面談時に現金でのお支払い、または、銀行振り込みでお支払いください。</p>
+      </div>
+    </div>
+
+    <a class="entry-button" href="contact.html">▶ 入会フォームへ</a>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      const nav = document.getElementById("navLinks");
+      nav.classList.toggle("active");
+    }
+  </script>
+</body>
+</html>
