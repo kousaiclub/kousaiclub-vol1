@@ -1,9 +1,10 @@
+<!-- Top Page: top.html -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>女性入会 - PRIVATE SHIROKANE</title>
+  <title>TOP - PRIVATE SHIROKANE</title>
   <link rel="icon" href="images/logo_1.png" type="image/png" />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
   <style>
@@ -13,177 +14,90 @@
       background-color: #1c1c1c;
       color: #f9f9f9;
       font-family: 'Cormorant Garamond', serif;
-      font-size: 14px;
-      line-height: 1.8;
     }
-
-    .nav-container {
+    header {
+      background-color: #000;
+      padding: 10px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background-color: rgba(0, 0, 0, 0.6);
-      padding: 5px 20px;
-      font-size: 16px;
-      position: relative;
-      z-index: 10;
     }
-
-    .nav-logo img {
-      height: 50px;
-      object-fit: contain;
-      filter: brightness(90%) drop-shadow(0 1px 1px #ccc);
+    header img {
+      height: 40px;
     }
-
-    .nav-links {
-      display: flex;
-      gap: 30px;
-    }
-
-    .nav-links a {
-      color: #f0f0f0;
+    nav a {
+      color: #f9f9f9;
       text-decoration: none;
+      margin: 0 10px;
+      font-size: 16px;
     }
-
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
+    nav a:hover {
+      text-decoration: underline;
     }
-
-    .hamburger span {
-      height: 3px;
-      width: 25px;
-      background: #f9f9f9;
-      margin: 4px 0;
-    }
-
-    @media screen and (max-width: 768px) {
-      .nav-links {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        background-color: rgba(0, 0, 0, 0.9);
-        padding: 15px;
-      }
-      .nav-links.active {
-        display: flex;
-      }
-      .hamburger {
-        display: flex;
-      }
-    }
-
     .banner {
-      background: url('images/banner_2.png') center center / cover no-repeat;
+      background: url('images/banner_1.png') center center / cover no-repeat;
       height: 300px;
     }
-
     .content {
       max-width: 900px;
       margin: 40px auto;
       padding: 0 20px;
     }
-
-    .section-title {
-      font-size: 16px;
-      font-weight: bold;
-      border-bottom: 1px solid #f9f9f9;
-      padding-bottom: 5px;
-      margin-top: 30px;
+    .accordion {
+      background-color: #2c2c2c;
+      margin-bottom: 10px;
+      padding: 10px;
+      border-radius: 6px;
     }
-
-    .section-text {
-      text-indent: 2em;
-      margin-top: 10px;
+    .accordion h3 {
+      margin: 0;
+      cursor: pointer;
     }
-
-    .entry-button {
-      display: block;
-      margin: 40px auto;
-      padding: 12px 30px;
-      background-color: #ccc;
-      color: #000;
-      text-align: center;
-      width: fit-content;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 5px;
+    .panel {
+      display: none;
+      padding: 10px 0 0;
     }
   </style>
+  <script>
+    function togglePanel(element) {
+      var panel = element.nextElementSibling;
+      panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+    }
+  </script>
 </head>
 <body>
-  <header class="nav-container">
-    <div class="nav-logo">
-      <a href="top.html">
-        <img src="images/logo_1.png" alt="PRIVATE SHIROKANE Logo" />
-      </a>
-    </div>
-    <nav class="nav-links" id="navLinks">
+  <header>
+    <img src="images/logo_1.png" alt="PRIVATE SHIROKANE">
+    <nav>
+      <a href="index.html">Home</a>
       <a href="top.html">Top</a>
-      <a href="guidance_men.html">男性入会</a>
-      <a href="guidance_women.html">女性入会</a>
-      <a href="system.html">料金・システム</a>
+      <a href="entry_men.html">男性入会</a>
+      <a href="entry_women.html">女性入会</a>
+      <a href="pricing.html">料金・システム</a>
+      <a href="members.html">会員専用</a>
       <a href="contact.html">お問合せ</a>
     </nav>
-    <div class="hamburger" onclick="toggleMenu()">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
   </header>
   <div class="banner"></div>
   <div class="content">
-    <h2 style="text-align:center">GUIDANCE WOMEN</h2>
-
-    <div class="section">
-      <div class="section-title">1. 登録資格</div>
-      <div class="section-text">◆18歳以上であること（18歳以上であっても高校生は不可）<br>◆学生、OL、フリーター、モデル、無職、主婦などの水商売や性風俗業に従事していない、いわゆる素人女性。<br>◆携帯電話を所有していること。</div>
-    </div>
-
-    <div class="section">
-      <div class="section-title">2. 費用</div>
-      <div class="section-text">◆登録料、年会費、紹介料など一切不要。<br>交際により男性から得た対価の一部を当会に納める必要も一切ありません。</div>
-    </div>
-
-    <div class="section">
-      <div class="section-title">3. 登録から交際までのプロセス</div>
-      <div class="section-text">
-        1）お電話の上、面接場所までお越しいただきます。<br>
-        その際、これは強制ではありませんが、ご自身のスナップ写真を何枚か持参されても構いません。なお、その写真は当日に返却可能です。<br><br>
-        2）面接<br>
-        質問などを納得いくまでしていただき、不安などが解消できましたら登録の申し込みをしていただきます。話だけ聞いてみて登録なさらなくても一向に構いません。<br><br>
-        3）面接審査の後、登録<br>
-        その際18歳以上である証明が必要になります。運転免許証、パスポート、学生証、卒業アルバム等。<br><br>
-        4）後日、スタジオでの写真撮影（希望者のみ）<br>
-        スタジオ写真のない方は、登録の当日に銀座で撮る簡単な写真、もしくは持参されたスナップ写真を使用します。なお、登録女性の写真は本サイトの「登録女性紹介ページ」「会員専用ページ」と「紹介用アルバム」に用いますが、顔出しにするか、トップページのような目線切りにするか、それともモザイクをかけ顔を完全に判別できなくするかはご本人の判断に委ねます。本人の承諾もなく当会が勝手に顔出しにするようなことは絶対にありませんのでご安心ください。<br><br>
-        5）男性との出会いをセッティング<br>
-        登録後はわざわざ銀座までご足労いただく必要はありません。セッティングの連絡は携帯電話もしくはラインへ差し上げます。したがって、エグゼ銀座に在籍している間は、携帯電話の電源は常にONにしていただくか、もし、ご都合の悪いときには留守電モードにしておいていただき、当会スタッフからの着信を確認しましたら早めにリダイヤルしていただく必要があります。<br><br>
-        6）交際<br>
-        逢ってみて万一、お気に召さなかった場合には丁重にお断りください。
+    <div class="accordion">
+      <h3 onclick="togglePanel(this)">📌 最新ニュース：2025年5月 最新特別プランご案内</h3>
+      <div class="panel">
+        <p>春の特別登録キャンペーンを実施中。詳細はお問合せフォームより。</p>
       </div>
     </div>
-
-    <div class="section">
-      <div class="section-title">4. 会員規約</div>
-      <div class="section-text">
-        登録資格は満１８歳以上とします。ただし、１８歳以上であっても高校生は登録できません。<br>
-        会員として違法行為や、社会通念上、許されざるような言動をとることを禁止します。万一、違反した場合には除名処分とさせていただくこともあります。なお、男性会員が除名処分とされた場合、それまでに納められた費用の返還は一切ありません。<br>
-        交際は当事者間の全責任において行っていただきます。万一、交際相手とにトラブルが生じてもプラチナダイヤモンドでは責任を一切負いかねます。ただし、トラブルを解決すべく相談だけでよろしければ親身になって承ります。<br>
-        プラチナダイヤモンドでは閉会しうる権利を有します。なお、閉会の場合、それまでに男性会員より納められた費用の返還は一切ありません。
+    <div class="accordion">
+      <h3 onclick="togglePanel(this)">📌 交際クラブ届出済み：所轄警察署に提出済</h3>
+      <div class="panel">
+        <p>安心・安全の運営を徹底しています。</p>
       </div>
     </div>
-
-    <a class="entry-button" href="contact.html">▶ 入会フォームへ</a>
+    <div class="accordion">
+      <h3 onclick="togglePanel(this)">📌 新規女性会員が多数登録中</h3>
+      <div class="panel">
+        <p>注目女性の特集ページもご覧ください。</p>
+      </div>
+    </div>
   </div>
-
-  <script>
-    function toggleMenu() {
-      const nav = document.getElementById("navLinks");
-      nav.classList.toggle("active");
-    }
-  </script>
 </body>
 </html>
