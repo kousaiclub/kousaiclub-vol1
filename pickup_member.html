@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>注目会員 - PRIVATE SHIROKANE</title>
+  <title>注目女性会員 - PRIVATE SHIROKANE</title>
   <link rel="icon" href="images/logo_1.png">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
   <style>
@@ -29,6 +29,7 @@
       text-decoration: none;
       margin: 0 10px;
       font-size: 18px;
+      font-family: 'Cormorant Garamond', serif;
     }
     nav a:hover {
       text-decoration: underline;
@@ -42,29 +43,32 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 20px;
+      gap: 30px;
       padding: 40px 20px;
     }
-    .card {
+    .pickup-card {
       background-color: #2a2a2a;
       border-radius: 12px;
-      overflow: hidden;
-      width: 300px;
+      width: 260px;
       text-align: center;
-      padding: 20px;
+      overflow: hidden;
     }
-    .card img {
+    .pickup-card img {
       width: 100%;
-      height: auto;
-      border-radius: 8px;
+      height: 300px;
+      object-fit: cover;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
     }
-    .card h3 {
-      margin-top: 10px;
-      font-size: 20px;
-    }
-    .card p {
+    .pickup-info {
+      padding: 15px;
       font-size: 15px;
-      margin: 5px 0;
+    }
+    @media (max-width: 768px) {
+      .pickup-container {
+        flex-direction: column;
+        align-items: center;
+      }
     }
   </style>
 </head>
@@ -84,24 +88,30 @@
   <div class="banner"></div>
 
   <div class="pickup-container">
-    <div class="card">
+    <div class="pickup-card">
       <img src="https://i.imgur.com/BWqeNt6.jpeg" alt="藤沢のあ">
-      <h3>No.721 藤沢のあ (19歳)</h3>
-      <p>T:173cm</p>
-      <p>B:88cm / W:58cm / H:86cm</p>
-      <p>長身VIP大学生</p>
+      <div class="pickup-info">
+        <p>No.721 藤沢のあ（19歳）</p>
+        <p>T:173cm</p>
+        <p>B:88cm / W:58cm / H:86cm</p>
+        <p>長身VIP大学生</p>
+      </div>
     </div>
-    <div class="card">
+    <div class="pickup-card">
       <img src="https://i.imgur.com/W84FDvL.jpeg" alt="綾瀬はるか">
-      <h3>No.500 綾瀬はるか (33歳)</h3>
-      <p>T:160cm</p>
-      <p>B:85(D) / W:60 / H:85</p>
+      <div class="pickup-info">
+        <p>No.500 綾瀬はるか（33歳）</p>
+        <p>T:160cm</p>
+        <p>B:85(D) / W:60 / H:85</p>
+      </div>
     </div>
-    <div class="card">
+    <div class="pickup-card">
       <img src="https://i.imgur.com/ZvYttoT.jpeg" alt="白山かなで">
-      <h3>No.721 白山かなで (30歳)</h3>
-      <p>T:157cm</p>
-      <p>B:81(C) / W:56 / H:84</p>
+      <div class="pickup-info">
+        <p>No.721 白山かなで（30歳）</p>
+        <p>T:157cm</p>
+        <p>B:81(C) / W:56 / H:84</p>
+      </div>
     </div>
   </div>
 </body>
