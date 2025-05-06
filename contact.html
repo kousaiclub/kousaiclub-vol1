@@ -1,192 +1,104 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>男性入会・女性入会ページ - PRIVATE SHIROKANE</title>
-  <link rel="icon" href="images/logo_1.png" type="image/png" />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>お問合せ - PRIVATE SHIROKANE</title>
+  <link rel="icon" href="images/logo_1.png">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond&display=swap" rel="stylesheet">
   <style>
     body {
-      margin: 0;
-      padding: 0;
       background-color: #1c1c1c;
       color: #f9f9f9;
       font-family: 'Cormorant Garamond', serif;
-      font-size: 14px;
-      line-height: 1.8;
+      margin: 0;
+      padding: 0;
     }
-
-    .nav-container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background-color: rgba(0, 0, 0, 0.6);
-      padding: 5px 20px;
-      font-size: 16px;
-      position: relative;
-      z-index: 10;
-    }
-
-    .nav-logo img {
-      height: 50px;
-      object-fit: contain;
-      filter: brightness(90%) drop-shadow(0 1px 1px #ccc);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 30px;
-    }
-
-    .nav-links a {
-      color: #f0f0f0;
-      text-decoration: none;
-    }
-
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-    }
-
-    .hamburger span {
-      height: 3px;
-      width: 25px;
-      background: #f9f9f9;
-      margin: 4px 0;
-    }
-
-    @media screen and (max-width: 768px) {
-      .nav-links {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        background-color: rgba(0, 0, 0, 0.9);
-        padding: 15px;
-      }
-      .nav-links.active {
-        display: flex;
-      }
-      .hamburger {
-        display: flex;
-      }
-    }
-
-    .banner {
-      background: url('images/banner_2.png') center center / cover no-repeat;
-      height: 300px;
-    }
-
-    .content {
+    .container {
       max-width: 800px;
-      margin: 40px auto;
-      padding: 0 20px;
+      margin: 50px auto;
+      padding: 20px;
     }
-
-    .content h2 {
+    h2 {
       text-align: center;
-      font-size: 24px;
-      margin-bottom: 30px;
       border-bottom: 1px solid #f9f9f9;
       padding-bottom: 10px;
+      margin-bottom: 30px;
+      font-size: 28px;
     }
-
-    .section-title {
-      font-size: 16px;
-      font-weight: bold;
-      margin-top: 30px;
-      border-bottom: 1px solid #f9f9f9;
-      padding-bottom: 5px;
-    }
-
-    .section-text {
-      text-indent: 2em;
-      margin-top: 10px;
-    }
-
-    .entry-button {
+    label {
       display: block;
-      margin: 40px auto;
-      padding: 12px 30px;
-      background-color: #ccc;
-      color: #000;
+      margin: 15px 0 5px;
+      font-size: 18px;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      background-color: #2a2a2a;
+      border: 1px solid #f9f9f9;
+      color: #f9f9f9;
+    }
+    textarea {
+      height: 120px;
+    }
+    .button {
+      margin-top: 20px;
+      background-color: #f9f9f9;
+      color: #1c1c1c;
+      font-size: 18px;
+      padding: 10px 20px;
+      cursor: pointer;
+      display: inline-block;
+      border: none;
+    }
+    .line-contact {
+      margin-top: 30px;
       text-align: center;
-      width: fit-content;
+    }
+    .line-contact a {
+      color: #00c300;
+      font-size: 18px;
       text-decoration: none;
-      font-weight: bold;
-      border-radius: 5px;
+    }
+    .banner {
+      width: 100%;
+      height: auto;
     }
   </style>
 </head>
 <body>
+  <img src="images/banner_2.png" alt="バナー" class="banner">
+  <div class="container">
+    <h2>お問合せ</h2>
+    <form action="#" method="post">
+      <label for="name">お名前（必須）</label>
+      <input type="text" id="name" name="name" required>
 
-  <header class="nav-container">
-    <div class="nav-logo">
-      <a href="top.html">
-        <img src="images/logo_1.png" alt="PRIVATE SHIROKANE Logo" />
-      </a>
+      <label for="email">メールアドレス（必須）</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="category">お問合せ項目</label>
+      <select id="category" name="category">
+        <option value="入会について">入会について</option>
+        <option value="セッティングについて">セッティングについて</option>
+        <option value="費用について">費用について</option>
+        <option value="運営元について">運営元について</option>
+        <option value="その他">その他</option>
+      </select>
+
+      <label for="subject">件名</label>
+      <input type="text" id="subject" name="subject">
+
+      <label for="message">お問合せ内容（必須）</label>
+      <textarea id="message" name="message" required></textarea>
+
+      <button type="submit" class="button">送信 ▶</button>
+    </form>
+
+    <div class="line-contact">
+      LINEでのお問合せはこちら → <a href="#">LINE公式アカウント</a>
     </div>
-    <nav class="nav-links" id="navLinks">
-      <a href="top.html">Top</a>
-      <a href="guidance_men.html">男性入会</a>
-      <a href="guidance_women.html">女性入会</a>
-      <a href="system.html">料金・システム</a>
-      <a href="members_only.html">会員専用ページ</a>
-      <a href="contact.html">お問合せ</a>
-    </nav>
-    <div class="hamburger" onclick="toggleMenu()">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </header>
-
-  <div class="banner"></div>
-
-  <div class="content">
-    <h2>SYSTEM（料金システム）</h2>
-    <table style="width: 100%; border-collapse: collapse; background-color: #2b2b2b; color: #f9f9f9;">
-      <thead>
-        <tr style="border-bottom: 1px solid #f9f9f9;">
-          <th style="padding: 12px; text-align: left; border: 1px solid #f9f9f9;">会員ランク</th>
-          <th style="padding: 12px; text-align: left; border: 1px solid #f9f9f9;">入会金</th>
-          <th style="padding: 12px; text-align: left; border: 1px solid #f9f9f9;">年会費</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td style="padding: 12px; border: 1px solid #f9f9f9;">VIP会員</td>
-          <td style="padding: 12px; border: 1px solid #f9f9f9;">特別料金<br><small>※VIP会員は個別にご案内いたします</small></td>
-          <td style="padding: 12px; border: 1px solid #f9f9f9;">一律200,000円</td>
-        </tr>
-        <tr>
-          <td style="padding: 12px; border: 1px solid #f9f9f9;">GOLD会員</td>
-          <td style="padding: 12px; border: 1px solid #f9f9f9;">500,000円</td>
-          <td style="padding: 12px; border: 1px solid #f9f9f9;">一律200,000円</td>
-        </tr>
-        <tr>
-          <td style="padding: 12px; border: 1px solid #f9f9f9;">SILVER会員</td>
-          <td style="padding: 12px; border: 1px solid #f9f9f9;">300,000円</td>
-          <td style="padding: 12px; border: 1px solid #f9f9f9;">一律200,000円</td>
-        </tr>
-        <tr>
-          <td style="padding: 12px; border: 1px solid #f9f9f9;">Standard会員</td>
-          <td style="padding: 12px; border: 1px solid #f9f9f9;">150,000円</td>
-          <td style="padding: 12px; border: 1px solid #f9f9f9;">一律200,000円</td>
-        </tr>
-      </tbody>
-    </table>
   </div>
-
-  <script>
-    function toggleMenu() {
-      const nav = document.getElementById("navLinks");
-      nav.classList.toggle("active");
-    }
-  </script>
 </body>
 </html>
