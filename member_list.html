@@ -178,45 +178,31 @@
 
   <div class="banner"></div>
 
-  <div class="card-container">
-    <!-- 以下カードは自動生成または手動コピペで挿入 -->
-    <!-- 例： -->
-    <div class="card">
-      <div class="card-image" onclick="window.open('https://sites.google.com/view/kousai-club-vol2/101?authuser=0', '_blank')">
-        <div class='slide active'><img src='https://i.imgur.com/BWqeNt6.jpeg'></div>
-        <div class='slide'><img src='https://i.imgur.com/W84FDvL.jpeg'></div>
-        <div class='slide'><img src='https://i.imgur.com/ZvYttoT.jpeg'></div>
-      </div>
-      <div class="card-text">
-        <p><strong>No.</strong> 101 1</p>
-        <p>150 (21)</p>
-        <p>90, 57, 87, Hカップ</p>
-        <p class="comment">わたしは1です</p>
-        <p><span class="favorite-btn" data-id="101">♡</span></p>
-      </div>
-    </div>
-    <!-- ここまで例 -->
-  </div>
+  <div class="card-container" id="cardContainer"></div>
 
   <script>
     function toggleMenu() {
       document.getElementById("navLinks").classList.toggle("active");
     }
 
-    document.querySelectorAll('.favorite-btn').forEach(btn => {
-      const id = btn.dataset.id;
-      if (localStorage.getItem('fav-' + id)) btn.textContent = '❤️';
-      btn.addEventListener('click', () => {
-        if (localStorage.getItem('fav-' + id)) {
-          localStorage.removeItem('fav-' + id);
-          btn.textContent = '♡';
-        } else {
-          localStorage.setItem('fav-' + id, '1');
-          btn.textContent = '❤️';
-        }
+    // お気に入り機能
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.favorite-btn').forEach(btn => {
+        const id = btn.dataset.id;
+        if (localStorage.getItem('fav-' + id)) btn.textContent = '❤️';
+        btn.addEventListener('click', () => {
+          if (localStorage.getItem('fav-' + id)) {
+            localStorage.removeItem('fav-' + id);
+            btn.textContent = '♡';
+          } else {
+            localStorage.setItem('fav-' + id, '1');
+            btn.textContent = '❤️';
+          }
+        });
       });
     });
 
+    // スライド機能
     document.querySelectorAll('.card-image').forEach(container => {
       const slides = container.querySelectorAll('.slide');
       let idx = 0;
@@ -231,6 +217,32 @@
         slides[idx].classList.add('active');
       }, 3000);
     });
+
+    // 自動生成カード 101〜132
+    const container = document.getElementById('cardContainer');
+    for (let i = 1; i <= 32; i++) {
+      const id = 100 + i;
+      const height = 149 + i;
+      const age = 20 + i;
+      const name = `わたしは${i}です`;
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <div class="card-image" onclick="window.open('https://sites.google.com/view/kousai-club-vol2/${id}?authuser=0', '_blank')">
+          <div class='slide active'><img src='https://i.imgur.com/BWqeNt6.jpeg'></div>
+          <div class='slide'><img src='https://i.imgur.com/W84FDvL.jpeg'></div>
+          <div class='slide'><img src='https://i.imgur.com/ZvYttoT.jpeg'></div>
+        </div>
+        <div class="card-text">
+          <p><strong>No.</strong> ${id} ${i}</p>
+          <p>${height} (${age})</p>
+          <p>90, 57, 87, Hカップ</p>
+          <p class="comment">${name}</p>
+          <p><span class="favorite-btn" data-id="${id}">♡</span></p>
+        </div>
+      `;
+      container.appendChild(card);
+    }
   </script>
 
 </body>
