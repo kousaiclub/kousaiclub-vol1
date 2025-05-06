@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>お問合せ - PRIVATE SHIROKANE</title>
+  <title>GUIDANCE MEN - PRIVATE SHIROKANE</title>
   <link rel="icon" href="images/logo_1.png">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
   <style>
@@ -39,49 +39,27 @@
       background: url('images/banner_2.png') center/cover no-repeat;
     }
     .content {
-      max-width: 600px;
+      max-width: 960px;
       margin: 0 auto;
       padding: 40px 20px;
-      text-align: center;
     }
     h2 {
       font-size: 28px;
       margin-bottom: 40px;
+      text-align: center;
       border-bottom: 1px solid #ccc;
       padding-bottom: 10px;
     }
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
+    .section {
+      margin-bottom: 30px;
     }
-    input, select, textarea {
-      padding: 12px;
-      border: none;
-      font-size: 16px;
-      font-family: 'Cormorant Garamond', serif;
-      background-color: #333;
-      color: #f9f9f9;
+    .section h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
     }
-    input::placeholder, textarea::placeholder {
-      color: #ccc;
-    }
-    button {
-      padding: 12px;
-      font-size: 16px;
-      background-color: #fff;
-      color: #000;
-      border: none;
-      cursor: pointer;
-    }
-    .line-link {
-      margin-top: 20px;
-      font-size: 14px;
-      color: #f9f9f9;
-    }
-    .line-link a {
-      color: #00ff88;
-      text-decoration: none;
+    .section p {
+      font-size: 17px;
+      line-height: 1.6;
     }
   </style>
 </head>
@@ -100,24 +78,38 @@
   </header>
   <div class="banner"></div>
   <div class="content">
-    <h2>お問合せ</h2>
-    <form>
-      <input type="text" placeholder="お名前（必須）" required>
-      <input type="email" placeholder="メールアドレス（必須）" required>
-      <select required>
-        <option value="">お問合せ項目を選択してください</option>
-        <option value="入会について">入会について</option>
-        <option value="セッティングについて">セッティングについて</option>
-        <option value="費用について">費用について</option>
-        <option value="その他">その他</option>
-      </select>
-      <input type="text" placeholder="件名">
-      <textarea rows="5" placeholder="お問合せ内容（必須）" required></textarea>
-      <button type="submit">送信 ▶</button>
-    </form>
-    <div class="line-link">
-      LINEでのお問合せはこちら → <a href="#">LINE公式アカウント</a>
+    <h2>GUIDANCE MEN</h2>
+
+    <div class="section">
+      <h3>1. ご入会申し込み</h3>
+      <p>お電話、メール、ラインのいずれかでお申し込み下さい。面談の日程調整をさせて頂きます。事情によっては不安を部分ケアしながら配慮を踏まえてご説明いたします。</p>
     </div>
+
+    <div class="section">
+      <h3>2. 面談</h3>
+      <p>面談では、当会事務所もしくはホテルのカフェやラウンジで行わせていただいております。交際クラブでの活動の注意事項やルールのご説明など、ご入会される際の会員画面の使用手順についてもご説明させていただきます。（顔写真付きの身分証明書をご持参ください）</p>
+    </div>
+
+    <div class="section">
+      <h3>3. 女性会員プロフィール閲覧</h3>
+      <p>入会審査を無事通過し、ご入金の確認ができましたら、会員専用サイトのログインID・パスワードをお渡し致します。素敵な女性が見つけるといいですね。</p>
+    </div>
+
+    <div class="section">
+      <h3>4. セッティングのお申し込み</h3>
+      <p>会員様専用ページには、現在登録中の女性の一覧がございますのでお好みの会員様の検索し、ご自身の好みをタイプの女性を探してご覧ください。決まりましたらライン又は電話にてお知らせ下さい。</p>
+    </div>
+
+    <div class="section">
+      <h3>5. 初めての出会い</h3>
+      <p>前日に確認を行います。当日はセッティング場所にて合流して下さい。その後の行動は当会では一切関知しませんのでお二人の時間をお過ごしください。</p>
+    </div>
+
+    <div class="section">
+      <h3>6. 補足事項</h3>
+      <p>入会金、及び年会費、セッティング費用のお支払いに関しては面談時に現金でのお支払い、または、銀行振り込みでお支払いください。</p>
+    </div>
+
   </div>
 </body>
 </html>
