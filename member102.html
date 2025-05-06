@@ -1,83 +1,203 @@
-      <!DOCTYPE html>
-      <html lang="ja">
-      <head>
-        <meta charset="UTF-8">
-        <style>
-          body {
-            margin: 0;
-            padding: 0;
-            background: transparent;
-            font-family: 'Meiryo', sans-serif;
-            color: #C0C0C0;
-            font-size: 15px;
-          }
-          .container {
-            display: flex;
-            flex-direction: row;
-            padding: 10px;
-            gap: 20px;
-          }
-          .slider {
-            flex: 1;
-            max-width: 50%;
-            position: relative;
-            overflow: hidden;
-            border-radius: 12px;
-          }
-          .slide {
-            display: none;
-            width: 100%;
-          }
-          .slide img {
-            width: 100%;
-            border-radius: 12px;
-          }
-          .info {
-            flex: 1;
-          }
-          @media (max-width: 768px) {
-            .container {
-              flex-direction: column;
-            }
-            .slider, .info {
-              max-width: 100%;
-            }
-          }
-        </style>
-      </head>
-      <body>
-        <div class="container">
-          <div class="slider" id="slider">
-            <div class="slide"><img src="https://i.imgur.com/BWqeNt6.jpeg" /></div><div class="slide"><img src="https://i.imgur.com/W84FDvL.jpeg" /></div><div class="slide"><img src="https://i.imgur.com/ZvYttoT.jpeg" /></div><div class="slide"><img src="" /></div>
-          </div>
-          <div class="info">
-            <p><strong>登録No.：</strong>102</p>
-            <p><strong>氏名：</strong>2</p>
-            <p><strong>年齢：</strong>22</p>
-            <p><strong>身長：</strong>151</p>
-            <p><strong>スリーサイズ：</strong>90 / H / 57 / 87</p>
-            <p><strong>趣味：</strong>パーソナルジム、エステ</p>
-            <p><strong>性格：</strong>癒し系</p>
-            <p><strong>タバコ：</strong>吸いません。</p>
-            <p><strong>お酒：</strong>飲めます。</p>
-            <p><strong>セッティング費用：</strong>7</p>
-            <p><strong>デート代：</strong>7</p>
-            <p><strong>【本人コメント】</strong><br>わたしは2です</p>
-            <p><strong>【スタッフコメント】</strong><br>パーソナルジムやエステなど自分磨きを頑張る品があり容姿端麗美女のひよりさんのご紹介です✨ 高身長のスレンダー体型でクビレラインがとても綺麗でスタイル抜群！！ 自慢の天然美巨乳のHcupな文句無しで、巨乳好きにはたまりません❤️ ふんわりとした見た目が好印象で、色白の艶のあるお肌と可愛らしくも大人っぽい、整ったお顔立ちをしています😊  誰にでも優しくおっとりとした性格で、話しているだけで癒されちゃいます✨ そんなひよりさんへのオファー、是非お待ちしています🙇‍♀️</p>
-          </div>
-        </div>
-        <script>
-          var slides = document.querySelectorAll('.slide');
-          var currentSlide = 0;
-          if (slides.length > 0) {
-            slides[currentSlide].style.display = 'block';
-            setInterval(() => {
-              slides[currentSlide].style.display = 'none';
-              currentSlide = (currentSlide + 1) % slides.length;
-              slides[currentSlide].style.display = 'block';
-            }, 3000);
-          }
-        </script>
-      </body>
-      </html>
-    
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GUIDANCE MEN - PRIVATE SHIROKANE</title>
+  <link rel="icon" href="images/logo_1.png" type="image/png" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #1c1c1c;
+      color: #f9f9f9;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    header {
+      background-color: #000;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    header img {
+      height: 40px;
+    }
+
+    nav a {
+      color: #f9f9f9;
+      text-decoration: none;
+      margin: 0 10px;
+      font-size: 16px;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .banner {
+      background: url('images/banner_2.png') center center / cover no-repeat;
+      height: 300px;
+    }
+
+    .content {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .content h2 {
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 30px;
+    }
+
+    .section {
+      margin-bottom: 40px;
+    }
+
+    .section-title {
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid #f9f9f9;
+    }
+
+    .section-text {
+      display: flex;
+    }
+
+    .section-text::before {
+      content: "　";
+      flex-shrink: 0;
+      width: 2em;
+      display: block;
+    }
+
+    .section-text p {
+      margin: 0;
+      padding: 0;
+      text-align: justify;
+    }
+
+    .entry-button {
+      display: block;
+      margin: 40px auto;
+      padding: 12px 30px;
+      background-color: #ccc;
+      color: #000;
+      text-align: center;
+      width: fit-content;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="images/logo_1.png" alt="PRIVATE SHIROKANE">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="top.html">Top</a>
+      <a href="entry_men.html">男性入会</a>
+      <a href="entry_women.html">女性入会</a>
+      <a href="system.html">料金・システム</a>
+      <a href="members.html">会員専用</a>
+      <a href="contact.html">お問合せ</a>
+    </nav>
+  </header>
+
+  <div class="banner"></div>
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      font-family: 'Meiryo', sans-serif;
+      color: #C0C0C0;
+      font-size: 15px;
+    }
+    .container {
+      display: flex;
+      flex-direction: row;
+      padding: 10px;
+      gap: 20px;
+    }
+    .slider {
+      flex: 1;
+      max-width: 50%;
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+    }
+    .slide {
+      display: none;
+      width: 100%;
+    }
+    .slide img {
+      width: 100%;
+      border-radius: 12px;
+    }
+    .info {
+      flex: 1;
+    }
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+      .slider, .info {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="slider" id="slider">
+      <div class="slide"><img src="https://i.imgur.com/BWqeNt6.jpeg" /></div><div class="slide"><img src="https://i.imgur.com/W84FDvL.jpeg" /></div><div class="slide"><img src="https://i.imgur.com/ZvYttoT.jpeg" /></div>
+    </div>
+    <div class="info">
+      <p><strong>登録No.：</strong>101</p>
+      <p><strong>氏名：</strong>1</p>
+      <p><strong>年齢：</strong>21</p>
+      <p><strong>身長：</strong>150</p>
+      <p><strong>スリーサイズ：</strong>90 / H / 57 / 87</p>
+      <p><strong>趣味：</strong>パーソナルジム、エステ</p>
+      <p><strong>性格：</strong>癒し系</p>
+      <p><strong>タバコ：</strong>吸いません。</p>
+      <p><strong>お酒：</strong>飲めます。</p>
+      <p><strong>セッティング費用：</strong>7</p>
+      <p><strong>デート代：</strong>7</p>
+      <p><strong>【本人コメント】</strong><br>わたしは1です</p>
+      <p><strong>【スタッフコメント】</strong><br>パーソナルジムやエステなど自分磨きを頑張る品があり容姿端麗美女のひよりさんのご紹介です✨ 高身長のスレンダー体型でクビレラインがとても綺麗でスタイル抜群！！ 自慢の天然美巨乳のHcupな文句無しで、巨乳好きにはたまりません❤️ ふんわりとした見た目が好印象で、色白の艶のあるお肌と可愛らしくも大人っぽい、整ったお顔立ちをしています😊  誰にでも優しくおっとりとした性格で、話しているだけで癒されちゃいます✨ そんなひよりさんへのオファー、是非お待ちしています🙇‍♀️</p>
+    </div>
+  </div>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    let currentSlide = 0;
+    if (slides.length > 1) {
+      slides[currentSlide].style.display = 'block';
+      setInterval(() => {
+        slides[currentSlide].style.display = 'none';
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].style.display = 'block';
+      }, 3000);
+    } else if (slides.length === 1) {
+      slides[0].style.display = 'block';
+    }
+  </script>
+</body>
+</html>
