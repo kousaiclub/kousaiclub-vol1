@@ -1,155 +1,48 @@
+<!-- Home Page: index.html -->
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PRIVATE SHIROKANE</title>
   <link rel="icon" href="images/logo_1.png" type="image/png" />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
+      padding: 0;
       background-color: #1c1c1c;
       color: #f9f9f9;
       font-family: 'Cormorant Garamond', serif;
-    }
-
-    .nav-container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background-color: rgba(0, 0, 0, 0.6);
-      padding: 10px 20px;
-      position: fixed;
-      width: 100%;
-      top: 0;
-      z-index: 999;
-    }
-
-    .nav-logo img {
-      height: 45px;
-      filter: brightness(90%) drop-shadow(0 1px 1px #ccc);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 25px;
       font-size: 16px;
     }
-
-    .nav-links a {
-      color: #f0f0f0;
-      text-decoration: none;
-    }
-
-    .nav-links a:hover {
-      color: #ffffff;
-    }
-
-    .banner {
-      width: 100%;
-      height: 100vh;
-      background: url("images/banner_1.png") center center / cover no-repeat;
-      display: flex;
-      justify-content: center;
-      align-items: flex-end;
-      padding-bottom: 80px;
-    }
-
-    .age-check {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+    .container {
       text-align: center;
-      background-color: rgba(0, 0, 0, 0.75);
-      padding: 30px;
-      border-radius: 10px;
-      z-index: 1000;
+      padding: 100px 20px;
     }
-
-    .age-check h2 {
+    .container h1 {
+      font-size: 32px;
       margin-bottom: 20px;
     }
-
-    .age-check button {
-      margin: 10px;
+    .container p {
+      margin-bottom: 40px;
+    }
+    .button {
+      background-color: #f9f9f9;
+      color: #1c1c1c;
+      border: none;
       padding: 10px 20px;
       font-size: 16px;
-      cursor: pointer;
-    }
-
-    .content {
-      padding: 120px 20px 40px;
-      text-align: center;
-    }
-
-    .description {
-      max-width: 800px;
-      margin: auto;
-      font-size: 18px;
-      line-height: 1.8;
-    }
-
-    @media (max-width: 768px) {
-      .nav-links {
-        display: none;
-      }
-
-      .banner {
-        background-position: left center;
-      }
-
-      .nav-logo img {
-        height: 40px;
-      }
+      border-radius: 6px;
+      text-decoration: none;
     }
   </style>
 </head>
-
 <body>
-  <div class="nav-container">
-    <div class="nav-logo">
-      <a href="index.html">
-        <img src="images/logo_1.png" alt="PRIVATE SHIROKANE Logo" />
-      </a>
-    </div>
-    <nav class="nav-links">
-      <a href="top.html">Top</a>
-      <a href="guidance_men.html">男性入会</a>
-      <a href="guidance_women.html">女性入会</a>
-      <a href="system.html">料金・システム</a>
-      <a href="contact.html">お問合せ</a>
-    </nav>
+  <div class="container">
+    <h1>PRIVATE SHIROKANE</h1>
+    <p>当サイトは18歳以上を対象とした交際クラブです。安心・安全・所轄届出済。</p>
+    <a href="top.html" class="button">ENTER</a>
   </div>
-
-  <div class="banner"></div>
-
-  <div class="content">
-    <div class="description">
-      <p>所轄官庁届出済の安心安全の会員制高級倶楽部です。</p>
-      <p>「東京都デートクラブ営業等の規制に関する条例」により、「デートクラブ」交際倶楽部 PRIVATE SHIROKANEでは所轄警察に届出を受理され、正式にオープンさせて頂く運びとなりました。</p>
-      <p>当クラブが行うのは紹介(セッティング)のみとなります。</p>
-      <p>その後は、結婚目的もOK、お食事のみでもOK、全て自由交際となります。</p>
-    </div>
-  </div>
-
-  <div class="age-check" id="ageCheck">
-    <h2>18歳以上ですか？</h2>
-    <button onclick="enterSite()">ENTER</button>
-    <button onclick="leaveSite()">LEAVE</button>
-  </div>
-
-  <script>
-    function enterSite() {
-      document.getElementById('ageCheck').style.display = 'none';
-    }
-    function leaveSite() {
-      window.location.href = 'https://www.google.co.jp';
-    }
-  </script>
-
 </body>
-
 </html>
