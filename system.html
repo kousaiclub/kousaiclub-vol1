@@ -1,124 +1,106 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>料金システム - PRIVATE SHIROKANE</title>
-  <link rel="icon" href="images/logo_1.png">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles/style_combined.css">
+  <link rel="stylesheet" href="styles/style.css" />
   <style>
     body {
       background-color: #1c1c1c;
       color: #f9f9f9;
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'UD新ゴ', sans-serif;
       margin: 0;
       padding: 0;
     }
     .banner {
-      width: 100%;
-      height: auto;
+      background: url('images/banner_2.png') center/cover no-repeat;
+      height: 300px;
     }
     .container {
-      padding: 40px 20px;
-      max-width: 1000px;
+      max-width: 900px;
       margin: 0 auto;
+      padding: 40px 20px;
+      text-align: center;
     }
     h2 {
-      text-align: center;
-      border-bottom: 2px solid #f9f9f9;
+      font-size: 24px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #f9f9f9;
+      display: inline-block;
       padding-bottom: 10px;
-      margin-bottom: 40px;
-      font-size: 28px;
     }
     table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 20px;
+      margin: 30px 0;
+      font-size: 17px;
     }
     th, td {
       border: 1px solid #f9f9f9;
-      padding: 16px 12px;
-      text-align: center;
+      padding: 18px;
     }
     th {
       background-color: #333;
     }
-    caption {
-      caption-side: bottom;
-      text-align: left;
+    .note {
       font-size: 14px;
-      margin-top: 8px;
+      margin-top: 10px;
     }
     .contact-btn {
-      display: flex;
-      justify-content: center;
-      margin-top: 40px;
-    }
-    .contact-btn a {
-      background-color: #f9f9f9;
-      color: #1c1c1c;
-      padding: 12px 24px;
-      font-size: 18px;
-      text-decoration: none;
-      border-radius: 8px;
       display: inline-block;
+      background-color: #fff;
+      color: #1c1c1c;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: background 0.3s;
     }
-    .contact-btn a::after {
-      content: ' \25B6'; /* ▶ */
-      padding-left: 6px;
-    }
-    @media (max-width: 600px) {
-      table {
-        font-size: 16px;
-      }
-      th, td {
-        padding: 12px 8px;
-      }
+    .contact-btn:hover {
+      background-color: #ddd;
     }
   </style>
 </head>
 <body>
-  <img src="images/banner_2.png" alt="料金システムバナー" class="banner">
+  <div class="banner"></div>
+
+  <nav>
+    <!-- 男性入会ページと同様のナビゲーションバーをここに挿入 -->
+  </nav>
 
   <div class="container">
     <h2>SYSTEM（料金システム）</h2>
     <table>
-      <thead>
-        <tr>
-          <th>会員ランク</th>
-          <th>入会金</th>
-          <th>年会費</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>VIP会員</td>
-          <td>特別料金</td>
-          <td>一律200,000円</td>
-        </tr>
-        <tr>
-          <td>GOLD会員</td>
-          <td>500,000円</td>
-          <td>一律200,000円</td>
-        </tr>
-        <tr>
-          <td>SILVER会員</td>
-          <td>300,000円</td>
-          <td>一律200,000円</td>
-        </tr>
-        <tr>
-          <td>Standard会員</td>
-          <td>150,000円</td>
-          <td>一律200,000円</td>
-        </tr>
-      </tbody>
-      <caption>※VIP会員は個別にご案内いたします。</caption>
+      <tr>
+        <th>会員ランク</th>
+        <th>入会金</th>
+        <th>年会費</th>
+      </tr>
+      <tr>
+        <td>VIP会員</td>
+        <td>特別料金</td>
+        <td>一当199,999円</td>
+      </tr>
+      <tr>
+        <td>GOLD会員</td>
+        <td>500,000円</td>
+        <td>一当200,000円</td>
+      </tr>
+      <tr>
+        <td>SILVER会員</td>
+        <td>300,000円</td>
+        <td>一当200,000円</td>
+      </tr>
+      <tr>
+        <td>Standard会員</td>
+        <td>150,000円</td>
+        <td>一当200,000円</td>
+      </tr>
     </table>
+    <p class="note">※VIP会員は個別にご案内いたします。</p>
 
-    <div class="contact-btn">
-      <a href="contact.html">お問合せ</a>
-    </div>
+    <a href="contact.html" class="contact-btn">お問合せ▶</a>
   </div>
 </body>
 </html>
