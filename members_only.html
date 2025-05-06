@@ -141,48 +141,34 @@
 
   <div class="banner"></div>
 
-  <div class="content">
-    <h2>SYSTEM（料金システム）</h2>
+  </style>
 
-    <table>
-      <thead>
-        <tr>
-          <th>会員ランク</th>
-          <th>入会金</th>
-          <th>年会費</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>VIP会員</td>
-          <td>特別料金</td>
-          <td>一律200,000円</td>
-        </tr>
-        <tr>
-          <td>GOLD会員</td>
-          <td>500,000円</td>
-          <td>一律200,000円</td>
-        </tr>
-        <tr>
-          <td>SILVER会員</td>
-          <td>300,000円</td>
-          <td>一律200,000円</td>
-        </tr>
-        <tr>
-          <td>Standard会員</td>
-          <td>150,000円</td>
-          <td>一律200,000円</td>
-        </tr>
-      </tbody>
-    </table>
-    <caption>※VIP会員は個別にご案内いたします。</caption>
-  </div>
 
-  <script>
-    function toggleMenu() {
-      const nav = document.getElementById("navLinks");
-      nav.classList.toggle("active");
-    }
-  </script>
-</body>
-</html>
+
+<form name="myform" onsubmit="return Check()">
+
+ 
+
+ <input class="ipw" type="password" name="pwd" placeholder="パスワードを入力" required>
+
+ <input class="btn" type="submit" value="Login">
+
+
+
+</form>
+
+
+
+<script>
+
+ 
+
+function Check() {
+
+document.myform.action = 'https://sites.google.com/view/kousai-club-vol2/'+ document.myform.pwd.value;
+
+ }
+
+
+
+</script>
