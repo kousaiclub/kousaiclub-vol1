@@ -1,251 +1,544 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>members_list - PRIVATE SHIROKANE</title>
-  <link rel="icon" href="images/logo_1.png" type="image/png" />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: #1c1c1c;
-      color: #f9f9f9;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 14px;
-      line-height: 1.8;
-    }
 
-    .nav-container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background-color: rgba(0, 0, 0, 0.6);
-      padding: 5px 20px;
-      font-size: 14px;
-      position: relative;
-      z-index: 10;
-    }
-
-    .nav-logo img {
-      height: 50px;
-      object-fit: contain;
-      filter: brightness(90%) drop-shadow(0 1px 1px #ccc);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 20px;
-      font-family: 'Cormorant Garamond', serif;
-    }
-
-    .nav-links a {
-      color: #f0f0f0;
-      text-decoration: none;
-    }
-
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-    }
-
-    .hamburger span {
-      height: 3px;
-      width: 25px;
-      background: #f9f9f9;
-      margin: 4px 0;
-    }
-
-    @media screen and (max-width: 768px) {
-      .nav-links {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        background-color: rgba(0, 0, 0, 0.9);
-        padding: 15px;
-      }
-      .nav-links.active {
-        display: flex;
-      }
-      .hamburger {
-        display: flex;
-      }
-    }
-
-    .banner {
-      background: url('images/banner_3.png') center center / cover no-repeat;
-      height: 300px;
-    }
-
-    .card-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 1%;
-      padding: 20px;
-    }
-
-    .card {
-      width: 22%;
-      background-color: #1c1c1c;
-      border: 1px solid #f9f9f9;
-      color: #FFFFFF;
-      font-size: 15px;
-      border-radius: 12px;
-      overflow: hidden;
-      margin-bottom: 20px;
-    }
-
-    .card-image {
-      position: relative;
-      height: auto;
-      aspect-ratio: 3 / 4;
-      overflow: hidden;
-      cursor: pointer;
-    }
-
-    .slide {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      transition: opacity 0.6s ease-in-out;
-    }
-
-    .slide.active {
-      opacity: 1;
-    }
-
-    .slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .card-text {
-      padding: 8px;
-      text-align: center;
-    }
-
-    .favorite-btn {
-      font-size: 18px;
-      color: #FF69B4;
-      cursor: pointer;
-    }
-
-    .comment {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    @media (max-width: 768px) {
-      .card {
-        width: 48%;
-      }
-    }
-  </style>
-</head>
-<body>
-  <header class="nav-container">
-    <div class="nav-logo">
-      <a href="top.html">
-        <img src="images/logo_1.png" alt="PRIVATE SHIROKANE Logo" />
-      </a>
+<div class="card">
+  <a href="member101.html">
+    <div class="card-image">
+      <div class='slide'><img src='https://i.imgur.com/BWqeNt6.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/W84FDvL.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/ZvYttoT.jpeg'></div>
     </div>
-    <nav class="nav-links" id="navLinks">
-      <a href="index.html">Home</a>
-      <a href="top.html">Top</a>
-      <a href="guidance_men.html">男性入会</a>
-      <a href="guidance_women.html">女性入会</a>
-      <a href="system.html">料金・システム</a>
-      <a href="pickup_member.html">注目会員様情報</a>
-      <a href="members_only.html">会員専用</a>
-      <a href="contact.html">お問合せ</a>
-    </nav>
-    <div class="hamburger" onclick="toggleMenu()">
-      <span></span>
-      <span></span>
-      <span></span>
+  </a>
+  <div class="card-text">
+    <p><strong>No.</strong> 101 1</p>
+    <p>150 (21)</p>
+    <p>90, 57, 87, Hカップ</p>
+    <p class="comment">わたしは1です</p>
+    <p><span class="favorite-btn" data-id="101">♡</span></p>
+  </div>
+</div>
+
+<div class="card">
+  <a href="member102.html">
+    <div class="card-image">
+      <div class='slide'><img src='https://i.imgur.com/BWqeNt6.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/W84FDvL.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/ZvYttoT.jpeg'></div>
     </div>
-  </header>
+  </a>
+  <div class="card-text">
+    <p><strong>No.</strong> 102 2</p>
+    <p>151 (22)</p>
+    <p>90, 57, 87, Hカップ</p>
+    <p class="comment">わたしは2です</p>
+    <p><span class="favorite-btn" data-id="102">♡</span></p>
+  </div>
+</div>
 
-  <div class="banner"></div>
+<div class="card">
+  <a href="member103.html">
+    <div class="card-image">
+      <div class='slide'><img src='https://i.imgur.com/BWqeNt6.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/W84FDvL.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/ZvYttoT.jpeg'></div>
+    </div>
+  </a>
+  <div class="card-text">
+    <p><strong>No.</strong> 103 3</p>
+    <p>152 (23)</p>
+    <p>90, 57, 87, Hカップ</p>
+    <p class="comment">わたしは3です</p>
+    <p><span class="favorite-btn" data-id="103">♡</span></p>
+  </div>
+</div>
 
-  <div class="card-container" id="cardContainer"></div>
+<div class="card">
+  <a href="member104.html">
+    <div class="card-image">
+      <div class='slide'><img src='https://i.imgur.com/BWqeNt6.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/W84FDvL.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/ZvYttoT.jpeg'></div>
+    </div>
+  </a>
+  <div class="card-text">
+    <p><strong>No.</strong> 104 4</p>
+    <p>153 (24)</p>
+    <p>90, 57, 87, Hカップ</p>
+    <p class="comment">わたしは4です</p>
+    <p><span class="favorite-btn" data-id="104">♡</span></p>
+  </div>
+</div>
 
-  <script>
-    function toggleMenu() {
-      document.getElementById("navLinks").classList.toggle("active");
-    }
+<div class="card">
+  <a href="member105.html">
+    <div class="card-image">
+      <div class='slide'><img src='https://i.imgur.com/BWqeNt6.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/W84FDvL.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/ZvYttoT.jpeg'></div>
+    </div>
+  </a>
+  <div class="card-text">
+    <p><strong>No.</strong> 105 5</p>
+    <p>154 (25)</p>
+    <p>90, 57, 87, Hカップ</p>
+    <p class="comment">わたしは5です</p>
+    <p><span class="favorite-btn" data-id="105">♡</span></p>
+  </div>
+</div>
 
-    function setupSlides() {
-      document.querySelectorAll('.card-image').forEach(container => {
-        const slides = container.querySelectorAll('.slide');
-        let idx = 0;
-        if (slides.length === 1) {
-          slides[0].classList.add('active');
-          return;
-        }
-        slides[0].classList.add('active');
-        setInterval(() => {
-          slides[idx].classList.remove('active');
-          idx = (idx + 1) % slides.length;
-          slides[idx].classList.add('active');
-        }, 3000);
-      });
-    }
+<div class="card">
+  <a href="member106.html">
+    <div class="card-image">
+      <div class='slide'><img src='https://i.imgur.com/BWqeNt6.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/W84FDvL.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/ZvYttoT.jpeg'></div>
+    </div>
+  </a>
+  <div class="card-text">
+    <p><strong>No.</strong> 106 6</p>
+    <p>155 (26)</p>
+    <p>90, 57, 87, Hカップ</p>
+    <p class="comment">わたしは6です</p>
+    <p><span class="favorite-btn" data-id="106">♡</span></p>
+  </div>
+</div>
 
-    document.addEventListener('DOMContentLoaded', () => {
-      const container = document.getElementById('cardContainer');
-      for (let i = 1; i <= 32; i++) {
-        const id = 100 + i;
-        const height = 149 + i;
-        const age = 20 + i;
-        const name = `わたしは${i}です`;
-        const card = document.createElement('div');
-        card.className = 'card';
-        card.innerHTML = `
-          <div class="card-image" onclick="window.open('https://sites.google.com/view/kousai-club-vol2/${id}?authuser=0', '_blank')">
-            <div class='slide'><img src='https://i.imgur.com/BWqeNt6.jpeg'></div>
-            <div class='slide'><img src='https://i.imgur.com/W84FDvL.jpeg'></div>
-            <div class='slide'><img src='https://i.imgur.com/ZvYttoT.jpeg'></div>
-          </div>
-          <div class="card-text">
-            <p><strong>No.</strong> ${id} ${i}</p>
-            <p>${height} (${age})</p>
-            <p>90, 57, 87, Hカップ</p>
-            <p class="comment">${name}</p>
-            <p><span class="favorite-btn" data-id="${id}">?</span></p>
-          </div>
-        `;
-        container.appendChild(card);
-      }
+<div class="card">
+  <a href="member107.html">
+    <div class="card-image">
+      <div class='slide'><img src='https://i.imgur.com/BWqeNt6.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/W84FDvL.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/ZvYttoT.jpeg'></div>
+    </div>
+  </a>
+  <div class="card-text">
+    <p><strong>No.</strong> 107 7</p>
+    <p>156 (27)</p>
+    <p>90, 57, 87, Hカップ</p>
+    <p class="comment">わたしは7です</p>
+    <p><span class="favorite-btn" data-id="107">♡</span></p>
+  </div>
+</div>
 
-      document.querySelectorAll('.favorite-btn').forEach(btn => {
-        const id = btn.dataset.id;
-        if (localStorage.getItem('fav-' + id)) btn.textContent = '??';
-        btn.addEventListener('click', () => {
-          if (localStorage.getItem('fav-' + id)) {
-            localStorage.removeItem('fav-' + id);
-            btn.textContent = '?';
-          } else {
-            localStorage.setItem('fav-' + id, '1');
-            btn.textContent = '??';
-          }
-        });
-      });
+<div class="card">
+  <a href="member108.html">
+    <div class="card-image">
+      <div class='slide'><img src='https://i.imgur.com/BWqeNt6.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/W84FDvL.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/ZvYttoT.jpeg'></div>
+    </div>
+  </a>
+  <div class="card-text">
+    <p><strong>No.</strong> 108 8</p>
+    <p>157 (28)</p>
+    <p>90, 57, 87, Hカップ</p>
+    <p class="comment">わたしは8です</p>
+    <p><span class="favorite-btn" data-id="108">♡</span></p>
+  </div>
+</div>
 
-      setupSlides();
-    });
-  </script>
+<div class="card">
+  <a href="member109.html">
+    <div class="card-image">
+      <div class='slide'><img src='https://i.imgur.com/BWqeNt6.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/W84FDvL.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/ZvYttoT.jpeg'></div>
+    </div>
+  </a>
+  <div class="card-text">
+    <p><strong>No.</strong> 109 9</p>
+    <p>158 (29)</p>
+    <p>90, 57, 87, Hカップ</p>
+    <p class="comment">わたしは9です</p>
+    <p><span class="favorite-btn" data-id="109">♡</span></p>
+  </div>
+</div>
 
-</body>
-</html>
+<div class="card">
+  <a href="member110.html">
+    <div class="card-image">
+      <div class='slide'><img src='https://i.imgur.com/BWqeNt6.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/W84FDvL.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/ZvYttoT.jpeg'></div>
+    </div>
+  </a>
+  <div class="card-text">
+    <p><strong>No.</strong> 110 10</p>
+    <p>159 (30)</p>
+    <p>90, 57, 87, Hカップ</p>
+    <p class="comment">わたしは10です</p>
+    <p><span class="favorite-btn" data-id="110">♡</span></p>
+  </div>
+</div>
+
+<div class="card">
+  <a href="member111.html">
+    <div class="card-image">
+      <div class='slide'><img src='https://i.imgur.com/BWqeNt6.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/W84FDvL.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/ZvYttoT.jpeg'></div>
+    </div>
+  </a>
+  <div class="card-text">
+    <p><strong>No.</strong> 111 11</p>
+    <p>160 (31)</p>
+    <p>90, 57, 87, Hカップ</p>
+    <p class="comment">わたしは11です</p>
+    <p><span class="favorite-btn" data-id="111">♡</span></p>
+  </div>
+</div>
+
+<div class="card">
+  <a href="member112.html">
+    <div class="card-image">
+      <div class='slide'><img src='https://i.imgur.com/BWqeNt6.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/W84FDvL.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/ZvYttoT.jpeg'></div>
+    </div>
+  </a>
+  <div class="card-text">
+    <p><strong>No.</strong> 112 12</p>
+    <p>161 (32)</p>
+    <p>90, 57, 87, Hカップ</p>
+    <p class="comment">わたしは12です</p>
+    <p><span class="favorite-btn" data-id="112">♡</span></p>
+  </div>
+</div>
+
+<div class="card">
+  <a href="member113.html">
+    <div class="card-image">
+      <div class='slide'><img src='https://i.imgur.com/BWqeNt6.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/W84FDvL.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/ZvYttoT.jpeg'></div>
+    </div>
+  </a>
+  <div class="card-text">
+    <p><strong>No.</strong> 113 13</p>
+    <p>162 (33)</p>
+    <p>90, 57, 87, Hカップ</p>
+    <p class="comment">わたしは13です</p>
+    <p><span class="favorite-btn" data-id="113">♡</span></p>
+  </div>
+</div>
+
+<div class="card">
+  <a href="member114.html">
+    <div class="card-image">
+      <div class='slide'><img src='https://i.imgur.com/BWqeNt6.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/W84FDvL.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/ZvYttoT.jpeg'></div>
+    </div>
+  </a>
+  <div class="card-text">
+    <p><strong>No.</strong> 114 14</p>
+    <p>163 (34)</p>
+    <p>90, 57, 87, Hカップ</p>
+    <p class="comment">わたしは14です</p>
+    <p><span class="favorite-btn" data-id="114">♡</span></p>
+  </div>
+</div>
+
+<div class="card">
+  <a href="member115.html">
+    <div class="card-image">
+      <div class='slide'><img src='https://i.imgur.com/BWqeNt6.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/W84FDvL.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/ZvYttoT.jpeg'></div>
+    </div>
+  </a>
+  <div class="card-text">
+    <p><strong>No.</strong> 115 15</p>
+    <p>164 (35)</p>
+    <p>90, 57, 87, Hカップ</p>
+    <p class="comment">わたしは15です</p>
+    <p><span class="favorite-btn" data-id="115">♡</span></p>
+  </div>
+</div>
+
+<div class="card">
+  <a href="member116.html">
+    <div class="card-image">
+      <div class='slide'><img src='https://i.imgur.com/BWqeNt6.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/W84FDvL.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/ZvYttoT.jpeg'></div>
+    </div>
+  </a>
+  <div class="card-text">
+    <p><strong>No.</strong> 116 16</p>
+    <p>165 (36)</p>
+    <p>90, 57, 87, Hカップ</p>
+    <p class="comment">わたしは16です</p>
+    <p><span class="favorite-btn" data-id="116">♡</span></p>
+  </div>
+</div>
+
+<div class="card">
+  <a href="member117.html">
+    <div class="card-image">
+      <div class='slide'><img src='https://i.imgur.com/BWqeNt6.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/W84FDvL.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/ZvYttoT.jpeg'></div>
+    </div>
+  </a>
+  <div class="card-text">
+    <p><strong>No.</strong> 117 17</p>
+    <p>166 (37)</p>
+    <p>90, 57, 87, Hカップ</p>
+    <p class="comment">わたしは17です</p>
+    <p><span class="favorite-btn" data-id="117">♡</span></p>
+  </div>
+</div>
+
+<div class="card">
+  <a href="member118.html">
+    <div class="card-image">
+      <div class='slide'><img src='https://i.imgur.com/BWqeNt6.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/W84FDvL.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/ZvYttoT.jpeg'></div>
+    </div>
+  </a>
+  <div class="card-text">
+    <p><strong>No.</strong> 118 18</p>
+    <p>167 (38)</p>
+    <p>90, 57, 87, Hカップ</p>
+    <p class="comment">わたしは18です</p>
+    <p><span class="favorite-btn" data-id="118">♡</span></p>
+  </div>
+</div>
+
+<div class="card">
+  <a href="member119.html">
+    <div class="card-image">
+      <div class='slide'><img src='https://i.imgur.com/BWqeNt6.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/W84FDvL.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/ZvYttoT.jpeg'></div>
+    </div>
+  </a>
+  <div class="card-text">
+    <p><strong>No.</strong> 119 19</p>
+    <p>168 (39)</p>
+    <p>90, 57, 87, Hカップ</p>
+    <p class="comment">わたしは19です</p>
+    <p><span class="favorite-btn" data-id="119">♡</span></p>
+  </div>
+</div>
+
+<div class="card">
+  <a href="member120.html">
+    <div class="card-image">
+      <div class='slide'><img src='https://i.imgur.com/BWqeNt6.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/W84FDvL.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/ZvYttoT.jpeg'></div>
+    </div>
+  </a>
+  <div class="card-text">
+    <p><strong>No.</strong> 120 20</p>
+    <p>169 (40)</p>
+    <p>90, 57, 87, Hカップ</p>
+    <p class="comment">わたしは20です</p>
+    <p><span class="favorite-btn" data-id="120">♡</span></p>
+  </div>
+</div>
+
+<div class="card">
+  <a href="member121.html">
+    <div class="card-image">
+      <div class='slide'><img src='https://i.imgur.com/BWqeNt6.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/W84FDvL.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/ZvYttoT.jpeg'></div>
+    </div>
+  </a>
+  <div class="card-text">
+    <p><strong>No.</strong> 121 21</p>
+    <p>170 (41)</p>
+    <p>90, 57, 87, Hカップ</p>
+    <p class="comment">わたしは21です</p>
+    <p><span class="favorite-btn" data-id="121">♡</span></p>
+  </div>
+</div>
+
+<div class="card">
+  <a href="member122.html">
+    <div class="card-image">
+      <div class='slide'><img src='https://i.imgur.com/BWqeNt6.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/W84FDvL.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/ZvYttoT.jpeg'></div>
+    </div>
+  </a>
+  <div class="card-text">
+    <p><strong>No.</strong> 122 22</p>
+    <p>171 (42)</p>
+    <p>90, 57, 87, Hカップ</p>
+    <p class="comment">わたしは22です</p>
+    <p><span class="favorite-btn" data-id="122">♡</span></p>
+  </div>
+</div>
+
+<div class="card">
+  <a href="member123.html">
+    <div class="card-image">
+      <div class='slide'><img src='https://i.imgur.com/BWqeNt6.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/W84FDvL.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/ZvYttoT.jpeg'></div>
+    </div>
+  </a>
+  <div class="card-text">
+    <p><strong>No.</strong> 123 23</p>
+    <p>172 (43)</p>
+    <p>90, 57, 87, Hカップ</p>
+    <p class="comment">わたしは23です</p>
+    <p><span class="favorite-btn" data-id="123">♡</span></p>
+  </div>
+</div>
+
+<div class="card">
+  <a href="member124.html">
+    <div class="card-image">
+      <div class='slide'><img src='https://i.imgur.com/BWqeNt6.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/W84FDvL.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/ZvYttoT.jpeg'></div>
+    </div>
+  </a>
+  <div class="card-text">
+    <p><strong>No.</strong> 124 24</p>
+    <p>173 (44)</p>
+    <p>90, 57, 87, Hカップ</p>
+    <p class="comment">わたしは24です</p>
+    <p><span class="favorite-btn" data-id="124">♡</span></p>
+  </div>
+</div>
+
+<div class="card">
+  <a href="member125.html">
+    <div class="card-image">
+      <div class='slide'><img src='https://i.imgur.com/BWqeNt6.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/W84FDvL.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/ZvYttoT.jpeg'></div>
+    </div>
+  </a>
+  <div class="card-text">
+    <p><strong>No.</strong> 125 25</p>
+    <p>174 (45)</p>
+    <p>90, 57, 87, Hカップ</p>
+    <p class="comment">わたしは25です</p>
+    <p><span class="favorite-btn" data-id="125">♡</span></p>
+  </div>
+</div>
+
+<div class="card">
+  <a href="member126.html">
+    <div class="card-image">
+      <div class='slide'><img src='https://i.imgur.com/BWqeNt6.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/W84FDvL.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/ZvYttoT.jpeg'></div>
+    </div>
+  </a>
+  <div class="card-text">
+    <p><strong>No.</strong> 126 26</p>
+    <p>175 (46)</p>
+    <p>90, 57, 87, Hカップ</p>
+    <p class="comment">わたしは26です</p>
+    <p><span class="favorite-btn" data-id="126">♡</span></p>
+  </div>
+</div>
+
+<div class="card">
+  <a href="member127.html">
+    <div class="card-image">
+      <div class='slide'><img src='https://i.imgur.com/BWqeNt6.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/W84FDvL.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/ZvYttoT.jpeg'></div>
+    </div>
+  </a>
+  <div class="card-text">
+    <p><strong>No.</strong> 127 27</p>
+    <p>176 (47)</p>
+    <p>90, 57, 87, Hカップ</p>
+    <p class="comment">わたしは27です</p>
+    <p><span class="favorite-btn" data-id="127">♡</span></p>
+  </div>
+</div>
+
+<div class="card">
+  <a href="member128.html">
+    <div class="card-image">
+      <div class='slide'><img src='https://i.imgur.com/BWqeNt6.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/W84FDvL.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/ZvYttoT.jpeg'></div>
+    </div>
+  </a>
+  <div class="card-text">
+    <p><strong>No.</strong> 128 28</p>
+    <p>177 (48)</p>
+    <p>90, 57, 87, Hカップ</p>
+    <p class="comment">わたしは28です</p>
+    <p><span class="favorite-btn" data-id="128">♡</span></p>
+  </div>
+</div>
+
+<div class="card">
+  <a href="member129.html">
+    <div class="card-image">
+      <div class='slide'><img src='https://i.imgur.com/BWqeNt6.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/W84FDvL.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/ZvYttoT.jpeg'></div>
+    </div>
+  </a>
+  <div class="card-text">
+    <p><strong>No.</strong> 129 29</p>
+    <p>178 (49)</p>
+    <p>90, 57, 87, Hカップ</p>
+    <p class="comment">わたしは29です</p>
+    <p><span class="favorite-btn" data-id="129">♡</span></p>
+  </div>
+</div>
+
+<div class="card">
+  <a href="member130.html">
+    <div class="card-image">
+      <div class='slide'><img src='https://i.imgur.com/BWqeNt6.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/W84FDvL.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/ZvYttoT.jpeg'></div>
+    </div>
+  </a>
+  <div class="card-text">
+    <p><strong>No.</strong> 130 30</p>
+    <p>179 (50)</p>
+    <p>90, 57, 87, Hカップ</p>
+    <p class="comment">わたしは30です</p>
+    <p><span class="favorite-btn" data-id="130">♡</span></p>
+  </div>
+</div>
+
+<div class="card">
+  <a href="member131.html">
+    <div class="card-image">
+      <div class='slide'><img src='https://i.imgur.com/BWqeNt6.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/W84FDvL.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/ZvYttoT.jpeg'></div>
+    </div>
+  </a>
+  <div class="card-text">
+    <p><strong>No.</strong> 131 31</p>
+    <p>180 (51)</p>
+    <p>90, 57, 87, Hカップ</p>
+    <p class="comment">わたしは31です</p>
+    <p><span class="favorite-btn" data-id="131">♡</span></p>
+  </div>
+</div>
+
+<div class="card">
+  <a href="member132.html">
+    <div class="card-image">
+      <div class='slide'><img src='https://i.imgur.com/BWqeNt6.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/W84FDvL.jpeg'></div>
+      <div class='slide'><img src='https://i.imgur.com/ZvYttoT.jpeg'></div>
+    </div>
+  </a>
+  <div class="card-text">
+    <p><strong>No.</strong> 132 32</p>
+    <p>181 (52)</p>
+    <p>90, 57, 87, Hカップ</p>
+    <p class="comment">わたしは32です</p>
+    <p><span class="favorite-btn" data-id="132">♡</span></p>
+  </div>
+</div>
