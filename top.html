@@ -3,30 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>お知らせ - PRIVATE SHIROKANE</title>
+  <title>PRIVATE SHIROKANE</title>
   <link rel="icon" href="images/logo_1.png" type="image/png" />
   <style>
     body {
       margin: 0;
-      padding: 0;
+      font-family: 'Cormorant Garamond', serif;
       background-color: #1c1c1c;
       color: #f9f9f9;
-      font-family: "Cormorant Garamond", serif;
-    }
-
-    .banner {
-      background: url('images/banner_1.png') center center / cover no-repeat;
-      height: 300px;
-      position: relative;
-    }
-
-    .banner-text {
-      position: absolute;
-      bottom: 20px;
-      left: 20px;
-      font-size: 24px;
-      font-weight: bold;
-      text-shadow: 1px 1px 4px #000;
     }
 
     .nav-container {
@@ -34,14 +18,14 @@
       align-items: center;
       justify-content: space-between;
       background-color: rgba(0, 0, 0, 0.6);
-      padding: 10px 20px;
-      font-family: 'Cormorant Garamond', serif;
+      padding: 5px 20px;
+      min-height: 48px;
       position: relative;
       z-index: 10;
     }
 
     .nav-logo img {
-      height: 65px;
+      height: 50px;
       object-fit: contain;
       filter: brightness(90%) drop-shadow(0 1px 1px #ccc);
     }
@@ -55,7 +39,6 @@
     .nav-links a {
       color: #f0f0f0;
       text-decoration: none;
-      position: relative;
       transition: color 0.3s ease;
     }
 
@@ -82,7 +65,7 @@
         flex-direction: column;
         width: 100%;
         position: absolute;
-        top: 70px;
+        top: 60px;
         left: 0;
         background-color: rgba(0, 0, 0, 0.9);
         padding: 15px;
@@ -95,56 +78,55 @@
       .hamburger {
         display: flex;
       }
+    }
 
-      .banner {
-        height: 200px;
-      }
+    .banner {
+      position: relative;
+      width: 100%;
+      height: auto;
+    }
 
-      .banner-text {
-        font-size: 18px;
-      }
+    .banner img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .news-section {
+      padding: 40px 20px;
+      background-color: #1c1c1c;
+    }
+
+    .news-section h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      text-align: center;
     }
 
     .accordion {
-      background-color: #2a2a2a;
+      background-color: #2c2c2c;
       color: #f9f9f9;
       cursor: pointer;
-      padding: 14px 20px;
+      padding: 18px;
       width: 100%;
       border: none;
       text-align: left;
       outline: none;
       font-size: 16px;
-      margin-top: 10px;
-    }
-
-    .accordion.active, .accordion:hover {
-      background-color: #333;
+      transition: 0.4s;
+      margin-bottom: 5px;
     }
 
     .panel {
-      padding: 0 20px;
-      background-color: #1c1c1c;
+      padding: 0 18px;
+      background-color: #333;
       display: none;
       overflow: hidden;
-      border-left: 4px solid #f9f9f9;
-    }
-
-    .content {
-      padding: 30px 20px;
-      max-width: 800px;
-      margin: auto;
     }
   </style>
 </head>
 <body>
 
-  <!-- バナー -->
-  <div class="banner">
-    <div class="banner-text">NEWS / お知らせ</div>
-  </div>
-
-  <!-- ナビゲーション -->
   <header class="nav-container">
     <div class="nav-logo">
       <a href="top.html">
@@ -165,13 +147,16 @@
     </div>
   </header>
 
-  <!-- ニュースエリア -->
-  <div class="content">
-    <h2 style="text-align:center;">最新のお知らせ</h2>
+  <div class="banner">
+    <img src="images/banner_1.png" alt="PRIVATE SHIROKANE バナー画像">
+  </div>
 
-    <button class="accordion">2025年5月5日</button>
+  <section class="news-section">
+    <h2>最新のお知らせ</h2>
+
+    <button class="accordion">2025年5月15日</button>
     <div class="panel">
-      <p>本サイト（PRIVATE SHIROKANE）をオープンしました。</p>
+      <p>今後のアップデートではアーカイブページ機能を提供予定です。</p>
     </div>
 
     <button class="accordion">2025年5月10日</button>
@@ -179,27 +164,12 @@
       <p>キャンペーン情報の掲載スペースを設けました。QRコードなども対応予定です。</p>
     </div>
 
-    <button class="accordion">2025年5月15日</button>
+    <button class="accordion">2025年5月5日</button>
     <div class="panel">
-      <p>今後のアップデートではアーカイブページ機能を提供予定です。</p>
+      <p>本サイト（PRIVATE SHIROKANE）をオープンしました。</p>
     </div>
-  </div>
+  </section>
 
-  <!-- フッターリンク -->
-  <div style="text-align:center; margin: 40px 0;">
-    <a href="contact.html" style="color:#f9f9f9; font-size:16px; text-decoration:underline;">
-      お問い合わせはこちら
-    </a>
-  </div>
-
-  <!-- トップ戻り -->
-  <div style="text-align:center; margin-bottom:40px;">
-    <a href="#top" style="color:#ccc; font-size:14px; text-decoration:none;">
-      ↑ トップへ戻る
-    </a>
-  </div>
-
-  <!-- スクリプト -->
   <script>
     function toggleMenu() {
       const nav = document.getElementById("navLinks");
@@ -211,7 +181,11 @@
       acc[i].addEventListener("click", function () {
         this.classList.toggle("active");
         const panel = this.nextElementSibling;
-        panel.style.display = panel.style.display === "block" ? "none" : "block";
+        if (panel.style.display === "block") {
+          panel.style.display = "none";
+        } else {
+          panel.style.display = "block";
+        }
       });
     }
   </script>
