@@ -13,110 +13,127 @@
       background-color: #1c1c1c;
       color: #f9f9f9;
       font-family: 'Cormorant Garamond', serif;
-      text-align: center;
+      font-size: 16px;
+      line-height: 1.8;
     }
-    header {
-      background-color: #000;
-      padding: 10px 20px;
+    .nav-container {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 5px 20px;
+      font-size: 16px;
+      position: relative;
+      z-index: 10;
     }
-    header img {
-      height: 40px;
+    .nav-logo img {
+      height: 50px;
+      object-fit: contain;
+      filter: brightness(90%) drop-shadow(0 1px 1px #ccc);
     }
-    nav a {
-      color: #f9f9f9;
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      font-family: 'Cormorant Garamond', serif;
+    }
+    .nav-links a {
+      color: #f0f0f0;
       text-decoration: none;
-      margin: 0 10px;
-      font-size: 14px;
     }
-    nav a:hover {
-      text-decoration: underline;
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    .hamburger span {
+      height: 3px;
+      width: 25px;
+      background: #f9f9f9;
+      margin: 4px 0;
+    }
+    @media screen and (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.9);
+        padding: 15px;
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      .hamburger {
+        display: flex;
+      }
     }
     .banner {
-      background: url('images/banner_1.png') center center / cover no-repeat;
-      height: 500px;
+      background: url('images/banner_1.png') no-repeat center center;
+      background-size: cover;
+      height: 340px;
     }
-    .main-message {
-      margin: 30px 20px 10px;
-      font-size: 16px;
-      color: #e0e0e0;
+    @media (max-width: 768px) {
+      .banner {
+        background-position: center top;
+        background-size: contain;
+        height: 300px;
+      }
     }
-    .age-warning {
-      font-size: 14px;
-      color: #ccc;
-      margin-bottom: 20px;
+    .container {
+      padding: 40px 20px;
+      text-align: center;
     }
-    .buttons {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      margin-bottom: 30px;
+    .age-confirm {
+      margin: 20px 0;
     }
-    .buttons button {
-      padding: 10px 30px;
-      font-size: 16px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
+    .age-confirm button {
       background-color: #f9f9f9;
       color: #1c1c1c;
-    }
-    .buttons button:hover {
-      background-color: #ccc;
-    }
-    .button-label {
-      font-size: 12px;
-      color: #999;
-    }
-    .footer-message {
-      font-style: italic;
-      font-size: 14px;
-      color: #777;
-      margin-bottom: 30px;
+      border: none;
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
-  <header>
-    <img src="images/logo_1.png" alt="PRIVATE SHIROKANE">
-    <nav>
+  <header class="nav-container">
+    <div class="nav-logo">
+      <a href="top.html">
+        <img src="images/logo_1.png" alt="PRIVATE SHIROKANE Logo">
+      </a>
+    </div>
+    <nav class="nav-links" id="navLinks">
       <a href="index.html">Home</a>
       <a href="top.html">Top</a>
-      <a href="system.html">料金・システム</a>
       <a href="guidance_men.html">男性会員入会</a>
       <a href="guidance_women.html">女性会員入会</a>
+      <a href="system.html">料金・システム</a>
       <a href="pickup_member.html">注目会員様情報</a>
       <a href="members_only.html">会員専用Page</a>
       <a href="contact.html">お問合せ</a>
     </nav>
+    <div class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('active')">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
   </header>
 
   <div class="banner"></div>
 
-  <div class="main-message">
-    当サイトは18歳以上を対象とした交際クラブです。安心・安全・所轄届出済
-  </div>
-
-  <div class="age-warning">
-    このコンテンツは18歳以上の方が対象となります。<br>
-    18歳未満の方はご利用になれません。
-  </div>
-
-  <div class="buttons">
-    <div>
-      <button onclick="location.href='top.html'">Enter</button>
-      <div class="button-label">18over</div>
+  <div class="container">
+    <h1>PRIVATE SHIROKANE へようこそ</h1>
+    <p>当サイトは18歳未満の方の閲覧を固くお断りしております。以下より年齢を選択してください。</p>
+    <div class="age-confirm">
+      <button onclick="location.href='top.html'">18歳以上 / 18 Over</button>
+      <button onclick="alert('18歳未満の方はご利用いただけません。')">18歳未満 / 18 Under</button>
     </div>
-    <div>
-      <button onclick="location.href='https://www.google.com'">Leave</button>
-      <div class="button-label">18under</div>
-    </div>
-  </div>
-
-  <div class="footer-message">
-    扉の向こうには、選ばれた大人しかいない･･･。
+    <p>PRIVATE SHIROKANEは安心・安全・匿名性の高い交際クラブです。所轄警察署への届出済み、信頼と実績のあるサービスを提供しております。</p>
   </div>
 </body>
 </html>
