@@ -54,27 +54,12 @@
 <body>
   <div class="form-wrapper">
     <h2>お問合せ</h2>
-    <form id="contactForm">
-      <input type="text" id="name" placeholder="お名前（必須）" required>
-      <input type="email" id="email" placeholder="メールアドレス（必須）" required>
-      <textarea id="message" placeholder="お問合せ内容（必須）" required></textarea>
+    <form action="mailto:kousai.kaiin.club@gmail.com" method="POST" enctype="text/plain">
+      <input type="text" name="name" placeholder="お名前（必須）" required>
+      <input type="email" name="email" placeholder="メールアドレス（必須）" required>
+      <textarea name="message" placeholder="お問合せ内容（必須）" required></textarea>
       <button type="submit" class="submit-btn">送信 ▶</button>
     </form>
   </div>
-
-  <script>
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-
-      const name = encodeURIComponent(document.getElementById('name').value);
-      const email = encodeURIComponent(document.getElementById('email').value);
-      const message = encodeURIComponent(document.getElementById('message').value);
-
-      const subject = encodeURIComponent("お問合せ");
-      const body = `お名前: ${name}%0Aメールアドレス: ${email}%0Aお問合せ内容:%0A${message}`;
-
-      window.location.href = `mailto:kousai.kaiin.club@gmail.com?subject=${subject}&body=${body}`;
-    });
-  </script>
 </body>
 </html>
