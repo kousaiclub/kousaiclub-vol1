@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SYSTEM（料金システム） - PRIVATE SHIROKANE</title>
-  <link rel="icon" href="images/logo_1.png">
+  <link rel="icon" href="images/logo_2.jpg" type="image/jpeg">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
@@ -28,7 +28,7 @@
       color: #f9f9f9;
       text-decoration: none;
       margin: 0 10px;
-      font-size: 18px;
+      font-size: 14px;
     }
     nav a:hover {
       text-decoration: underline;
@@ -78,6 +78,15 @@
       border-radius: 4px;
       margin-top: 20px;
     }
+    @media screen and (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav {
+        margin-top: 10px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -88,12 +97,14 @@
       <a href="top.html">Top</a>
       <a href="entry_men.html">男性入会</a>
       <a href="entry_women.html">女性入会</a>
-      <a href="system.html">料金・システム</a>
+      <a href="pricing.html">料金・システム</a>
       <a href="members.html">会員専用</a>
-      <a href="contact.html">お問合せ</a>
+      <a href="https://kousaiclub.jp/contact.html">お問合せ</a>
     </nav>
   </header>
+
   <div class="banner"></div>
+
   <div class="content">
     <h2>SYSTEM（料金システム）</h2>
     <table>
@@ -124,7 +135,7 @@
       </tr>
     </table>
     <div class="note">※VIP会員は個別にご案内いたします。</div>
-    <a href="contact.html" class="contact-btn">お問合せ ▶</a>
+    <a href="https://kousaiclub.jp/contact.html" class="contact-btn">お問合せ ▶</a>
   </div>
 </body>
 </html>
