@@ -1,18 +1,76 @@
-<form onsubmit="return sendEmail()" novalidate>
-  <input type="text" id="name" placeholder="お名前（必須）" required>
-  <input type="email" id="email" placeholder="メールアドレス（必須）" required>
-  <textarea id="message" placeholder="お問合せ内容（必須）" required></textarea>
-  <button type="submit" class="submit-btn">送信 ▶</button>
-</form>
-
-<script>
-  function sendEmail() {
-    const name = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-    const message = document.getElementById("message").value;
-    const subject = encodeURIComponent("PRIVATE SHIROKANEへのお問合せ");
-    const body = encodeURIComponent(`お名前：${name}\nメール：${email}\n内容：\n${message}`);
-    window.location.href = `mailto:kousai.kaiin.club@gmail.com?subject=${subject}&body=${body}`;
-    return false; // フォーム送信を防止
-  }
-</script>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>お問合せ - PRIVATE SHIROKANE</title>
+  <link rel="icon" href="images/logo_1.png">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #1c1c1c;
+      color: #f9f9f9;
+      font-family: 'Cormorant Garamond', serif;
+    }
+    .form-wrapper {
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 40px 20px;
+      background-color: #2a2a2a;
+      border: 1px solid #f9f9f9;
+    }
+    h2 {
+      text-align: center;
+      font-size: 28px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 10px;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+    input, textarea {
+      margin-bottom: 20px;
+      padding: 10px;
+      font-size: 16px;
+      border: none;
+      font-family: 'Cormorant Garamond', serif;
+    }
+    textarea {
+      height: 120px;
+      resize: vertical;
+    }
+    .submit-btn {
+      background-color: #fff;
+      color: #000;
+      padding: 12px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-wrapper">
+    <h2>お問合せ</h2>
+    <form onsubmit="return sendEmail()" novalidate>
+      <input type="text" id="name" placeholder="お名前（必須）" required>
+      <input type="email" id="email" placeholder="メールアドレス（必須）" required>
+      <textarea id="message" placeholder="お問合せ内容（必須）" required></textarea>
+      <button type="submit" class="submit-btn">送信 ▶</button>
+    </form>
+  </div>
+  <script>
+    function sendEmail() {
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const message = document.getElementById("message").value;
+      const subject = encodeURIComponent("PRIVATE SHIROKANEへのお問合せ");
+      const body = encodeURIComponent(`お名前：${name}\nメール：${email}\n内容：\n${message}`);
+      window.location.href = `mailto:kousai.kaiin.club@gmail.com?subject=${subject}&body=${body}`;
+      return false;
+    }
+  </script>
+</body>
+</html>
