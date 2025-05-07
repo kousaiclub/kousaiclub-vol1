@@ -14,9 +14,33 @@
       color: #f9f9f9;
       font-family: 'Cormorant Garamond', serif;
     }
-    .form-wrapper {
+    header {
+      background-color: #000;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    header img {
+      height: 40px;
+    }
+    nav a {
+      color: #f9f9f9;
+      text-decoration: none;
+      margin: 0 10px;
+      font-size: 14px;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .banner {
+      width: 100%;
+      height: 300px;
+      background: url('images/banner_2.png') center/cover no-repeat;
+    }
+    .form-container {
       max-width: 600px;
-      margin: 40px auto;
+      margin: 0 auto;
       padding: 40px 20px;
       background-color: #2a2a2a;
       border: 1px solid #f9f9f9;
@@ -31,7 +55,7 @@
       display: flex;
       flex-direction: column;
     }
-    input, textarea {
+    input, select, textarea {
       margin-bottom: 20px;
       padding: 10px;
       font-size: 16px;
@@ -49,28 +73,53 @@
       font-size: 16px;
       cursor: pointer;
     }
+    .line-link {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+    .line-link a {
+      color: #00ff00;
+      text-decoration: none;
+    }
   </style>
 </head>
 <body>
-  <div class="form-wrapper">
+  <header>
+    <img src="images/logo_1.png" alt="PRIVATE SHIROKANE">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="top.html">Top</a>
+      <a href="entry_men.html">男性入会</a>
+      <a href="entry_women.html">女性入会</a>
+      <a href="system.html">料金・システム</a>
+      <a href="pickup_member.html">注目会員様情報</a>
+      <a href="members_only.html">会員専用Page</a>
+      <a href="contact.html">お問合せ</a>
+    </nav>
+  </header>
+
+  <div class="banner"></div>
+
+  <div class="form-container">
     <h2>お問合せ</h2>
-    <form onsubmit="return sendEmail()" novalidate>
-      <input type="text" id="name" placeholder="お名前（必須）" required>
-      <input type="email" id="email" placeholder="メールアドレス（必須）" required>
-      <textarea id="message" placeholder="お問合せ内容（必須）" required></textarea>
+    <form action="mailto:kousai.kaiin.club@gmail.com" method="POST" enctype="text/plain">
+      <input type="text" name="name" placeholder="お名前（必須）" required>
+      <input type="email" name="email" placeholder="メールアドレス（必須）" required>
+      <select name="topic" required>
+        <option value="">お問合せ項目を選択してください</option>
+        <option value="入会について">入会について</option>
+        <option value="セッティングについて">セッティングについて</option>
+        <option value="費用について">費用について</option>
+        <option value="その他">その他</option>
+      </select>
+      <input type="text" name="subject" placeholder="件名">
+      <textarea name="message" placeholder="お問合せ内容（必須）" required></textarea>
       <button type="submit" class="submit-btn">送信 ▶</button>
     </form>
+    <div class="line-link">
+      LINEでのお問合せはこちら → <a href="#">LINE公式アカウント</a>
+    </div>
   </div>
-  <script>
-    function sendEmail() {
-      const name = document.getElementById("name").value;
-      const email = document.getElementById("email").value;
-      const message = document.getElementById("message").value;
-      const subject = encodeURIComponent("PRIVATE SHIROKANEへのお問合せ");
-      const body = encodeURIComponent(`お名前：${name}\nメール：${email}\n内容：\n${message}`);
-      window.location.href = `mailto:kousai.kaiin.club@gmail.com?subject=${subject}&body=${body}`;
-      return false;
-    }
-  </script>
 </body>
 </html>
