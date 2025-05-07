@@ -23,7 +23,7 @@
       justify-content: space-between;
       background-color: rgba(0, 0, 0, 0.6);
       padding: 5px 20px;
-      font-size: 16px;
+      font-size: 14px;
       position: relative;
       z-index: 10;
     }
@@ -36,7 +36,7 @@
 
     .nav-links {
       display: flex;
-      gap: 30px;
+      gap: 20px;
       font-family: 'Cormorant Garamond', serif;
     }
 
@@ -95,7 +95,7 @@
       background-color: #1c1c1c;
       border: 1px solid #f9f9f9;
       color: #FFFFFF;
-      font-size: 13px;
+      font-size: 15px;
       border-radius: 12px;
       overflow: hidden;
       margin-bottom: 20px;
@@ -154,7 +154,6 @@
   </style>
 </head>
 <body>
-
   <header class="nav-container">
     <div class="nav-logo">
       <a href="top.html">
@@ -162,10 +161,12 @@
       </a>
     </div>
     <nav class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
       <a href="top.html">Top</a>
       <a href="guidance_men.html">男性入会</a>
       <a href="guidance_women.html">女性入会</a>
       <a href="system.html">料金・システム</a>
+      <a href="pickup_member.html">注目会員様情報</a>
       <a href="members_only.html">会員専用</a>
       <a href="contact.html">お問合せ</a>
     </nav>
@@ -228,7 +229,6 @@
         container.appendChild(card);
       }
 
-      // お気に入り機能
       document.querySelectorAll('.favorite-btn').forEach(btn => {
         const id = btn.dataset.id;
         if (localStorage.getItem('fav-' + id)) btn.textContent = '❤️';
@@ -243,7 +243,6 @@
         });
       });
 
-      // スライド初期化
       setupSlides();
     });
   </script>
