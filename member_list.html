@@ -78,8 +78,18 @@
     }
 
     .banner {
-      background: url('images/banner_3.png') center center / cover no-repeat;
-      height: 300px;
+      background: url('images/banner_1.png') no-repeat left center;
+      background-size: cover;
+      background-color: #000;
+      height: 340px;
+    }
+
+    @media (max-width: 768px) {
+      .banner {
+        background-position: center top;
+        background-size: contain;
+        height: 300px;
+      }
     }
 
     .card-container {
@@ -163,11 +173,11 @@
     <nav class="nav-links" id="navLinks">
       <a href="index.html">Home</a>
       <a href="top.html">Top</a>
-      <a href="guidance_men.html">男性入会</a>
-      <a href="guidance_women.html">女性入会</a>
+      <a href="guidance_men.html">男性会員入会</a>
+      <a href="guidance_women.html">女性会員入会</a>
       <a href="system.html">料金・システム</a>
       <a href="pickup_member.html">注目会員様情報</a>
-      <a href="members_only.html">会員専用</a>
+      <a href="members_only.html">会員専用Page</a>
       <a href="contact.html">お問合せ</a>
     </nav>
     <div class="hamburger" onclick="toggleMenu()">
@@ -246,6 +256,5 @@
       setupSlides();
     });
   </script>
-
 </body>
 </html>
