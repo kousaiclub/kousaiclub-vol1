@@ -17,48 +17,47 @@
       line-height: 1.8;
     }
 
-    .nav-container {
+    header {
       display: flex;
       align-items: center;
       justify-content: space-between;
       background-color: #000;
       padding: 10px 20px;
-      font-size: 14px;
     }
 
-    .nav-logo img {
+    header img {
       height: 40px;
     }
 
-    .nav-links {
-      display: flex;
-      gap: 20px;
-    }
-
-    .nav-links a {
-      color: #f9f9f9;
-      text-decoration: none;
-    }
-
-    .nav-links a:hover {
-      text-decoration: underline;
-    }
-
-    .hamburger {
+    .menu-toggle {
       display: none;
       flex-direction: column;
       cursor: pointer;
     }
 
-    .hamburger span {
-      height: 3px;
+    .menu-toggle div {
       width: 25px;
-      background: #f9f9f9;
+      height: 3px;
+      background-color: #f9f9f9;
       margin: 4px 0;
     }
 
+    nav {
+      display: flex;
+      gap: 20px;
+    }
+
+    nav a {
+      color: #f9f9f9;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
     @media screen and (max-width: 768px) {
-      .nav-links {
+      nav {
         display: none;
         flex-direction: column;
         width: 100%;
@@ -69,11 +68,11 @@
         padding: 15px;
       }
 
-      .nav-links.active {
+      nav.active {
         display: flex;
       }
 
-      .hamburger {
+      .menu-toggle {
         display: flex;
       }
     }
@@ -118,11 +117,14 @@
 </head>
 <body>
 
-  <header class="nav-container">
-    <div class="nav-logo">
-      <a href="top.html"><img src="images/logo_1.png" alt="PRIVATE SHIROKANE Logo" /></a>
+  <header>
+    <img src="images/logo_1.png" alt="PRIVATE SHIROKANE Logo">
+    <div class="menu-toggle" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
-    <nav class="nav-links" id="navLinks">
+    <nav id="navLinks">
       <a href="index.html">Home</a>
       <a href="top.html">Top</a>
       <a href="guidance_men.html">男性会員入会</a>
@@ -132,9 +134,6 @@
       <a href="members_only.html">会員専用Page</a>
       <a href="contact.html">お問合せ</a>
     </nav>
-    <div class="hamburger" onclick="toggleMenu()">
-      <span></span><span></span><span></span>
-    </div>
   </header>
 
   <div class="banner"></div>
@@ -154,7 +153,7 @@
     function checkPassword(e) {
       e.preventDefault();
       const input = document.getElementById("password").value;
-      const correctPassword = "Aa1"; // ※必要に応じて本番用に変更してください
+      const correctPassword = "Aa1"; // ※必要に応じて変更
 
       if (input === correctPassword) {
         window.location.href = "member_list.html";
