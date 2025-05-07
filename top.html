@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Top - PRIVATE SHIROKANE</title>
-  <link rel="icon" href="images/logo_1.png" type="image/png" />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
+  <title>PRIVATE SHIROKANE - Top</title>
+  <link rel="icon" href="images/logo_2.jpg" type="image/jpeg" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     body {
       margin: 0;
@@ -13,8 +13,8 @@
       background-color: #1c1c1c;
       color: #f9f9f9;
       font-family: 'Cormorant Garamond', serif;
+      font-size: 15px;
     }
-
     header {
       background-color: #000;
       padding: 10px 20px;
@@ -22,49 +22,42 @@
       align-items: center;
       justify-content: space-between;
     }
-
     header img {
       height: 40px;
     }
-
     nav a {
       color: #f9f9f9;
       text-decoration: none;
       margin: 0 10px;
-      font-size: 16px;
+      font-size: 14px;
     }
-
     nav a:hover {
       text-decoration: underline;
     }
-
     .banner {
-      background: url('images/banner_1.png') center center / cover no-repeat;
-      height: 680px;
+      width: 100%;
+      height: 300px;
+      background: url('images/banner_3.png') center/cover no-repeat;
     }
-
     .content {
-      max-width: 900px;
+      max-width: 960px;
       margin: 40px auto;
       padding: 0 20px;
     }
-
-    .news-card {
-      background-color: #333;
-      border-radius: 10px;
-      padding: 15px;
+    .content h1 {
+      font-size: 28px;
       margin-bottom: 20px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
     }
-
-    .news-card h3 {
-      font-size: 18px;
-      margin-bottom: 10px;
+    .content p {
+      text-indent: 2em;
+      line-height: 1.9;
     }
-
-    .news-card p {
-      font-size: 14px;
-      line-height: 1.6;
+    @media (max-width: 768px) {
+      nav {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
     }
   </style>
 </head>
@@ -74,29 +67,20 @@
     <nav>
       <a href="index.html">Home</a>
       <a href="top.html">Top</a>
-      <a href="entry_men.html">男性入会</a>
-      <a href="entry_women.html">女性入会</a>
-      <a href="pricing.html">料金・システム</a>
-      <a href="members.html">会員専用</a>
+      <a href="system.html">料金・システム</a>
+      <a href="guidance_men.html">男性会員入会</a>
+      <a href="guidance_women.html">女性会員入会</a>
+      <a href="pickup_member.html">注目会員様情報</a>
+      <a href="members_only.html">会員専用Page</a>
       <a href="contact.html">お問合せ</a>
     </nav>
   </header>
-
   <div class="banner"></div>
 
   <div class="content">
-    <div class="news-card">
-      <h3>📌 最新ニュース：2025年5月 最新特別プランご案内</h3>
-      　　 <p>春の特別登録キャンペーンを実施中。詳細はお問合せページよりご確認ください。</p>
-    </div>
-    <div class="news-card">
-      <h3>📌 交際クラブ届出済み・所轄警察署に提出済</h3>
-      　　 <p>安心・安全の運営を徹底しています。</p>
-    </div>
-    <div class="news-card">
-      <h3>📌 新規女性会員が多数登録中</h3>
-      　　 <p>注目女性の特集ページもご覧ください。</p>
-    </div>
+    <h1>PRIVATE SHIROKANE へようこそ</h1>
+    <p>PRIVATE SHIROKANE は、限られた大人のための上質な出会いを提供する会員制交際クラブです。信頼と実績に基づいた安全な環境を提供し、真剣な出会いをサポートいたします。</p>
+    <p>当クラブでは厳選された会員様同士のプライバシーを尊重しながら、品格あるお付き合いを実現するための多彩なサービスをご用意しております。</p>
   </div>
 </body>
 </html>
