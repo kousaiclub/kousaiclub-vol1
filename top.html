@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PRIVATE SHIROKANE</title>
-  <link rel="icon" href="images/logo_1.png" type="image/png" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PRIVATE SHIROKANE - Top</title>
+  <link rel="icon" href="images/logo_2.jpg" type="image/jpeg">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
@@ -13,7 +14,6 @@
       color: #f9f9f9;
     }
 
-    /* バナー画像 */
     .banner {
       background: url('images/banner_1.png') no-repeat center center/cover;
       height: 100vh;
@@ -22,7 +22,6 @@
       justify-content: flex-end;
     }
 
-    /* ナビゲーションバー */
     .nav-container {
       display: flex;
       align-items: center;
@@ -33,14 +32,14 @@
     }
 
     .nav-logo img {
-      height: 50px;
+      height: 40px;
       filter: brightness(90%) drop-shadow(0 1px 1px #ccc);
     }
 
     .nav-links {
       display: flex;
-      gap: 30px;
-      font-size: 17px;
+      gap: 20px;
+      font-size: 14px;
     }
 
     .nav-links a {
@@ -87,7 +86,6 @@
       }
     }
 
-    /* ニュースセクション */
     .news-section {
       padding: 50px 20px;
       background-color: #1c1c1c;
@@ -115,21 +113,21 @@
   </style>
 </head>
 <body>
-
-  <!-- バナー -->
   <div class="banner">
-    <!-- ナビゲーション（バナー下部） -->
     <header class="nav-container">
       <div class="nav-logo">
         <a href="top.html">
-          <img src="images/logo_1.png" alt="PRIVATE SHIROKANE Logo" />
+          <img src="images/logo_1.png" alt="PRIVATE SHIROKANE Logo">
         </a>
       </div>
       <nav class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
         <a href="top.html">Top</a>
-        <a href="guidance_men.html">男性入会</a>
-        <a href="guidance_women.html">女性入会</a>
         <a href="system.html">料金・システム</a>
+        <a href="guidance_men.html">男性会員入会</a>
+        <a href="guidance_women.html">女性会員入会</a>
+        <a href="pickup_member.html">注目会員様情報</a>
+        <a href="members_only.html">会員専用Page</a>
         <a href="contact.html">お問合せ</a>
       </nav>
       <div class="hamburger" onclick="toggleMenu()">
@@ -140,7 +138,6 @@
     </header>
   </div>
 
-  <!-- ニュースセクション -->
   <section class="news-section">
     <div class="news-title">最新のお知らせ</div>
     <details>
@@ -163,6 +160,5 @@
       nav.classList.toggle("active");
     }
   </script>
-
 </body>
 </html>
