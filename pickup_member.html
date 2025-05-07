@@ -24,6 +24,21 @@
     header img {
       height: 40px;
     }
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    .menu-toggle div {
+      width: 25px;
+      height: 3px;
+      background-color: #f9f9f9;
+      margin: 4px 0;
+    }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+    }
     nav a {
       color: #f9f9f9;
       text-decoration: none;
@@ -64,16 +79,41 @@
       font-size: 15px;
     }
     @media (max-width: 768px) {
+      .menu-toggle {
+        display: flex;
+      }
+      nav {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+      }
+      nav.active {
+        display: flex;
+      }
+      nav a {
+        margin: 10px 0;
+      }
       .pickup-container {
         flex-direction: column;
         align-items: center;
       }
     }
   </style>
+  <script>
+    function toggleMenu() {
+      const nav = document.querySelector('nav');
+      nav.classList.toggle('active');
+    }
+  </script>
 </head>
 <body>
   <header>
     <img src="images/logo_1.png" alt="PRIVATE SHIROKANE">
+    <div class="menu-toggle" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
     <nav>
       <a href="index.html">Home</a>
       <a href="top.html">Top</a>
