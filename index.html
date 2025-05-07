@@ -1,98 +1,155 @@
-<!DOCTYPE html><html lang="ja">
+<!DOCTYPE html>
+<html lang="ja">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PRIVATE SHIROKANE - Home</title>
-  <link rel="icon" href="images/logo_2.jpg" type="image/jpeg" />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet" />
+  <title>PRIVATE SHIROKANE</title>
+  <link rel="icon" href="images/logo_1.png" type="image/png" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      padding: 0;
       background-color: #1c1c1c;
       color: #f9f9f9;
       font-family: 'Cormorant Garamond', serif;
-      font-size: 15px;
     }
-    header {
-      background-color: #000;
-      padding: 10px 20px;
+
+    .nav-container {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 10px 20px;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 999;
     }
-    header img {
-      height: 40px;
+
+    .nav-logo img {
+      height: 45px;
+      filter: brightness(90%) drop-shadow(0 1px 1px #ccc);
     }
-    nav a {
-      color: #f9f9f9;
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+      font-size: 16px;
+    }
+
+    .nav-links a {
+      color: #f0f0f0;
       text-decoration: none;
-      margin: 0 10px;
-      font-size: 14px;
     }
-    nav a:hover {
-      text-decoration: underline;
+
+    .nav-links a:hover {
+      color: #ffffff;
     }
+
     .banner {
       width: 100%;
-      height: 300px;
-      background: url('images/banner_3.png') center/cover no-repeat;
+      height: 100vh;
+      background: url("images/banner_1.png") center center / cover no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      padding-bottom: 80px;
     }
-    .entry-check {
+
+    .age-check {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       text-align: center;
-      margin: 30px 0;
+      background-color: rgba(0, 0, 0, 0.75);
+      padding: 30px;
+      border-radius: 10px;
+      z-index: 1000;
     }
-    .entry-check a {
+
+    .age-check h2 {
+      margin-bottom: 20px;
+    }
+
+    .age-check button {
+      margin: 10px;
       padding: 10px 20px;
-      background-color: #f9f9f9;
-      color: #1c1c1c;
-      text-decoration: none;
-      margin: 0 10px;
-      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
     }
-    .entry-check a.under {
-      background-color: #aaa;
-      color: #fff;
-    }
+
     .content {
+      padding: 120px 20px 40px;
+      text-align: center;
+    }
+
+    .description {
       max-width: 800px;
-      margin: 40px auto;
-      padding: 0 20px;
+      margin: auto;
+      font-size: 18px;
+      line-height: 1.8;
     }
-    .content p {
-      text-indent: 2em;
-      line-height: 1.9;
-    }
+
     @media (max-width: 768px) {
-      nav {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
+      .nav-links {
+        display: none;
+      }
+
+      .banner {
+        background-position: left center;
+      }
+
+      .nav-logo img {
+        height: 40px;
       }
     }
   </style>
 </head>
+
 <body>
-  <header>
-    <img src="images/logo_1.png" alt="PRIVATE SHIROKANE">
-    <nav>
-      <a href="index.html">Home</a>
+  <div class="nav-container">
+    <div class="nav-logo">
+      <a href="index.html">
+        <img src="images/logo_1.png" alt="PRIVATE SHIROKANE Logo" />
+      </a>
+    </div>
+    <nav class="nav-links">
       <a href="top.html">Top</a>
+      <a href="guidance_men.html">男性入会</a>
+      <a href="guidance_women.html">女性入会</a>
       <a href="system.html">料金・システム</a>
-      <a href="guidance_men.html">男性会員入会</a>
-      <a href="guidance_women.html">女性会員入会</a>
-      <a href="pickup_member.html">注目会員様情報</a>
-      <a href="members_only.html">会員専用Page</a>
       <a href="contact.html">お問合せ</a>
     </nav>
-  </header>
-  <div class="banner"></div>  <div class="entry-check">
-    <a href="top.html">18over</a>
-    <a href="https://www.google.com" class="under">18under</a>
-  </div>  <div class="content">
-    <p>PRIVATE SHIROKANE は、限られた大人のための上質な出会いを提供する交際クラブです。</p>
-    <p>当クラブでは、安心・安全・信頼を第一に、真剣な交際を求める男女のためのプライベートな空間をご用意しています。</p>
-    <p>18歳未満の方のご利用は固くお断りいたします。ご理解のほどよろしくお願いいたします。</p>
   </div>
+
+  <div class="banner"></div>
+
+  <div class="content">
+    <div class="description">
+      <p>所轄官庁届出済の安心安全の会員制高級倶楽部です。</p>
+      <p>「東京都デートクラブ営業等の規制に関する条例」により、「デートクラブ」交際倶楽部 PRIVATE SHIROKANEでは所轄警察に届出を受理され、正式にオープンさせて頂く運びとなりました。</p>
+      <p>当クラブが行うのは紹介(セッティング)のみとなります。</p>
+      <p>その後は、結婚目的もOK、お食事のみでもOK、全て自由交際となります。</p>
+    </div>
+  </div>
+
+  <div class="age-check" id="ageCheck">
+    <h2>18歳以上ですか？</h2>
+    <button onclick="enterSite()">ENTER</button>
+    <button onclick="leaveSite()">LEAVE</button>
+  </div>
+
+  <script>
+    function enterSite() {
+      document.getElementById('ageCheck').style.display = 'none';
+    }
+    function leaveSite() {
+      window.location.href = 'https://www.google.co.jp';
+    }
+  </script>
+
 </body>
+
 </html>
