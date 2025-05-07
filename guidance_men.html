@@ -1,168 +1,154 @@
-<!DOCTYPE html>
-<html lang="ja">
+<!DOCTYPE html><html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GUIDANCE MEN - PRIVATE SHIROKANE</title>
-  <link rel="icon" href="images/logo_1.png" type="image/png" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PRIVATE SHIROKANE - Top</title>
+  <link rel="icon" href="images/logo_1.png" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      padding: 0;
       background-color: #1c1c1c;
       color: #f9f9f9;
       font-family: 'Cormorant Garamond', serif;
-      font-size: 14px;
-      line-height: 1.8;
-    }
+    }.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 10px 20px;
+  position: relative;
+  z-index: 10;
+}
 
-    header {
-      background-color: #000;
-      padding: 10px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+.nav-logo img {
+  height: 50px;
+  object-fit: contain;
+  filter: brightness(90%) drop-shadow(0 1px 1px #ccc);
+}
 
-    header img {
-      height: 40px;
-    }
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
 
-    nav a {
-      color: #f9f9f9;
-      text-decoration: none;
-      margin: 0 10px;
-      font-size: 14px;
-    }
+.nav-links a {
+  color: #f9f9f9;
+  text-decoration: none;
+  font-size: 14px;
+}
 
-    nav a:hover {
-      text-decoration: underline;
-    }
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
 
-    .banner {
-      background: url('images/banner_2.png') center center / cover no-repeat;
-      height: 300px;
-    }
+.hamburger span {
+  height: 3px;
+  width: 25px;
+  background: #f9f9f9;
+  margin: 4px 0;
+}
 
-    .content {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
+@media screen and (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 15px;
+  }
 
-    .content h2 {
-      text-align: center;
-      font-size: 24px;
-      margin-bottom: 30px;
-    }
+  .nav-links.active {
+    display: flex;
+  }
 
-    .section {
-      margin-bottom: 40px;
-    }
+  .hamburger {
+    display: flex;
+  }
+}
 
-    .section-title {
-      font-size: 16px;
-      font-weight: bold;
-      margin-bottom: 10px;
-      padding-bottom: 5px;
-      border-bottom: 1px solid #f9f9f9;
-    }
+.banner {
+  background: url('images/banner_1.png') no-repeat center center;
+  background-size: cover;
+  height: 340px;
+}
 
-    .section-text {
-      display: flex;
-    }
+@media (max-width: 768px) {
+  .banner {
+    background-position: center top;
+    background-size: contain;
+    height: 300px;
+  }
+}
 
-    .section-text::before {
-      content: "\3000";
-      flex-shrink: 0;
-      width: 2em;
-      display: block;
-    }
+.news-section {
+  padding: 50px 20px;
+  background-color: #1c1c1c;
+}
 
-    .section-text p {
-      margin: 0;
-      padding: 0;
-      text-align: justify;
-    }
+.news-title {
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+}
 
-    .entry-button {
-      display: block;
-      margin: 40px auto;
-      padding: 12px 30px;
-      background-color: #ccc;
-      color: #000;
-      text-align: center;
-      width: fit-content;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 5px;
-    }
+details {
+  margin: 10px 0;
+  background: #2a2a2a;
+  padding: 10px 15px;
+  border-radius: 6px;
+}
+
+summary {
+  font-size: 16px;
+  cursor: pointer;
+}
+
   </style>
 </head>
 <body>
-  <header>
-    <img src="images/logo_1.png" alt="PRIVATE SHIROKANE">
-    <nav>
+  <header class="nav-container">
+    <div class="nav-logo">
+      <a href="top.html">
+        <img src="images/logo_1.png" alt="PRIVATE SHIROKANE Logo">
+      </a>
+    </div>
+    <nav class="nav-links" id="navLinks">
       <a href="index.html">Home</a>
       <a href="top.html">Top</a>
+      <a href="system.html">料金・システム</a>
       <a href="guidance_men.html">男性会員入会</a>
       <a href="guidance_women.html">女性会員入会</a>
-      <a href="system.html">料金・システム</a>
       <a href="pickup_member.html">注目会員様情報</a>
       <a href="members_only.html">会員専用Page</a>
-      <a href="https://kousaiclub.jp/contact.html">お問合せ</a>
+      <a href="contact.html">お問合せ</a>
     </nav>
-  </header>
-
-  <div class="banner"></div>
-
-  <div class="content">
-    <h2>GUIDANCE MEN</h2>
-
-    <div class="section">
-      <div class="section-title">1. ご入会申し込み</div>
-      <div class="section-text">
-        <p>お電話、メール、ラインのいずれかでお申し込み下さい。面談の日程調整をさせて頂きます。事情によっては不安を部分ケアしながら配慮を踏まえてご説明いたします。</p>
-      </div>
+    <div class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('active')">
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
-
-    <div class="section">
-      <div class="section-title">2. 面談</div>
-      <div class="section-text">
-        <p>面談では、当会事務所もしくはホテルのカフェやラウンジで行わせていただいております。交際クラブでの活動の注意事項やルールのご説明など、ご入会される際の会員画面の使用手順についてもご説明させていただきます。（顔写真付きの身分証明書をご持参ください）</p>
-      </div>
-    </div>
-
-    <div class="section">
-      <div class="section-title">3. 女性会員プロフィール閲覧</div>
-      <div class="section-text">
-        <p>入会審査を無事通過し、ご入金の確認ができましたら、会員専用サイトのログインID・パスワードをお渡し致します。素敵な女性が見つけるといいですね。</p>
-      </div>
-    </div>
-
-    <div class="section">
-      <div class="section-title">4. セッティングのお申し込み</div>
-      <div class="section-text">
-        <p>会員様専用ページには、現在登録中の女性の一覧がございますのでお好みの会員様の検索し、ご自身の好みをタイプの女性を探してご覧ください。決まりましたらライン又は電話にてお知らせ下さい。</p>
-      </div>
-    </div>
-
-    <div class="section">
-      <div class="section-title">5. 初めての出会い</div>
-      <div class="section-text">
-        <p>前日に確認を行います。当日はセッティング場所にて合流して下さい。その後の行動は当会では一切関知しませんのでお二人の時間をお過ごしください。</p>
-      </div>
-    </div>
-
-    <div class="section">
-      <div class="section-title">6. 補足事項</div>
-      <div class="section-text">
-        <p>入会金、及び年会費、セッティング費用のお支払いに関しては面談時に現金でのお支払い、または、銀行振り込みでお支払いください。</p>
-      </div>
-    </div>
-
-    <a class="entry-button" href="https://kousaiclub.jp/contact.html">▶ 入会フォームへ</a>
-  </div>
+  </header>  <div class="banner"></div>  <section class="news-section">
+    <div class="news-title">最新のお知らせ</div>
+    <details>
+      <summary>2025年5月5日　本サイト（PRIVATE SHIROKANE）をオープンしました。</summary>
+      <p>ご利用ありがとうございます。今後ともよろしくお願いいたします。</p>
+    </details>
+    <details>
+      <summary>2025年5月10日　キャンペーン情報の掲載スペースを設けました。</summary>
+      <p>QRコード・割引制度などに対応予定です。</p>
+    </details>
+    <details>
+      <summary>2025年5月15日　今後のアップデートではアーカイブページ機能を提供予定です。</summary>
+      <p>過去の情報も随時確認可能になります。</p>
+    </details>
+  </section>
 </body>
 </html>
