@@ -13,20 +13,27 @@
       color: #f9f9f9;
     }
 
+    /* バナー画像 */
+    .banner {
+      background: url('images/banner_1.jpg') no-repeat center center/cover;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    /* ナビゲーションバー */
     .nav-container {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background-color: rgba(0, 0, 0, 0.6);
-      padding: 5px 20px;
-      min-height: 48px;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 10px 20px;
       position: relative;
-      z-index: 10;
     }
 
     .nav-logo img {
       height: 50px;
-      object-fit: contain;
       filter: brightness(90%) drop-shadow(0 1px 1px #ccc);
     }
 
@@ -80,113 +87,80 @@
       }
     }
 
-    .banner {
-      position: relative;
-      width: 100%;
-      height: auto;
-    }
-
-    .banner img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
+    /* ニュースセクション */
     .news-section {
-      padding: 40px 20px;
+      padding: 50px 20px;
       background-color: #1c1c1c;
     }
 
-    .news-section h2 {
+    .news-title {
       font-size: 24px;
-      margin-bottom: 20px;
       text-align: center;
+      margin-bottom: 30px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 10px;
     }
 
-    .accordion {
-      background-color: #2c2c2c;
-      color: #f9f9f9;
-      cursor: pointer;
-      padding: 18px;
-      width: 100%;
-      border: none;
-      text-align: left;
-      outline: none;
+    details {
+      margin: 10px 0;
+      background: #2a2a2a;
+      padding: 10px 15px;
+      border-radius: 6px;
+    }
+
+    summary {
       font-size: 16px;
-      transition: 0.4s;
-      margin-bottom: 5px;
-    }
-
-    .panel {
-      padding: 0 18px;
-      background-color: #333;
-      display: none;
-      overflow: hidden;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
 
-  <header class="nav-container">
-    <div class="nav-logo">
-      <a href="top.html">
-        <img src="images/logo_1.png" alt="PRIVATE SHIROKANE Logo" />
-      </a>
-    </div>
-    <nav class="nav-links" id="navLinks">
-      <a href="top.html">Top</a>
-      <a href="guidance_men.html">男性入会</a>
-      <a href="guidance_women.html">女性入会</a>
-      <a href="system.html">料金・システム</a>
-      <a href="contact.html">お問合せ</a>
-    </nav>
-    <div class="hamburger" onclick="toggleMenu()">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </header>
-
+  <!-- バナー -->
   <div class="banner">
-    <img src="images/banner_1.png" alt="PRIVATE SHIROKANE バナー画像">
+    <!-- ナビゲーション（バナー下部） -->
+    <header class="nav-container">
+      <div class="nav-logo">
+        <a href="top.html">
+          <img src="images/logo_1.png" alt="PRIVATE SHIROKANE Logo" />
+        </a>
+      </div>
+      <nav class="nav-links" id="navLinks">
+        <a href="top.html">Top</a>
+        <a href="guidance_men.html">男性入会</a>
+        <a href="guidance_women.html">女性入会</a>
+        <a href="system.html">料金・システム</a>
+        <a href="contact.html">お問合せ</a>
+      </nav>
+      <div class="hamburger" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </header>
   </div>
 
+  <!-- ニュースセクション -->
   <section class="news-section">
-    <h2>最新のお知らせ</h2>
-
-    <button class="accordion">2025年5月15日</button>
-    <div class="panel">
-      <p>今後のアップデートではアーカイブページ機能を提供予定です。</p>
-    </div>
-
-    <button class="accordion">2025年5月10日</button>
-    <div class="panel">
-      <p>キャンペーン情報の掲載スペースを設けました。QRコードなども対応予定です。</p>
-    </div>
-
-    <button class="accordion">2025年5月5日</button>
-    <div class="panel">
-      <p>本サイト（PRIVATE SHIROKANE）をオープンしました。</p>
-    </div>
+    <div class="news-title">最新のお知らせ</div>
+    <details>
+      <summary>2025年5月5日　本サイト（PRIVATE SHIROKANE）をオープンしました。</summary>
+      <p>ご利用ありがとうございます。今後ともよろしくお願いいたします。</p>
+    </details>
+    <details>
+      <summary>2025年5月10日　キャンペーン情報の掲載スペースを設けました。</summary>
+      <p>QRコード・割引制度などに対応予定です。</p>
+    </details>
+    <details>
+      <summary>2025年5月15日　今後のアップデートではアーカイブページ機能を提供予定です。</summary>
+      <p>過去の情報も随時確認可能になります。</p>
+    </details>
   </section>
 
   <script>
     function toggleMenu() {
       const nav = document.getElementById("navLinks");
       nav.classList.toggle("active");
-    }
-
-    const acc = document.getElementsByClassName("accordion");
-    for (let i = 0; i < acc.length; i++) {
-      acc[i].addEventListener("click", function () {
-        this.classList.toggle("active");
-        const panel = this.nextElementSibling;
-        if (panel.style.display === "block") {
-          panel.style.display = "none";
-        } else {
-          panel.style.display = "block";
-        }
-      });
     }
   </script>
 
