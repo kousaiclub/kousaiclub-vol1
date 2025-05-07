@@ -24,6 +24,21 @@
     header img {
       height: 40px;
     }
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    .menu-toggle div {
+      width: 25px;
+      height: 3px;
+      background-color: #f9f9f9;
+      margin: 4px 0;
+    }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+    }
     nav a {
       color: #f9f9f9;
       text-decoration: none;
@@ -82,12 +97,35 @@
       color: #00ff00;
       text-decoration: none;
     }
+    @media screen and (max-width: 768px) {
+      nav {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.95);
+        padding: 15px;
+      }
+      nav.active {
+        display: flex;
+      }
+      .menu-toggle {
+        display: flex;
+      }
+    }
   </style>
 </head>
 <body>
   <header>
     <img src="images/logo_1.png" alt="PRIVATE SHIROKANE">
-    <nav>
+    <div class="menu-toggle" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <nav id="navLinks">
       <a href="index.html">Home</a>
       <a href="top.html">Top</a>
       <a href="guidance_men.html">男性入会</a>
@@ -121,5 +159,11 @@
       LINEでのお問合せはこちら → <a href="#">LINE公式アカウント</a>
     </div>
   </div>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("navLinks").classList.toggle("active");
+    }
+  </script>
 </body>
 </html>
