@@ -3,49 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>トップページ - PRIVATE SHIROKANE</title>
-  <link rel="icon" href="images/logo_3.jpg" type="image/jpeg" />
-  <!-- フォント読み込み -->
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond&display=swap" rel="stylesheet" />
+  <title>PRIVATE SHIROKANE</title>
+  <link rel="icon" href="images/logo_1.png" type="image/png" />
   <style>
     body {
       margin: 0;
-      padding: 0;
       background-color: #1c1c1c;
-      color: #f9f9f9;
       font-family: 'Cormorant Garamond', serif;
+      color: #f0f0f0;
     }
 
-    /* バナー */
-    .banner {
-      background: url('images/banner_1.png') center center / cover no-repeat;
-      height: 320px;
-      position: relative;
-    }
-
-    .banner-text {
-      position: absolute;
-      bottom: 25px;
-      left: 20px;
-      font-size: 24px;
-      font-weight: bold;
-      text-shadow: 1px 1px 4px #000;
-    }
-
-    /* ナビゲーション */
     .nav-container {
       display: flex;
       align-items: center;
       justify-content: space-between;
       background-color: rgba(0, 0, 0, 0.6);
-      padding: 10px 20px;
-      font-family: 'Cormorant Garamond', serif;
+      padding: 5px 20px;
+      min-height: 48px;
       position: relative;
       z-index: 10;
     }
 
     .nav-logo img {
-      height: 65px;
+      height: 50px;
       object-fit: contain;
       filter: brightness(90%) drop-shadow(0 1px 1px #ccc);
     }
@@ -59,6 +39,7 @@
     .nav-links a {
       color: #f0f0f0;
       text-decoration: none;
+      position: relative;
       transition: color 0.3s ease;
     }
 
@@ -85,7 +66,7 @@
         flex-direction: column;
         width: 100%;
         position: absolute;
-        top: 70px;
+        top: 60px;
         left: 0;
         background-color: rgba(0, 0, 0, 0.9);
         padding: 15px;
@@ -103,16 +84,11 @@
 </head>
 <body>
 
-  <!-- バナー -->
-  <div class="banner">
-    <div class="banner-text">PRIVATE SHIROKANE</div>
-  </div>
-
   <!-- ナビゲーション -->
   <header class="nav-container">
     <div class="nav-logo">
       <a href="top.html">
-        <img src="images/logo_3.jpg" alt="PRIVATE SHIROKANE Logo" />
+        <img src="images/logo_1.png" alt="PRIVATE SHIROKANE Logo" />
       </a>
     </div>
     <nav class="nav-links" id="navLinks">
@@ -128,6 +104,11 @@
       <span></span>
     </div>
   </header>
+
+  <!-- バナー画像 -->
+  <img src="images/banner_1.png" alt="バナー" style="width: 100%; display: block;" />
+
+  <!-- ▼この下に本文・ニュースセクションなどを追記していきます ▼ -->
 
   <script>
     function toggleMenu() {
