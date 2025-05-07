@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PRIVATE SHIROKANE - Top</title>
-  <link rel="icon" href="images/logo_2.jpg" type="image/jpeg" />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="images/logo_1.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
@@ -14,34 +14,79 @@
       font-family: 'Cormorant Garamond', serif;
     }
 
-    header {
-      background-color: #000;
-      padding: 10px 20px;
+    .nav-container {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 10px 20px;
+      position: relative;
+      z-index: 10;
     }
 
-    header img {
-      height: 40px;
+    .nav-logo img {
+      height: 50px;
+      object-fit: contain;
+      filter: brightness(90%) drop-shadow(0 1px 1px #ccc);
     }
 
-    nav a {
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
       color: #f9f9f9;
       text-decoration: none;
-      margin: 0 10px;
       font-size: 14px;
     }
 
-    nav a:hover {
-      text-decoration: underline;
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .hamburger span {
+      height: 3px;
+      width: 25px;
+      background: #f9f9f9;
+      margin: 4px 0;
+    }
+
+    @media screen and (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.9);
+        padding: 15px;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .hamburger {
+        display: flex;
+      }
     }
 
     .banner {
-      background: url('images/banner_1.png') no-repeat center center/cover;
-      height: 100vh;
-      display: flex;
-      align-items: flex-end;
+      background: url('images/banner_1.png') no-repeat center center;
+      background-size: cover;
+      height: 340px;
+    }
+
+    @media (max-width: 768px) {
+      .banner {
+        background-position: center top;
+        background-size: contain;
+        height: 300px;
+      }
     }
 
     .news-section {
@@ -68,20 +113,16 @@
       font-size: 16px;
       cursor: pointer;
     }
-
-    @media screen and (max-width: 768px) {
-      nav {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-      }
-    }
   </style>
 </head>
 <body>
-  <header>
-    <img src="images/logo_1.png" alt="PRIVATE SHIROKANE">
-    <nav>
+  <header class="nav-container">
+    <div class="nav-logo">
+      <a href="top.html">
+        <img src="images/logo_1.png" alt="PRIVATE SHIROKANE Logo">
+      </a>
+    </div>
+    <nav class="nav-links" id="navLinks">
       <a href="index.html">Home</a>
       <a href="top.html">Top</a>
       <a href="system.html">料金・システム</a>
@@ -91,6 +132,11 @@
       <a href="members_only.html">会員専用Page</a>
       <a href="contact.html">お問合せ</a>
     </nav>
+    <div class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('active')">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
   </header>
 
   <div class="banner"></div>
