@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="ja">
+<!DOCTYPE html><html lang="ja">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -15,89 +14,88 @@
       font-family: 'Cormorant Garamond', serif;
       font-size: 14px;
       line-height: 1.8;
-    }
+    }header {
+  background-color: #000;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
-    header {
-      background-color: #000;
-      padding: 10px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+header img {
+  height: 40px;
+}
 
-    header img {
-      height: 40px;
-    }
+nav a {
+  color: #f9f9f9;
+  text-decoration: none;
+  margin: 0 10px;
+  font-size: 14px;
+}
 
-    nav a {
-      color: #f9f9f9;
-      text-decoration: none;
-      margin: 0 10px;
-      font-size: 14px;
-    }
+nav a:hover {
+  text-decoration: underline;
+}
 
-    nav a:hover {
-      text-decoration: underline;
-    }
+.banner {
+  background: url('images/banner_2.png') center center / cover no-repeat;
+  height: 300px;
+}
 
-    .banner {
-      background: url('images/banner_3.png') center center / cover no-repeat;
-      height: 300px;
-    }
+.content {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
 
-    .content {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
+.content h2 {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 30px;
+}
 
-    .content h2 {
-      text-align: center;
-      font-size: 24px;
-      margin-bottom: 30px;
-    }
+.section {
+  margin-bottom: 40px;
+}
 
-    .section {
-      margin-bottom: 40px;
-    }
+.section-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #f9f9f9;
+}
 
-    .section-title {
-      font-size: 16px;
-      font-weight: bold;
-      margin-bottom: 10px;
-      padding-bottom: 5px;
-      border-bottom: 1px solid #f9f9f9;
-    }
+.section-text {
+  display: flex;
+}
 
-    .section-text {
-      display: flex;
-    }
+.section-text::before {
+  content: "\3000";
+  flex-shrink: 0;
+  width: 2em;
+  display: block;
+}
 
-    .section-text::before {
-      content: "\3000";
-      flex-shrink: 0;
-      width: 2em;
-      display: block;
-    }
+.section-text p {
+  margin: 0;
+  padding: 0;
+  text-align: justify;
+}
 
-    .section-text p {
-      margin: 0;
-      padding: 0;
-      text-align: justify;
-    }
+.entry-button {
+  display: block;
+  margin: 40px auto;
+  padding: 12px 30px;
+  background-color: #ccc;
+  color: #000;
+  text-align: center;
+  width: fit-content;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 5px;
+}
 
-    .entry-button {
-      display: block;
-      margin: 40px auto;
-      padding: 12px 30px;
-      background-color: #ccc;
-      color: #000;
-      text-align: center;
-      width: fit-content;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 5px;
-    }
   </style>
 </head>
 <body>
@@ -113,49 +111,44 @@
       <a href="members_only.html">会員専用Page</a>
       <a href="https://kousaiclub.jp/contact.html">お問合せ</a>
     </nav>
-  </header>
+  </header>  <div class="banner"></div>  <div class="content">
+    <h2>GUIDANCE WOMEN</h2><div class="section">
+  <div class="section-title">1. ご応募</div>
+  <div class="section-text">
+    <p>ご応募は、公式LINEまたはメールから承っております。まずは簡単な自己紹介をいただき、写真を添えてご連絡ください。</p>
+  </div>
+</div>
 
-  <div class="banner"></div>
+<div class="section">
+  <div class="section-title">2. 面談</div>
+  <div class="section-text">
+    <p>当会スタッフとの面談を通じて、システムや活動内容をご説明させていただきます。ご不明点はその場でお気軽にご質問ください。</p>
+  </div>
+</div>
 
-  <div class="content">
-    <h2>GUIDANCE WOMEN</h2>
+<div class="section">
+  <div class="section-title">3. 登録・プロフィール作成</div>
+  <div class="section-text">
+    <p>登録手続き後、プロフィール撮影や必要情報の入力を行います。あなたらしさが伝わるようスタッフがサポートいたします。</p>
+  </div>
+</div>
 
-    <div class="section">
-      <div class="section-title">1. ご応募</div>
-      <div class="section-text">
-        <p>ご応募は、公式LINEまたはメールから承っております。まずは簡単な自己紹介をいただき、写真を添えてご連絡ください。</p>
-      </div>
-    </div>
+<div class="section">
+  <div class="section-title">4. セッティング開始</div>
+  <div class="section-text">
+    <p>会員様からの希望に基づき、条件に合う場合にはセッティングを行います。事前確認・当日のサポートも行っております。</p>
+  </div>
+</div>
 
-    <div class="section">
-      <div class="section-title">2. 面談</div>
-      <div class="section-text">
-        <p>当会スタッフとの面談を通じて、システムや活動内容をご説明させていただきます。ご不明点はその場でお気軽にご質問ください。</p>
-      </div>
-    </div>
+<div class="section">
+  <div class="section-title">5. アフターサポート</div>
+  <div class="section-text">
+    <p>活動に関するご相談・トラブルへの対応・プロフィール修正など、アフターケアも充実しています。安心してご参加ください。</p>
+  </div>
+</div>
 
-    <div class="section">
-      <div class="section-title">3. 登録・プロフィール作成</div>
-      <div class="section-text">
-        <p>登録手続き後、プロフィール撮影や必要情報の入力を行います。あなたらしさが伝わるようスタッフがサポートいたします。</p>
-      </div>
-    </div>
+<a class="entry-button" href="https://kousaiclub.jp/contact.html">▶ ご応募はこちら</a>
 
-    <div class="section">
-      <div class="section-title">4. セッティング開始</div>
-      <div class="section-text">
-        <p>会員様からの希望に基づき、条件に合う場合にはセッティングを行います。事前確認・当日のサポートも行っております。</p>
-      </div>
-    </div>
-
-    <div class="section">
-      <div class="section-title">5. アフターサポート</div>
-      <div class="section-text">
-        <p>活動に関するご相談・トラブルへの対応・プロフィール修正など、アフターケアも充実しています。安心してご参加ください。</p>
-      </div>
-    </div>
-
-    <a class="entry-button" href="https://kousaiclub.jp/contact.html">▶ ご応募はこちら</a>
   </div>
 </body>
 </html>
