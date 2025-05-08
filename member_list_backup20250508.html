@@ -1,86 +1,145 @@
-    <!DOCTYPE html>
-    <html lang="ja">
-    <head>
-      <meta charset="UTF-8">
-      <style>
-        body {
-          background-color: #000;
-          font-family: 'Meiryo', sans-serif;
-          margin: 0;
-          padding: 0;
-        }
-        .card-container {
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: space-between;
-          gap: 1%;
-          padding: 20px;
-        }
-        .card {
-          width: 22%;
-          background-color: #182a69;
-          color: #FFFFFF;
-          font-size: 13px;
-          border-radius: 12px;
-          overflow: hidden;
-          margin-bottom: 20px;
-        }
-        .card a {
-          color: #FFFFFF;
-          text-decoration: none;
-        }
-        .card-image img {
-          width: 100%;
-          aspect-ratio: 3 / 4;
-          object-fit: cover;
-          display: block;
-        }
-        .card-text {
-          padding: 8px;
-          text-align: center;
-        }
-        .favorite-btn {
-          font-size: 18px;
-          cursor: pointer;
-          display: inline-block;
-        }
-        .comment {
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
-        @media (max-width: 768px) {
-          .card {
-            width: 48%;
-          }
-        }
-      </style>
-      <script>
-        document.addEventListener("DOMContentLoaded", () => {
-          const buttons = document.querySelectorAll(".favorite-btn");
-          buttons.forEach(btn => {
-            const id = btn.getAttribute("data-id");
-            if (localStorage.getItem("fav_" + id)) {
-              btn.textContent = "❤️";
-            }
-            btn.addEventListener("click", () => {
-              const key = "fav_" + id;
-              if (localStorage.getItem(key)) {
-                localStorage.removeItem(key);
-                btn.textContent = "♡";
-              } else {
-                localStorage.setItem(key, true);
-                btn.textContent = "❤️";
-              }
-            });
-          });
-        });
-      </script>
-    </head>
-    <body>
-      <div class="card-container">
-  
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>members_list - PRIVATE SHIROKANE</title>
+  <link rel="icon" href="images/logo_1.png" type="image/png" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body { margin: 0; padding: 0; background-color: #1c1c1c; color: #f9f9f9; font-family: 'Cormorant Garamond', serif; font-size: 14px; line-height: 1.8; }
+    .card-container { display: flex; flex-wrap: wrap; gap: 1%; padding: 20px; }
+    .card { width: 22%; background-color: #1c1c1c; border: 1px solid #f9f9f9; border-radius: 12px; overflow: hidden; margin-bottom: 20px; }
+    .card-image { position: relative; aspect-ratio: 3 / 4; cursor: pointer; overflow: hidden; }
+    .slide { position: absolute; width: 100%; height: 100%; opacity: 0; transition: opacity 0.6s; }
+    .slide.active { opacity: 1; }
+    .slide img { width: 100%; height: 100%; object-fit: cover; }
+    .card-text { padding: 8px; text-align: center; }
+    .favorite-btn { font-size: 18px; color: #FF69B4; cursor: pointer; }
+    .comment { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    @media (max-width: 768px) { .card { width: 48%; } }
+  </style>
+</head>
+<body>
+  <div class="card-container">
+
+    <div class="card">
+      <div class="card-image" onclick="window.open('member201.html', '_blank')">
+        <div class="slide active"><img src="https://drive.google.com/open?id=1E2-bdT5FKso5z91O2DJoQDUOwr2pngNw" /></div><div class="slide"><img src="https://drive.google.com/open?id=1pTKX7vgvVUa66YT01gJYDKVZh2JhnPdw" /></div><div class="slide"><img src="https://drive.google.com/open?id=18bNW_E7zxtQIXgNtFQnhrZlWG3RKxmiz" /></div><div class="slide"><img src="https://drive.google.com/open?id=1aC0nD4YZYTNWmqT3oCkJh-gg9qJsStCx" /></div><div class="slide"><img src="https://drive.google.com/open?id=1Qy07j92-8xZtqvAWcp_K3nznjROqNCqJ" /></div>
       </div>
-    </body>
-    </html>
-  
+      <div class="card-text">
+        <p><strong>No.</strong> 201 本田ゆうり</p>
+        <p>158cm (21歳)</p>
+        <p>84, 56, 84, Eカップ</p>
+        <p class="comment">初めまして。ゆうりです。 美味しいご飯を食べることお話すること大好きです。 素敵な時間を過ごせたら嬉しいです。 よろしくお願いします</p>
+        <p><span class="favorite-btn" data-id="201">♡</span></p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-image" onclick="window.open('member202.html', '_blank')">
+        <div class="slide active"><img src="https://drive.google.com/open?id=12vKl2KdBx4d4xCIftqmkttEzpPWWDnyo" /></div><div class="slide"><img src="https://drive.google.com/open?id=1Sz_vvYWEIKNWHo-rOw_XZx_VpJesB2dz" /></div><div class="slide"><img src="https://drive.google.com/open?id=11vPBZjzm0qkQrbDU70R8nUb0vUC0qiWf" /></div><div class="slide"><img src="https://drive.google.com/open?id=1uSHxIfVrfdVtlQaomlPqqhuZyJYCNxvU" /></div>
+      </div>
+      <div class="card-text">
+        <p><strong>No.</strong> 202 水乃なのは</p>
+        <p>162cm (23歳)</p>
+        <p>87, 57, 85, Fカップ</p>
+        <p class="comment">スタイルでよく褒められるのは胸の形とクビレです。 癒し系の雰囲気で話し方がおっとりしてます。 将来の目標の為にこの活動を始めました。 よろしくお願いします。</p>
+        <p><span class="favorite-btn" data-id="202">♡</span></p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-image" onclick="window.open('member204.html', '_blank')">
+        <div class="slide active"><img src="https://drive.google.com/open?id=13eyMsjz0W71XW2B0ECgfAp-fD_JT4cvZ" /></div><div class="slide"><img src="https://drive.google.com/open?id=15CbXyar95ha41QqBHT6v55i5KoaPKtDV" /></div><div class="slide"><img src="https://drive.google.com/open?id=1RZUxV5GpT-dgaf2X3uM5-H9nVyExugB2" /></div><div class="slide"><img src="https://drive.google.com/open?id=1shlCbmMH2YBSXT-ylRjAjMDwVEUI1IN2" /></div><div class="slide"><img src="https://drive.google.com/open?id=1BDSKMVNHSsBLGwvYlhjXJzExRH3nu5_h" /></div>
+      </div>
+      <div class="card-text">
+        <p><strong>No.</strong> 204 水咲ななせ</p>
+        <p>163cm (23歳)</p>
+        <p>83, 57, 85, Dカップ</p>
+        <p class="comment">おっとりしてる性格だと思います☺️ 素敵な方と会えたら嬉しいです✨ よろしくお願いいたします☺️</p>
+        <p><span class="favorite-btn" data-id="204">♡</span></p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-image" onclick="window.open('member205.html', '_blank')">
+        <div class="slide active"><img src="https://drive.google.com/open?id=1WtSmuSHFXs7x-m6UhbDl3VyfLyl1GsbQ" /></div><div class="slide"><img src="https://drive.google.com/open?id=1mGh0yl6YJj0-lulczkJDjXb4osy-_CRQ" /></div><div class="slide"><img src="https://drive.google.com/open?id=19C7faCSqseVOcSdThnSIdUYaA1KrunBQ" /></div><div class="slide"><img src="https://drive.google.com/open?id=1FHLnlWkIF1QArF3oBQcKC_QWY_1mD8Im" /></div><div class="slide"><img src="https://drive.google.com/open?id=1RyKro6j0kXFvrt2Nq6fuXis5ta1Q7ODM" /></div>
+      </div>
+      <div class="card-text">
+        <p><strong>No.</strong> 205 藤崎あいか</p>
+        <p>166cm (29歳)</p>
+        <p>85, 57, 86, Eカップ</p>
+        <p class="comment">意外に天真爛漫でお話しも好きです☺️ 皆さんのいろんな経験や知識を教えてほしいです✨</p>
+        <p><span class="favorite-btn" data-id="205">♡</span></p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-image" onclick="window.open('member206.html', '_blank')">
+        <div class="slide active"><img src="https://drive.google.com/open?id=1dCRL2lTd1uOpp6U0TeV1fJr1ejMeKBQ3" /></div><div class="slide"><img src="https://drive.google.com/open?id=1snGiOaNzrjkPAlAAHy36nW9Zur_c472y" /></div><div class="slide"><img src="https://drive.google.com/open?id=1_3qN6FzudUHGDcZ-Zv7qfLRUwyma2PVN" /></div><div class="slide"><img src="https://drive.google.com/open?id=1MEMiJvHK4CNAEPh1ZBHyjxctF7tdPeYF" /></div><div class="slide"><img src="https://drive.google.com/open?id=1uAgtn3kcHUUdQCOO6Lng9Tj4rC9GDU_-" /></div>
+      </div>
+      <div class="card-text">
+        <p><strong>No.</strong> 206 西内さくら</p>
+        <p>163cm (26歳)</p>
+        <p>90, 53, 86, Gカップ</p>
+        <p class="comment">人をあたたかい気持ちにさせることが得意です。 いい出会いがありますように⭐️ よろしくお願いします☺️</p>
+        <p><span class="favorite-btn" data-id="206">♡</span></p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-image" onclick="window.open('member207.html', '_blank')">
+        <div class="slide active"><img src="https://drive.google.com/open?id=1SuETEB_xWh7kaLqrkCIvC0fqPUwPgmdg" /></div><div class="slide"><img src="https://drive.google.com/open?id=1ky1Xq8RILB6U3uYGFke71NbX9Js29rF_" /></div><div class="slide"><img src="https://drive.google.com/open?id=1So8hbd7Fdya_2HJkJOMkbFl0Gya7zpt1" /></div><div class="slide"><img src="https://drive.google.com/open?id=128iKXswi4ycwEFbHy7YJtlDokpFf-T8z" /></div><div class="slide"><img src="https://drive.google.com/open?id=1S0HVOtiDBJ4JLRMMdUh-RPHGg44iUNsD" /></div>
+      </div>
+      <div class="card-text">
+        <p><strong>No.</strong> 207 斉藤るか </p>
+        <p>155cm (24歳)</p>
+        <p>84, 58, 86, Dカップ</p>
+        <p class="comment">るかです。宜しくお願い致します☆</p>
+        <p><span class="favorite-btn" data-id="207">♡</span></p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-image" onclick="window.open('member208.html', '_blank')">
+        <div class="slide active"><img src="https://drive.google.com/open?id=1YLthCYo95svGtP0aCNj044E-ffRUEAo4" /></div><div class="slide"><img src="https://drive.google.com/open?id=1glLWXrc0oCc1DxY8rc2VTy3ibPOhmccC" /></div><div class="slide"><img src="https://drive.google.com/open?id=1VBLOc1e_nKcpuPE93J3FkldD8C4rGxeA" /></div><div class="slide"><img src="https://drive.google.com/open?id=1fjo1GkO-Aj8R5UkLKUWNaasR03TshgWM" /></div><div class="slide"><img src="https://drive.google.com/open?id=1d7o69I3TxTrNZ_D4MKvf8u_jv4sv3ulS" /></div>
+      </div>
+      <div class="card-text">
+        <p><strong>No.</strong> 208 白石もも  </p>
+        <p>170cm (21歳)</p>
+        <p>90, 55, 90, Dカップ</p>
+        <p class="comment">素を出すことのできる優しい男性と出会いたいです。 よろしくお願いします☺️</p>
+        <p><span class="favorite-btn" data-id="208">♡</span></p>
+      </div>
+    </div>
+</div>
+<script>
+  document.querySelectorAll('.card-image').forEach(container => {
+    const slides = container.querySelectorAll('.slide');
+    let idx = 0;
+    if (slides.length === 1) { slides[0].classList.add('active'); return; }
+    slides[0].classList.add('active');
+    setInterval(() => {
+      slides[idx].classList.remove('active');
+      idx = (idx + 1) % slides.length;
+      slides[idx].classList.add('active');
+    }, 3000);
+  });
+
+  document.querySelectorAll('.favorite-btn').forEach(btn => {
+    const id = btn.dataset.id;
+    if (localStorage.getItem('fav-' + id)) btn.textContent = '❤️';
+    btn.addEventListener('click', () => {
+      if (localStorage.getItem('fav-' + id)) {
+        localStorage.removeItem('fav-' + id);
+        btn.textContent = '♡';
+      } else {
+        localStorage.setItem('fav-' + id, '1');
+        btn.textContent = '❤️';
+      }
+    });
+  });
+</script>
+</body>
+</html>
