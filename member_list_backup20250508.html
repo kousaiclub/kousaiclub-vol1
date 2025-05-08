@@ -1,145 +1,85 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>members_list - PRIVATE SHIROKANE</title>
-  <link rel="icon" href="images/logo_1.png" type="image/png" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>member208 - PRIVATE SHIROKANE</title>
+  <link rel="icon" href="images/logo_1.png">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    body { margin: 0; padding: 0; background-color: #1c1c1c; color: #f9f9f9; font-family: 'Cormorant Garamond', serif; font-size: 14px; line-height: 1.8; }
-    .card-container { display: flex; flex-wrap: wrap; gap: 1%; padding: 20px; }
-    .card { width: 22%; background-color: #1c1c1c; border: 1px solid #f9f9f9; border-radius: 12px; overflow: hidden; margin-bottom: 20px; }
-    .card-image { position: relative; aspect-ratio: 3 / 4; cursor: pointer; overflow: hidden; }
-    .slide { position: absolute; width: 100%; height: 100%; opacity: 0; transition: opacity 0.6s; }
-    .slide.active { opacity: 1; }
-    .slide img { width: 100%; height: 100%; object-fit: cover; }
-    .card-text { padding: 8px; text-align: center; }
-    .favorite-btn { font-size: 18px; color: #FF69B4; cursor: pointer; }
-    .comment { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    @media (max-width: 768px) { .card { width: 48%; } }
+    body { margin: 0; padding: 0; background-color: #1c1c1c; color: #f9f9f9; font-family: 'Cormorant Garamond', serif; }
+    header { background-color: #000; padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; position: relative; }
+    header img { height: 40px; }
+    .menu-toggle { display: none; flex-direction: column; cursor: pointer; }
+    .menu-toggle div { width: 25px; height: 3px; background-color: #f9f9f9; margin: 4px 0; }
+    nav { display: flex; flex-wrap: wrap; }
+    nav a { color: #f9f9f9; text-decoration: none; margin: 0 10px; font-size: 14px; }
+    nav a:hover { text-decoration: underline; }
+    .banner { width: 100%; height: 300px; background: url('images/banner_3.png') center/cover no-repeat; }
+    .container { display: flex; flex-direction: row; padding: 20px; gap: 20px; }
+    .slider { flex: 1; max-width: 50%; position: relative; overflow: hidden; border-radius: 12px; }
+    .slide { display: none; width: 100%; }
+    .slide.active { display: block; }
+    .slide img { width: 100%; border-radius: 12px; }
+    .info { flex: 1; background-color: #2a2a2a; padding: 20px; border-radius: 12px; font-size: 15px; }
+    .info p { margin: 10px 0; }
+    @media (max-width: 768px) {
+      .container { flex-direction: column; }
+      .slider, .info { max-width: 100%; }
+      nav { display: none; flex-direction: column; position: absolute; top: 60px; left: 0; background-color: rgba(0,0,0,0.95); width: 100%; padding: 15px; }
+      nav.active { display: flex; }
+      .menu-toggle { display: flex; }
+    }
   </style>
 </head>
 <body>
-  <div class="card-container">
-
-    <div class="card">
-      <div class="card-image" onclick="window.open('member201.html', '_blank')">
-        <div class="slide active"><img src="https://drive.google.com/open?id=1E2-bdT5FKso5z91O2DJoQDUOwr2pngNw" /></div><div class="slide"><img src="https://drive.google.com/open?id=1pTKX7vgvVUa66YT01gJYDKVZh2JhnPdw" /></div><div class="slide"><img src="https://drive.google.com/open?id=18bNW_E7zxtQIXgNtFQnhrZlWG3RKxmiz" /></div><div class="slide"><img src="https://drive.google.com/open?id=1aC0nD4YZYTNWmqT3oCkJh-gg9qJsStCx" /></div><div class="slide"><img src="https://drive.google.com/open?id=1Qy07j92-8xZtqvAWcp_K3nznjROqNCqJ" /></div>
-      </div>
-      <div class="card-text">
-        <p><strong>No.</strong> 201 本田ゆうり</p>
-        <p>158cm (21歳)</p>
-        <p>84, 56, 84, Eカップ</p>
-        <p class="comment">初めまして。ゆうりです。 美味しいご飯を食べることお話すること大好きです。 素敵な時間を過ごせたら嬉しいです。 よろしくお願いします</p>
-        <p><span class="favorite-btn" data-id="201">♡</span></p>
-      </div>
+  <header>
+    <img src="images/logo_1.png" alt="PRIVATE SHIROKANE">
+    <div class="menu-toggle" onclick="toggleMenu()"><div></div><div></div><div></div></div>
+    <nav id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="top.html">Top</a>
+      <a href="guidance_men.html">男性会員入会</a>
+      <a href="guidance_women.html">女性会員入会</a>
+      <a href="system.html">料金・システム</a>
+      <a href="pickup_member.html">注目会員様情報</a>
+      <a href="members_only.html">会員専用Page</a>
+      <a href="contact.html">問合せ</a>
+    </nav>
+  </header>
+  <div class="banner"></div>
+  <div class="container">
+    <div class="slider" id="slider"><div class="slide active"><img src="https://drive.google.com/open?id=1YLthCYo95svGtP0aCNj044E-ffRUEAo4" /></div><div class="slide"><img src="https://drive.google.com/open?id=1glLWXrc0oCc1DxY8rc2VTy3ibPOhmccC" /></div><div class="slide"><img src="https://drive.google.com/open?id=1VBLOc1e_nKcpuPE93J3FkldD8C4rGxeA" /></div><div class="slide"><img src="https://drive.google.com/open?id=1fjo1GkO-Aj8R5UkLKUWNaasR03TshgWM" /></div><div class="slide"><img src="https://drive.google.com/open?id=1d7o69I3TxTrNZ_D4MKvf8u_jv4sv3ulS" /></div></div>
+    <div class="info">
+      <p><strong>登録No.：</strong>208</p>
+      <p><strong>氏名：</strong>白石もも  </p>
+      <p><strong>年齢：</strong>21</p>
+      <p><strong>身長：</strong>90</p>
+      <p><strong>スリーサイズ：</strong>90 / D / 55 / Dカップ</p>
+      <p><strong>趣味：</strong>カラオケ</p>
+      <p><strong>性格：</strong>おっとり</p>
+      <p><strong>タバコ：</strong>吸いません</p>
+      <p><strong>お酒：</strong>少し飲めます</p>
+      <p><strong>セッティング費用：</strong>10</p>
+      <p><strong>デート代：</strong>12</p>
+      <p><strong>【本人コメント】</strong><br>素を出すことのできる優しい男性と出会いたいです。 よろしくお願いします☺️</p>
+      <p><strong>【スタッフコメント】</strong><br>容姿端麗で品のある超美人、モデル顔負けのももさんのご紹介です✨ 高身長で手足も長く華奢な体型なので、どんなファッションでも似合ってしまうスタイルのいい女性です❤️ 大人っぽい雰囲気で韓国人美女風の見た目と、可愛らしく見ていて飽きの来ない整ったお顔立ちをしています😊  明るい性格で人懐っこさもあり、とても話しやすく持ち前の愛嬌で周りからも好かれるような女性です✨ 英語と中国語が話せる所も彼女の魅力です✨ そんなももさんへのオファー、是非お待ちしています!</p>
     </div>
-
-    <div class="card">
-      <div class="card-image" onclick="window.open('member202.html', '_blank')">
-        <div class="slide active"><img src="https://drive.google.com/open?id=12vKl2KdBx4d4xCIftqmkttEzpPWWDnyo" /></div><div class="slide"><img src="https://drive.google.com/open?id=1Sz_vvYWEIKNWHo-rOw_XZx_VpJesB2dz" /></div><div class="slide"><img src="https://drive.google.com/open?id=11vPBZjzm0qkQrbDU70R8nUb0vUC0qiWf" /></div><div class="slide"><img src="https://drive.google.com/open?id=1uSHxIfVrfdVtlQaomlPqqhuZyJYCNxvU" /></div>
-      </div>
-      <div class="card-text">
-        <p><strong>No.</strong> 202 水乃なのは</p>
-        <p>162cm (23歳)</p>
-        <p>87, 57, 85, Fカップ</p>
-        <p class="comment">スタイルでよく褒められるのは胸の形とクビレです。 癒し系の雰囲気で話し方がおっとりしてます。 将来の目標の為にこの活動を始めました。 よろしくお願いします。</p>
-        <p><span class="favorite-btn" data-id="202">♡</span></p>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-image" onclick="window.open('member204.html', '_blank')">
-        <div class="slide active"><img src="https://drive.google.com/open?id=13eyMsjz0W71XW2B0ECgfAp-fD_JT4cvZ" /></div><div class="slide"><img src="https://drive.google.com/open?id=15CbXyar95ha41QqBHT6v55i5KoaPKtDV" /></div><div class="slide"><img src="https://drive.google.com/open?id=1RZUxV5GpT-dgaf2X3uM5-H9nVyExugB2" /></div><div class="slide"><img src="https://drive.google.com/open?id=1shlCbmMH2YBSXT-ylRjAjMDwVEUI1IN2" /></div><div class="slide"><img src="https://drive.google.com/open?id=1BDSKMVNHSsBLGwvYlhjXJzExRH3nu5_h" /></div>
-      </div>
-      <div class="card-text">
-        <p><strong>No.</strong> 204 水咲ななせ</p>
-        <p>163cm (23歳)</p>
-        <p>83, 57, 85, Dカップ</p>
-        <p class="comment">おっとりしてる性格だと思います☺️ 素敵な方と会えたら嬉しいです✨ よろしくお願いいたします☺️</p>
-        <p><span class="favorite-btn" data-id="204">♡</span></p>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-image" onclick="window.open('member205.html', '_blank')">
-        <div class="slide active"><img src="https://drive.google.com/open?id=1WtSmuSHFXs7x-m6UhbDl3VyfLyl1GsbQ" /></div><div class="slide"><img src="https://drive.google.com/open?id=1mGh0yl6YJj0-lulczkJDjXb4osy-_CRQ" /></div><div class="slide"><img src="https://drive.google.com/open?id=19C7faCSqseVOcSdThnSIdUYaA1KrunBQ" /></div><div class="slide"><img src="https://drive.google.com/open?id=1FHLnlWkIF1QArF3oBQcKC_QWY_1mD8Im" /></div><div class="slide"><img src="https://drive.google.com/open?id=1RyKro6j0kXFvrt2Nq6fuXis5ta1Q7ODM" /></div>
-      </div>
-      <div class="card-text">
-        <p><strong>No.</strong> 205 藤崎あいか</p>
-        <p>166cm (29歳)</p>
-        <p>85, 57, 86, Eカップ</p>
-        <p class="comment">意外に天真爛漫でお話しも好きです☺️ 皆さんのいろんな経験や知識を教えてほしいです✨</p>
-        <p><span class="favorite-btn" data-id="205">♡</span></p>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-image" onclick="window.open('member206.html', '_blank')">
-        <div class="slide active"><img src="https://drive.google.com/open?id=1dCRL2lTd1uOpp6U0TeV1fJr1ejMeKBQ3" /></div><div class="slide"><img src="https://drive.google.com/open?id=1snGiOaNzrjkPAlAAHy36nW9Zur_c472y" /></div><div class="slide"><img src="https://drive.google.com/open?id=1_3qN6FzudUHGDcZ-Zv7qfLRUwyma2PVN" /></div><div class="slide"><img src="https://drive.google.com/open?id=1MEMiJvHK4CNAEPh1ZBHyjxctF7tdPeYF" /></div><div class="slide"><img src="https://drive.google.com/open?id=1uAgtn3kcHUUdQCOO6Lng9Tj4rC9GDU_-" /></div>
-      </div>
-      <div class="card-text">
-        <p><strong>No.</strong> 206 西内さくら</p>
-        <p>163cm (26歳)</p>
-        <p>90, 53, 86, Gカップ</p>
-        <p class="comment">人をあたたかい気持ちにさせることが得意です。 いい出会いがありますように⭐️ よろしくお願いします☺️</p>
-        <p><span class="favorite-btn" data-id="206">♡</span></p>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-image" onclick="window.open('member207.html', '_blank')">
-        <div class="slide active"><img src="https://drive.google.com/open?id=1SuETEB_xWh7kaLqrkCIvC0fqPUwPgmdg" /></div><div class="slide"><img src="https://drive.google.com/open?id=1ky1Xq8RILB6U3uYGFke71NbX9Js29rF_" /></div><div class="slide"><img src="https://drive.google.com/open?id=1So8hbd7Fdya_2HJkJOMkbFl0Gya7zpt1" /></div><div class="slide"><img src="https://drive.google.com/open?id=128iKXswi4ycwEFbHy7YJtlDokpFf-T8z" /></div><div class="slide"><img src="https://drive.google.com/open?id=1S0HVOtiDBJ4JLRMMdUh-RPHGg44iUNsD" /></div>
-      </div>
-      <div class="card-text">
-        <p><strong>No.</strong> 207 斉藤るか </p>
-        <p>155cm (24歳)</p>
-        <p>84, 58, 86, Dカップ</p>
-        <p class="comment">るかです。宜しくお願い致します☆</p>
-        <p><span class="favorite-btn" data-id="207">♡</span></p>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-image" onclick="window.open('member208.html', '_blank')">
-        <div class="slide active"><img src="https://drive.google.com/open?id=1YLthCYo95svGtP0aCNj044E-ffRUEAo4" /></div><div class="slide"><img src="https://drive.google.com/open?id=1glLWXrc0oCc1DxY8rc2VTy3ibPOhmccC" /></div><div class="slide"><img src="https://drive.google.com/open?id=1VBLOc1e_nKcpuPE93J3FkldD8C4rGxeA" /></div><div class="slide"><img src="https://drive.google.com/open?id=1fjo1GkO-Aj8R5UkLKUWNaasR03TshgWM" /></div><div class="slide"><img src="https://drive.google.com/open?id=1d7o69I3TxTrNZ_D4MKvf8u_jv4sv3ulS" /></div>
-      </div>
-      <div class="card-text">
-        <p><strong>No.</strong> 208 白石もも  </p>
-        <p>170cm (21歳)</p>
-        <p>90, 55, 90, Dカップ</p>
-        <p class="comment">素を出すことのできる優しい男性と出会いたいです。 よろしくお願いします☺️</p>
-        <p><span class="favorite-btn" data-id="208">♡</span></p>
-      </div>
-    </div>
-</div>
-<script>
-  document.querySelectorAll('.card-image').forEach(container => {
-    const slides = container.querySelectorAll('.slide');
-    let idx = 0;
-    if (slides.length === 1) { slides[0].classList.add('active'); return; }
-    slides[0].classList.add('active');
-    setInterval(() => {
-      slides[idx].classList.remove('active');
-      idx = (idx + 1) % slides.length;
-      slides[idx].classList.add('active');
-    }, 3000);
-  });
-
-  document.querySelectorAll('.favorite-btn').forEach(btn => {
-    const id = btn.dataset.id;
-    if (localStorage.getItem('fav-' + id)) btn.textContent = '❤️';
-    btn.addEventListener('click', () => {
-      if (localStorage.getItem('fav-' + id)) {
-        localStorage.removeItem('fav-' + id);
-        btn.textContent = '♡';
-      } else {
-        localStorage.setItem('fav-' + id, '1');
-        btn.textContent = '❤️';
-      }
-    });
-  });
-</script>
+  </div>
+  <script>
+    function toggleMenu() { document.getElementById("navLinks").classList.toggle("active"); }
+    const slides = document.querySelectorAll('.slide');
+    let currentSlide = 0;
+    if (slides.length > 1) {
+      slides[currentSlide].classList.add('active');
+      setInterval(() => {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('active');
+      }, 3000);
+    } else if (slides.length === 1) {
+      slides[0].classList.add('active');
+    }
+  </script>
 </body>
 </html>
