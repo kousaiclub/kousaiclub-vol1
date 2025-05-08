@@ -1,86 +1,57 @@
-    <!DOCTYPE html>
-    <html lang="ja">
-    <head>
-      <meta charset="UTF-8">
-      <style>
-        body {
-          background-color: #000;
-          font-family: 'Meiryo', sans-serif;
-          margin: 0;
-          padding: 0;
-        }
-        .card-container {
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: space-between;
-          gap: 1%;
-          padding: 20px;
-        }
-        .card {
-          width: 22%;
-          background-color: #182a69;
-          color: #FFFFFF;
-          font-size: 13px;
-          border-radius: 12px;
-          overflow: hidden;
-          margin-bottom: 20px;
-        }
-        .card a {
-          color: #FFFFFF;
-          text-decoration: none;
-        }
-        .card-image img {
-          width: 100%;
-          aspect-ratio: 3 / 4;
-          object-fit: cover;
-          display: block;
-        }
-        .card-text {
-          padding: 8px;
-          text-align: center;
-        }
-        .favorite-btn {
-          font-size: 18px;
-          cursor: pointer;
-          display: inline-block;
-        }
-        .comment {
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
-        @media (max-width: 768px) {
-          .card {
-            width: 48%;
-          }
-        }
-      </style>
-      <script>
-        document.addEventListener("DOMContentLoaded", () => {
-          const buttons = document.querySelectorAll(".favorite-btn");
-          buttons.forEach(btn => {
-            const id = btn.getAttribute("data-id");
-            if (localStorage.getItem("fav_" + id)) {
-              btn.textContent = "❤️";
-            }
-            btn.addEventListener("click", () => {
-              const key = "fav_" + id;
-              if (localStorage.getItem(key)) {
-                localStorage.removeItem(key);
-                btn.textContent = "♡";
-              } else {
-                localStorage.setItem(key, true);
-                btn.textContent = "❤️";
-              }
-            });
-          });
-        });
-      </script>
-    </head>
-    <body>
-      <div class="card-container">
-  
-      </div>
-    </body>
-    </html>
-  
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PRIVATE SHIROKANE - 注目女性会員</title>
+  <link rel="icon" href="images/logo_2.jpg" type="image/jpeg" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    body { margin: 0; padding: 0; background-color: #1c1c1c; color: #f9f9f9; font-family: 'Cormorant Garamond', serif; }
+    header { background-color: #000; padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; }
+    header img { height: 40px; }
+    .menu-toggle { display: none; flex-direction: column; cursor: pointer; }
+    .menu-toggle div { width: 25px; height: 3px; background-color: #f9f9f9; margin: 4px 0; }
+    nav { display: flex; flex-wrap: wrap; }
+    nav a { color: #f9f9f9; text-decoration: none; margin: 0 10px; font-size: 14px; }
+    nav a:hover { text-decoration: underline; }
+    .banner { width: 100%; height: 300px; background: url('images/banner_3.png') center/cover no-repeat; }
+    .pickup-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; padding: 40px 20px; }
+    .pickup-card { background-color: #2a2a2a; border-radius: 12px; width: 260px; text-align: center; overflow: hidden; }
+    .pickup-card img { width: 100%; height: 300px; object-fit: cover; border-top-left-radius: 12px; border-top-right-radius: 12px; }
+    .pickup-info { padding: 15px; font-size: 15px; }
+    @media (max-width: 768px) {
+      .menu-toggle { display: flex; }
+      nav { display: none; width: 100%; flex-direction: column; }
+      nav.active { display: flex; }
+      nav a { margin: 10px 0; }
+      .pickup-container { flex-direction: column; align-items: center; }
+    }
+  </style>
+  <script>
+    function toggleMenu() {
+      const nav = document.querySelector('nav');
+      nav.classList.toggle('active');
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <img src="images/logo_1.png" alt="PRIVATE SHIROKANE">
+    <div class="menu-toggle" onclick="toggleMenu()">
+      <div></div><div></div><div></div>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="top.html">Top</a>
+      <a href="guidance_men.html">男性会員入会</a>
+      <a href="guidance_women.html">女性会員入会</a>
+      <a href="system.html">料金・システム</a>
+      <a href="pickup_member.html">注目会員様情報</a>
+      <a href="members_only.html">会員専用Page</a>
+      <a href="contact.html">お問合せ</a>
+    </nav>
+  </header>
+  <div class="banner"></div>
+  <div class="pickup-container">
+</div></body></html>
