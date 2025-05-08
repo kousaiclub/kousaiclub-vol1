@@ -7,27 +7,108 @@
   <link rel="icon" href="images/logo_1.png">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    body { margin: 0; padding: 0; background-color: #1c1c1c; color: #f9f9f9; font-family: 'Cormorant Garamond', serif; }
-    header { background-color: #000; padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; position: relative; }
-    header img { height: 40px; }
-    .menu-toggle { display: none; flex-direction: column; cursor: pointer; }
-    .menu-toggle div { width: 25px; height: 3px; background-color: #f9f9f9; margin: 4px 0; }
-    nav { display: flex; flex-wrap: wrap; }
-    nav a { color: #f9f9f9; text-decoration: none; margin: 0 10px; font-size: 14px; }
-    nav a:hover { text-decoration: underline; }
-    .banner { width: 100%; height: 300px; background: url('images/banner_3.png') center/cover no-repeat; }
-    .container { display: flex; flex-direction: row; padding: 20px; gap: 20px; background-color: #1c1c1c; }
-    .slider { flex: 1; max-width: 50%; position: relative; overflow: hidden; border-radius: 12px; }
-    .slide { display: none; width: 100%; }
-    .slide img { width: 100%; border-radius: 12px; }
-    .info { flex: 1; background-color: #2a2a2a; padding: 20px; border-radius: 12px; font-size: 15px; }
-    .info p { margin: 10px 0; }
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #1c1c1c;
+      color: #f9f9f9;
+      font-family: 'Cormorant Garamond', serif;
+    }
+    header {
+      background-color: #000;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+    }
+    header img {
+      height: 40px;
+    }
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    .menu-toggle div {
+      width: 25px;
+      height: 3px;
+      background-color: #f9f9f9;
+      margin: 4px 0;
+    }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    nav a {
+      color: #f9f9f9;
+      text-decoration: none;
+      margin: 0 10px;
+      font-size: 14px;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .banner {
+      width: 100%;
+      height: 300px;
+      background: url('images/banner_3.png') center/cover no-repeat;
+    }
+    .container {
+      display: flex;
+      flex-direction: row;
+      padding: 20px;
+      gap: 20px;
+      background-color: #1c1c1c;
+    }
+    .slider {
+      flex: 1;
+      max-width: 50%;
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+    }
+    .slide {
+      display: none;
+      width: 100%;
+    }
+    .slide img {
+      width: 100%;
+      border-radius: 12px;
+    }
+    .info {
+      flex: 1;
+      background-color: #2a2a2a;
+      padding: 20px;
+      border-radius: 12px;
+      font-size: 15px;
+    }
+    .info p {
+      margin: 10px 0;
+    }
     @media (max-width: 768px) {
-      .container { flex-direction: column; }
-      .slider, .info { max-width: 100%; }
-      nav { display: none; flex-direction: column; position: absolute; top: 60px; left: 0; background-color: rgba(0, 0, 0, 0.95); width: 100%; padding: 15px; }
-      nav.active { display: flex; }
-      .menu-toggle { display: flex; }
+      .container {
+        flex-direction: column;
+      }
+      .slider, .info {
+        max-width: 100%;
+      }
+      nav {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.95);
+        width: 100%;
+        padding: 15px;
+      }
+      nav.active {
+        display: flex;
+      }
+      .menu-toggle {
+        display: flex;
+      }
     }
   </style>
 </head>
@@ -49,9 +130,14 @@
     </nav>
   </header>
   <div class="banner"></div>
+
   <div class="container">
     <div class="slider" id="slider">
-      <div class="slide active"><img src="https://drive.google.com/open?id=1E2-bdT5FKso5z91O2DJoQDUOwr2pngNw"/></div><div class="slide"><img src="https://drive.google.com/open?id=1pTKX7vgvVUa66YT01gJYDKVZh2JhnPdw"/></div><div class="slide"><img src="https://drive.google.com/open?id=18bNW_E7zxtQIXgNtFQnhrZlWG3RKxmiz"/></div><div class="slide"><img src="https://drive.google.com/open?id=1aC0nD4YZYTNWmqT3oCkJh-gg9qJsStCx"/></div><div class="slide"><img src="https://drive.google.com/open?id=1Qy07j92-8xZtqvAWcp_K3nznjROqNCqJ"/></div>
+      <div class="slide" style="display:block;"><img src="images/photo201_1.jpg" /></div>
+<div class="slide"><img src="images/photo201_2.jpg" /></div>
+<div class="slide"><img src="images/photo201_3.jpg" /></div>
+<div class="slide"><img src="images/photo201_4.jpg" /></div>
+
     </div>
     <div class="info">
       <p><strong>登録No.：</strong>201</p>
@@ -69,6 +155,7 @@
       <p><strong>【スタッフコメント】</strong><br>子供が大好きでいつもニコニコしているゆうりさんのご紹介です✨ 華奢でとてもスレンダーな体型をしていてスタイルが良く、Ecupのお胸とスラッと伸びる手足が綺麗な女性です❤️  美容が趣味とのことで、お肌は色白艶肌で可愛いかつ綺麗で端正なお顔立ちをした美人保育士さんです😊  見た目はおしとやかで大人しめなイメージですが、実際はとても明るくフレンドリーで人懐っこい性格なのでたくさんの人に好かれる女性です✨ そんな、ゆうりさんへの、オファー、是非お待ちしています!</p>
     </div>
   </div>
+
   <script>
     function toggleMenu() {
       document.getElementById("navLinks").classList.toggle("active");
@@ -88,4 +175,3 @@
   </script>
 </body>
 </html>
-    
