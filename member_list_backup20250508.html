@@ -1,186 +1,98 @@
-<!DOCTYPE html>
+function generateMemberListHTML() {
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('会員データ');
+  const data = sheet.getDataRange().getValues();
+  const folder = DriveApp.getFolderById('1xC3IoxIHk7U34FhdnxmRwcOkOXmw4PcW');
+  const now = new Date();
+  const filename = `member_list.html`;
+
+  let html = `<!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>members_list - PRIVATE SHIROKANE</title>
-  <link rel="icon" href="images/logo_1.png" type="image/png" />
+  <title>PRIVATE SHIROKANE - 会員一覧</title>
+  <link rel="icon" href="images/logo_1.png" />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    body { margin: 0; padding: 0; background-color: #1c1c1c; color: #f9f9f9; font-family: 'Cormorant Garamond', serif; font-size: 14px; line-height: 1.8; }
-    .card-container { display: flex; flex-wrap: wrap; gap: 1%; padding: 20px; }
-    .card { width: 22%; background-color: #1c1c1c; border: 1px solid #f9f9f9; border-radius: 12px; overflow: hidden; margin-bottom: 20px; }
-    .card-image { position: relative; aspect-ratio: 3 / 4; cursor: pointer; overflow: hidden; }
-    .slide { position: absolute; width: 100%; height: 100%; opacity: 0; transition: opacity 0.6s; }
-    .slide.active { opacity: 1; }
-    .slide img { width: 100%; height: 100%; object-fit: cover; }
-    .card-text { padding: 8px; text-align: center; }
-    .favorite-btn { font-size: 18px; color: #FF69B4; cursor: pointer; }
-    .comment { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    @media (max-width: 768px) { .card { width: 48%; } }
+    body { margin:0; padding:0; background:#1c1c1c; color:#f9f9f9; font-family:'Cormorant Garamond',serif; }
+    .card-container { display:flex; flex-wrap:wrap; gap:1%; padding:20px; }
+    .card { width:22%; background:#1c1c1c; border:1px solid #f9f9f9; border-radius:12px; margin-bottom:20px; overflow:hidden; }
+    .card-image { position:relative; aspect-ratio:3/4; overflow:hidden; cursor:pointer; }
+    .slide { position:absolute; width:100%; height:100%; opacity:0; transition:opacity 0.6s ease; }
+    .slide.active { opacity:1; }
+    .slide img { width:100%; height:100%; object-fit:cover; }
+    .card-text { padding:10px; text-align:center; }
+    .favorite-btn { font-size:18px; color:#FF69B4; cursor:pointer; }
+    @media(max-width:768px){ .card{width:48%;} }
   </style>
 </head>
 <body>
   <div class="card-container">
+`;
 
+  for (let i = 1; i < data.length; i++) {
+    const row = data[i];
+    const no = row[3];
+    const name = row[4];
+    const b = row[5], cup = row[6], w = row[7], h = row[8];
+    const height = row[9], age = row[19];
+    const comment = row[16];
+    const photoUrls = row[2] ? row[2].split(',').map(x => x.trim()).filter(x => x) : [];
+
+    // スキップ条件（会員No未記載）
+    if (!no || no === '') continue;
+
+    // スライド構文
+    let slides = '';
+    photoUrls.slice(0, 4).forEach((_, index) => {
+      slides += `<div class="slide${index === 0 ? ' active' : ''}"><img src="images/photo${no}_${index + 1}.jpg" /></div>`;
+    });
+
+    html += `
     <div class="card">
-      <div class="card-image" onclick="window.open('member201.html', '_blank')">
-        <div class="slide active"><img src="images/photo201_1.jpg" /></div>
-<div class="slide"><img src="images/photo201_2.jpg" /></div>
-<div class="slide"><img src="images/photo201_3.jpg" /></div>
-<div class="slide"><img src="images/photo201_4.jpg" /></div>
-
+      <div class="card-image" onclick="window.open('member${no}.html', '_blank')">
+        ${slides}
       </div>
       <div class="card-text">
-        <p><strong>No.</strong> 201 本田ゆうり</p>
-        <p>158cm (21歳)</p>
-        <p>84, 56, 84, Eカップ</p>
-        <p class="comment">初めまして。ゆうりです。 美味しいご飯を食べることお話すること大好きです。 素敵な時間を過ごせたら嬉しいです。 よろしくお願いします</p>
-        <p><span class="favorite-btn" data-id="201">♡</span></p>
+        <p><strong>No.</strong> ${no} ${name}</p>
+        <p>${height}cm (${age}歳)</p>
+        <p>${b}, ${w}, ${h}, ${cup}カップ</p>
+        <p class="comment">${comment}</p>
+        <p><span class="favorite-btn" data-id="${no}">♡</span></p>
       </div>
-    </div>
+    </div>`;
+  }
 
-    <div class="card">
-      <div class="card-image" onclick="window.open('member202.html', '_blank')">
-        <div class="slide active"><img src="images/photo202_1.jpg" /></div>
-<div class="slide"><img src="images/photo202_2.jpg" /></div>
-<div class="slide"><img src="images/photo202_3.jpg" /></div>
-<div class="slide"><img src="images/photo202_4.jpg" /></div>
-
-      </div>
-      <div class="card-text">
-        <p><strong>No.</strong> 202 水乃なのは</p>
-        <p>162cm (23歳)</p>
-        <p>87, 57, 85, Fカップ</p>
-        <p class="comment">スタイルでよく褒められるのは胸の形とクビレです。 癒し系の雰囲気で話し方がおっとりしてます。 将来の目標の為にこの活動を始めました。 よろしくお願いします。</p>
-        <p><span class="favorite-btn" data-id="202">♡</span></p>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-image" onclick="window.open('member204.html', '_blank')">
-        <div class="slide active"><img src="images/photo204_1.jpg" /></div>
-<div class="slide"><img src="images/photo204_2.jpg" /></div>
-<div class="slide"><img src="images/photo204_3.jpg" /></div>
-<div class="slide"><img src="images/photo204_4.jpg" /></div>
-
-      </div>
-      <div class="card-text">
-        <p><strong>No.</strong> 204 水咲ななせ</p>
-        <p>163cm (23歳)</p>
-        <p>83, 57, 85, Dカップ</p>
-        <p class="comment">おっとりしてる性格だと思います☺️ 素敵な方と会えたら嬉しいです✨ よろしくお願いいたします☺️</p>
-        <p><span class="favorite-btn" data-id="204">♡</span></p>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-image" onclick="window.open('member205.html', '_blank')">
-        <div class="slide active"><img src="images/photo205_1.jpg" /></div>
-<div class="slide"><img src="images/photo205_2.jpg" /></div>
-<div class="slide"><img src="images/photo205_3.jpg" /></div>
-<div class="slide"><img src="images/photo205_4.jpg" /></div>
-
-      </div>
-      <div class="card-text">
-        <p><strong>No.</strong> 205 藤崎あいか</p>
-        <p>166cm (29歳)</p>
-        <p>85, 57, 86, Eカップ</p>
-        <p class="comment">意外に天真爛漫でお話しも好きです☺️ 皆さんのいろんな経験や知識を教えてほしいです✨</p>
-        <p><span class="favorite-btn" data-id="205">♡</span></p>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-image" onclick="window.open('member206.html', '_blank')">
-        <div class="slide active"><img src="images/photo206_1.jpg" /></div>
-<div class="slide"><img src="images/photo206_2.jpg" /></div>
-<div class="slide"><img src="images/photo206_3.jpg" /></div>
-<div class="slide"><img src="images/photo206_4.jpg" /></div>
-
-      </div>
-      <div class="card-text">
-        <p><strong>No.</strong> 206 西内さくら</p>
-        <p>163cm (26歳)</p>
-        <p>90, 53, 86, Gカップ</p>
-        <p class="comment">人をあたたかい気持ちにさせることが得意です。 いい出会いがありますように⭐️ よろしくお願いします☺️</p>
-        <p><span class="favorite-btn" data-id="206">♡</span></p>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-image" onclick="window.open('member207.html', '_blank')">
-        <div class="slide active"><img src="images/photo207_1.jpg" /></div>
-<div class="slide"><img src="images/photo207_2.jpg" /></div>
-<div class="slide"><img src="images/photo207_3.jpg" /></div>
-<div class="slide"><img src="images/photo207_4.jpg" /></div>
-
-      </div>
-      <div class="card-text">
-        <p><strong>No.</strong> 207 斉藤るか </p>
-        <p>155cm (24歳)</p>
-        <p>84, 58, 86, Dカップ</p>
-        <p class="comment">るかです。宜しくお願い致します☆</p>
-        <p><span class="favorite-btn" data-id="207">♡</span></p>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-image" onclick="window.open('member208.html', '_blank')">
-        <div class="slide active"><img src="images/photo208_1.jpg" /></div>
-<div class="slide"><img src="images/photo208_2.jpg" /></div>
-<div class="slide"><img src="images/photo208_3.jpg" /></div>
-<div class="slide"><img src="images/photo208_4.jpg" /></div>
-
-      </div>
-      <div class="card-text">
-        <p><strong>No.</strong> 208 白石もも  </p>
-        <p>170cm (21歳)</p>
-        <p>90, 55, 90, Dカップ</p>
-        <p class="comment">素を出すことのできる優しい男性と出会いたいです。 よろしくお願いします☺️</p>
-        <p><span class="favorite-btn" data-id="208">♡</span></p>
-      </div>
-    </div>
-
-      <div class="card">
-        <div class="card-image"></div>
-        <div class="card-text">
-          <p><strong>No.</strong></p>
-          <p>cm (歳)</p>
-          <p>, , , カップ</p>
-          <p class="comment"></p>
-          <p><span class="favorite-btn">♡</span></p>
-        </div>
-      </div>
-
+  html += `
   </div>
   <script>
     document.querySelectorAll('.card-image').forEach(container => {
       const slides = container.querySelectorAll('.slide');
-      let idx = 0;
-      if (slides.length === 1) { slides[0].classList.add('active'); return; }
+      let i = 0;
+      if (slides.length === 0) return;
       slides[0].classList.add('active');
+      if (slides.length === 1) return;
       setInterval(() => {
-        slides[idx].classList.remove('active');
-        idx = (idx + 1) % slides.length;
-        slides[idx].classList.add('active');
+        slides[i].classList.remove('active');
+        i = (i + 1) % slides.length;
+        slides[i].classList.add('active');
       }, 3000);
     });
-
     document.querySelectorAll('.favorite-btn').forEach(btn => {
       const id = btn.dataset.id;
-      if (id && localStorage.getItem('fav-' + id)) btn.textContent = '❤️';
+      if (localStorage.getItem('fav-' + id)) btn.textContent = '❤️';
       btn.addEventListener('click', () => {
-        if (!id) return;
         if (localStorage.getItem('fav-' + id)) {
-          localStorage.removeItem('fav-' + id);
-          btn.textContent = '♡';
+          localStorage.removeItem('fav-' + id); btn.textContent = '♡';
         } else {
-          localStorage.setItem('fav-' + id, '1');
-          btn.textContent = '❤️';
+          localStorage.setItem('fav-' + id, '1'); btn.textContent = '❤️';
         }
       });
     });
   </script>
 </body>
-</html>
+</html>`;
+
+  folder.createFile(filename, html, MimeType.HTML);
+  Logger.log(`✅ 完成HTML出力: ${filename}`);
+}
