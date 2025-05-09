@@ -64,7 +64,36 @@
 <div class="banner"></div>
 <div class="card-container">
 
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>会員検索 - PRIVATE SHIROKANE</title>
+  <link rel="icon" href="images/logo_1.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/style.css">
+  <script src="scripts/search.js" defer></script>
+</head>
+<body>
+<header class="nav-container">
+  <div class="nav-logo"><a href="top.html"><img src="images/logo_1.png" alt="PRIVATE SHIROKANE Logo"></a></div>
+  <nav class="nav-links" id="navLinks">
+    <a href="index.html">Home</a><a href="top.html">Top</a>
+    <a href="guidance_men.html">男性会員入会</a><a href="guidance_women.html">女性会員入会</a>
+    <a href="system.html">料金・システム</a><a href="pickup_member.html">注目会員様情報</a>
+    <a href="members_only.html">会員専用Page</a><a href="contact.html">お問合せ</a>
+  </nav>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</header>
+<div class="banner"></div>
+
+<!-- ✅ 検索ボタン（ポップアップトリガー） -->
 <button class="search-button" onclick="document.getElementById('searchModal').style.display='block'">Search</button>
+
+<!-- ✅ 検索モーダル本体 -->
 <div id="searchModal" class="modal">
   <div class="modal-content">
     <span class="close" onclick="document.getElementById('searchModal').style.display='none'">&times;</span>
@@ -82,8 +111,25 @@
     <div class="search-results">※ここに結果が表示されます</div>
   </div>
 </div>
+
 <div class="card-container">
   <!-- 検索結果がここに描画される -->
+</div>
+
+<script>
+function toggleMenu() {
+  document.getElementById("navLinks").classList.toggle("active");
+}
+window.onclick = function(event) {
+  const modal = document.getElementById("searchModal");
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
+</script>
+</body>
+</html>
+
 
 
 <div class="card">
