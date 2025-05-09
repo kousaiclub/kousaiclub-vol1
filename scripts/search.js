@@ -94,7 +94,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const html = results.length > 0
           ? results.map(m => {
-              const photo = "images/" + m["写真"].split(",")[0].trim();
+              const rawPhoto = m["写真"].split(",")[0].trim();
+              const photo = "images/" + rawPhoto;
               const memberNo = m["会員No"];
               const name = m["氏名"];
               const age = m["年齢"];
@@ -108,7 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
               return `
                 <div class="card">
-                  <div class="card-image" onclick="location.href='member_${memberNo}.html'">
+                  <div class="card-image" onclick="location.href='member${memberNo}.html'">
                     <img src="${photo}" alt="${name}">
                   </div>
                   <div class="card-text">
