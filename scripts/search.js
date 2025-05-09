@@ -70,8 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
       cupTo: getVal("cupTo"),
       hobby: getVal("hobby")
     });
-
-    fetch("https://script.google.com/macros/s/AKfycbwnMJ3PAIMA9JrnTOfd9qY5_cN1Yc0lIgNIBN_6Z3dASZzO9-QV5qcsQ1W-vD41HTsh6A/exec?" + params)
+    fetch("https://script.google.com/macros/s/AKfycbz_nTAqYbxg1UwkUkO4tpkVnoEdtbTFSbqJDJ10yiuvdtOVh6Z8K0UuM_1L983iXo2QKw/exec?" + params)
       .then(res => res.text())
       .then(html => {
         document.querySelector(".search-results").innerHTML = html;
