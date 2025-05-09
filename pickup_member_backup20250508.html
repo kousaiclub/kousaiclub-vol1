@@ -1,159 +1,123 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PRIVATE SHIROKANE - 注目女性会員</title>
-  <link rel="icon" href="images/logo_2.jpg" type="image/jpeg" />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>members_list - PRIVATE SHIROKANE</title>
+  <link rel="icon" href="images/logo_1.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/style.css">
   <style>
     body {
-      margin: 0;
-      padding: 0;
-      background-color: #1c1c1c;
-      color: #f9f9f9;
-      font-family: 'Cormorant Garamond', serif;
+      margin: 0; padding: 0; background-color: #1c1c1c; color: #f9f9f9;
+      font-family: 'Cormorant Garamond', serif; font-size: 14px; line-height: 1.8;
     }
-    header {
-      background-color: #000;
-      padding: 10px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+    .nav-container {
+      display: flex; align-items: center; justify-content: space-between;
+      background-color: rgba(0, 0, 0, 0.6); padding: 5px 20px; font-size: 14px; z-index: 10;
     }
-    header img {
-      height: 40px;
-    }
-    .menu-toggle {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-    }
-    .menu-toggle div {
-      width: 25px;
-      height: 3px;
-      background-color: #f9f9f9;
-      margin: 4px 0;
-    }
-    nav {
-      display: flex;
-      flex-wrap: wrap;
-    }
-    nav a {
-      color: #f9f9f9;
-      text-decoration: none;
-      margin: 0 10px;
-      font-size: 14px;
-    }
-    nav a:hover {
-      text-decoration: underline;
+    .nav-logo img { height: 50px; object-fit: contain; filter: brightness(90%) drop-shadow(0 1px 1px #ccc); }
+    .nav-links { display: flex; gap: 20px; }
+    .nav-links a { color: #f0f0f0; text-decoration: none; }
+    .hamburger { display: none; flex-direction: column; cursor: pointer; }
+    .hamburger span { height: 3px; width: 25px; background: #f9f9f9; margin: 4px 0; }
+    @media screen and (max-width: 768px) {
+      .nav-links { display: none; flex-direction: column; width: 100%; position: absolute;
+        top: 60px; left: 0; background-color: rgba(0, 0, 0, 0.9); padding: 15px; }
+      .nav-links.active { display: flex; }
+      .hamburger { display: flex; }
     }
     .banner {
-      width: 100%;
-      height: 300px;
-      background: url('images/banner_3.png') center/cover no-repeat;
+      background: url('images/banner_3.png') no-repeat left center;
+      background-size: cover; height: 340px;
     }
-    .pickup-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 30px;
-      padding: 40px 20px;
+    .card-container {
+      display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 1%; padding: 20px;
     }
-    .pickup-card {
-      background-color: #2a2a2a;
-      border-radius: 12px;
-      width: 260px;
-      text-align: center;
-      overflow: hidden;
+    .card {
+      width: 22%; background-color: #1c1c1c; border: 1px solid #f9f9f9; border-radius: 12px;
+      margin-bottom: 20px; overflow: hidden;
     }
-    .pickup-card img {
-      width: 100%;
-      height: 300px;
-      object-fit: cover;
-      border-top-left-radius: 12px;
-      border-top-right-radius: 12px;
+    .card-image { position: relative; aspect-ratio: 3 / 4; overflow: hidden; cursor: pointer; }
+    .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0;
+             transition: opacity 0.6s ease-in-out; }
+    .slide.active { opacity: 1; }
+    .slide img { width: 100%; height: 100%; object-fit: cover; }
+    .card-text { padding: 8px; text-align: center; }
+    .favorite-btn { font-size: 18px; color: #FF69B4; cursor: pointer; }
+    .comment { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    @media (max-width: 768px) { .card { width: 48%; } }
+
+    /* Search modal styles */
+    .search-button {
+      margin: 20px; padding: 10px 20px; font-size: 16px; background-color: #444; color: #fff; border: none; cursor: pointer; border-radius: 8px;
     }
-    .pickup-info {
-      padding: 15px;
-      font-size: 15px;
+    .modal {
+      display: none; position: fixed; z-index: 99; left: 0; top: 0; width: 100%; height: 100%; overflow: auto;
+      background-color: rgba(0,0,0,0.8);
     }
-    @media (max-width: 768px) {
-      .menu-toggle {
-        display: flex;
-      }
-      nav {
-        display: none;
-        width: 100%;
-        flex-direction: column;
-      }
-      nav.active {
-        display: flex;
-      }
-      nav a {
-        margin: 10px 0;
-      }
-      .pickup-container {
-        flex-direction: column;
-        align-items: center;
-      }
+    .modal-content {
+      background-color: #2c2c2c; margin: 10% auto; padding: 20px; border: 1px solid #888;
+      width: 90%; max-width: 600px; color: #fff; border-radius: 10px;
     }
+    .close {
+      color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer;
+    }
+    .search-form label { display: block; margin-top: 10px; }
+    .search-form select, .search-form input[type="text"] {
+      width: 100%; padding: 5px; margin-top: 5px; border-radius: 5px; border: none;
+    }
+    .search-results { margin-top: 20px; }
   </style>
-  <script>
-    function toggleMenu() {
-      const nav = document.querySelector('nav');
-      nav.classList.toggle('active');
-    }
-  </script>
 </head>
 <body>
-  <header>
-    <img src="images/logo_1.png" alt="PRIVATE SHIROKANE">
-    <div class="menu-toggle" onclick="toggleMenu()">
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="top.html">Top</a>
-      <a href="guidance_men.html">男性会員入会</a>
-      <a href="guidance_women.html">女性会員入会</a>
-      <a href="system.html">料金・システム</a>
-      <a href="pickup_member.html">注目会員様情報</a>
-      <a href="members_only.html">会員専用Page</a>
-      <a href="https://kousaiclub.jp/contact.html">お問合せ</a>
-    </nav>
-  </header>
-
-  <div class="banner"></div>
-
-  <div class="pickup-container">
-    <div class="pickup-card">
-      <img src="https://i.imgur.com/BWqeNt6.jpeg" alt="藤沢のあ">
-      <div class="pickup-info">
-        <p>No.721 藤沢のあ（19歳）</p>
-        <p>T:173cm</p>
-        <p>B:88cm / W:58cm / H:86cm</p>
-        <p>長身VIP大学生</p>
-      </div>
-    </div>
-    <div class="pickup-card">
-      <img src="https://i.imgur.com/W84FDvL.jpeg" alt="綾瀬はるか">
-      <div class="pickup-info">
-        <p>No.500 綾瀬はるか（33歳）</p>
-        <p>T:160cm</p>
-        <p>B:85(D) / W:60 / H:85</p>
-      </div>
-    </div>
-    <div class="pickup-card">
-      <img src="https://i.imgur.com/ZvYttoT.jpeg" alt="白山かなで">
-      <div class="pickup-info">
-        <p>No.721 白山かなで（30歳）</p>
-        <p>T:157cm</p>
-        <p>B:81(C) / W:56 / H:84</p>
-      </div>
-    </div>
+<header class="nav-container">
+  <div class="nav-logo"><a href="top.html"><img src="images/logo_1.png" alt="PRIVATE SHIROKANE Logo" /></a></div>
+  <nav class="nav-links" id="navLinks">
+    <a href="index.html">Home</a><a href="top.html">Top</a>
+    <a href="guidance_men.html">男性会員入会</a><a href="guidance_women.html">女性会員入会</a>
+    <a href="system.html">料金・システム</a><a href="pickup_member.html">注目会員様情報</a>
+    <a href="members_only.html">会員専用Page</a><a href="contact.html">お問合せ</a>
+  </nav>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
   </div>
+</header>
+<div class="banner"></div>
+
+<!-- Search Button -->
+<button class="search-button" onclick="document.getElementById('searchModal').style.display='block'">🔍 会員検索</button>
+
+<!-- Search Modal -->
+<div id="searchModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="document.getElementById('searchModal').style.display='none'">&times;</span>
+    <h2>条件で検索</h2>
+    <form class="search-form">
+      <label>年齢（From/To）<br><select></select><select></select></label>
+      <label>身長（From/To）<br><select></select><select></select></label>
+      <label>バスト/W/H（From/To）<br><select></select><select></select></label>
+      <label>カップ（From/To）<br><select></select><select></select></label>
+      <label>趣味（部分一致）<br><input type="text"></label>
+    </form>
+    <div class="search-results">※ここに結果が出力されます</div>
+  </div>
+</div>
+
+<div class="card-container">
+<!-- 既存会員カードのブロックがここに来る -->
+</div>
+
+<script>
+function toggleMenu() {
+  document.getElementById("navLinks").classList.toggle("active");
+}
+window.onclick = function(event) {
+  const modal = document.getElementById('searchModal');
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
 </body>
 </html>
