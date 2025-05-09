@@ -1,4 +1,5 @@
-// 【完成・即使用可】search.js：検索フォームのプルダウン自動生成＋検索実行処理
+// 【完成・即使用可】search.js：検索フォームのプルダウン生成＋検索実行処理
+
 document.addEventListener("DOMContentLoaded", () => {
   const fillOptions = (selectId, from, to, step = 1, suffix = "") => {
     const select = document.getElementById(selectId);
@@ -23,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
   fillOptions("heightFrom", 140, 179, 5);
   fillOptions("heightTo", 140, 179, 5);
 
-  // B/W/H
+  // B/W/H (70〜99, 50〜90)
   fillOptions("bustFrom", 70, 99, 5);
   fillOptions("bustTo", 70, 99, 5);
   fillOptions("waistFrom", 50, 90, 5);
@@ -31,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
   fillOptions("hipFrom", 70, 99, 5);
   fillOptions("hipTo", 70, 99, 5);
 
-  // カップ
+  // カップ (A〜J)
   const cups = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
   const fillCupOptions = (selectId) => {
     const select = document.getElementById(selectId);
@@ -51,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
   fillCupOptions("cupFrom");
   fillCupOptions("cupTo");
 
-  // 検索実行ボタンの処理
+  // ✅ 検索ボタンの実行処理
   document.getElementById("searchSubmit")?.addEventListener("click", () => {
     const getVal = id => document.getElementById(id)?.value || "";
     const params = new URLSearchParams({
@@ -70,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
       hobby: getVal("hobby")
     });
 
-    fetch("https://script.google.com/macros/s/AKfycbwAsIfYU_qAN78EXgrfyYrd1dnWMsB7u8b8PWCWYysSOEjcKWRRYRCUM8RycMSjLPiy-w/exec?" + params)
+    fetch("https://script.google.com/macros/s/AKfycbzN5KN3UNJVM2AVPW0WXmVViRnNdXh_-mXHDzj7E4X9zNIerdyAi5GotmN4hurBI6XNAQ/exec?" + params)
       .then(res => res.text())
       .then(html => {
         document.querySelector(".search-results").innerHTML = html;
