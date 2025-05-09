@@ -94,25 +94,25 @@
     <h2>会員検索</h2>
     <form class="search-form">
       <label>年齢（From / To）<br>
-        <select></select> ～ <select></select>
+        <select id="ageFrom"></select> ～ <select id="ageTo"></select>
       </label>
       <label>身長（From / To）<br>
-        <select></select> ～ <select></select>
+        <select id="heightFrom"></select> ～ <select id="heightTo"></select>
       </label>
       <label>B（From / To）<br>
-        <select></select> ～ <select></select>
+        <select id="bustFrom"></select> ～ <select id="bustTo"></select>
       </label>
       <label>W（From / To）<br>
-        <select></select> ～ <select></select>
+        <select id="waistFrom"></select> ～ <select id="waistTo"></select>
       </label>
       <label>H（From / To）<br>
-        <select></select> ～ <select></select>
+        <select id="hipFrom"></select> ～ <select id="hipTo"></select>
       </label>
       <label>Cup（From / To）<br>
-        <select></select> ～ <select></select>
+        <select id="cupFrom"></select> ～ <select id="cupTo"></select>
       </label>
       <label>趣味（部分一致）<br>
-        <input type="text">
+        <input type="text" id="hobby">
       </label>
     </form>
     <div class="search-results">※ここに結果が表示されます</div>
@@ -120,7 +120,7 @@
 </div>
 
 <div class="card-container">
-<!-- 会員カードがここに表示されます -->
+<!-- GAS自動生成の会員カードがここに挿入される -->
 </div>
 
 <script>
@@ -133,6 +133,40 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
+
+function populateSelect(id, from, to, step = 5, suffix = '') {
+  const select = document.getElementById(id);
+  for (let i = from; i <= to; i += step) {
+    const option = document.createElement('option');
+    option.value = i;
+    option.textContent = i + suffix;
+    select.appendChild(option);
+  }
+}
+function populateCups(id) {
+  const cups = 'A B C D E F G H I J'.split(' ');
+  const select = document.getElementById(id);
+  cups.forEach(cup => {
+    const option = document.createElement('option');
+    option.value = cup;
+    option.textContent = cup;
+    select.appendChild(option);
+  });
+}
+window.onload = () => {
+  populateSelect('ageFrom', 18, 50, 5);
+  populateSelect('ageTo', 18, 50, 5);
+  populateSelect('heightFrom', 140, 180, 5, 'cm');
+  populateSelect('heightTo', 140, 180, 5, 'cm');
+  populateSelect('bustFrom', 70, 100, 5, 'cm');
+  populateSelect('bustTo', 70, 100, 5, 'cm');
+  populateSelect('waistFrom', 45, 75, 5, 'cm');
+  populateSelect('waistTo', 45, 75, 5, 'cm');
+  populateSelect('hipFrom', 70, 100, 5, 'cm');
+  populateSelect('hipTo', 70, 100, 5, 'cm');
+  populateCups('cupFrom');
+  populateCups('cupTo');
+};
 </script>
 </body>
 </html>
