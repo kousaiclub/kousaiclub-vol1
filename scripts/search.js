@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     for (let i = from; i <= to; i += step) {
       const opt = document.createElement("option");
       opt.value = i;
-      opt.textContent = ${i}${suffix};
+      opt.textContent = `${i}${suffix}`;
       select.appendChild(opt);
     }
   };
@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
               const comment = m["本人コメント"] || "";
               const heart = isFavorite(memberNo) ? "❤️" : "♡";
 
-              return 
+              return `
                 <div class="card">
                   <div class="card-image" onclick="location.href='member_${memberNo}.html'">
                     <img src="${photo}" alt="${name}">
@@ -119,14 +119,14 @@ document.addEventListener("DOMContentLoaded", () => {
                     <span class="favorite-btn" onclick="toggleFavorite(${memberNo}, this)">${heart}</span>
                   </div>
                 </div>
-              ;
+              `;
             }).join("")
-          : <p style="color:red;">※該当する会員が見つかりません</p>;
+          : `<p style="color:red;">※該当する会員が見つかりません</p>`;
 
         document.querySelector(".search-results").innerHTML = html;
       })
       .catch(err => {
-        document.querySelector(".search-results").innerHTML = <p style="color:red;">検索に失敗しました。</p>;
+        document.querySelector(".search-results").innerHTML = `<p style="color:red;">検索に失敗しました。</p>`;
         console.error(err);
       });
   });
