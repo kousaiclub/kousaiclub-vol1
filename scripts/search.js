@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const html = results.length > 0
           ? results.map(m => {
-              const photo = m["写真"].split(",")[0].trim();
+              const photo = "images/" + m["写真"].split(",")[0].trim();
               const memberNo = m["会員No"];
               const name = m["氏名"];
               const age = m["年齢"];
