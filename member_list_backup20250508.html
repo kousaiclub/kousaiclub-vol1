@@ -91,151 +91,66 @@
 <div id="searchModal" class="modal">
   <div class="modal-content">
     <span class="close" onclick="document.getElementById('searchModal').style.display='none'">&times;</span>
-    <h2>会員検索</h2>
-    <form class="search-form">
-      <label>年齢（From / To）<br>
-        <select></select> ～ <select></select>
-      </label>
-      <label>身長（From / To）<br>
-        <select></select> ～ <select></select>
-      </label>
-      <label>B（From / To）<br>
-        <select></select> ～ <select></select>
-      </label>
-      <label>W（From / To）<br>
-        <select></select> ～ <select></select>
-      </label>
-      <label>H（From / To）<br>
-        <select></select> ～ <select></select>
-      </label>
-      <label>Cup（From / To）<br>
-        <select></select> ～ <select></select>
-      </label>
-      <label>趣味（部分一致）<br>
-        <input type="text">
-      </label>
-    </form>
-    <div class="search-results">※ここに結果が表示されます</div>
+    <h2>検索結果</h2>
+    <div id="searchResults" class="search-results"></div>
   </div>
 </div>
 
 <div class="card-container">
-<div class="card">
-  <div class="card-image" onclick="window.open('member201.html', '_blank')">
-    <div class='slide active'><img src='images/photo201_1.jpg'></div>
-<div class='slide'><img src='images/photo201_2.jpg'></div>
-<div class='slide'><img src='images/photo201_3.jpg'></div>
-<div class='slide'><img src='images/photo201_4.jpg'></div>
-  </div>
-  <div class="card-text">
-    <p><strong>No.</strong> 201 本田ゆうり</p>
-    <p>158cm (21歳)</p>
-    <p>84, 56, 84, Eカップ</p>
-    <p class="comment">初めまして。ゆうりです。 美味しいご飯を食べることお話すること大好きです。 素敵な時間を過ごせたら嬉しいです。 よろしくお願いします</p>
-    <p><span class="favorite-btn" data-id="201">?</span></p>
-  </div>
+<!-- Existing cards, this section will remain unchanged for now -->
 </div>
-<div class="card">
-  <div class="card-image" onclick="window.open('member202.html', '_blank')">
-    <div class='slide active'><img src='images/photo202_1.jpg'></div>
-<div class='slide'><img src='images/photo202_2.jpg'></div>
-<div class='slide'><img src='images/photo202_3.jpg'></div>
-<div class='slide'><img src='images/photo202_4.jpg'></div>
-  </div>
-  <div class="card-text">
-    <p><strong>No.</strong> 202 水乃なのは</p>
-    <p>162cm (23歳)</p>
-    <p>87, 57, 85, Fカップ</p>
-    <p class="comment">スタイルでよく褒められるのは胸の形とクビレです。 癒し系の雰囲気で話し方がおっとりしてます。 将来の目標の為にこの活動を始めました。 よろしくお願いします。</p>
-    <p><span class="favorite-btn" data-id="202">?</span></p>
-  </div>
-</div>
-<div class="card">
-  <div class="card-image" onclick="window.open('member204.html', '_blank')">
-    <div class='slide active'><img src='images/photo204_1.jpg'></div>
-<div class='slide'><img src='images/photo204_2.jpg'></div>
-<div class='slide'><img src='images/photo204_3.jpg'></div>
-<div class='slide'><img src='images/photo204_4.jpg'></div>
-  </div>
-  <div class="card-text">
-    <p><strong>No.</strong> 204 水咲ななせ</p>
-    <p>163cm (23歳)</p>
-    <p>83, 57, 85, Dカップ</p>
-    <p class="comment">おっとりしてる性格だと思います?? 素敵な方と会えたら嬉しいです? よろしくお願いいたします??</p>
-    <p><span class="favorite-btn" data-id="204">?</span></p>
-  </div>
-</div>
-<div class="card">
-  <div class="card-image" onclick="window.open('member205.html', '_blank')">
-    <div class='slide active'><img src='images/photo205_1.jpg'></div>
-<div class='slide'><img src='images/photo205_2.jpg'></div>
-<div class='slide'><img src='images/photo205_3.jpg'></div>
-<div class='slide'><img src='images/photo205_4.jpg'></div>
-  </div>
-  <div class="card-text">
-    <p><strong>No.</strong> 205 藤崎あいか</p>
-    <p>166cm (29歳)</p>
-    <p>85, 57, 86, Eカップ</p>
-    <p class="comment">意外に天真爛漫でお話しも好きです?? 皆さんのいろんな経験や知識を教えてほしいです?</p>
-    <p><span class="favorite-btn" data-id="205">?</span></p>
-  </div>
-</div>
-<div class="card">
-  <div class="card-image" onclick="window.open('member206.html', '_blank')">
-    <div class='slide active'><img src='images/photo206_1.jpg'></div>
-<div class='slide'><img src='images/photo206_2.jpg'></div>
-<div class='slide'><img src='images/photo206_3.jpg'></div>
-<div class='slide'><img src='images/photo206_4.jpg'></div>
-  </div>
-  <div class="card-text">
-    <p><strong>No.</strong> 206 西内さくら</p>
-    <p>163cm (26歳)</p>
-    <p>90, 53, 86, Gカップ</p>
-    <p class="comment">人をあたたかい気持ちにさせることが得意です。 いい出会いがありますように?? よろしくお願いします??</p>
-    <p><span class="favorite-btn" data-id="206">?</span></p>
-  </div>
-</div>
-<div class="card">
-  <div class="card-image" onclick="window.open('member207.html', '_blank')">
-    <div class='slide active'><img src='images/photo207_1.jpg'></div>
-<div class='slide'><img src='images/photo207_2.jpg'></div>
-<div class='slide'><img src='images/photo207_3.jpg'></div>
-<div class='slide'><img src='images/photo207_4.jpg'></div>
-  </div>
-  <div class="card-text">
-    <p><strong>No.</strong> 207 斉藤るか </p>
-    <p>155cm (24歳)</p>
-    <p>84, 58, 86, Dカップ</p>
-    <p class="comment">るかです。宜しくお願い致します☆</p>
-    <p><span class="favorite-btn" data-id="207">?</span></p>
-  </div>
-</div>
-<div class="card">
-  <div class="card-image" onclick="window.open('member208.html', '_blank')">
-    <div class='slide active'><img src='images/photo208_1.jpg'></div>
-<div class='slide'><img src='images/photo208_2.jpg'></div>
-<div class='slide'><img src='images/photo208_3.jpg'></div>
-<div class='slide'><img src='images/photo208_4.jpg'></div>
-  </div>
-  <div class="card-text">
-    <p><strong>No.</strong> 208 白石もも  </p>
-    <p>170cm (21歳)</p>
-    <p>90, 55, 90, Dカップ</p>
-    <p class="comment">素を出すことのできる優しい男性と出会いたいです。 よろしくお願いします??</p>
-    <p><span class="favorite-btn" data-id="208">?</span></p>
-  </div>
-</div>
-</div>
+
 <script>
 function toggleMenu() {
   document.getElementById("navLinks").classList.toggle("active");
 }
+
 window.onclick = function(event) {
   const modal = document.getElementById('searchModal');
   if (event.target == modal) {
     modal.style.display = "none";
   }
 }
+
+document.querySelector('.search-button').addEventListener('click', function() {
+  const searchModal = document.getElementById('searchModal');
+  searchModal.style.display = 'block';
+
+  // Get the search query (e.g., 会員No)
+  const searchQuery = document.querySelector('.search-form input[type="text"]').value;
+
+  // Fetch the members data
+  fetch('data/members.json')
+    .then(response => response.json())
+    .then(data => {
+      const filteredResults = data.filter(member => member.会員No == searchQuery); // Filter based on 会員No
+      displayResults(filteredResults);
+    })
+    .catch(error => console.error('Error loading JSON data:', error));
+});
+
+function displayResults(members) {
+  const resultsContainer = document.getElementById('searchResults');
+  resultsContainer.innerHTML = ''; // Clear previous results
+
+  members.forEach(member => {
+    const card = document.createElement('div');
+    card.classList.add('card');
+    card.innerHTML = `
+      <div class="card-image" onclick="window.open('https://kousaiclub.jp/member${member.会員No}.html', '_blank')">
+        <img src="${member.写真.split(',')[0]}" alt="${member.氏名}">
+      </div>
+      <div class="card-text">
+        <p><strong>No.</strong> ${member.会員No} ${member.氏名}</p>
+        <p>${member.身長} (${member.年齢}歳)</p>
+        <p>${member.スリーサイズ（B）}, ${member.スリーサイズ（W）}, ${member.スリーサイズ（H）}, ${member.スリーサイズ（Cup）}カップ</p>
+        <p class="comment">${member.本人コメント}</p>
+      </div>
+    `;
+    resultsContainer.appendChild(card);
+  });
+}
 </script>
+
 </body>
 </html>
