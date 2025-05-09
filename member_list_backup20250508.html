@@ -1,88 +1,187 @@
-// 【修正対応済・完全版】GAS用：会員一覧HTML生成スクリプト（テンプレ崩れ対策・連結方式）
-function generateMemberListHTML() {
-  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("会員データ");
-  const data = sheet.getDataRange().getValues();
-  const folder = DriveApp.getFolderById("1xC3IoxIHk7U34FhdnxmRwcOkOXmw4PcW");
-  const filename = "member_list.html";
-
-  let html = "";
-  html += '<!DOCTYPE html>\n';
-  html += '<html lang="ja">\n';
-  html += '<head>\n';
-  html += '  <meta charset="UTF-8">\n';
-  html += '  <meta name="viewport" content="width=device-width, initial-scale=1.0">\n';
-  html += '  <title>members_list - PRIVATE SHIROKANE</title>\n';
-  html += '  <link rel="icon" href="images/logo_1.png" type="image/png">\n';
-  html += '  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">\n';
-  html += '  <style>\n';
-  html += '    body { margin:0; padding:0; background:#1c1c1c; color:#f9f9f9; font-family:"Cormorant Garamond",serif; font-size:14px; line-height:1.8; }\n';
-  html += '    .nav-container { display:flex; align-items:center; justify-content:space-between; background:rgba(0,0,0,0.6); padding:5px 20px; font-size:14px; z-index:10; }\n';
-  html += '    .nav-logo img { height:50px; object-fit:contain; filter:brightness(90%) drop-shadow(0 1px 1px #ccc); }\n';
-  html += '    .nav-links { display:flex; gap:20px; }\n';
-  html += '    .nav-links a { color:#f0f0f0; text-decoration:none; }\n';
-  html += '    .hamburger { display:none; flex-direction:column; cursor:pointer; }\n';
-  html += '    .hamburger span { height:3px; width:25px; background:#f9f9f9; margin:4px 0; }\n';
-  html += '    @media screen and (max-width:768px) {\n';
-  html += '      .nav-links { display:none; flex-direction:column; width:100%; position:absolute; top:60px; left:0; background:rgba(0,0,0,0.9); padding:15px; }\n';
-  html += '      .nav-links.active { display:flex; }\n';
-  html += '      .hamburger { display:flex; }\n';
-  html += '    }\n';
-  html += '    .banner { background:url(\'images/banner_3.png\') no-repeat left center; background-size:cover; height:340px; }\n';
-  html += '    .card-container { display:flex; flex-wrap:wrap; justify-content:flex-start; gap:1%; padding:20px; }\n';
-  html += '    .card { width:22%; background:#1c1c1c; border:1px solid #f9f9f9; border-radius:12px; margin-bottom:20px; overflow:hidden; }\n';
-  html += '    .card-image { position:relative; aspect-ratio:3/4; overflow:hidden; cursor:pointer; }\n';
-  html += '    .slide { position:absolute; top:0; left:0; width:100%; height:100%; opacity:0; transition:opacity 0.6s ease-in-out; }\n';
-  html += '    .slide.active { opacity:1; }\n';
-  html += '    .slide img { width:100%; height:100%; object-fit:cover; }\n';
-  html += '    .card-text { padding:8px; text-align:center; }\n';
-  html += '    .favorite-btn { font-size:18px; color:#FF69B4; cursor:pointer; }\n';
-  html += '    .comment { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }\n';
-  html += '    @media (max-width:768px) { .card { width:48%; } }\n';
-  html += '  </style>\n';
-  html += '</head>\n';
-  html += '<body>\n';
-  html += '<header class="nav-container">\n';
-  html += '  <div class="nav-logo"><a href="top.html"><img src="images/logo_1.png" alt="PRIVATE SHIROKANE Logo"></a></div>\n';
-  html += '  <nav class="nav-links" id="navLinks">\n';
-  html += '    <a href="index.html">Home</a><a href="top.html">Top</a><a href="guidance_men.html">男性会員入会</a><a href="guidance_women.html">女性会員入会</a><a href="system.html">料金・システム</a><a href="pickup_member.html">注目会員様情報</a><a href="members_only.html">会員専用Page</a><a href="contact.html">お問合せ</a>\n';
-  html += '  </nav>\n';
-  html += '  <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>\n';
-  html += '</header>\n';
-  html += '<div class="banner"></div>\n';
-  html += '<div class="card-container">\n';
-
-  for (let i = 1; i < data.length; i++) {
-    const row = data[i];
-    const no = row[3]; if (!no) continue;
-    const name = row[4];
-    const b = row[5], cup = row[6], w = row[7], h = row[8];
-    const height = row[9];
-    const age = row[20] ? row[20] : '';
-    const comment = row[16];
-    const photoUrls = row[2] ? row[2].split(',').map(s => s.trim()).filter(x => x) : [];
-    const slides = photoUrls.slice(0, 4).map((_, index) => `<div class='slide${index === 0 ? " active" : ""}'><img src='images/photo${no}_${index + 1}.jpg'></div>`).join("\n");
-
-    html += `<div class="card">
-      <div class="card-image" onclick="window.open('member${no}.html', '_blank')">
-        ${slides}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>members_list - PRIVATE SHIROKANE</title>
+  <link rel="icon" href="images/logo_1.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body { margin: 0; padding: 0; background-color: #1c1c1c; color: #f9f9f9; font-family: 'Cormorant Garamond', serif; font-size: 14px; line-height: 1.8; }
+    .nav-container { display: flex; align-items: center; justify-content: space-between; background-color: rgba(0, 0, 0, 0.6); padding: 5px 20px; font-size: 14px; z-index: 10; }
+    .nav-logo img { height: 50px; object-fit: contain; filter: brightness(90%) drop-shadow(0 1px 1px #ccc); }
+    .nav-links { display: flex; gap: 20px; }
+    .nav-links a { color: #f0f0f0; text-decoration: none; }
+    .hamburger { display: none; flex-direction: column; cursor: pointer; }
+    .hamburger span { height: 3px; width: 25px; background: #f9f9f9; margin: 4px 0; }
+    @media screen and (max-width: 768px) {
+      .nav-links { display: none; flex-direction: column; width: 100%; position: absolute; top: 60px; left: 0; background-color: rgba(0, 0, 0, 0.9); padding: 15px; }
+      .nav-links.active { display: flex; }
+      .hamburger { display: flex; }
+    }
+    .banner { background: url('images/banner_3.png') no-repeat left center; background-size: cover; height: 340px; }
+    .card-container { display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 1%; padding: 20px; }
+    .card { width: 22%; background-color: #1c1c1c; border: 1px solid #f9f9f9; border-radius: 12px; margin-bottom: 20px; overflow: hidden; }
+    .card-image { position: relative; aspect-ratio: 3 / 4; overflow: hidden; cursor: pointer; }
+    .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 0.6s ease-in-out; }
+    .slide.active { opacity: 1; }
+    .slide img { width: 100%; height: 100%; object-fit: cover; }
+    .card-text { padding: 8px; text-align: center; }
+    .favorite-btn { font-size: 18px; color: #FF69B4; cursor: pointer; }
+    .comment { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    @media (max-width: 768px) { .card { width: 48%; } }
+    .search-button { margin: 20px; padding: 10px 20px; font-size: 16px; background-color: #182a69; color: #fff; border: none; cursor: pointer; border-radius: 8px; }
+    .modal { display: none; position: fixed; z-index: 99; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.8); }
+    .modal-content { background-color: #2c2c2c; margin: 5% auto; padding: 20px; border: 1px solid #888; width: 90%; max-width: 600px; color: #fff; border-radius: 10px; }
+    .close { color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
+    .search-form label { display: block; margin-top: 10px; }
+    .search-form select, .search-form input[type="text"] { width: 100%; padding: 5px; margin-top: 5px; border-radius: 5px; border: none; }
+    .search-results { margin-top: 20px; }
+  </style>
+</head>
+<body>
+<header class="nav-container">
+  <div class="nav-logo"><a href="top.html"><img src="images/logo_1.png" alt="PRIVATE SHIROKANE Logo" /></a></div>
+  <nav class="nav-links" id="navLinks">
+    <a href="index.html">Home</a><a href="top.html">Top</a><a href="guidance_men.html">男性会員入会</a><a href="guidance_women.html">女性会員入会</a><a href="system.html">料金・システム</a><a href="pickup_member.html">注目会員様情報</a><a href="members_only.html">会員専用Page</a><a href="contact.html">お問合せ</a>
+  </nav>
+  <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</header>
+<div class="banner"></div>
+<button class="search-button" onclick="document.getElementById('searchModal').style.display='block'">Search</button>
+<div id="searchModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="document.getElementById('searchModal').style.display='none'">&times;</span>
+    <h2>会員検索</h2>
+    <form class="search-form">
+      <label>年齢（From / To）<br><select id="ageFrom"><option value=""></option></select> ～ <select id="ageTo"><option value=""></option></select></label>
+      <label>身長（From / To）<br><select id="heightFrom"><option value=""></option></select> ～ <select id="heightTo"><option value=""></option></select></label>
+      <label>B（From / To）<br><select id="bustFrom"><option value=""></option></select> ～ <select id="bustTo"><option value=""></option></select></label>
+      <label>W（From / To）<br><select id="waistFrom"><option value=""></option></select> ～ <select id="waistTo"><option value=""></option></select></label>
+      <label>H（From / To）<br><select id="hipFrom"><option value=""></option></select> ～ <select id="hipTo"><option value=""></option></select></label>
+      <label>Cup（From / To）<br><select id="cupFrom"><option value=""></option></select> ～ <select id="cupTo"><option value=""></option></select></label>
+      <label>趣味（部分一致）<br><input type="text" id="hobby"></label>
+    </form>
+    <div class="search-results">※ここに結果が表示されます</div>
+  </div>
+</div>
+<div class="card-container">
+<div class="card">
+      <div class="card-image" onclick="window.open('member201.html', '_blank')">
+        <div class='slide active'><img src='images/photo201_1.jpg'></div>
+<div class='slide'><img src='images/photo201_2.jpg'></div>
+<div class='slide'><img src='images/photo201_3.jpg'></div>
+<div class='slide'><img src='images/photo201_4.jpg'></div>
       </div>
       <div class="card-text">
-        <p><strong>No.</strong> ${no} ${name}</p>
-        <p>${height}cm${age ? ` (${age}歳)` : ''}</p>
-        <p>${b}, ${w}, ${h}, ${cup}カップ</p>
-        <p class="comment">${comment}</p>
-        <p><span class="favorite-btn" data-id="${no}">♡</span></p>
+        <p><strong>No.</strong> 201 本田ゆうり</p>
+        <p>158cm (歳)</p>
+        <p>84, 56, 84, Eカップ</p>
+        <p class="comment">初めまして。ゆうりです。 美味しいご飯を食べることお話すること大好きです。 素敵な時間を過ごせたら嬉しいです。 よろしくお願いします</p>
+        <p><span class="favorite-btn" data-id="201">♡</span></p>
       </div>
-    </div>`;
-  }
-
-  html += '</div>\n';
-  html += '<script>\n';
-  html += 'function toggleMenu() { document.getElementById("navLinks").classList.toggle("active"); }\n';
-  html += '</script>\n';
-  html += '</body>\n';
-  html += '</html>\n';
-
-  folder.createFile(filename, html, MimeType.HTML);
-  Logger.log(`✅ 完成HTML出力: ${filename}`);
-}
+    </div><div class="card">
+      <div class="card-image" onclick="window.open('member202.html', '_blank')">
+        <div class='slide active'><img src='images/photo202_1.jpg'></div>
+<div class='slide'><img src='images/photo202_2.jpg'></div>
+<div class='slide'><img src='images/photo202_3.jpg'></div>
+<div class='slide'><img src='images/photo202_4.jpg'></div>
+      </div>
+      <div class="card-text">
+        <p><strong>No.</strong> 202 水乃なのは</p>
+        <p>162cm (歳)</p>
+        <p>87, 57, 85, Fカップ</p>
+        <p class="comment">スタイルでよく褒められるのは胸の形とクビレです。 癒し系の雰囲気で話し方がおっとりしてます。 将来の目標の為にこの活動を始めました。 よろしくお願いします。</p>
+        <p><span class="favorite-btn" data-id="202">♡</span></p>
+      </div>
+    </div><div class="card">
+      <div class="card-image" onclick="window.open('member204.html', '_blank')">
+        <div class='slide active'><img src='images/photo204_1.jpg'></div>
+<div class='slide'><img src='images/photo204_2.jpg'></div>
+<div class='slide'><img src='images/photo204_3.jpg'></div>
+<div class='slide'><img src='images/photo204_4.jpg'></div>
+      </div>
+      <div class="card-text">
+        <p><strong>No.</strong> 204 水咲ななせ</p>
+        <p>163cm (1歳)</p>
+        <p>83, 57, 85, Dカップ</p>
+        <p class="comment">おっとりしてる性格だと思います☺️ 素敵な方と会えたら嬉しいです✨ よろしくお願いいたします☺️</p>
+        <p><span class="favorite-btn" data-id="204">♡</span></p>
+      </div>
+    </div><div class="card">
+      <div class="card-image" onclick="window.open('member205.html', '_blank')">
+        <div class='slide active'><img src='images/photo205_1.jpg'></div>
+<div class='slide'><img src='images/photo205_2.jpg'></div>
+<div class='slide'><img src='images/photo205_3.jpg'></div>
+<div class='slide'><img src='images/photo205_4.jpg'></div>
+      </div>
+      <div class="card-text">
+        <p><strong>No.</strong> 205 藤崎あいか</p>
+        <p>166cm (1歳)</p>
+        <p>85, 57, 86, Eカップ</p>
+        <p class="comment">意外に天真爛漫でお話しも好きです☺️ 皆さんのいろんな経験や知識を教えてほしいです✨</p>
+        <p><span class="favorite-btn" data-id="205">♡</span></p>
+      </div>
+    </div><div class="card">
+      <div class="card-image" onclick="window.open('member206.html', '_blank')">
+        <div class='slide active'><img src='images/photo206_1.jpg'></div>
+<div class='slide'><img src='images/photo206_2.jpg'></div>
+<div class='slide'><img src='images/photo206_3.jpg'></div>
+<div class='slide'><img src='images/photo206_4.jpg'></div>
+      </div>
+      <div class="card-text">
+        <p><strong>No.</strong> 206 西内さくら</p>
+        <p>163cm (1歳)</p>
+        <p>90, 53, 86, Gカップ</p>
+        <p class="comment">人をあたたかい気持ちにさせることが得意です。 いい出会いがありますように⭐️ よろしくお願いします☺️</p>
+        <p><span class="favorite-btn" data-id="206">♡</span></p>
+      </div>
+    </div><div class="card">
+      <div class="card-image" onclick="window.open('member207.html', '_blank')">
+        <div class='slide active'><img src='images/photo207_1.jpg'></div>
+<div class='slide'><img src='images/photo207_2.jpg'></div>
+<div class='slide'><img src='images/photo207_3.jpg'></div>
+<div class='slide'><img src='images/photo207_4.jpg'></div>
+      </div>
+      <div class="card-text">
+        <p><strong>No.</strong> 207 斉藤るか </p>
+        <p>155cm (歳)</p>
+        <p>84, 58, 86, Dカップ</p>
+        <p class="comment">るかです。宜しくお願い致します☆</p>
+        <p><span class="favorite-btn" data-id="207">♡</span></p>
+      </div>
+    </div><div class="card">
+      <div class="card-image" onclick="window.open('member208.html', '_blank')">
+        <div class='slide active'><img src='images/photo208_1.jpg'></div>
+<div class='slide'><img src='images/photo208_2.jpg'></div>
+<div class='slide'><img src='images/photo208_3.jpg'></div>
+<div class='slide'><img src='images/photo208_4.jpg'></div>
+      </div>
+      <div class="card-text">
+        <p><strong>No.</strong> 208 白石もも  </p>
+        <p>170cm (歳)</p>
+        <p>90, 55, 90, Dカップ</p>
+        <p class="comment">素を出すことのできる優しい男性と出会いたいです。 よろしくお願いします☺️</p>
+        <p><span class="favorite-btn" data-id="208">♡</span></p>
+      </div>
+    </div><div class="card">
+      <div class="card-image" onclick="window.open('member208.html', '_blank')">
+        <div class='slide active'><img src='images/photo208_1.jpg'></div>
+<div class='slide'><img src='images/photo208_2.jpg'></div>
+<div class='slide'><img src='images/photo208_3.jpg'></div>
+<div class='slide'><img src='images/photo208_4.jpg'></div>
+      </div>
+      <div class="card-text">
+        <p><strong>No.</strong> 208 橘はる</p>
+        <p>154cm (歳)</p>
+        <p>90, 58, 88, Hカップ</p>
+        <p class="comment">料理が得意です🙌 素敵な方と出会いたいです✨ よろしくお願いいたします😊</p>
+        <p><span class="favorite-btn" data-id="208">♡</span></p>
+      </div>
+    </div></div>
+<script>
+function toggleMenu() { document.getElementById("navLinks").classList.toggle("active"); }
+window.onclick = function(event) { const modal = document.getElementById('searchModal'); if (event.target == modal) { modal.style.display = "none"; } };
+</script>
+</body>
+</html>
