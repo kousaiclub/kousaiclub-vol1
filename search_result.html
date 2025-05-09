@@ -1,49 +1,22 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>会員検索結果 - PRIVATE SHIROKANE</title>
-  <link rel="icon" href="images/logo_1.png" type="image/png" />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles/style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>会員検索 - PRIVATE SHIROKANE</title>
+  <link rel="icon" href="images/logo_1.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/style.css">
   <script src="scripts/search.js" defer></script>
-  <style>
-    .search-button {
-      margin: 20px;
-      padding: 10px 20px;
-      font-size: 16px;
-      background-color: #182a69;
-      color: #fff;
-      border: none;
-      cursor: pointer;
-      border-radius: 8px;
-    }
-    .search-results {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-start;
-      gap: 1%;
-      padding: 20px;
-    }
-  </style>
 </head>
 <body>
 <header class="nav-container">
-  <div class="nav-logo">
-    <a href="top.html">
-      <img src="images/logo_1.png" alt="PRIVATE SHIROKANE Logo" />
-    </a>
-  </div>
+  <div class="nav-logo"><a href="top.html"><img src="images/logo_1.png" alt="PRIVATE SHIROKANE Logo"></a></div>
   <nav class="nav-links" id="navLinks">
-    <a href="index.html">Home</a>
-    <a href="top.html">Top</a>
-    <a href="guidance_men.html">男性会員入会</a>
-    <a href="guidance_women.html">女性会員入会</a>
-    <a href="system.html">料金・システム</a>
-    <a href="pickup_member.html">注目会員様情報</a>
-    <a href="members_only.html">会員専用Page</a>
-    <a href="contact.html">お問合せ</a>
+    <a href="index.html">Home</a><a href="top.html">Top</a>
+    <a href="guidance_men.html">男性会員入会</a><a href="guidance_women.html">女性会員入会</a>
+    <a href="system.html">料金・システム</a><a href="pickup_member.html">注目会員様情報</a>
+    <a href="members_only.html">会員専用Page</a><a href="contact.html">お問合せ</a>
   </nav>
   <div class="hamburger" onclick="toggleMenu()">
     <span></span><span></span><span></span>
@@ -65,9 +38,12 @@
       <label>趣味（部分一致）<br><input type="text" id="hobby"></label>
     </form>
     <button type="button" id="searchSubmit" class="search-button">検索実行</button>
+    <div class="search-results">※ここに結果が表示されます</div>
   </div>
 </div>
-<div class="search-results">※ここに結果が表示されます</div>
+<div class="card-container">
+  <!-- 検索結果がここに描画される -->
+</div>
 <script>
 function toggleMenu() {
   document.getElementById("navLinks").classList.toggle("active");
