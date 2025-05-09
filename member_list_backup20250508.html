@@ -30,6 +30,7 @@
       background: url('images/banner_3.png') no-repeat left center;
       background-size: cover; height: 340px;
     }
+
     .card-container {
       display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 1%; padding: 20px;
     }
@@ -51,6 +52,8 @@
       margin: 20px; padding: 10px 20px; font-size: 16px; background-color: #182a69; color: #fff;
       border: none; cursor: pointer; border-radius: 8px;
     }
+
+    /* Modal (search popup) */
     .modal {
       display: none; position: fixed; z-index: 99; left: 0; top: 0; width: 100%; height: 100%; overflow: auto;
       background-color: rgba(0,0,0,0.8);
@@ -66,7 +69,7 @@
     .search-form select, .search-form input[type="text"] {
       width: 100%; padding: 5px; margin-top: 5px; border-radius: 5px; border: none;
     }
-    .search-results { margin-top: 20px; }
+    .search-results { margin-top: 20px; color: #fff; }
   </style>
 </head>
 <body>
@@ -94,148 +97,111 @@
     <h2>会員検索</h2>
     <form class="search-form">
       <label>年齢（From / To）<br>
-        <select></select> ～ <select></select>
+        <select id="ageFrom"></select> ～ <select id="ageTo"></select>
       </label>
       <label>身長（From / To）<br>
-        <select></select> ～ <select></select>
+        <select id="heightFrom"></select> ～ <select id="heightTo"></select>
       </label>
       <label>B（From / To）<br>
-        <select></select> ～ <select></select>
+        <select id="bustFrom"></select> ～ <select id="bustTo"></select>
       </label>
       <label>W（From / To）<br>
-        <select></select> ～ <select></select>
+        <select id="waistFrom"></select> ～ <select id="waistTo"></select>
       </label>
       <label>H（From / To）<br>
-        <select></select> ～ <select></select>
+        <select id="hipFrom"></select> ～ <select id="hipTo"></select>
       </label>
       <label>Cup（From / To）<br>
-        <select></select> ～ <select></select>
+        <select id="cupFrom"></select> ～ <select id="cupTo"></select>
       </label>
       <label>趣味（部分一致）<br>
-        <input type="text">
+        <input type="text" id="hobby">
       </label>
     </form>
     <div class="search-results">※ここに結果が表示されます</div>
   </div>
 </div>
 
+<!-- 会員情報（固定カード）-->
 <div class="card-container">
-<div class="card">
-  <div class="card-image" onclick="window.open('member201.html', '_blank')">
-    <div class='slide active'><img src='images/photo201_1.jpg'></div>
-<div class='slide'><img src='images/photo201_2.jpg'></div>
-<div class='slide'><img src='images/photo201_3.jpg'></div>
-<div class='slide'><img src='images/photo201_4.jpg'></div>
+  <div class="card">
+    <div class="card-image" onclick="window.open('member201.html', '_blank')">
+      <div class='slide active'><img src='images/photo201_1.jpg'></div>
+      <div class='slide'><img src='images/photo201_2.jpg'></div>
+      <div class='slide'><img src='images/photo201_3.jpg'></div>
+      <div class='slide'><img src='images/photo201_4.jpg'></div>
+    </div>
+    <div class="card-text">
+      <p><strong>No.</strong> 201 本田ゆうり</p>
+      <p>158cm (21歳)</p>
+      <p>84, 56, 84, Eカップ</p>
+      <p class="comment">初めまして。ゆうりです。 美味しいご飯を食べることお話すること大好きです。 素敵な時間を過ごせたら嬉しいです。 よろしくお願いします</p>
+      <p><span class="favorite-btn" data-id="201">?</span></p>
+    </div>
   </div>
-  <div class="card-text">
-    <p><strong>No.</strong> 201 本田ゆうり</p>
-    <p>158cm (21歳)</p>
-    <p>84, 56, 84, Eカップ</p>
-    <p class="comment">初めまして。ゆうりです。 美味しいご飯を食べることお話すること大好きです。 素敵な時間を過ごせたら嬉しいです。 よろしくお願いします</p>
-    <p><span class="favorite-btn" data-id="201">?</span></p>
-  </div>
+  <!-- 同様に他の会員カードもここに追加 -->
 </div>
-<div class="card">
-  <div class="card-image" onclick="window.open('member202.html', '_blank')">
-    <div class='slide active'><img src='images/photo202_1.jpg'></div>
-<div class='slide'><img src='images/photo202_2.jpg'></div>
-<div class='slide'><img src='images/photo202_3.jpg'></div>
-<div class='slide'><img src='images/photo202_4.jpg'></div>
-  </div>
-  <div class="card-text">
-    <p><strong>No.</strong> 202 水乃なのは</p>
-    <p>162cm (23歳)</p>
-    <p>87, 57, 85, Fカップ</p>
-    <p class="comment">スタイルでよく褒められるのは胸の形とクビレです。 癒し系の雰囲気で話し方がおっとりしてます。 将来の目標の為にこの活動を始めました。 よろしくお願いします。</p>
-    <p><span class="favorite-btn" data-id="202">?</span></p>
-  </div>
-</div>
-<div class="card">
-  <div class="card-image" onclick="window.open('member204.html', '_blank')">
-    <div class='slide active'><img src='images/photo204_1.jpg'></div>
-<div class='slide'><img src='images/photo204_2.jpg'></div>
-<div class='slide'><img src='images/photo204_3.jpg'></div>
-<div class='slide'><img src='images/photo204_4.jpg'></div>
-  </div>
-  <div class="card-text">
-    <p><strong>No.</strong> 204 水咲ななせ</p>
-    <p>163cm (23歳)</p>
-    <p>83, 57, 85, Dカップ</p>
-    <p class="comment">おっとりしてる性格だと思います?? 素敵な方と会えたら嬉しいです? よろしくお願いいたします??</p>
-    <p><span class="favorite-btn" data-id="204">?</span></p>
-  </div>
-</div>
-<div class="card">
-  <div class="card-image" onclick="window.open('member205.html', '_blank')">
-    <div class='slide active'><img src='images/photo205_1.jpg'></div>
-<div class='slide'><img src='images/photo205_2.jpg'></div>
-<div class='slide'><img src='images/photo205_3.jpg'></div>
-<div class='slide'><img src='images/photo205_4.jpg'></div>
-  </div>
-  <div class="card-text">
-    <p><strong>No.</strong> 205 藤崎あいか</p>
-    <p>166cm (29歳)</p>
-    <p>85, 57, 86, Eカップ</p>
-    <p class="comment">意外に天真爛漫でお話しも好きです?? 皆さんのいろんな経験や知識を教えてほしいです?</p>
-    <p><span class="favorite-btn" data-id="205">?</span></p>
-  </div>
-</div>
-<div class="card">
-  <div class="card-image" onclick="window.open('member206.html', '_blank')">
-    <div class='slide active'><img src='images/photo206_1.jpg'></div>
-<div class='slide'><img src='images/photo206_2.jpg'></div>
-<div class='slide'><img src='images/photo206_3.jpg'></div>
-<div class='slide'><img src='images/photo206_4.jpg'></div>
-  </div>
-  <div class="card-text">
-    <p><strong>No.</strong> 206 西内さくら</p>
-    <p>163cm (26歳)</p>
-    <p>90, 53, 86, Gカップ</p>
-    <p class="comment">人をあたたかい気持ちにさせることが得意です。 いい出会いがありますように?? よろしくお願いします??</p>
-    <p><span class="favorite-btn" data-id="206">?</span></p>
-  </div>
-</div>
-<div class="card">
-  <div class="card-image" onclick="window.open('member207.html', '_blank')">
-    <div class='slide active'><img src='images/photo207_1.jpg'></div>
-<div class='slide'><img src='images/photo207_2.jpg'></div>
-<div class='slide'><img src='images/photo207_3.jpg'></div>
-<div class='slide'><img src='images/photo207_4.jpg'></div>
-  </div>
-  <div class="card-text">
-    <p><strong>No.</strong> 207 斉藤るか </p>
-    <p>155cm (24歳)</p>
-    <p>84, 58, 86, Dカップ</p>
-    <p class="comment">るかです。宜しくお願い致します☆</p>
-    <p><span class="favorite-btn" data-id="207">?</span></p>
-  </div>
-</div>
-<div class="card">
-  <div class="card-image" onclick="window.open('member208.html', '_blank')">
-    <div class='slide active'><img src='images/photo208_1.jpg'></div>
-<div class='slide'><img src='images/photo208_2.jpg'></div>
-<div class='slide'><img src='images/photo208_3.jpg'></div>
-<div class='slide'><img src='images/photo208_4.jpg'></div>
-  </div>
-  <div class="card-text">
-    <p><strong>No.</strong> 208 白石もも  </p>
-    <p>170cm (21歳)</p>
-    <p>90, 55, 90, Dカップ</p>
-    <p class="comment">素を出すことのできる優しい男性と出会いたいです。 よろしくお願いします??</p>
-    <p><span class="favorite-btn" data-id="208">?</span></p>
-  </div>
-</div>
-</div>
+
 <script>
 function toggleMenu() {
   document.getElementById("navLinks").classList.toggle("active");
 }
+
 window.onclick = function(event) {
   const modal = document.getElementById('searchModal');
   if (event.target == modal) {
     modal.style.display = "none";
   }
+};
+
+// プルダウンメニューに項目を追加する関数
+function populateSelect(id, from, to, step = 5, suffix = '') {
+  const select = document.getElementById(id);
+  if (!select) return;
+  const defaultOption = document.createElement('option');
+  defaultOption.value = "";
+  defaultOption.textContent = '--';
+  select.appendChild(defaultOption);
+  for (let i = from; i <= to; i += step) {
+    const option = document.createElement('option');
+    option.value = i;
+    option.textContent = i + suffix;
+    select.appendChild(option);
+  }
 }
+
+// カップサイズ用のオプションを追加
+function populateCups(id) {
+  const cups = 'A B C D E F G H I J'.split(' ');
+  const select = document.getElementById(id);
+  if (!select) return;
+  const defaultOption = document.createElement('option');
+  defaultOption.value = "";
+  defaultOption.textContent = '--';
+  select.appendChild(defaultOption);
+  cups.forEach(cup => {
+    const option = document.createElement('option');
+    option.value = cup;
+    option.textContent = cup;
+    select.appendChild(option);
+  });
+}
+
+window.onload = () => {
+  populateSelect('ageFrom', 18, 50, 5);
+  populateSelect('ageTo', 18, 50, 5);
+  populateSelect('heightFrom', 140, 180, 5, 'cm');
+  populateSelect('heightTo', 140, 180, 5, 'cm');
+  populateSelect('bustFrom', 70, 100, 5, 'cm');
+  populateSelect('bustTo', 70, 100, 5, 'cm');
+  populateSelect('waistFrom', 45, 75, 5, 'cm');
+  populateSelect('waistTo', 45, 75, 5, 'cm');
+  populateSelect('hipFrom', 70, 100, 5, 'cm');
+  populateSelect('hipTo', 70, 100, 5, 'cm');
+  populateCups('cupFrom');
+  populateCups('cupTo');
+};
 </script>
+
 </body>
 </html>
