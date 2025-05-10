@@ -1,1 +1,16 @@
+<!-- 検索フォーム -->
+<form>
+  年齢（From / To）: 
+  <input type="number" id="ageFrom" /> 〜 <input type="number" id="ageTo" /><br>
+  
+  身長（From / To）: 
+  <input type="number" id="heightFrom" /> 〜 <input type="number" id="heightTo" /><br>
+  
+  趣味（部分一致）: 
+  <input type="text" id="hobby" /><br>
 
+  <button type="button" onclick="search()">検索</button>
+</form>
+
+<!-- 検索結果表示エリア -->
+<div id="searchResults"></div>
