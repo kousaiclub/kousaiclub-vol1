@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>シンプル検索機能</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f4f4f4;
+    }
+    .search-container {
+      margin-bottom: 20px;
+    }
+    .search-button {
+      padding: 10px 20px;
+      background-color: #182a69;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .search-results {
+      margin-top: 20px;
+    }
+    .card {
+      background-color: #fff;
+      padding: 20px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <h1>会員検索</h1>
+  
+  <!-- 検索フォーム -->
+  <div class="search-container">
+    <label for="searchId">会員No: </label>
+    <input type="number" id="searchId" placeholder="会員Noを入力" />
+    <button class="search-button" onclick="search()">検索</button>
+  </div>
+  
+  <!-- 検索結果表示エリア -->
+  <div class="search-results" id="searchResults"></div>
+
+  <script>
+    // 検索関数
+    function search() {
+      const searchId = document.getElementById('searchId').value;
+      // JSONデータを直接貼り付けるか、外部のJSONファイルから取得する方法もあります
+      const data = [
+        { "会員No": 201, "氏名": "本田ゆうり", "身長": 158, "年齢": 21, "スリーサイズ": "84-56-84", "写真": "images/photo201_1.jpg" },
+        { "会員No": 202, "氏名": "水乃なのは", "身長": 162, "年齢": 23, "スリーサイズ": "87-57-85", "写真": "images/photo202_1.jpg" },
+        { "会員No": 203, "氏名": "水咲ななせ", "身長": 163, "年齢": 23, "スリーサイズ": "83-57-85", "写真": "images/photo203_1.jpg" }
+        // 必要に応じて他のデータも追加
+      ];
+
+      // 検索結果をフィルタリング
+      const result = data.filter(member => member["会員No"] == searchId);
+
+      // 結果を表示
+      const resultsContainer = document.getElementById('searchResults');
+      resultsContainer.innerHTML = ""; // 既存の結果をクリア
+
+      if (result.length > 0) {
+        result.forEach(member => {
+          let memberCard = createMemberCard(member);
+          resultsContainer.appendChild(memberCard);
+        });
+      } else {
+        resultsContainer.innerHTML = "該当する会員は見つかりませんでした。";
+      }
+    }
+
+    // 会員カードを生成する関数
+    function createMemberCard(member) {
+      let card = document.createElement('div');
+      card.classList.add('card');
+      card.innerHTML = `
+        <h3>${member["氏名"]}（${member["会員No"]}）</h3>
+        <p>身長: ${member["身長"]}cm</p>
+        <p>年齢: ${member["年齢"]}歳</p>
+        <p>スリーサイズ: ${member["スリーサイズ"]}</p>
+        <img src="${member["写真"]}" alt="${member["氏名"]}" width="150" />
+      `;
+      return card;
+    }
+  </script>
+</body>
+</html>
