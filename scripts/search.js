@@ -1,134 +1,46 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const fillOptions = (id, from, to, step = 1, suffix = "") => {
-    const select = document.getElementById(id);
-    if (!select) return;
-    select.innerHTML = "<option value=''></option>";
-    for (let i = from; i <= to; i += step) {
-      const opt = document.createElement("option");
-      opt.value = i;
-      opt.textContent = `${i}${suffix}`;
-      select.appendChild(opt);
-    }
-  };
+// GitHubからJSONデータを取得
+fetch('https://github.com/username/repository/data/members.json')
+  .then(response => response.json())
+  .then(data => {
+    // 検索条件を取得
+    let searchAgeFrom = document.getElementById('ageFrom').value;
+    let searchAgeTo = document.getElementById('ageTo').value;
+    let searchHeightFrom = document.getElementById('heightFrom').value;
+    let searchHeightTo = document.getElementById('heightTo').value;
 
-  fillOptions("ageFrom", 20, 49, 5);
-  fillOptions("ageTo", 20, 49, 5);
-  fillOptions("heightFrom", 140, 179, 5);
-  fillOptions("heightTo", 140, 179, 5);
-  fillOptions("bustFrom", 70, 99, 5);
-  fillOptions("bustTo", 70, 99, 5);
-  fillOptions("waistFrom", 50, 90, 5);
-  fillOptions("waistTo", 50, 90, 5);
-  fillOptions("hipFrom", 70, 99, 5);
-  fillOptions("hipTo", 70, 99, 5);
-
-  const fillCup = (id) => {
-    const select = document.getElementById(id);
-    if (!select) return;
-    const cups = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
-    select.innerHTML = "<option value=''></option>";
-    cups.forEach(c => {
-      const opt = document.createElement("option");
-      opt.value = c;
-      opt.textContent = c;
-      select.appendChild(opt);
+    // 条件に該当する会員をフィルタリング
+    let filteredMembers = data.filter(member => {
+      return (member.age >= searchAgeFrom && member.age <= searchAgeTo) &&
+             (member.height >= searchHeightFrom && member.height <= searchHeightTo);
     });
-  };
 
-  fillCup("cupFrom");
-  fillCup("cupTo");
-
-  window.toggleFavorite = (memberNo, element) => {
-    const storageKey = "favorites";
-    const favorites = JSON.parse(localStorage.getItem(storageKey) || "[]");
-    const index = favorites.indexOf(memberNo);
-    if (index >= 0) {
-      favorites.splice(index, 1);
-      element.textContent = "♡";
-    } else {
-      favorites.push(memberNo);
-      element.textContent = "❤️";
-    }
-    localStorage.setItem(storageKey, JSON.stringify(favorites));
-  };
-
-  const isFavorite = (memberNo) => {
-    const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
-    return favorites.includes(memberNo);
-  };
-
-  document.getElementById("searchSubmit")?.addEventListener("click", () => {
-    const val = id => document.getElementById(id)?.value.trim();
-
-    fetch("/data/members.json")
-      .then(res => res.json())
-      .then(data => {
-        const results = data.filter(member => {
-          const age = Number(member["年齢"]);
-          const height = Number(member["身長"]);
-          const bust = Number(member["スリーサイズ（B）"]);
-          const waist = Number(member["スリーサイズ（W）"]);
-          const hip = Number(member["スリーサイズ（H）"]);
-          const cup = member["スリーサイズ（Cup）"];
-          const hobby = member["趣味"] || "";
-
-          const inRange = (val, min, max) => !min || !max || (val >= min && val <= max);
-          const inCups = (val, min, max) => {
-            const cupOrder = ["A","B","C","D","E","F","G","H","I","J"];
-            const idx = cupOrder.indexOf(val);
-            return (!min && !max) || 
-                   (idx >= cupOrder.indexOf(min) && idx <= cupOrder.indexOf(max));
-          };
-          const hobbyMatch = val("hobby") === "" || hobby.includes(val("hobby"));
-
-          return (
-            inRange(age, Number(val("ageFrom")), Number(val("ageTo"))) &&
-            inRange(height, Number(val("heightFrom")), Number(val("heightTo"))) &&
-            inRange(bust, Number(val("bustFrom")), Number(val("bustTo"))) &&
-            inRange(waist, Number(val("waistFrom")), Number(val("waistTo"))) &&
-            inRange(hip, Number(val("hipFrom")), Number(val("hipTo"))) &&
-            inCups(cup, val("cupFrom"), val("cupTo")) &&
-            hobbyMatch
-          );
-        });
-
-        const html = results.length > 0
-          ? results.map(m => {
-              const rawPhoto = m["写真"].split(",")[0].trim();
-              const photo = "images/" + rawPhoto;
-              const memberNo = m["会員No"];
-              const name = m["氏名"];
-              const age = m["年齢"];
-              const height = m["身長"];
-              const bust = m["スリーサイズ（B）"];
-              const waist = m["スリーサイズ（W）"];
-              const hip = m["スリーサイズ（H）"];
-              const cup = m["スリーサイズ（Cup）"];
-              const comment = m["本人コメント"] || "";
-              const heart = isFavorite(memberNo) ? "❤️" : "♡";
-
-              return `
-                <div class="card">
-                  <div class="card-image" onclick="location.href='member${memberNo}.html'">
-                    <img src="${photo}" alt="${name}">
-                  </div>
-                  <div class="card-text">
-                    <div class="line1">${memberNo} ${name}</div>
-                    <div class="line2">${height}cm（${age}歳）</div>
-                    <div class="line3">${bust}/${waist}/${hip}（${cup}カップ）</div>
-                    <div class="line4">${comment}</div>
-                    <span class="favorite-btn" onclick="toggleFavorite(${memberNo}, this)">${heart}</span>
-                  </div>
-                </div>
-              `;
-            }).join("")
-          : `<p style="color:red;">※該当する会員が見つかりません</p>`;
-
-        document.querySelector(".search-results").innerHTML = html;
-      })
-      .catch(err => {
-        document.querySelector(".search-results").innerHTML = `<p style="color:red;">検索に失敗しました。</p>`;
-        console.error(err);
-      });
+    // 検索結果を表示
+    const resultsContainer = document.getElementById('searchResults');
+    resultsContainer.innerHTML = ""; // 既存の結果をクリア
+    filteredMembers.forEach(member => {
+      let memberCard = createMemberCard(member); // 会員カードを生成する関数
+      resultsContainer.appendChild(memberCard);
+    });
   });
-});
+
+// 会員カードを生成する関数
+function createMemberCard(member) {
+  let card = document.createElement('div');
+  card.classList.add('card');
+  card.innerHTML = `
+    <div class="card-image" onclick="window.open('member${member.id}.html', '_blank')">
+      <div class='slide active'><img src='images/photo${member.id}_1.jpg'></div>
+      <div class='slide'><img src='images/photo${member.id}_2.jpg'></div>
+      <div class='slide'><img src='images/photo${member.id}_3.jpg'></div>
+      <div class='slide'><img src='images/photo${member.id}_4.jpg'></div>
+    </div>
+    <div class="card-text">
+      <p><strong>No.</strong> ${member.id} ${member.name}</p>
+      <p>${member.height}cm (${member.age}歳)</p>
+      <p>${member.bust}, ${member.waist}, ${member.hip}, ${member.cup}カップ</p>
+      <p class="comment">${member.comment}</p>
+      <p><span class="favorite-btn" data-id="${member.id}">♡</span></p>
+    </div>
+  `;
+  return card;
+}
