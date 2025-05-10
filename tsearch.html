@@ -3,98 +3,91 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>シンプル検索機能</title>
+  <title>members_list - PRIVATE SHIROKANE</title>
+  <link rel="icon" href="images/logo_1.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-      background-color: #f4f4f4;
-    }
-    .search-container {
-      margin-bottom: 20px;
+      margin: 0; padding: 0; background-color: #1c1c1c; color: #f9f9f9;
+      font-family: 'Cormorant Garamond', serif; font-size: 14px; line-height: 1.8;
     }
     .search-button {
-      padding: 10px 20px;
-      background-color: #182a69;
-      color: #fff;
-      border: none;
-      cursor: pointer;
-      font-size: 16px;
+      margin: 20px; padding: 10px 20px; font-size: 16px; background-color: #182a69; color: #fff;
+      border: none; cursor: pointer; border-radius: 8px;
     }
-    .search-results {
-      margin-top: 20px;
+    .search-form input, .search-form select {
+      width: 100%; padding: 5px; margin-top: 5px; border-radius: 5px; border: none;
+    }
+    .search-results { margin-top: 20px; }
+    .card-container {
+      display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 1%; padding: 20px;
     }
     .card {
-      background-color: #fff;
-      padding: 20px;
-      margin-bottom: 10px;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      width: 22%; background-color: #1c1c1c; border: 1px solid #f9f9f9; border-radius: 12px;
+      margin-bottom: 20px; overflow: hidden;
     }
+    .card-image { position: relative; aspect-ratio: 3 / 4; overflow: hidden; cursor: pointer; }
+    .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0;
+             transition: opacity 0.6s ease-in-out; }
+    .slide.active { opacity: 1; }
+    .slide img { width: 100%; height: 100%; object-fit: cover; }
+    .card-text { padding: 8px; text-align: center; }
+    .favorite-btn { font-size: 18px; color: #FF69B4; cursor: pointer; }
+    .comment { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   </style>
 </head>
 <body>
-  <h1>会員検索</h1>
-  
-  <!-- 検索フォーム -->
-  <div class="search-container">
-    <label for="searchId">会員No: </label>
-    <input type="number" id="searchId" placeholder="会員Noを入力" />
-    <button class="search-button" onclick="search()">検索</button>
-  </div>
-  
-  <!-- 検索結果表示エリア -->
-  <div class="search-results" id="searchResults"></div>
 
-  <script>
-    // 検索関数
-    function search() {
-      const searchId = document.getElementById('searchId').value;
-      // JSONデータを直接貼り付けるか、外部のJSONファイルから取得する方法もあります
-      const data = [
-        { "会員No": 201, "氏名": "本田ゆうり", "身長": 158, "年齢": 21, "スリーサイズ": "84-56-84", "写真": "images/photo201_1.jpg" },
-        { "会員No": 202, "氏名": "水乃なのは", "身長": 162, "年齢": 23, "スリーサイズ": "87-57-85", "写真": "images/photo202_1.jpg" },
-        { "会員No": 203, "氏名": "水咲ななせ", "身長": 163, "年齢": 23, "スリーサイズ": "83-57-85", "写真": "images/photo203_1.jpg" }
-        // 必要に応じて他のデータも追加
-      ];
+<!-- 検索フォーム -->
+<form>
+  <label>会員No: <input type="text" id="searchNo" /></label><br>
+  <button class="search-button" type="button" onclick="search()">検索</button>
+</form>
 
+<!-- 検索結果表示エリア -->
+<div id="searchResults"></div>
+
+<!-- 会員情報カード -->
+<div class="card-container">
+  <!-- ここに会員カードが表示されます -->
+</div>
+
+<script>
+// 検索機能
+function search() {
+  let searchNo = document.getElementById('searchNo').value;
+
+  // GitHubからデータを取得
+  fetch('https://raw.githubusercontent.com/kousaiclub-vol1/data/main/members.json')
+    .then(response => response.json())
+    .then(data => {
       // 検索結果をフィルタリング
-      const result = data.filter(member => member["会員No"] == searchId);
+      let filteredMembers = data.filter(member => {
+        return member.会員No == searchNo;  // 会員Noで検索
+      });
 
-      // 結果を表示
+      // 検索結果を表示
       const resultsContainer = document.getElementById('searchResults');
       resultsContainer.innerHTML = ""; // 既存の結果をクリア
-
-      if (result.length > 0) {
-        result.forEach(member => {
-          let memberCard = createMemberCard(member);
+      if (filteredMembers.length > 0) {
+        filteredMembers.forEach(member => {
+          let memberCard = createMemberCard(member); // 会員カードを生成
           resultsContainer.appendChild(memberCard);
         });
       } else {
-        resultsContainer.innerHTML = "該当する会員は見つかりませんでした。";
+        resultsContainer.innerHTML = "該当する会員が見つかりませんでした。";
       }
-    }
+    })
+    .catch(error => console.error("データ取得エラー:", error));
+}
 
-    // 会員カードを生成する関数
-    function createMemberCard(member) {
-      let card = document.createElement('div');
-      card.classList.add('card');
-      card.innerHTML = `
-        <h3>${member["氏名"]}（${member["会員No"]}）</h3>
-        <p>身長: ${member["身長"]}cm</p>
-        <p>年齢: ${member["年齢"]}歳</p>
-        <p>スリーサイズ: ${member["スリーサイズ"]}</p>
-        <img src="${member["写真"]}" alt="${member["氏名"]}" width="150" />
-      `;
-      return card;
-    }
-  </script>
-  // 会員カードを生成する関数
+// 会員カードを生成する関数
 function createMemberCard(member) {
   let card = document.createElement('div');
   card.classList.add('card');
   card.innerHTML = `
     <div class="card-image">
+      <!-- 画像をクリックしたら、個別ページに遷移 -->
       <a href="member${member.会員No}.html" target="_blank">
         <img src="${member.写真.split(',')[0]}" alt="${member.氏名}">
       </a>
@@ -108,5 +101,7 @@ function createMemberCard(member) {
   `;
   return card;
 }
+</script>
+
 </body>
 </html>
