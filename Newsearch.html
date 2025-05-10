@@ -84,10 +84,10 @@ window.onload = () => {
 
 function search() {
   // 検索条件を取得
-  let searchAgeFrom = document.getElementById('ageFrom').value;
-  let searchAgeTo = document.getElementById('ageTo').value;
-  let searchHeightFrom = document.getElementById('heightFrom').value;
-  let searchHeightTo = document.getElementById('heightTo').value;
+  let searchAgeFrom = parseInt(document.getElementById('ageFrom').value, 10);
+  let searchAgeTo = parseInt(document.getElementById('ageTo').value, 10);
+  let searchHeightFrom = parseInt(document.getElementById('heightFrom').value, 10);
+  let searchHeightTo = parseInt(document.getElementById('heightTo').value, 10);
   let searchHobby = document.getElementById('hobby').value;
 
   // GitHubからデータを取得
@@ -95,10 +95,25 @@ function search() {
     .then(response => response.json())
     .then(data => {
       let filteredMembers = data.filter(member => {
-        return (member.年齢 >= searchAgeFrom && member.年齢 <= searchAgeTo) &&
-               (member.身長 >= searchHeightFrom && member.身長 <= searchHeightTo) &&
+        // 年齢と身長を数値に変換して比較
+        let age = parseInt(member.年齢, 10);  // 文字列から数値に変換
+        let height = parseInt(member.身長, 10);  // 文字列から数値に変換
+
+        return (age >= searchAgeFrom && age <= searchAgeTo) &&
+               (height >= searchHeightFrom && height <= searchHeightTo) &&
                (searchHobby === "" || member.趣味.includes(searchHobby));
       });
+
+      const resultsContainer = document.getElementById('searchResults');
+      resultsContainer.innerHTML = ""; // 結果エリアをクリア
+
+      filteredMembers.forEach(member => {
+        let memberCard = createMemberCard(member);
+        resultsContainer.appendChild(memberCard);
+      });
+    })
+    .catch(error => console.error("データ取得エラー:", error));
+}
 
       const resultsContainer = document.getElementById('searchResults');
       resultsContainer.innerHTML = ""; // 結果エリアをクリア
