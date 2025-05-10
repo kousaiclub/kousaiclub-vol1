@@ -1,11 +1,11 @@
 // 検索機能
 function search() {
   // 検索条件を取得
-  let searchAgeFrom = document.getElementById('ageFrom').value;
-  let searchAgeTo = document.getElementById('ageTo').value;
-  let searchHeightFrom = document.getElementById('heightFrom').value;
-  let searchHeightTo = document.getElementById('heightTo').value;
-  let searchHobby = document.getElementById('hobby').value;
+  let searchAgeFrom = parseInt(document.getElementById('ageFrom').value);
+  let searchAgeTo = parseInt(getElementById('ageTo').value);
+  let searchHeightFrom = parseInt(getElementById('heightFrom').value);
+  let searchHeightTo = parseInt(getElementById('heightTo').value);
+  let searchHobby = parseInt(getElementById('hobby').value);
 
   // GitHubからデータを取得
   fetch('https://raw.githubusercontent.com/kousaiclub-vol1/data/main/members.json')
