@@ -1,65 +1,26 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Simple Search</title>
-</head>
-<body>
-
-<!-- 検索フォーム -->
-<form>
-  <label>会員No: <input type="text" id="searchNo" /></label><br>
-  <label>身長: <input type="number" id="searchHeight" /></label><br>
-  <button type="button" onclick="search()">検索</button>
-</form>
-
-<!-- 検索結果表示エリア -->
-<div id="searchResults"></div>
-
-<script>
-// 検索機能
 function search() {
-  let searchNo = document.getElementById('searchNo').value;
-  let searchHeight = document.getElementById('searchHeight').value;
+    let searchNo = document.getElementById('searchNo').value;
+    let searchHeight = document.getElementById('searchHeight').value;
 
-  // GitHubからデータを取得
-  fetch('https://raw.githubusercontent.com/kousaiclub-vol1/data/main/members.json')
-    .then(response => response.json())
-    .then(data => {
-      // 検索結果をフィルタリング
-      let filteredMembers = data.filter(member => {
-        return (member.会員No == searchNo || searchNo === "") &&
-               (member.身長 == searchHeight || searchHeight === "");
-      });
+    fetch('https://raw.githubusercontent.com/kousaiclub-vol1/data/main/members.json')
+        .then(response => response.json())
+        .then(data => {
+            let filteredMembers = data.filter(member => {
+                const noMatch = searchNo !== "" && !String(member.会員No).includes(searchNo);
+                const heightMatch = searchHeight === "" || String(member.身長) === searchHeight; // 完全一致
+                return !noMatch && heightMatch;
+            });
 
-      // 検索結果を表示
-      const resultsContainer = document.getElementById('searchResults');
-      resultsContainer.innerHTML = ""; // 既存の結果をクリア
-      if (filteredMembers.length > 0) {
-        filteredMembers.forEach(member => {
-          let memberCard = createMemberCard(member); // 会員カードを生成
-          resultsContainer.appendChild(memberCard);
-        });
-      } else {
-        resultsContainer.innerHTML = "該当する会員が見つかりませんでした。";
-      }
-    })
-    .catch(error => console.error("データ取得エラー:", error));
+            const resultsContainer = document.getElementById('searchResults');
+            resultsContainer.innerHTML = "";
+            if (filteredMembers.length > 0) {
+                filteredMembers.forEach(member => {
+                    let memberCard = createMemberCard(member);
+                    resultsContainer.appendChild(memberCard);
+                });
+            } else {
+                resultsContainer.innerHTML = "該当する会員が見つかりませんでした。";
+            }
+        })
+        .catch(error => console.error("データ取得エラー:", error));
 }
-
-// 会員カードを生成する関数
-function createMemberCard(member) {
-  let card = document.createElement('div');
-  card.innerHTML = `
-    <p>No. ${member.会員No} ${member.氏名}</p>
-    <p>${member.身長}cm (${member.年齢}歳)</p>
-    <p>${member.スリーサイズ（B）}, ${member.スリーサイズ（W）}, ${member.スリーサイズ（H）}, ${member.スリーサイズ（Cup）}</p>
-    <p>${member.本人コメント}</p>
-  `;
-  return card;
-}
-</script>
-
-</body>
-</html>
