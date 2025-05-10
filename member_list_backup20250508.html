@@ -230,13 +230,15 @@
 function toggleMenu() {
   document.getElementById("navLinks").classList.toggle("active");
 }
+
 window.onclick = function(event) {
   const modal = document.getElementById('searchModal');
   if (event.target == modal) {
     modal.style.display = "none";
   }
-}
-  // プルダウンメニューに項目を追加する関数
+};
+
+// プルダウンメニューに項目を追加する関数
 function populateSelect(id, from, to, step = 5, suffix = '') {
   const select = document.getElementById(id);
   if (!select) return;
@@ -284,5 +286,6 @@ window.onload = () => {
   populateCups('cupTo');
 };
 </script>
+  
 </body>
 </html>
