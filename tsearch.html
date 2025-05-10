@@ -1,50 +1,9 @@
-<!-- 検索フォーム -->
-<form>
-  <label>会員No: <input type="text" id="searchNo" /></label><br>
-  <button class="search-button" type="button" onclick="search()">検索</button>
-</form>
-
-<!-- 検索結果表示エリア -->
-<div id="searchResults"></div>
-
-<!-- 会員情報カード -->
-<div class="card-container">
-  <!-- ここに会員カードが表示されます -->
-</div>
-
-<script>
-// 検索機能
-function search() {
-  let searchNo = document.getElementById('searchNo').value;
-
-  // GitHubからデータを取得
-  fetch('https://raw.githubusercontent.com/kousaiclub-vol1/data/main/members.json')
-    .then(response => response.json())
-    .then(data => {
-      // 検索結果をフィルタリング
-      let filteredMembers = data.filter(member => {
-        return member.会員No == searchNo;  // 会員Noで検索
-      });
-
-      // 検索結果を表示
-      const resultsContainer = document.getElementById('searchResults');
-      resultsContainer.innerHTML = ""; // 既存の結果をクリア
-      if (filteredMembers.length > 0) {
-        filteredMembers.forEach(member => {
-          let memberCard = createMemberCard(member); // 会員カードを生成
-          resultsContainer.appendChild(memberCard);
-        });
-      } else {
-        resultsContainer.innerHTML = "該当する会員が見つかりませんでした。";
-      }
-    })
-    .catch(error => console.error("データ取得エラー:", error));
-}
-
 // 会員カードを生成する関数
 function createMemberCard(member) {
   let card = document.createElement('div');
   card.classList.add('card');
+  
+  // 会員カードの構造
   card.innerHTML = `
     <div class="card-image">
       <!-- 画像をクリックしたら、個別ページに遷移 -->
@@ -61,4 +20,3 @@ function createMemberCard(member) {
   `;
   return card;
 }
-</script>
