@@ -1,26 +1,104 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>members_list - PRIVATE SHIROKANE</title>
+  <link rel="icon" href="images/logo_1.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0; padding: 0; background-color: #1c1c1c; color: #f9f9f9;
+      font-family: 'Cormorant Garamond', serif; font-size: 14px; line-height: 1.8;
+    }
+    .search-button {
+      margin: 20px; padding: 10px 20px; font-size: 16px; background-color: #182a69; color: #fff;
+      border: none; cursor: pointer; border-radius: 8px;
+    }
+    .search-form input, .search-form select {
+      width: 100%; padding: 5px; margin-top: 5px; border-radius: 5px; border: none;
+    }
+    .search-results { margin-top: 20px; }
+    .card-container {
+      display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 1%; padding: 20px;
+    }
+    .card {
+      width: 22%; background-color: #1c1c1c; border: 1px solid #f9f9f9; border-radius: 12px;
+      margin-bottom: 20px; overflow: hidden;
+    }
+    .card-image { position: relative; aspect-ratio: 3 / 4; overflow: hidden; cursor: pointer; }
+    .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0;
+             transition: opacity 0.6s ease-in-out; }
+    .slide.active { opacity: 1; }
+    .slide img { width: 100%; height: 100%; object-fit: cover; }
+    .card-text { padding: 8px; text-align: center; }
+    .favorite-btn { font-size: 18px; color: #FF69B4; cursor: pointer; }
+    .comment { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  </style>
+</head>
+<body>
+
+<!-- 検索フォーム -->
+<form>
+  <label>会員No: <input type="text" id="searchNo" /></label><br>
+  <button class="search-button" type="button" onclick="search()">検索</button>
+</form>
+
+<!-- 検索結果表示エリア -->
+<div id="searchResults"></div>
+
+<!-- 会員情報カード -->
+<div class="card-container">
+  <!-- ここに会員カードが表示されます -->
+</div>
+
+<script>
+// 検索機能
 function search() {
-    let searchNo = document.getElementById('searchNo').value;
-    let searchHeight = document.getElementById('searchHeight').value;
+  let searchNo = document.getElementById('searchNo').value;
 
-    fetch('https://raw.githubusercontent.com/kousaiclub-vol1/data/main/members.json')
-        .then(response => response.json())
-        .then(data => {
-            let filteredMembers = data.filter(member => {
-                const noMatch = searchNo !== "" && !String(member.会員No).includes(searchNo);
-                const heightMatch = searchHeight === "" || String(member.身長) === searchHeight; // 完全一致
-                return !noMatch && heightMatch;
-            });
+  // GitHubからデータを取得
+  fetch('https://raw.githubusercontent.com/kousaiclub-vol1/data/main/members.json')
+    .then(response => response.json())
+    .then(data => {
+      // 検索結果をフィルタリング
+      let filteredMembers = data.filter(member => {
+        return member.会員No == searchNo;  // 会員Noで検索
+      });
 
-            const resultsContainer = document.getElementById('searchResults');
-            resultsContainer.innerHTML = "";
-            if (filteredMembers.length > 0) {
-                filteredMembers.forEach(member => {
-                    let memberCard = createMemberCard(member);
-                    resultsContainer.appendChild(memberCard);
-                });
-            } else {
-                resultsContainer.innerHTML = "該当する会員が見つかりませんでした。";
-            }
-        })
-        .catch(error => console.error("データ取得エラー:", error));
+      // 検索結果を表示
+      const resultsContainer = document.getElementById('searchResults');
+      resultsContainer.innerHTML = ""; // 既存の結果をクリア
+      if (filteredMembers.length > 0) {
+        filteredMembers.forEach(member => {
+          let memberCard = createMemberCard(member); // 会員カードを生成
+          resultsContainer.appendChild(memberCard);
+        });
+      } else {
+        resultsContainer.innerHTML = "該当する会員が見つかりませんでした。";
+      }
+    })
+    .catch(error => console.error("データ取得エラー:", error));
 }
+
+// 会員カードを生成する関数
+function createMemberCard(member) {
+  let card = document.createElement('div');
+  card.classList.add('card');
+  card.innerHTML = ` 
+    <div class="card-image">
+      <img src="${member.写真.split(',')[0]}" alt="${member.氏名}">
+    </div>
+    <div class="card-text">
+      <p><strong>No.</strong> ${member.会員No} ${member.氏名}</p>
+      <p>${member.身長}cm (${member.年齢}歳)</p>
+      <p>${member.スリーサイズ（B）}, ${member.スリーサイズ（W）}, ${member.スリーサイズ（H）}, ${member.スリーサイズ（Cup）}</p>
+      <p class="comment">${member.本人コメント}</p>
+    </div>
+  `;
+  return card;
+}
+</script>
+
+</body>
+</html>
