@@ -89,5 +89,24 @@
       return card;
     }
   </script>
+  // 会員カードを生成する関数
+function createMemberCard(member) {
+  let card = document.createElement('div');
+  card.classList.add('card');
+  card.innerHTML = `
+    <div class="card-image">
+      <a href="member${member.会員No}.html" target="_blank">
+        <img src="${member.写真.split(',')[0]}" alt="${member.氏名}">
+      </a>
+    </div>
+    <div class="card-text">
+      <p><strong>No.</strong> ${member.会員No} ${member.氏名}</p>
+      <p>${member.身長}cm (${member.年齢}歳)</p>
+      <p>${member.スリーサイズ（B）}, ${member.スリーサイズ（W）}, ${member.スリーサイズ（H）}, ${member.スリーサイズ（Cup）}</p>
+      <p class="comment">${member.本人コメント}</p>
+    </div>
+  `;
+  return card;
+}
 </body>
 </html>
