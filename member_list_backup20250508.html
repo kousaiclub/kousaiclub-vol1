@@ -236,6 +236,53 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
+  // プルダウンメニューに項目を追加する関数
+function populateSelect(id, from, to, step = 5, suffix = '') {
+  const select = document.getElementById(id);
+  if (!select) return;
+  const defaultOption = document.createElement('option');
+  defaultOption.value = "";
+  defaultOption.textContent = '--';
+  select.appendChild(defaultOption);
+  for (let i = from; i <= to; i += step) {
+    const option = document.createElement('option');
+    option.value = i;
+    option.textContent = i + suffix;
+    select.appendChild(option);
+  }
+}
+
+// カップサイズ用のオプションを追加
+function populateCups(id) {
+  const cups = 'A B C D E F G H I J'.split(' ');
+  const select = document.getElementById(id);
+  if (!select) return;
+  const defaultOption = document.createElement('option');
+  defaultOption.value = "";
+  defaultOption.textContent = '--';
+  select.appendChild(defaultOption);
+  cups.forEach(cup => {
+    const option = document.createElement('option');
+    option.value = cup;
+    option.textContent = cup;
+    select.appendChild(option);
+  });
+}
+
+window.onload = () => {
+  populateSelect('ageFrom', 18, 50, 5);
+  populateSelect('ageTo', 18, 50, 5);
+  populateSelect('heightFrom', 140, 180, 5, 'cm');
+  populateSelect('heightTo', 140, 180, 5, 'cm');
+  populateSelect('bustFrom', 70, 100, 5, 'cm');
+  populateSelect('bustTo', 70, 100, 5, 'cm');
+  populateSelect('waistFrom', 45, 75, 5, 'cm');
+  populateSelect('waistTo', 45, 75, 5, 'cm');
+  populateSelect('hipFrom', 70, 100, 5, 'cm');
+  populateSelect('hipTo', 70, 100, 5, 'cm');
+  populateCups('cupFrom');
+  populateCups('cupTo');
+};
 </script>
 </body>
 </html>
