@@ -213,6 +213,7 @@ function search() {
   fetch('https://raw.githubusercontent.com/kousaiclub-vol1/data/main/members.json')
     .then(response => response.json())
     .then(data => {
+      console.log("Fetched Data:", data);  // データが取得できているか確認
       // 条件に該当する会員をフィルタリング
 let filteredMembers = data.filter(member => {
   return (member.age >= searchAgeFrom && member.age <= searchAgeTo) &&
