@@ -210,15 +210,15 @@ function search() {
   let searchHobby = document.getElementById('hobby').value;
 
   // GitHubからデータを取得
-  fetch('https://github.com/username/repository/data/members.json')
+  fetch('https://raw.githubusercontent.com/kousaiclub-vol1/data/main/members.json')
     .then(response => response.json())
     .then(data => {
       // 条件に該当する会員をフィルタリング
-      let filteredMembers = data.filter(member => {
-        return (member.age >= searchAgeFrom && member.age <= searchAgeTo) &&
-               (member.height >= searchHeightFrom && member.height <= searchHeightTo) &&
-               (member.hobby.includes(searchHobby));
-      });
+let filteredMembers = data.filter(member => {
+  return (member.age >= searchAgeFrom && member.age <= searchAgeTo) &&
+         (member.height >= searchHeightFrom && member.height <= searchHeightTo) &&
+         (searchHobby === "" || member.hobby.includes(searchHobby));  // hobbyが空の場合は条件を無視
+});
 
       // 検索結果を表示
       const resultsContainer = document.getElementById('searchResults');
