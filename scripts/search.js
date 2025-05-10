@@ -1,5 +1,5 @@
 // GitHubからJSONデータを取得
-fetch('https://github.com/username/repository/data/members.json')
+fetch('https://raw.githubusercontent.com/kousaiclub-vol1/data/main/members.json')
   .then(response => response.json())
   .then(data => {
     // 検索条件を取得
