@@ -57,16 +57,13 @@
 function search() {
   let searchNo = document.getElementById('searchNo').value;
 
-  // GitHubからデータを取得
   fetch('https://raw.githubusercontent.com/kousaiclub-vol1/data/main/members.json')
     .then(response => response.json())
     .then(data => {
-      // 検索結果をフィルタリング
       let filteredMembers = data.filter(member => {
         return member.会員No == searchNo;  // 会員Noで検索
       });
 
-      // 検索結果を表示
       const resultsContainer = document.getElementById('searchResults');
       resultsContainer.innerHTML = ""; // 既存の結果をクリア
       if (filteredMembers.length > 0) {
@@ -87,7 +84,6 @@ function createMemberCard(member) {
   card.classList.add('card');
   card.innerHTML = `
     <div class="card-image">
-      <!-- 画像をクリックしたら、個別ページに遷移 -->
       <a href="member${member.会員No}.html" target="_blank">
         <img src="${member.写真.split(',')[0]}" alt="${member.氏名}">
       </a>
