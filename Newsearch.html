@@ -1,16 +1,136 @@
-<!-- 検索フォーム -->
-<form>
-  年齢（From / To）: 
-  <input type="number" id="ageFrom" /> 〜 <input type="number" id="ageTo" /><br>
-  
-  身長（From / To）: 
-  <input type="number" id="heightFrom" /> 〜 <input type="number" id="heightTo" /><br>
-  
-  趣味（部分一致）: 
-  <input type="text" id="hobby" /><br>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>members_list - PRIVATE SHIROKANE</title>
+  <link rel="icon" href="images/logo_1.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0; padding: 0; background-color: #1c1c1c; color: #f9f9f9;
+      font-family: 'Cormorant Garamond', serif; font-size: 14px; line-height: 1.8;
+    }
+    /* 省略されたCSS部分、必要に応じて調整 */
+    .search-button {
+      margin: 20px; padding: 10px 20px; font-size: 16px; background-color: #182a69; color: #fff;
+      border: none; cursor: pointer; border-radius: 8px;
+    }
+    .modal {
+      display: none; position: fixed; z-index: 99; left: 0; top: 0; width: 100%; height: 100%; overflow: auto;
+      background-color: rgba(0,0,0,0.8);
+    }
+    .modal-content {
+      background-color: #2c2c2c; margin: 5% auto; padding: 20px; border: 1px solid #888;
+      width: 90%; max-width: 600px; color: #fff; border-radius: 10px;
+    }
+    .close {
+      color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer;
+    }
+    .search-results { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 20px; }
+  </style>
+</head>
+<body>
 
-  <button type="button" onclick="search()">検索</button>
-</form>
+<!-- 検索ボタン -->
+<button class="search-button" onclick="document.getElementById('searchModal').style.display='block'">Search</button>
 
-<!-- 検索結果表示エリア -->
+<!-- 検索モーダル -->
+<div id="searchModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="document.getElementById('searchModal').style.display='none'">&times;</span>
+    <h2>会員検索</h2>
+    <form class="search-form">
+      <label>年齢（From / To）<br>
+        <select id="ageFrom"></select> ～ <select id="ageTo"></select>
+      </label>
+      <label>身長（From / To）<br>
+        <select id="heightFrom"></select> ～ <select id="heightTo"></select>
+      </label>
+      <label>趣味（部分一致）<br>
+        <input type="text" id="hobby">
+      </label>
+    </form>
+    <button class="search-button" onclick="search()">検索</button>
+    <div id="searchResults"></div>
+  </div>
+</div>
+
+<!-- 検索結果表示 -->
 <div id="searchResults"></div>
+
+<script>
+// プルダウンメニューに項目を追加する関数
+function populateSelect(id, from, to, step = 5, suffix = '') {
+  const select = document.getElementById(id);
+  const defaultOption = document.createElement('option');
+  defaultOption.value = "";
+  defaultOption.textContent = '--';
+  select.appendChild(defaultOption);
+  for (let i = from; i <= to; i += step) {
+    const option = document.createElement('option');
+    option.value = i;
+    option.textContent = i + suffix;
+    select.appendChild(option);
+  }
+}
+
+window.onload = () => {
+  populateSelect('ageFrom', 18, 50, 5);
+  populateSelect('ageTo', 18, 50, 5);
+  populateSelect('heightFrom', 140, 180, 5, 'cm');
+  populateSelect('heightTo', 140, 180, 5, 'cm');
+};
+
+function search() {
+  // 検索条件を取得
+  let searchAgeFrom = document.getElementById('ageFrom').value;
+  let searchAgeTo = document.getElementById('ageTo').value;
+  let searchHeightFrom = document.getElementById('heightFrom').value;
+  let searchHeightTo = document.getElementById('heightTo').value;
+  let searchHobby = document.getElementById('hobby').value;
+
+  // GitHubからデータを取得
+  fetch('https://raw.githubusercontent.com/kousaiclub-vol1/data/main/members.json')
+    .then(response => response.json())
+    .then(data => {
+      let filteredMembers = data.filter(member => {
+        return (member.年齢 >= searchAgeFrom && member.年齢 <= searchAgeTo) &&
+               (member.身長 >= searchHeightFrom && member.身長 <= searchHeightTo) &&
+               (searchHobby === "" || member.趣味.includes(searchHobby));
+      });
+
+      const resultsContainer = document.getElementById('searchResults');
+      resultsContainer.innerHTML = ""; // 結果エリアをクリア
+
+      filteredMembers.forEach(member => {
+        let memberCard = createMemberCard(member);
+        resultsContainer.appendChild(memberCard);
+      });
+    })
+    .catch(error => console.error("データ取得エラー:", error));
+}
+
+// 会員カードを生成する関数
+function createMemberCard(member) {
+  let card = document.createElement('div');
+  card.classList.add('card');
+  card.innerHTML = `
+    <div class="card-image">
+      <a href="member${member.会員No}.html" target="_blank">
+        <img src="${member.写真.split(',')[0]}" alt="${member.氏名}">
+      </a>
+    </div>
+    <div class="card-text">
+      <p><strong>No.</strong> ${member.会員No} ${member.氏名}</p>
+      <p>${member.身長}cm (${member.年齢}歳)</p>
+      <p>${member.スリーサイズ（B）}, ${member.スリーサイズ（W）}, ${member.スリーサイズ（H）}, ${member.スリーサイズ（Cup）}</p>
+      <p class="comment">${member.本人コメント}</p>
+    </div>
+  `;
+  return card;
+}
+</script>
+
+</body>
+</html>
