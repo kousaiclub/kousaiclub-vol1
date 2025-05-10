@@ -87,10 +87,8 @@ function createMemberCard(member) {
   card.classList.add('card');
   card.innerHTML = `
     <div class="card-image">
-      <!-- 画像をクリックしたら、個別ページに遷移 -->
-      <a href="member${member.会員No}.html" target="_blank">
-        <img src="${member.写真.split(',')[0]}" alt="${member.氏名}">
-      </a>
+      <!-- リンクを外しました -->
+      <img src="${member.写真.split(',')[0]}" alt="${member.氏名}">
     </div>
     <div class="card-text">
       <p><strong>No.</strong> ${member.会員No} ${member.氏名}</p>
