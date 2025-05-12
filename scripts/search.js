@@ -14,9 +14,10 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   async function fetchMembers() {
-    const response = const response = await fetch('/data/members.json');
-    return await response.json();
-  }
+  const response = await fetch('/data/members.json');
+  return await response.json();
+}
+
 
   function getSearchConditions() {
     return {
