@@ -34,13 +34,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function filterMembers(members, query) {
     return members.filter(m => {
-      const age = parseInt(m['年齢']);
-      const height = parseInt(m['身長']);
-      const b = m['スリーサイズ（B）'];
-      const w = m['スリーサイズ（W）'];
-      const h = m['スリーサイズ（H）'];
-      const cup = m['スリーサイズ（Cup）'];
-      const hobby = m['趣味'] || '';
+      const age = parseInt((m['年齢'] || '').trim());
+      const height = parseInt((m['身長'] || '').trim());
+      const b = (m['スリーサイズ（B）'] || '').trim();
+      const w = (m['スリーサイズ（W）'] || '').trim();
+      const h = (m['スリーサイズ（H）'] || '').trim();
+      const cup = (m['スリーサイズ（Cup）'] || '').trim();
+      const hobby = (m['趣味'] || '').trim();
 
       return (
         (!query.ageFrom || age >= query.ageFrom) &&
@@ -129,4 +129,3 @@ function toggleFavorite(el, no) {
   const active = el.classList.toggle('active');
   localStorage.setItem(key, active ? '1' : '0');
 }
-
