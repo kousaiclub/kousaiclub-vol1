@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   async function fetchMembers() {
-    const response = await fetch('/kousaiclub-vol1/data/members.json');
+    const response = const response = await fetch('/data/members.json');
     return await response.json();
   }
 
