@@ -4,14 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>会員検索結果</title>
-  <link rel="stylesheet" href="../style_combined.css" />
-  <script defer src="../scripts/search.js"></script>
+  <link rel="icon" href="images/logo_1.png" type="image/png" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style_combined.css" />
+  <script defer src="scripts/search.js"></script>
   <style>
     body {
       margin: 0;
       background-color: #1c1c1c;
       color: #f9f9f9;
-      font-family: 'UD新ゴ', 'Meiryo', sans-serif;
+      font-family: 'Cormorant Garamond', sans-serif;
     }
 
     .search-wrapper {
@@ -116,6 +118,21 @@
       margin: 20px 0;
     }
 
+    .back-button-wrapper {
+      text-align: center;
+      margin: 40px 0;
+    }
+
+    .back-button-wrapper a {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #f9f9f9;
+      color: #1c1c1c;
+      border-radius: 6px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
     @media (max-width: 600px) {
       .card {
         width: 90%;
@@ -124,6 +141,7 @@
   </style>
 </head>
 <body>
+
   <div class="search-wrapper">
     <form id="searchForm">
       <label>年齢（From / To）</label>
@@ -162,5 +180,11 @@
   </div>
 
   <div id="resultsContainer" class="results"></div>
+
+  <!-- 🔙 会員一覧へ戻るボタン -->
+  <div class="back-button-wrapper">
+    <a href="https://kousaiclub.jp/member_list.html">会員一覧へ戻る</a>
+  </div>
+
 </body>
 </html>
