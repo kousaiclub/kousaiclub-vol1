@@ -24,13 +24,15 @@
       gap: 10px;
       justify-content: center;
     }
-    .search-container input, .search-container button {
+    .search-container select,
+    .search-container input,
+    .search-container button {
       padding: 5px;
       border: none;
       border-radius: 4px;
     }
-    .search-container input {
-      width: 70px;
+    .search-container select {
+      width: 80px;
     }
     .search-container input[type="text"] {
       width: 120px;
@@ -92,28 +94,22 @@
   </style>
 </head>
 <body>
-<div class="search-container">
-<form id="searchForm">
-  年齢:
-  <select id="ageFrom"></select> ～ <select id="ageTo"></select>
-  身長:
-  <select id="heightFrom"></select> ～ <select id="heightTo"></select>
-  B:
-  <select id="bustFrom"></select> ～ <select id="bustTo"></select>
-  W:
-  <select id="waistFrom"></select> ～ <select id="waistTo"></select>
-  H:
-  <select id="hipFrom"></select> ～ <select id="hipTo"></select>
-  Cup:
-  <select id="cupFrom"></select> ～ <select id="cupTo"></select>
-  趣味:
-  <input id="hobby" type="text" placeholder="例：カフェ 美容">
-  <button type="submit">検索</button>
-</form>
-<div id="noResults" style="display:none; color:white; margin-top: 1em;">
-  該当する会員が見つかりませんでした。
-</div>
-<div id="resultsContainer"></div>
+  <div class="search-container">
+    <form id="searchForm">
+      年齢: <select id="ageFrom"></select> ～ <select id="ageTo"></select>
+      身長: <select id="heightFrom"></select> ～ <select id="heightTo"></select>
+      B: <select id="bustFrom"></select> ～ <select id="bustTo"></select>
+      W: <select id="waistFrom"></select> ～ <select id="waistTo"></select>
+      H: <select id="hipFrom"></select> ～ <select id="hipTo"></select>
+      Cup: <select id="cupFrom"></select> ～ <select id="cupTo"></select>
+      趣味: <input id="hobby" type="text" placeholder="例：カフェ 美容">
+      <button type="submit">検索</button>
+    </form>
+  </div>
 
+  <div id="noResults" class="no-results" style="display:none;">
+    該当する会員が見つかりませんでした。
+  </div>
+  <div id="resultsContainer" class="results"></div>
 </body>
 </html>
