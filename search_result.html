@@ -136,6 +136,25 @@
       margin: 20px 0;
     }
 
+    .pagination {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .pagination button {
+      background-color: #f9f9f9;
+      color: #1c1c1c;
+      border: none;
+      padding: 8px 12px;
+      margin: 0 5px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .pagination button.active {
+      background-color: #d0d0d0;
+    }
+
     @media (max-width: 600px) {
       .card {
         width: 90%;
@@ -186,5 +205,6 @@
   </div>
 
   <div id="resultsContainer" class="results"></div>
+  <div id="pagination" class="pagination"></div>
 </body>
 </html>
