@@ -93,19 +93,27 @@
 </head>
 <body>
 <div class="search-container">
-  <form id="searchForm">
-    年齢: <input id="ageFrom" type="number" placeholder="下限"> ～ <input id="ageTo" type="number" placeholder="上限">
-    身長: <input id="heightFrom" type="number" placeholder="下限"> ～ <input id="heightTo" type="number" placeholder="上限">
-    B: <input id="bustFrom" type="number" placeholder="下限"> ～ <input id="bustTo" type="number" placeholder="上限">
-    W: <input id="waistFrom" type="number" placeholder="下限"> ～ <input id="waistTo" type="number" placeholder="上限">
-    H: <input id="hipFrom" type="number" placeholder="下限"> ～ <input id="hipTo" type="number" placeholder="上限">
-    Cup: <input id="cupFrom" type="text" placeholder="例:A"> ～ <input id="cupTo" type="text" placeholder="例:G">
-    趣味: <input id="hobby" type="text" placeholder="例：美容 カフェ">
-    <button type="submit">検索</button>
-  </form>
+<form id="searchForm">
+  年齢:
+  <select id="ageFrom"></select> ～ <select id="ageTo"></select>
+  身長:
+  <select id="heightFrom"></select> ～ <select id="heightTo"></select>
+  B:
+  <select id="bustFrom"></select> ～ <select id="bustTo"></select>
+  W:
+  <select id="waistFrom"></select> ～ <select id="waistTo"></select>
+  H:
+  <select id="hipFrom"></select> ～ <select id="hipTo"></select>
+  Cup:
+  <select id="cupFrom"></select> ～ <select id="cupTo"></select>
+  趣味:
+  <input id="hobby" type="text" placeholder="例：カフェ 美容">
+  <button type="submit">検索</button>
+</form>
+<div id="noResults" style="display:none; color:white; margin-top: 1em;">
+  該当する会員が見つかりませんでした。
 </div>
+<div id="resultsContainer"></div>
 
-  <div class="results" id="resultsContainer"></div>
-  <div id="noResults" class="no-results" style="display: none;">該当する会員が見つかりませんでした。</div>
 </body>
 </html>
