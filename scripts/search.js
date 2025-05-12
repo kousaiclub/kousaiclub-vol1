@@ -21,8 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function populateDropdowns() {
-    populateOptions('ageFrom', 18, 50, 1);
-    populateOptions('ageTo', 18, 50, 1);
+    populateGroupedOptions('ageFrom');
+    populateGroupedOptions('ageTo');
     populateOptions('heightFrom', 140, 180, 5);
     populateOptions('heightTo', 140, 180, 5);
     populateOptions('bustFrom', 70, 110, 5);
@@ -35,8 +35,41 @@ document.addEventListener('DOMContentLoaded', () => {
     populateCupOptions('cupTo');
   }
 
+  function populateGroupedOptions(id) {
+    const select = document.getElementById(id);
+    const groups = [
+      [18, 19],
+      [20, 24],
+      [25, 29],
+      [30, 34],
+      [35, 39],
+      [40, 44],
+      [45, 50],
+    ];
+    const defaultOption = document.createElement('option');
+    defaultOption.value = '';
+    defaultOption.textContent = '';
+    select.appendChild(defaultOption);
+    groups.forEach(([start, end]) => {
+      const option = document.createElement('option');
+      option.value = `${start}-${end}`;
+      option.textContent = `${start}〜${end}`;
+      select.appendChild(option);
+    });
+  }
+
+  function parseAge(value) {
+    if (!value) return null;
+    const [start, end] = value.split('-').map(Number);
+    return { start, end };
+  }
+
   function populateOptions(id, from, to, step) {
     const select = document.getElementById(id);
+    const defaultOption = document.createElement('option');
+    defaultOption.value = '';
+    defaultOption.textContent = '';
+    select.appendChild(defaultOption);
     for (let i = from; i <= to; i += step) {
       const option = document.createElement('option');
       option.value = i;
@@ -47,6 +80,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function populateCupOptions(id) {
     const select = document.getElementById(id);
+    const defaultOption = document.createElement('option');
+    defaultOption.value = '';
+    defaultOption.textContent = '';
+    select.appendChild(defaultOption);
     const cups = ['A','B','C','D','E','F','G','H','I','J'];
     cups.forEach(c => {
       const option = document.createElement('option');
@@ -57,9 +94,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function getSearchConditions() {
+    const ageRangeFrom = parseAge(document.getElementById('ageFrom').value);
+    const ageRangeTo = parseAge(document.getElementById('ageTo').value);
     return {
-      ageFrom: parseInt(document.getElementById('ageFrom').value) || null,
-      ageTo: parseInt(document.getElementById('ageTo').value) || null,
+      ageFrom: ageRangeFrom ? ageRangeFrom.start : null,
+      ageTo: ageRangeTo ? ageRangeTo.end : null,
       heightFrom: parseInt(document.getElementById('heightFrom').value) || null,
       heightTo: parseInt(document.getElementById('heightTo').value) || null,
       bustFrom: parseInt(document.getElementById('bustFrom').value) || null,
