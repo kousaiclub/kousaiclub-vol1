@@ -170,21 +170,32 @@
   </div>
 </div>
 </div>
-<script>
+
+  <script>
 function toggleMenu() {
   document.getElementById("navLinks").classList.toggle("active");
 }
+
+// スライドショー処理（画像が読み込めなかったらスキップ）
 document.querySelectorAll('.card-image').forEach(container => {
-  const slides = container.querySelectorAll('.slide');
+  const slides = Array.from(container.querySelectorAll('.slide'));
+  const validSlides = slides.filter(s => {
+    const img = s.querySelector('img');
+    return img && img.complete && img.naturalHeight !== 0;
+  });
+
+  if (validSlides.length === 0) return;
   let idx = 0;
-  if (slides.length === 1) { slides[0].classList.add('active'); return; }
-  slides[0].classList.add('active');
+  validSlides.forEach(s => s.classList.remove('active'));
+  validSlides[0].classList.add('active');
   setInterval(() => {
-    slides[idx].classList.remove('active');
-    idx = (idx + 1) % slides.length;
-    slides[idx].classList.add('active');
+    validSlides[idx].classList.remove('active');
+    idx = (idx + 1) % validSlides.length;
+    validSlides[idx].classList.add('active');
   }, 3000);
 });
+
+// お気に入りボタン
 document.querySelectorAll('.favorite-btn').forEach(btn => {
   const id = btn.dataset.id;
   if (localStorage.getItem('fav-' + id)) btn.textContent = '❤️';
