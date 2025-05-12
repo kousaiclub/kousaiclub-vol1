@@ -92,7 +92,8 @@
   </style>
 </head>
 <body>
-  <div class="search-container">
+<div class="search-container">
+  <form id="searchForm">
     年齢: <input id="ageFrom" type="number" placeholder="下限"> ～ <input id="ageTo" type="number" placeholder="上限">
     身長: <input id="heightFrom" type="number" placeholder="下限"> ～ <input id="heightTo" type="number" placeholder="上限">
     B: <input id="bustFrom" type="number" placeholder="下限"> ～ <input id="bustTo" type="number" placeholder="上限">
@@ -101,7 +102,8 @@
     Cup: <input id="cupFrom" type="text" placeholder="例:A"> ～ <input id="cupTo" type="text" placeholder="例:G">
     趣味: <input id="hobby" type="text" placeholder="例：美容 カフェ">
     <button type="submit">検索</button>
-  </div>
+  </form>
+</div>
 
   <div class="results" id="resultsContainer"></div>
   <div id="noResults" class="no-results" style="display: none;">該当する会員が見つかりませんでした。</div>
