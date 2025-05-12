@@ -24,10 +24,14 @@ document.addEventListener('DOMContentLoaded', () => {
       ageTo: parseInt(document.getElementById('ageTo').value) || null,
       heightFrom: parseInt(document.getElementById('heightFrom').value) || null,
       heightTo: parseInt(document.getElementById('heightTo').value) || null,
-      bust: document.getElementById('bust').value.trim(),
-      waist: document.getElementById('waist').value.trim(),
-      hip: document.getElementById('hip').value.trim(),
-      cup: document.getElementById('cup').value.trim(),
+      bustFrom: parseInt(document.getElementById('bustFrom').value) || null,
+      bustTo: parseInt(document.getElementById('bustTo').value) || null,
+      waistFrom: parseInt(document.getElementById('waistFrom').value) || null,
+      waistTo: parseInt(document.getElementById('waistTo').value) || null,
+      hipFrom: parseInt(document.getElementById('hipFrom').value) || null,
+      hipTo: parseInt(document.getElementById('hipTo').value) || null,
+      cupFrom: document.getElementById('cupFrom').value.trim(),
+      cupTo: document.getElementById('cupTo').value.trim(),
       hobby: document.getElementById('hobby').value.trim(),
     };
   }
@@ -36,9 +40,9 @@ document.addEventListener('DOMContentLoaded', () => {
     return members.filter(m => {
       const age = parseInt((m['年齢'] || '').trim());
       const height = parseInt((m['身長'] || '').trim());
-      const b = (m['スリーサイズ（B）'] || '').trim();
-      const w = (m['スリーサイズ（W）'] || '').trim();
-      const h = (m['スリーサイズ（H）'] || '').trim();
+      const b = parseInt((m['スリーサイズ（B）'] || '').trim());
+      const w = parseInt((m['スリーサイズ（W）'] || '').trim());
+      const h = parseInt((m['スリーサイズ（H）'] || '').trim());
       const cup = (m['スリーサイズ（Cup）'] || '').trim();
       const hobby = (m['趣味'] || '').trim();
 
@@ -47,10 +51,14 @@ document.addEventListener('DOMContentLoaded', () => {
         (!query.ageTo || age <= query.ageTo) &&
         (!query.heightFrom || height >= query.heightFrom) &&
         (!query.heightTo || height <= query.heightTo) &&
-        (!query.bust || b === query.bust) &&
-        (!query.waist || w === query.waist) &&
-        (!query.hip || h === query.hip) &&
-        (!query.cup || cup === query.cup) &&
+        (!query.bustFrom || b >= query.bustFrom) &&
+        (!query.bustTo || b <= query.bustTo) &&
+        (!query.waistFrom || w >= query.waistFrom) &&
+        (!query.waistTo || w <= query.waistTo) &&
+        (!query.hipFrom || h >= query.hipFrom) &&
+        (!query.hipTo || h <= query.hipTo) &&
+        (!query.cupFrom || cup >= query.cupFrom) &&
+        (!query.cupTo || cup <= query.cupTo) &&
         (!query.hobby || hobby.includes(query.hobby))
       );
     });
@@ -67,23 +75,24 @@ document.addEventListener('DOMContentLoaded', () => {
       // スライド画像作成
       const slideshow = document.createElement('div');
       slideshow.className = 'slideshow';
-      const photos = (m['写真'] || '').split(',').slice(0, 4);
+      const memberNo = m['会員No'].padStart(3, '0');
 
-      photos.forEach((url, idx) => {
+      for (let i = 1; i <= 4; i++) {
         const img = document.createElement('img');
-        img.src = url.trim().replace('open?id=', 'uc?export=view&id=');
-        if (idx === 0) img.classList.add('active');
+        img.src = `/images/photo${memberNo}_${i}.jpg`;
+        img.onerror = () => img.style.display = 'none';
+        if (i === 1) img.classList.add('active');
         slideshow.appendChild(img);
-      });
-
-      if (photos.length > 1) {
-        let index = 0;
-        setInterval(() => {
-          const imgs = slideshow.querySelectorAll('img');
-          imgs.forEach(img => img.classList.remove('active'));
-          imgs[index = (index + 1) % imgs.length].classList.add('active');
-        }, 3000);
       }
+
+      let index = 0;
+      setInterval(() => {
+        const imgs = slideshow.querySelectorAll('img');
+        const visibleImgs = Array.from(imgs).filter(img => img.style.display !== 'none');
+        if (visibleImgs.length <= 1) return;
+        visibleImgs.forEach(img => img.classList.remove('active'));
+        visibleImgs[index = (index + 1) % visibleImgs.length].classList.add('active');
+      }, 3000);
 
       // テキスト部
       const info = document.createElement('div');
