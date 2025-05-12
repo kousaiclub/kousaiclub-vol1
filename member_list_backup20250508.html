@@ -189,17 +189,12 @@ function toggleMenu() {
   document.getElementById("navLinks").classList.toggle("active");
 }
 document.querySelectorAll('.card-image').forEach(container => {
-  const slides = Array.from(container.querySelectorAll('.slide'));
-  const images = slides.map(s => s.querySelector('img')).filter(img => img && img.src && !img.src.endsWith('photo000_4.jpg'));
-  let idx = 0;
-  if (images.length === 0) return;
-  slides.forEach(s => s.classList.remove('active'));
-  images[0].parentElement.classList.add('active');
-  setInterval(() => {
-    images[idx].parentElement.classList.remove('active');
-    idx = (idx + 1) % images.length;
-    images[idx].parentElement.classList.add('active');
-  }, 3000);
+  let slides = Array.from(container.querySelectorAll('.slide'));
+  slides = slides.filter(s => {
+    const img = s.querySelector('img');
+    return img && img.complete && img.naturalHeight !== 0;
+  });
+  ...
 });
 document.querySelectorAll('.favorite-btn').forEach(btn => {
   const id = btn.dataset.id;
