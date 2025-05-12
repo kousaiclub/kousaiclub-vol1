@@ -52,6 +52,26 @@
       margin-top: 10px;
     }
 
+    .search-link-wrapper {
+      text-align: center;
+      margin: 20px;
+    }
+
+    .search-button {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #f9f9f9;
+      color: #1c1c1c;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .search-button:hover {
+      background-color: #e0e0e0;
+    }
+
     .results {
       display: flex;
       flex-wrap: wrap;
@@ -124,6 +144,10 @@
   </style>
 </head>
 <body>
+  <div class="search-link-wrapper">
+    <a href="search_result.html" class="search-button">会員検索はこちら</a>
+  </div>
+
   <div class="search-wrapper">
     <form id="searchForm">
       <label>年齢（From / To）</label>
