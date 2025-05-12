@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const resultsContainer = document.getElementById('resultsContainer');
   const noResults = document.getElementById('noResults');
 
+  populateDropdowns();
+
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const query = getSearchConditions();
@@ -16,6 +18,42 @@ document.addEventListener('DOMContentLoaded', () => {
   async function fetchMembers() {
     const response = await fetch('/data/members.json');
     return await response.json();
+  }
+
+  function populateDropdowns() {
+    populateOptions('ageFrom', 18, 50, 1);
+    populateOptions('ageTo', 18, 50, 1);
+    populateOptions('heightFrom', 140, 180, 5);
+    populateOptions('heightTo', 140, 180, 5);
+    populateOptions('bustFrom', 70, 110, 5);
+    populateOptions('bustTo', 70, 110, 5);
+    populateOptions('waistFrom', 40, 80, 5);
+    populateOptions('waistTo', 40, 80, 5);
+    populateOptions('hipFrom', 70, 110, 5);
+    populateOptions('hipTo', 70, 110, 5);
+    populateCupOptions('cupFrom');
+    populateCupOptions('cupTo');
+  }
+
+  function populateOptions(id, from, to, step) {
+    const select = document.getElementById(id);
+    for (let i = from; i <= to; i += step) {
+      const option = document.createElement('option');
+      option.value = i;
+      option.textContent = i;
+      select.appendChild(option);
+    }
+  }
+
+  function populateCupOptions(id) {
+    const select = document.getElementById(id);
+    const cups = ['A','B','C','D','E','F','G','H','I','J'];
+    cups.forEach(c => {
+      const option = document.createElement('option');
+      option.value = c;
+      option.textContent = c;
+      select.appendChild(option);
+    });
   }
 
   function getSearchConditions() {
@@ -72,7 +110,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const card = document.createElement('div');
       card.className = 'card';
 
-      // スライド画像作成
       const slideshow = document.createElement('div');
       slideshow.className = 'slideshow';
       const memberNo = m['会員No'].padStart(3, '0');
@@ -94,7 +131,6 @@ document.addEventListener('DOMContentLoaded', () => {
         visibleImgs[index = (index + 1) % visibleImgs.length].classList.add('active');
       }, 3000);
 
-      // テキスト部
       const info = document.createElement('div');
       info.className = 'card-text';
       const no = m['会員No'];
@@ -115,7 +151,6 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="heart" onclick="toggleFavorite(this, '${no}')">♥</div>
       `;
 
-      // リンク処理（全体）
       const link = document.createElement('a');
       link.href = `https://kousaiclub.jp/member${no}.html`;
       link.target = '_blank';
@@ -125,7 +160,6 @@ document.addEventListener('DOMContentLoaded', () => {
       card.appendChild(info);
       resultsContainer.appendChild(card);
 
-      // お気に入り状態反映
       if (localStorage.getItem(`fav_${no}`) === '1') {
         info.querySelector('.heart').classList.add('active');
       }
