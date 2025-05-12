@@ -17,12 +17,16 @@
     .search-wrapper {
       padding: 20px;
       background-color: #1c1c1c;
+      display: flex;
+      justify-content: center;
     }
 
     #searchForm {
       display: flex;
       flex-direction: column;
       gap: 10px;
+      width: 100%;
+      max-width: 500px;
     }
 
     #searchForm label {
@@ -107,6 +111,9 @@
 
     @media (max-width: 600px) {
       .card {
+        width: 90%;
+      }
+      #searchForm {
         width: 90%;
       }
     }
