@@ -145,7 +145,11 @@ document.addEventListener('DOMContentLoaded', () => {
     resultsContainer.innerHTML = '';
     noResults.style.display = members.length === 0 ? 'block' : 'none';
 
-    members.forEach(m => {
+    const uniqueMembers = Array.from(
+      new Map(members.map(m => [m['会員No'], m])).values()
+    );
+
+    uniqueMembers.forEach(m => {
       const card = document.createElement('div');
       card.className = 'card';
 
