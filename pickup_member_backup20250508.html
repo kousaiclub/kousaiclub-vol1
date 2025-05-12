@@ -28,12 +28,62 @@
       .pickup-container { flex-direction: column; align-items: center; }
     }
   </style>
-  <script>
-    function toggleMenu() {
-      const nav = document.querySelector('nav');
-      nav.classList.toggle('active');
+<script>
+function toggleMenu() {
+  document.getElementById("navLinks").classList.toggle("active");
+}
+
+document.querySelectorAll('.card-image').forEach(container => {
+  const slides = Array.from(container.querySelectorAll('.slide'));
+  const validSlides = [];
+  let loaded = 0;
+
+  slides.forEach(slide => {
+    const img = slide.querySelector('img');
+    if (!img) {
+      loaded++;
+      return;
     }
-  </script>
+
+    img.onload = () => {
+      validSlides.push(slide);
+      loaded++;
+      if (loaded === slides.length) startSlideshow();
+    };
+    img.onerror = () => {
+      loaded++;
+      if (loaded === slides.length) startSlideshow();
+    };
+  });
+
+  function startSlideshow() {
+    if (validSlides.length === 0) return;
+    let idx = 0;
+    validSlides.forEach(s => s.classList.remove('active'));
+    validSlides[0].classList.add('active');
+    setInterval(() => {
+      validSlides[idx].classList.remove('active');
+      idx = (idx + 1) % validSlides.length;
+      validSlides[idx].classList.add('active');
+    }, 3000);
+  }
+});
+
+document.querySelectorAll('.favorite-btn').forEach(btn => {
+  const id = btn.dataset.id;
+  if (localStorage.getItem('fav-' + id)) btn.textContent = '❤️';
+  btn.addEventListener('click', () => {
+    if (localStorage.getItem('fav-' + id)) {
+      localStorage.removeItem('fav-' + id);
+      btn.textContent = '♡';
+    } else {
+      localStorage.setItem('fav-' + id, '1');
+      btn.textContent = '❤️';
+    }
+  });
+});
+</script>
+
 </head>
 <body>
   <header>
