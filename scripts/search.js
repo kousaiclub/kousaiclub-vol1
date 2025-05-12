@@ -38,13 +38,8 @@ document.addEventListener('DOMContentLoaded', () => {
   function populateGroupedOptions(id) {
     const select = document.getElementById(id);
     const groups = [
-      [18, 19],
-      [20, 24],
-      [25, 29],
-      [30, 34],
-      [35, 39],
-      [40, 44],
-      [45, 50],
+      [18, 19], [20, 24], [25, 29], [30, 34],
+      [35, 39], [40, 44], [45, 50]
     ];
     const defaultOption = document.createElement('option');
     defaultOption.value = '';
