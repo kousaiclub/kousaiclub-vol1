@@ -147,9 +147,19 @@ document.addEventListener('DOMContentLoaded', () => {
     uniqueMembers.forEach(m => {
       const card = document.createElement('div');
       card.className = 'card';
+      card.style.backgroundColor = '#182a69';
+      card.style.borderRadius = '12px';
+      card.style.color = '#f9f9f9';
+      card.style.overflow = 'hidden';
+      card.style.margin = '10px';
+      card.style.width = '280px';
 
       const slideshow = document.createElement('div');
       slideshow.className = 'slideshow';
+      slideshow.style.position = 'relative';
+      slideshow.style.width = '100%';
+      slideshow.style.height = '300px';
+
       const memberNo = m['会員No'].padStart(3, '0');
 
       for (let i = 1; i <= 4; i++) {
@@ -157,6 +167,13 @@ document.addEventListener('DOMContentLoaded', () => {
         img.src = `/images/photo${memberNo}_${i}.jpg`;
         img.onerror = () => img.style.display = 'none';
         if (i === 1) img.classList.add('active');
+        img.style.width = '100%';
+        img.style.height = '300px';
+        img.style.objectFit = 'cover';
+        img.style.position = 'absolute';
+        img.style.top = 0;
+        img.style.left = 0;
+        img.style.display = 'none';
         slideshow.appendChild(img);
       }
 
@@ -171,6 +188,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const info = document.createElement('div');
       info.className = 'card-text';
+      info.style.padding = '10px';
+      info.style.textAlign = 'center';
+
       const no = m['会員No'];
       const name = m['氏名'];
       const age = m['年齢'];
@@ -186,7 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <p>${height}cm (${age}歳）</p>
         <p>${b}/${w}/${h}/${cup}カップ</p>
         <p>${comment}</p>
-        <div class="heart" onclick="toggleFavorite(this, '${no}')">♥</div>
+        <div class="heart" onclick="toggleFavorite(this, '${no}')" style="font-size: 24px; cursor: pointer; color: #ccc;">♥</div>
       `;
 
       const link = document.createElement('a');
@@ -200,6 +220,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (localStorage.getItem(`fav_${no}`) === '1') {
         info.querySelector('.heart').classList.add('active');
+        info.querySelector('.heart').style.color = 'red';
       }
     });
   }
@@ -208,5 +229,6 @@ document.addEventListener('DOMContentLoaded', () => {
 function toggleFavorite(el, no) {
   const key = `fav_${no}`;
   const active = el.classList.toggle('active');
+  el.style.color = active ? 'red' : '#ccc';
   localStorage.setItem(key, active ? '1' : '0');
 }
