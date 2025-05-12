@@ -14,10 +14,9 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   async function fetchMembers() {
-  const response = await fetch('/data/members.json');
-  return await response.json();
-}
-
+    const response = await fetch('/data/members.json');
+    return await response.json();
+  }
 
   function getSearchConditions() {
     return {
@@ -72,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       photos.forEach((url, idx) => {
         const img = document.createElement('img');
-        img.src = url.trim();
+        img.src = url.trim().replace('open?id=', 'uc?export=view&id=');
         if (idx === 0) img.classList.add('active');
         slideshow.appendChild(img);
       });
