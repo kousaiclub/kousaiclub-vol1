@@ -1,75 +1,55 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>members_list - PRIVATE SHIROKANE</title>
-  <link rel="icon" href="images/logo_1.png" type="image/png">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0; padding: 0; background-color: #1c1c1c; color: #f9f9f9;
-      font-family: 'Cormorant Garamond', serif; font-size: 14px; line-height: 1.8;
-    }
-    .nav-container {
-      display: flex; align-items: center; justify-content: space-between;
-      background-color: rgba(0, 0, 0, 0.6); padding: 5px 20px; font-size: 14px; z-index: 10;
-    }
-    .nav-logo img { height: 50px; object-fit: contain; filter: brightness(90%) drop-shadow(0 1px 1px #ccc); }
-    .nav-links { display: flex; gap: 20px; }
-    .nav-links a { color: #f0f0f0; text-decoration: none; }
-    .hamburger { display: none; flex-direction: column; cursor: pointer; }
-    .hamburger span { height: 3px; width: 25px; background: #f9f9f9; margin: 4px 0; }
-    @media screen and (max-width: 768px) {
-      .nav-links { display: none; flex-direction: column; width: 100%; position: absolute;
-        top: 60px; left: 0; background-color: rgba(0, 0, 0, 0.9); padding: 15px; }
-      .nav-links.active { display: flex; }
-      .hamburger { display: flex; }
-    }
-    .banner {
-      background: url('images/banner_3.png') no-repeat left center;
-      background-size: cover; height: 340px;
-    }
-    .card-container {
-      display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 1%; padding: 20px;
-    }
-    .card {
-      width: 22%; background-color: #1c1c1c; border: 1px solid #f9f9f9; border-radius: 12px;
-      margin-bottom: 20px; overflow: hidden;
-    }
-    .card-image { position: relative; aspect-ratio: 3 / 4; overflow: hidden; cursor: pointer; }
-    .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0;
-             transition: opacity 0.6s ease-in-out; }
-    .slide.active { opacity: 1; }
-    .slide img { width: 100%; height: 100%; object-fit: cover; }
-    .card-text { padding: 8px; text-align: center; }
-    .favorite-btn { font-size: 18px; color: #FF69B4; cursor: pointer; }
-    .comment { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    @media (max-width: 768px) { .card { width: 48%; } }
-  </style>
-</head>
-<body>
+<!DOCTYPE html><html lang="ja"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>members_list - Page 1</title>
+<link rel="icon" href="images/logo_1.png" type="image/png">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
+<style>
+body { margin:0;padding:0;background:#1c1c1c;color:#f9f9f9;font-family:'Cormorant Garamond',serif;font-size:14px;line-height:1.8; }
+.nav-container { display:flex;align-items:center;justify-content:space-between;background:#0009;padding:5px 20px; }
+.nav-logo img { height:50px;filter:brightness(90%) drop-shadow(0 1px 1px #ccc); }
+.nav-links { display:flex;gap:20px; }
+.nav-links a { color:#f0f0f0;text-decoration:none; }
+.hamburger { display:none;flex-direction:column;cursor:pointer; }
+.hamburger span { height:3px;width:25px;background:#f9f9f9;margin:4px 0; }
+@media (max-width:768px) {
+  .nav-links { display:none;flex-direction:column;width:100%;position:absolute;top:60px;left:0;background:#000;padding:15px; }
+  .nav-links.active { display:flex; }
+  .hamburger { display:flex; }
+}
+.banner { background:url('images/banner_3.png') no-repeat center center;background-size:cover;height:340px; }
+.search-link-wrapper { text-align:center;margin:20px 0; }
+.search-button { padding:10px 20px;background:#f9f9f9;color:#1c1c1c;border-radius:6px;text-decoration:none;font-weight:bold;font-size:14px; }
+.card-container { display:flex;flex-wrap:wrap;justify-content:flex-start;gap:1%;padding:20px; }
+.card { width:22%;background:#1c1c1c;border:1px solid #f9f9f9;border-radius:12px;margin-bottom:20px;overflow:hidden; }
+.card-image { position:relative;aspect-ratio:3/4;overflow:hidden;cursor:pointer; }
+.slide { position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;transition:opacity 0.6s ease-in-out; }
+.slide.active { opacity:1; }
+.slide img { width:100%;height:100%;object-fit:cover; }
+.card-text { padding:8px;text-align:center; }
+.favorite-btn { font-size:18px;color:#FF69B4;cursor:pointer; }
+.comment { display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;text-overflow:ellipsis; }
+.pagination { text-align:center;margin:20px; }
+.pagination a { color:#f9f9f9;padding:6px 12px;border:1px solid #f9f9f9;border-radius:6px;margin:0 5px;text-decoration:none; }
+.pagination a.current { background:#f9f9f9;color:#1c1c1c;font-weight:bold; }
+@media (max-width:768px) { .card { width:48%; } }
+</style>
+</head><body>
 <header class="nav-container">
-  <div class="nav-logo"><a href="top.html"><img src="images/logo_1.png" alt="PRIVATE SHIROKANE Logo" /></a></div>
+  <div class="nav-logo"><a href="top.html"><img src="images/logo_1.png" alt="PRIVATE SHIROKANE"></a></div>
   <nav class="nav-links" id="navLinks">
     <a href="index.html">Home</a><a href="top.html">Top</a>
     <a href="guidance_men.html">男性会員入会</a><a href="guidance_women.html">女性会員入会</a>
     <a href="system.html">料金・システム</a><a href="pickup_member.html">注目会員様情報</a>
     <a href="members_only.html">会員専用Page</a><a href="contact.html">お問合せ</a>
   </nav>
-  <div class="hamburger" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
-  </div>
+  <div class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('active')"><span></span><span></span><span></span></div>
 </header>
 <div class="banner"></div>
+<div class="search-link-wrapper"><a href="search_result.html" class="search-button">会員検索はこちら</a></div>
 <div class="card-container">
-
 <div class="card">
   <div class="card-image" onclick="window.open('member201.html', '_blank')">
-    <div class='slide active'><img src='images/photo201_1.jpg'></div>
-<div class='slide'><img src='images/photo201_2.jpg'></div>
-<div class='slide'><img src='images/photo201_3.jpg'></div>
-<div class='slide'><img src='images/photo201_4.jpg'></div>
+    <div class='slide active'><img src='images/photo201_1.jpg'></div><div class='slide'><img src='images/photo201_2.jpg'></div><div class='slide'><img src='images/photo201_3.jpg'></div><div class='slide'><img src='images/photo201_4.jpg'></div><div class='slide'><img src='images/photo201_5.jpg'></div>
   </div>
   <div class="card-text">
     <p><strong>No.</strong> 201 本田ゆうり</p>
@@ -81,10 +61,7 @@
 </div>
 <div class="card">
   <div class="card-image" onclick="window.open('member202.html', '_blank')">
-    <div class='slide active'><img src='images/photo202_1.jpg'></div>
-<div class='slide'><img src='images/photo202_2.jpg'></div>
-<div class='slide'><img src='images/photo202_3.jpg'></div>
-<div class='slide'><img src='images/photo202_4.jpg'></div>
+    <div class='slide active'><img src='images/photo202_1.jpg'></div><div class='slide'><img src='images/photo202_2.jpg'></div><div class='slide'><img src='images/photo202_3.jpg'></div><div class='slide'><img src='images/photo202_4.jpg'></div>
   </div>
   <div class="card-text">
     <p><strong>No.</strong> 202 水乃なのは</p>
@@ -96,10 +73,7 @@
 </div>
 <div class="card">
   <div class="card-image" onclick="window.open('member204.html', '_blank')">
-    <div class='slide active'><img src='images/photo204_1.jpg'></div>
-<div class='slide'><img src='images/photo204_2.jpg'></div>
-<div class='slide'><img src='images/photo204_3.jpg'></div>
-<div class='slide'><img src='images/photo204_4.jpg'></div>
+    <div class='slide active'><img src='images/photo204_1.jpg'></div><div class='slide'><img src='images/photo204_2.jpg'></div><div class='slide'><img src='images/photo204_3.jpg'></div><div class='slide'><img src='images/photo204_4.jpg'></div><div class='slide'><img src='images/photo204_5.jpg'></div>
   </div>
   <div class="card-text">
     <p><strong>No.</strong> 204 水咲ななせ</p>
@@ -111,10 +85,7 @@
 </div>
 <div class="card">
   <div class="card-image" onclick="window.open('member205.html', '_blank')">
-    <div class='slide active'><img src='images/photo205_1.jpg'></div>
-<div class='slide'><img src='images/photo205_2.jpg'></div>
-<div class='slide'><img src='images/photo205_3.jpg'></div>
-<div class='slide'><img src='images/photo205_4.jpg'></div>
+    <div class='slide active'><img src='images/photo205_1.jpg'></div><div class='slide'><img src='images/photo205_2.jpg'></div><div class='slide'><img src='images/photo205_3.jpg'></div><div class='slide'><img src='images/photo205_4.jpg'></div><div class='slide'><img src='images/photo205_5.jpg'></div>
   </div>
   <div class="card-text">
     <p><strong>No.</strong> 205 藤崎あいか</p>
@@ -126,10 +97,7 @@
 </div>
 <div class="card">
   <div class="card-image" onclick="window.open('member206.html', '_blank')">
-    <div class='slide active'><img src='images/photo206_1.jpg'></div>
-<div class='slide'><img src='images/photo206_2.jpg'></div>
-<div class='slide'><img src='images/photo206_3.jpg'></div>
-<div class='slide'><img src='images/photo206_4.jpg'></div>
+    <div class='slide active'><img src='images/photo206_1.jpg'></div><div class='slide'><img src='images/photo206_2.jpg'></div><div class='slide'><img src='images/photo206_3.jpg'></div><div class='slide'><img src='images/photo206_4.jpg'></div><div class='slide'><img src='images/photo206_5.jpg'></div>
   </div>
   <div class="card-text">
     <p><strong>No.</strong> 206 西内さくら</p>
@@ -141,10 +109,7 @@
 </div>
 <div class="card">
   <div class="card-image" onclick="window.open('member207.html', '_blank')">
-    <div class='slide active'><img src='images/photo207_1.jpg'></div>
-<div class='slide'><img src='images/photo207_2.jpg'></div>
-<div class='slide'><img src='images/photo207_3.jpg'></div>
-<div class='slide'><img src='images/photo207_4.jpg'></div>
+    <div class='slide active'><img src='images/photo207_1.jpg'></div><div class='slide'><img src='images/photo207_2.jpg'></div><div class='slide'><img src='images/photo207_3.jpg'></div><div class='slide'><img src='images/photo207_4.jpg'></div><div class='slide'><img src='images/photo207_5.jpg'></div>
   </div>
   <div class="card-text">
     <p><strong>No.</strong> 207 斉藤るか </p>
@@ -156,10 +121,7 @@
 </div>
 <div class="card">
   <div class="card-image" onclick="window.open('member208.html', '_blank')">
-    <div class='slide active'><img src='images/photo208_1.jpg'></div>
-<div class='slide'><img src='images/photo208_2.jpg'></div>
-<div class='slide'><img src='images/photo208_3.jpg'></div>
-<div class='slide'><img src='images/photo208_4.jpg'></div>
+    <div class='slide active'><img src='images/photo208_1.jpg'></div><div class='slide'><img src='images/photo208_2.jpg'></div><div class='slide'><img src='images/photo208_3.jpg'></div><div class='slide'><img src='images/photo208_4.jpg'></div><div class='slide'><img src='images/photo208_5.jpg'></div>
   </div>
   <div class="card-text">
     <p><strong>No.</strong> 208 白石もも  </p>
@@ -169,33 +131,29 @@
     <p><span class="favorite-btn" data-id="208">♡</span></p>
   </div>
 </div>
-</div>
-
-  <script>
-function toggleMenu() {
-  document.getElementById("navLinks").classList.toggle("active");
-}
-
-// スライドショー処理（画像が読み込めなかったらスキップ）
+<div class="card">
+  <div class="card-image" onclick="window.open('member209.html', '_blank')">
+    <div class='slide active'><img src='images/photo209_1.jpg'></div><div class='slide'><img src='images/photo209_2.jpg'></div><div class='slide'><img src='images/photo209_3.jpg'></div><div class='slide'><img src='images/photo209_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 209 橘はる</p>
+    <p>154cm (25歳)</p>
+    <p>90, 58, 88, Hカップ</p>
+    <p class="comment">料理が得意です🙌 素敵な方と出会いたいです✨ よろしくお願いいたします😊</p>
+    <p><span class="favorite-btn" data-id="209">♡</span></p>
+  </div>
+</div></div><div class="pagination"><a href="member_list_page1.html" class="current">1</a></div><script>
 document.querySelectorAll('.card-image').forEach(container => {
   const slides = Array.from(container.querySelectorAll('.slide'));
-  const validSlides = slides.filter(s => {
-    const img = s.querySelector('img');
-    return img && img.complete && img.naturalHeight !== 0;
-  });
-
-  if (validSlides.length === 0) return;
+  if (slides.length <= 1) return;
   let idx = 0;
-  validSlides.forEach(s => s.classList.remove('active'));
-  validSlides[0].classList.add('active');
+  slides[0].classList.add('active');
   setInterval(() => {
-    validSlides[idx].classList.remove('active');
-    idx = (idx + 1) % validSlides.length;
-    validSlides[idx].classList.add('active');
+    slides[idx].classList.remove('active');
+    idx = (idx + 1) % slides.length;
+    slides[idx].classList.add('active');
   }, 3000);
 });
-
-// お気に入りボタン
 document.querySelectorAll('.favorite-btn').forEach(btn => {
   const id = btn.dataset.id;
   if (localStorage.getItem('fav-' + id)) btn.textContent = '❤️';
@@ -209,6 +167,4 @@ document.querySelectorAll('.favorite-btn').forEach(btn => {
     }
   });
 });
-</script>
-</body>
-</html>
+</script></body></html>
