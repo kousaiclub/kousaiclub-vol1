@@ -11,7 +11,7 @@
       margin: 0;
       background-color: #1c1c1c;
       color: #f9f9f9;
-      font-family: 'UD新ゴ', sans-serif;
+      font-family: 'UD新ゴ', 'Meiryo', sans-serif;
     }
 
     .search-wrapper {
@@ -26,7 +26,7 @@
       flex-direction: column;
       gap: 10px;
       width: 100%;
-      max-width: 500px;
+      max-width: 400px;
     }
 
     #searchForm label {
@@ -41,7 +41,7 @@
       border: none;
       border-radius: 4px;
       font-size: 14px;
-      font-family: 'UD新ゴ', sans-serif;
+      font-family: 'UD新ゴ', 'Meiryo', sans-serif;
     }
 
     #searchForm button {
@@ -62,7 +62,8 @@
     .card {
       width: 280px;
       margin: 10px;
-      background-color: #182a69;
+      background-color: transparent;
+      border: 1px solid #f9f9f9;
       border-radius: 12px;
       overflow: hidden;
       color: #f9f9f9;
@@ -72,6 +73,7 @@
       position: relative;
       width: 100%;
       height: 300px;
+      background-color: #000;
     }
 
     .slideshow img {
@@ -91,12 +93,17 @@
     .card-text {
       padding: 10px;
       text-align: center;
+      position: relative;
     }
 
     .heart {
       font-size: 24px;
       cursor: pointer;
       color: #ccc;
+      position: absolute;
+      bottom: 5px;
+      left: 50%;
+      transform: translateX(-50%);
     }
 
     .heart.active {
@@ -113,14 +120,10 @@
       .card {
         width: 90%;
       }
-      #searchForm {
-        width: 90%;
-      }
     }
   </style>
 </head>
 <body>
-
   <div class="search-wrapper">
     <form id="searchForm">
       <label>年齢（From / To）</label>
@@ -159,6 +162,5 @@
   </div>
 
   <div id="resultsContainer" class="results"></div>
-
 </body>
 </html>
