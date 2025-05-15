@@ -90,12 +90,16 @@
     }
     .line-link {
       text-align: center;
-      margin-top: 10px;
-      font-size: 14px;
+      margin-top: 30px;
+    }
+    .line-link p {
+      font-size: 16px;
+      color: #f9f9f9;
+      margin-bottom: 10px;
     }
     .line-link a {
       color: #00ff00;
-      text-decoration: none;
+      text-decoration: underline;
     }
     @media screen and (max-width: 768px) {
       nav {
@@ -155,9 +159,17 @@
       <textarea name="message" placeholder="お問合せ内容（必須）" required></textarea>
       <button type="submit" class="submit-btn">送信 ▶</button>
     </form>
+
     <div class="line-link">
-      LINEでのお問合せはこちら → <a href="#">LINE公式アカウント</a>
+      <p>
+        LINEでのお問合せはこちら →
+        <a href="https://lin.ee/TL18EfE" target="_blank" rel="noopener noreferrer">LINE公式アカウント</a>
+      </p>
+      <a href="https://lin.ee/TL18EfE" target="_blank" rel="noopener noreferrer">
+        <img src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" alt="友だち追加" height="36" border="0">
+      </a>
     </div>
+
   </div>
 
   <script>
