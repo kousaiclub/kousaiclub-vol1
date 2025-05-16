@@ -1,34 +1,116 @@
+function generateMemberCards_1_2() {
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('会員データ');
+  const data = sheet.getDataRange().getValues();
+  const folder = DriveApp.getFolderById('1xC3IoxIHk7U34FhdnxmRwcOkOXmw4PcW'); // 保存先Driveフォルダ
+
+  for (let i = 1; i < data.length; i++) {
+    const row = data[i];
+    const memberNo = String(row[3]).padStart(3, '0');
+    const name = row[4];
+    const b = row[5], cup = row[6], w = row[7], h = row[8];
+    const height = row[9];
+    const hobby = row[10], character = row[11];
+    const smoke = row[12], drink = row[13];
+    const cost = row[14], dateFee = row[15];
+    const comment = row[16], staffComment = row[17];
+    const age = row[19];
+    const photoUrls = row[2] ? row[2].split(',').map(s => s.trim()) : [];
+
+    let slideHtml = '';
+    const validUrls = photoUrls.slice(0, 4);
+    validUrls.forEach((url, index) => {
+      slideHtml += `<div class="slide${index === 0 ? ' active' : ''}"><img src="images/photo${memberNo}_${index + 1}.jpg"></div>\n`;
+    });
+
+    const html = `
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>member319 - PRIVATE SHIROKANE</title>
-  <link rel="icon" href="images/logo_1.png">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>member${memberNo} - PRIVATE SHIROKANE</title>
+  <link rel="icon" href="images/logo_1.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      background-color: #1c1c1c;
+      color: #f9f9f9;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 15px;
+    }
+    .container {
+      padding: 20px;
+    }
+    .slider {
+      position: relative;
+      width: 100%;
+      max-width: 480px;
+      height: 640px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    .slide.active {
+      opacity: 1;
+    }
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    .info {
+      max-width: 480px;
+      margin: 20px auto;
+    }
+    .info p {
+      margin: 8px 0;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
-    <div class="slider" id="slider"><div class="slide" style="display:block;"><img src="images/photo319_1.jpg" /></div>
-<div class="slide"><img src="images/photo319_2.jpg" /></div>
-<div class="slide"><img src="images/photo319_3.jpg" /></div>
-<div class="slide"><img src="images/photo319_4.jpg" /></div>
-</div>
+    <div class="slider" id="slider">
+      ${slideHtml}
+    </div>
     <div class="info">
-      <p><strong>登録No.：</strong>319</p>
-      <p><strong>氏名：</strong>立宮ゆず</p>
-      <p><strong>年齢：</strong>21</p>
-      <p><strong>身長：</strong>168</p>
-      <p><strong>スリーサイズ：</strong>86 / Fカップ / 56 / 82</p>
-      <p><strong>趣味：</strong>アニメ、映画鑑賞、パチンコ</p>
-      <p><strong>性格：</strong>笑顔、愛嬌</p>
-      <p><strong>タバコ：</strong>吸います。</p>
-      <p><strong>お酒：</strong>飲めます。</p>
-      <p><strong>セッティング費用：</strong>12</p>
-      <p><strong>デート代：</strong>15</p>
-      <p><strong>【本人コメント】</strong><br>目と唇が魅力的と言われることが多いです。無整形です🙌 お誘いお待ちしてます😊</p>
-      <p><strong>【スタッフコメント】</strong><br>スタイル、ルックス、性格全てにおいて抜群な美少女ゆずさんのご紹介です✨ 常に笑顔でニコニコしていて、とっても愛嬌がある、可愛い女の子です😊  スレンダーの体型からは、想像ができないほど美味しそうにご飯を食べます🙌 その姿も可愛らしいです😍</p>
+      <p><strong>登録No.：</strong>${memberNo}</p>
+      <p><strong>氏名：</strong>${name}</p>
+      <p><strong>年齢：</strong>${age}</p>
+      <p><strong>身長：</strong>${height}</p>
+      <p><strong>スリーサイズ：</strong>${b} / ${cup} / ${w} / ${h}</p>
+      <p><strong>趣味：</strong>${hobby}</p>
+      <p><strong>性格：</strong>${character}</p>
+      <p><strong>タバコ：</strong>${smoke}</p>
+      <p><strong>お酒：</strong>${drink}</p>
+      <p><strong>セッティング費用：</strong>${cost}</p>
+      <p><strong>デート代：</strong>${dateFee}</p>
+      <p><strong>【本人コメント】</strong><br>${comment}</p>
+      <p><strong>【スタッフコメント】</strong><br>${staffComment}</p>
     </div>
   </div>
+  <script>
+    const slides = document.querySelectorAll(".slide");
+    let index = 0;
+    if (slides.length > 1) {
+      setInterval(() => {
+        slides[index].classList.remove("active");
+        index = (index + 1) % slides.length;
+        slides[index].classList.add("active");
+      }, 4000);
+    }
+  </script>
 </body>
 </html>
+`;
+
+    folder.createFile(`member${memberNo}.html`, html, MimeType.HTML);
+  }
+}
