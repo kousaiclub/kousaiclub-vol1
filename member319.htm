@@ -1,116 +1,172 @@
-function generateMemberCards_1_2() {
-  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('会員データ');
-  const data = sheet.getDataRange().getValues();
-  const folder = DriveApp.getFolderById('1xC3IoxIHk7U34FhdnxmRwcOkOXmw4PcW'); // 保存先Driveフォルダ
-
-  for (let i = 1; i < data.length; i++) {
-    const row = data[i];
-    const memberNo = String(row[3]).padStart(3, '0');
-    const name = row[4];
-    const b = row[5], cup = row[6], w = row[7], h = row[8];
-    const height = row[9];
-    const hobby = row[10], character = row[11];
-    const smoke = row[12], drink = row[13];
-    const cost = row[14], dateFee = row[15];
-    const comment = row[16], staffComment = row[17];
-    const age = row[19];
-    const photoUrls = row[2] ? row[2].split(',').map(s => s.trim()) : [];
-
-    let slideHtml = '';
-    const validUrls = photoUrls.slice(0, 4);
-    validUrls.forEach((url, index) => {
-      slideHtml += `<div class="slide${index === 0 ? ' active' : ''}"><img src="images/photo${memberNo}_${index + 1}.jpg"></div>\n`;
-    });
-
-    const html = `
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>member${memberNo} - PRIVATE SHIROKANE</title>
-  <link rel="icon" href="images/logo_1.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>member319 - PRIVATE SHIROKANE</title>
+  <link rel="icon" href="images/logo_1.png">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
+      padding: 0;
       background-color: #1c1c1c;
       color: #f9f9f9;
       font-family: 'Cormorant Garamond', serif;
-      font-size: 15px;
+    }
+    header {
+      background-color: #000;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+    }
+    header img {
+      height: 40px;
+    }
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    .menu-toggle div {
+      width: 25px;
+      height: 3px;
+      background-color: #f9f9f9;
+      margin: 4px 0;
+    }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    nav a {
+      color: #f9f9f9;
+      text-decoration: none;
+      margin: 0 10px;
+      font-size: 14px;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .banner {
+      width: 100%;
+      height: 300px;
+      background: url('images/banner_3.png') center/cover no-repeat;
     }
     .container {
+      display: flex;
+      flex-direction: row;
       padding: 20px;
+      gap: 20px;
+      background-color: #1c1c1c;
     }
     .slider {
+      flex: 1;
+      max-width: 50%;
       position: relative;
-      width: 100%;
-      max-width: 480px;
-      height: 640px;
-      margin: 0 auto;
       overflow: hidden;
+      border-radius: 12px;
     }
     .slide {
-      position: absolute;
+      display: none;
       width: 100%;
-      height: 100%;
-      opacity: 0;
-      transition: opacity 1s ease-in-out;
-    }
-    .slide.active {
-      opacity: 1;
     }
     .slide img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 8px;
+      border-radius: 12px;
     }
     .info {
-      max-width: 480px;
-      margin: 20px auto;
+      flex: 1;
+      background-color: #2a2a2a;
+      padding: 20px;
+      border-radius: 12px;
+      font-size: 15px;
     }
     .info p {
-      margin: 8px 0;
+      margin: 10px 0;
+    }
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+      .slider, .info {
+        max-width: 100%;
+      }
+      nav {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.95);
+        width: 100%;
+        padding: 15px;
+      }
+      nav.active {
+        display: flex;
+      }
+      .menu-toggle {
+        display: flex;
+      }
     }
   </style>
 </head>
 <body>
+  <header>
+    <img src="images/logo_1.png" alt="PRIVATE SHIROKANE">
+    <div class="menu-toggle" onclick="toggleMenu()"><div></div><div></div><div></div></div>
+    <nav id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="top.html">Top</a>
+      <a href="guidance_men.html">男性会員入会</a>
+      <a href="guidance_women.html">女性会員入会</a>
+      <a href="system.html">料金・システム</a>
+      <a href="pickup_member.html">注目会員様情報</a>
+      <a href="members_only.html">会員専用Page</a>
+      <a href="contact.html">問合せ</a>
+    </nav>
+  </header>
+  <div class="banner"></div>
   <div class="container">
     <div class="slider" id="slider">
-      ${slideHtml}
+<div class="slide" style="display:block;"><img src="images/photo319_1.jpg" /></div>
+<div class="slide"><img src="images/photo319_2.jpg" /></div>
+<div class="slide"><img src="images/photo319_3.jpg" /></div>
+<div class="slide"><img src="images/photo319_4.jpg" /></div>
     </div>
     <div class="info">
-      <p><strong>登録No.：</strong>${memberNo}</p>
-      <p><strong>氏名：</strong>${name}</p>
-      <p><strong>年齢：</strong>${age}</p>
-      <p><strong>身長：</strong>${height}</p>
-      <p><strong>スリーサイズ：</strong>${b} / ${cup} / ${w} / ${h}</p>
-      <p><strong>趣味：</strong>${hobby}</p>
-      <p><strong>性格：</strong>${character}</p>
-      <p><strong>タバコ：</strong>${smoke}</p>
-      <p><strong>お酒：</strong>${drink}</p>
-      <p><strong>セッティング費用：</strong>${cost}</p>
-      <p><strong>デート代：</strong>${dateFee}</p>
-      <p><strong>【本人コメント】</strong><br>${comment}</p>
-      <p><strong>【スタッフコメント】</strong><br>${staffComment}</p>
+      <p><strong>登録No.：</strong>319</p>
+      <p><strong>氏名：</strong>立宮ゆず</p>
+      <p><strong>年齢：</strong>21</p>
+      <p><strong>身長：</strong>168</p>
+      <p><strong>スリーサイズ：</strong>86 / Fカップ / 56 / 82</p>
+      <p><strong>趣味：</strong>アニメ、映画鑑賞、パチンコ</p>
+      <p><strong>性格：</strong>笑顔、愛嬌</p>
+      <p><strong>タバコ：</strong>吸います。</p>
+      <p><strong>お酒：</strong>飲めます。</p>
+      <p><strong>セッティング費用：</strong>12</p>
+      <p><strong>デート代：</strong>15</p>
+      <p><strong>【本人コメント】</strong><br>目と唇が魅力的と言われることが多いです。無整形です🙌 お誘いお待ちしてます😊</p>
+      <p><strong>【スタッフコメント】</strong><br>スタイル、ルックス、性格全てにおいて抜群な美少女ゆずさんのご紹介です✨ 常に笑顔でニコニコしていて、とっても愛嬌がある、可愛い女の子です😊  スレンダーの体型からは、想像ができないほど美味しそうにご飯を食べます🙌 その姿も可愛らしいです😍</p>
     </div>
   </div>
   <script>
-    const slides = document.querySelectorAll(".slide");
-    let index = 0;
+    function toggleMenu() {
+      document.getElementById("navLinks").classList.toggle("active");
+    }
+    const slides = document.querySelectorAll('.slide');
+    let currentSlide = 0;
     if (slides.length > 1) {
+      slides[currentSlide].style.display = 'block';
       setInterval(() => {
-        slides[index].classList.remove("active");
-        index = (index + 1) % slides.length;
-        slides[index].classList.add("active");
-      }, 4000);
+        slides[currentSlide].style.display = 'none';
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].style.display = 'block';
+      }, 3000);
+    } else if (slides.length === 1) {
+      slides[0].style.display = 'block';
     }
   </script>
 </body>
 </html>
-`;
-
-    folder.createFile(`member${memberNo}.html`, html, MimeType.HTML);
-  }
-}
