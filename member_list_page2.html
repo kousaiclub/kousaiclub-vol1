@@ -32,8 +32,7 @@ body { margin:0;padding:0;background:#1c1c1c;color:#f9f9f9;font-family:'Cormoran
 .pagination a { color:#f9f9f9;padding:6px 12px;border:1px solid #f9f9f9;border-radius:6px;margin:0 5px;text-decoration:none; }
 .pagination a.current { background:#f9f9f9;color:#1c1c1c;font-weight:bold; }
 @media (max-width:768px) { .card { width:48%; } }
-</style>
-</head><body>
+</style></head><body>
 <header class="nav-container">
   <div class="nav-logo"><a href="top.html"><img src="images/logo_1.png" alt="PRIVATE SHIROKANE"></a></div>
   <nav class="nav-links" id="navLinks">
@@ -45,31 +44,45 @@ body { margin:0;padding:0;background:#1c1c1c;color:#f9f9f9;font-family:'Cormoran
   <div class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('active')"><span></span><span></span><span></span></div>
 </header>
 <div class="banner"></div>
-<div class="search-link-wrapper"><a href="search_result.html" class="search-button">会員検索はこちら</a></div><div class="card-container">
+<div class="search-link-wrapper"><a href="search_result.html" class="search-button">会員検索はこちら</a></div>
+<div class="card-container">
+
 <div class="card">
-  <div class="card-image" onclick="window.open('member325.html', '_blank')">
-    <div class='slide active'><img src='images/photo325_1.jpg'></div><div class='slide'><img src='images/photo325_2.jpg'></div><div class='slide'><img src='images/photo325_3.jpg'></div><div class='slide'><img src='images/photo325_4.jpg'></div>
+  <div class="card-image" onclick="window.open('member204.html', '_blank')">
+    <div class='slide active'><img src='images/photo204_1.jpg'></div><div class='slide'><img src='images/photo204_2.jpg'></div><div class='slide'><img src='images/photo204_3.jpg'></div><div class='slide'><img src='images/photo204_4.jpg'></div>
   </div>
   <div class="card-text">
-    <p><strong>No.</strong> 325 村上こころ</p>
-    <p>166cm (27歳)</p>
-    <p>84, 57, 86, Dカップカップ</p>
-    <p class="comment">初めての登録で緊張しますが、よろしくお願いいたします🤗</p>
-    <p><span class="favorite-btn" data-id="325">♡</span></p>
+    <p><strong>No.</strong> 204 水咲ななせ</p>
+    <p>163cm (83歳)</p>
+    <p>Dカップ, 85, ピアノ, 57カップ</p>
+    <p class="comment">おっとりしてる性格だと思います☺️ 素敵な方と会えたら嬉しいです✨ よろしくお願いいたします☺️</p>
+    <p><span class="favorite-btn" data-id="204">♡</span></p>
   </div>
 </div>
 <div class="card">
-  <div class="card-image" onclick="window.open('member326.html', '_blank')">
-    <div class='slide active'><img src='images/photo326_1.jpg'></div><div class='slide'><img src='images/photo326_2.jpg'></div><div class='slide'><img src='images/photo326_3.jpg'></div><div class='slide'><img src='images/photo326_4.jpg'></div>
+  <div class="card-image" onclick="window.open('member202.html', '_blank')">
+    <div class='slide active'><img src='images/photo202_1.jpg'></div><div class='slide'><img src='images/photo202_2.jpg'></div><div class='slide'><img src='images/photo202_3.jpg'></div><div class='slide'><img src='images/photo202_4.jpg'></div>
   </div>
   <div class="card-text">
-    <p><strong>No.</strong> 326 篠田もも</p>
-    <p>162cm (21歳)</p>
-    <p>84, 56, 84, Eカップカップ</p>
-    <p class="comment"></p>
-    <p><span class="favorite-btn" data-id="326">♡</span></p>
+    <p><strong>No.</strong> 202 水乃なのは</p>
+    <p>162cm (87歳)</p>
+    <p>F, 85,  旅行, 57カップ</p>
+    <p class="comment">スタイルでよく褒められるのは胸の形とクビレです。 癒し系の雰囲気で話し方がおっとりしてます。 将来の目標の為にこの活動を始めました。 よろしくお願いします。</p>
+    <p><span class="favorite-btn" data-id="202">♡</span></p>
   </div>
-</div></div><div class="pagination"><a href="member_list.html">1</a><a href="member_list_page2.html" class="current">2</a></div><script>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member201.html', '_blank')">
+    <div class='slide active'><img src='images/photo201_1.jpg'></div><div class='slide'><img src='images/photo201_2.jpg'></div><div class='slide'><img src='images/photo201_3.jpg'></div><div class='slide'><img src='images/photo201_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 201 本田ゆうり</p>
+    <p>158cm (84歳)</p>
+    <p>E, 84,  買い物  美容, 56カップ</p>
+    <p class="comment">初めまして。ゆうりです。 美味しいご飯を食べることお話すること大好きです。 素敵な時間を過ごせたら嬉しいです。 よろしくお願いします</p>
+    <p><span class="favorite-btn" data-id="201">♡</span></p>
+  </div>
+</div></div><div class="pagination"><a href="member_list.html" class="">1</a><a href="member_list_page2.html" class="current">2</a></div><script>
 document.querySelectorAll('.card-image').forEach(container => {
   const slides = Array.from(container.querySelectorAll('.slide'));
   if (slides.length <= 1) return;
