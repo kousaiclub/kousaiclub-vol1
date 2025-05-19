@@ -1,387 +1,473 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>会員一覧 Page 1</title>
-  <link rel="icon" href="images/logo_1.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet" />
-  <style>
-    body { margin: 0; font-family: 'Cormorant Garamond', serif; background-color: #1c1c1c; color: #f9f9f9; }
-    header {
-      background-color: #000; padding: 10px 20px;
-      display: flex; justify-content: space-between; align-items: center;
+<!DOCTYPE html><html lang="ja"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>members_list - Page 1</title>
+<link rel="icon" href="images/logo_1.png" type="image/png">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
+<style>
+body { margin:0;padding:0;background:#1c1c1c;color:#f9f9f9;font-family:'Cormorant Garamond',serif;font-size:14px;line-height:1.8; }
+.nav-container { display:flex;align-items:center;justify-content:space-between;background:#0009;padding:5px 20px; }
+.nav-logo img { height:50px;filter:brightness(90%) drop-shadow(0 1px 1px #ccc); }
+.nav-links { display:flex;gap:20px; }
+.nav-links a { color:#f0f0f0;text-decoration:none; }
+.hamburger { display:none;flex-direction:column;cursor:pointer; }
+.hamburger span { height:3px;width:25px;background:#f9f9f9;margin:4px 0; }
+@media (max-width:768px) {
+  .nav-links { display:none;flex-direction:column;width:100%;position:absolute;top:60px;left:0;background:#000;padding:15px; }
+  .nav-links.active { display:flex; }
+  .hamburger { display:flex; }
+}
+.banner { background:url('images/banner_3.png') no-repeat center center;background-size:cover;height:340px; }
+.search-link-wrapper { text-align:center;margin:20px 0; }
+.search-button { padding:10px 20px;background:#f9f9f9;color:#1c1c1c;border-radius:6px;text-decoration:none;font-weight:bold;font-size:14px; }
+.card-container { display:flex;flex-wrap:wrap;justify-content:flex-start;gap:1%;padding:20px; }
+.card { width:22%;background:#1c1c1c;border:1px solid #f9f9f9;border-radius:12px;margin-bottom:20px;overflow:hidden; }
+.card-image { position:relative;aspect-ratio:3/4;overflow:hidden;cursor:pointer; }
+.slide { position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;transition:opacity 0.6s ease-in-out; }
+.slide.active { opacity:1; }
+.slide img { width:100%;height:100%;object-fit:cover; }
+.card-text { padding:8px;text-align:center; }
+.favorite-btn { font-size:18px;color:#FF69B4;cursor:pointer; }
+.comment { display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;text-overflow:ellipsis; }
+.pagination { text-align:center;margin:20px; }
+.pagination a { color:#f9f9f9;padding:6px 12px;border:1px solid #f9f9f9;border-radius:6px;margin:0 5px;text-decoration:none; }
+.pagination a.current { background:#f9f9f9;color:#1c1c1c;font-weight:bold; }
+@media (max-width:768px) { .card { width:48%; } }
+</style></head><body>
+<header class="nav-container">
+  <div class="nav-logo"><a href="top.html"><img src="images/logo_1.png" alt="PRIVATE SHIROKANE"></a></div>
+  <nav class="nav-links" id="navLinks">
+    <a href="index.html">Home</a><a href="top.html">Top</a>
+    <a href="guidance_men.html">男性会員入会</a><a href="guidance_women.html">女性会員入会</a>
+    <a href="system.html">料金・システム</a><a href="pickup_member.html">注目会員様情報</a>
+    <a href="members_only.html">会員専用Page</a><a href="contact.html">お問合せ</a>
+  </nav>
+  <div class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('active')"><span></span><span></span><span></span></div>
+</header>
+<div class="banner"></div>
+<div class="search-link-wrapper"><a href="search_result.html" class="search-button">会員検索はこちら</a></div>
+<div class="card-container">
+
+<div class="card">
+  <div class="card-image" onclick="window.open('member327.html', '_blank')">
+    <div class='slide active'><img src='images/photo327_1.jpg'></div><div class='slide'><img src='images/photo327_2.jpg'></div><div class='slide'><img src='images/photo327_3.jpg'></div><div class='slide'><img src='images/photo327_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 327 桜井もか</p>
+    <p>168cm (82歳)</p>
+    <p>Cカップ, 83, ピラティス 読書, 55カップ</p>
+    <p class="comment">はじめまして、もかです🌸 23歳です✨ ピラティスと読書が好き📚 高身長スレンダーで、美脚が自慢です👠💓 大きな目と美肌をよく褒められます☺️ アイドル顔って言われることも…👀💫 落ち着いた時間を一緒に過ごせたら嬉しいです🕊️ よろしくお願いします🌷</p>
+    <p><span class="favorite-btn" data-id="327">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member326.html', '_blank')">
+    <div class='slide active'><img src='images/photo326_1.jpg'></div><div class='slide'><img src='images/photo326_2.jpg'></div><div class='slide'><img src='images/photo326_3.jpg'></div><div class='slide'><img src='images/photo326_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 326 篠田もも</p>
+    <p>162cm (84歳)</p>
+    <p>Eカップ, 84, 映画鑑賞, 56カップ</p>
+    <p class="comment">はじめまして、ももです🍑
+モデルをしています👠 21歳です✨
+ダンスが得意で、体を動かすのが大好き💃
+よく「クールビューティだけど笑顔が可愛いね」って言われます☺️
+スレンダーな体型とEカップ、引き締まったウエストが自慢です💓
+素敵な時間を一緒に過ごせたら嬉しいです🌷 よろしくお願いします🕊️</p>
+    <p><span class="favorite-btn" data-id="326">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member325.html', '_blank')">
+    <div class='slide active'><img src='images/photo325_1.jpg'></div><div class='slide'><img src='images/photo325_2.jpg'></div><div class='slide'><img src='images/photo325_3.jpg'></div><div class='slide'><img src='images/photo325_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 325 村上こころ</p>
+    <p>166cm (84歳)</p>
+    <p>Dカップ, 86, 料理、映画鑑賞, 57カップ</p>
+    <p class="comment">初めての登録で緊張しますが、よろしくお願いいたします🤗</p>
+    <p><span class="favorite-btn" data-id="325">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member324.html', '_blank')">
+    <div class='slide active'><img src='images/photo324_1.jpg'></div><div class='slide'><img src='images/photo324_2.jpg'></div><div class='slide'><img src='images/photo324_3.jpg'></div><div class='slide'><img src='images/photo324_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 324 石田ニコル</p>
+    <p>157cm (86歳)</p>
+    <p>Fカップ, 88, 美容, 58カップ</p>
+    <p class="comment">初めてで緊張しますが、よろしくお願いします😊</p>
+    <p><span class="favorite-btn" data-id="324">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member323.html', '_blank')">
+    <div class='slide active'><img src='images/photo323_1.jpg'></div><div class='slide'><img src='images/photo323_2.jpg'></div><div class='slide'><img src='images/photo323_3.jpg'></div><div class='slide'><img src='images/photo323_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 323 観月愛奈</p>
+    <p>170cm (85歳)</p>
+    <p>Eカップ, 84, 旅行、美味しいものを食べること, 56カップ</p>
+    <p class="comment">初めまして‼️愛奈です🙂‍↕️✨ よろしくお願いします！</p>
+    <p><span class="favorite-btn" data-id="323">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member322.html', '_blank')">
+    <div class='slide active'><img src='images/photo322_1.jpg'></div><div class='slide'><img src='images/photo322_2.jpg'></div><div class='slide'><img src='images/photo322_3.jpg'></div><div class='slide'><img src='images/photo322_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 322 成田かほ</p>
+    <p>168cm (84歳)</p>
+    <p>Dカップ, 86, 買い物、旅行、語学, 57カップ</p>
+    <p class="comment">天真爛漫な性格で会うと元気になると言われることが多いです。お話を聞くのもするのも大好きです。お互いにとって楽しい有意義な時間になれば良いなと思います☺️よろしくお願いいたします。</p>
+    <p><span class="favorite-btn" data-id="322">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member321.html', '_blank')">
+    <div class='slide active'><img src='images/photo321_1.jpg'></div><div class='slide'><img src='images/photo321_2.jpg'></div><div class='slide'><img src='images/photo321_3.jpg'></div><div class='slide'><img src='images/photo321_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 321 三上藍</p>
+    <p>173cm (85歳)</p>
+    <p>Eカップ, 87, ゴルフ レッスン, 55カップ</p>
+    <p class="comment">はじめまして、藍です✨
+グラビアのお仕事をしています👙24歳です♪
+身長173cmの高身長スレンダー👠 美脚が自慢です🦵💎
+色白もち肌＆おでこの丸みもよく褒められます☺️
+お酒が大好きなのでBARデートも大歓迎🍸✨
+好奇心旺盛で、いろんな出会いを楽しみにしています🌈 よろしくお願いします🕊️</p>
+    <p><span class="favorite-btn" data-id="321">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member320.html', '_blank')">
+    <div class='slide active'><img src='images/photo320_1.jpg'></div><div class='slide'><img src='images/photo320_2.jpg'></div><div class='slide'><img src='images/photo320_3.jpg'></div><div class='slide'><img src='images/photo320_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 320 前田さおり </p>
+    <p>161cm (82歳)</p>
+    <p>Dカップ, 85, ピラティス、ヨガ、旅行, 55カップ</p>
+    <p class="comment">こんにちは！さおりと申します❤️ 明るくどんな方でも喋りやすく楽しくて落ち着くと言われます！顔立ちがしっかりしていて綺麗でスタイル良いねとお褒めのお言葉をよく言われます！ リードしてくれる方もリードしてもらいたい方も大歓迎です🙆‍♀️ 貴重なお時間頂くので、素敵なお時間を過ごせるようお会いした方には尽くしたいと思っております🩷</p>
+    <p><span class="favorite-btn" data-id="320">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member319.html', '_blank')">
+    <div class='slide active'><img src='images/photo319_1.jpg'></div><div class='slide'><img src='images/photo319_2.jpg'></div><div class='slide'><img src='images/photo319_3.jpg'></div><div class='slide'><img src='images/photo319_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 319 立宮ゆず</p>
+    <p>168cm (86歳)</p>
+    <p>Fカップ, 82, アニメ、映画鑑賞、パチンコ, 56カップ</p>
+    <p class="comment">目と唇が魅力的と言われることが多いです。無整形です🙌 お誘いお待ちしてます😊</p>
+    <p><span class="favorite-btn" data-id="319">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member318.html', '_blank')">
+    <div class='slide active'><img src='images/photo318_1.jpg'></div><div class='slide'><img src='images/photo318_2.jpg'></div><div class='slide'><img src='images/photo318_3.jpg'></div><div class='slide'><img src='images/photo318_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 318 今井なみの</p>
+    <p>163cm (87歳)</p>
+    <p>Eカップ, 86, ダンス, 55カップ</p>
+    <p class="comment">良い方と巡り会えたら嬉しいです😊 是非誘ってください!</p>
+    <p><span class="favorite-btn" data-id="318">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member317.html', '_blank')">
+    <div class='slide active'><img src='images/photo317_1.jpg'></div><div class='slide'><img src='images/photo317_2.jpg'></div><div class='slide'><img src='images/photo317_3.jpg'></div><div class='slide'><img src='images/photo317_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 317 清木場ゆり</p>
+    <p>168cm (91歳)</p>
+    <p>Gカップ, 92, ガーデニング、ジム、旅行, 60カップ</p>
+    <p class="comment">初めまして、ゆりです。 モデルとレースクイーンのお仕事もしています。 素敵な男性との出会いを楽しみにしています。</p>
+    <p><span class="favorite-btn" data-id="317">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member316.html', '_blank')">
+    <div class='slide active'><img src='images/photo316_1.jpg'></div><div class='slide'><img src='images/photo316_2.jpg'></div><div class='slide'><img src='images/photo316_3.jpg'></div><div class='slide'><img src='images/photo316_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 316 宮本めいみ</p>
+    <p>161cm (85歳)</p>
+    <p>Eカップ, 89, 美術館、旅行、クラシック、美容, 57カップ</p>
+    <p class="comment">はじめまして、めいみです✨
+モデルのお仕事をしています💄
+31歳ですが、美容やスタイル維持はずっと大切にしてきました💎
+細身スレンダー＋Eカップ✨ 美肌も褒めていただきます☺️
+お写真より実物の方が綺麗ってよく言われます❤️
+楽しく穏やかな時間をご一緒できたら嬉しいです🌸 よろしくお願いします🕊️</p>
+    <p><span class="favorite-btn" data-id="316">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member315.html', '_blank')">
+    <div class='slide active'><img src='images/photo315_1.jpg'></div><div class='slide'><img src='images/photo315_2.jpg'></div><div class='slide'><img src='images/photo315_3.jpg'></div><div class='slide'><img src='images/photo315_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 315 小川りの</p>
+    <p>157cm (95歳)</p>
+    <p>Eカップ, 80, カフェ巡り, 55カップ</p>
+    <p class="comment">笑上戸で、はじめは緊張すると思いますが慣れてくると仲良くなれます！ よろしくお願いいたします</p>
+    <p><span class="favorite-btn" data-id="315">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member314.html', '_blank')">
+    <div class='slide active'><img src='images/photo314_1.jpg'></div><div class='slide'><img src='images/photo314_2.jpg'></div><div class='slide'><img src='images/photo314_3.jpg'></div><div class='slide'><img src='images/photo314_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 314 北川ゆな</p>
+    <p>170cm (86歳)</p>
+    <p>Dカップ, 87, ゴルフ、裁縫、海外旅行、美味しいご飯屋さん巡り, 57カップ</p>
+    <p class="comment">明るくてポジティブな性格なので一緒に元気になりましょ💕</p>
+    <p><span class="favorite-btn" data-id="314">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member313.html', '_blank')">
+    <div class='slide active'><img src='images/photo313_1.jpg'></div><div class='slide'><img src='images/photo313_2.jpg'></div><div class='slide'><img src='images/photo313_3.jpg'></div><div class='slide'><img src='images/photo313_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 313 小川ありさ</p>
+    <p>165cm (85歳)</p>
+    <p>Eカップ, 86, 美容, 58カップ</p>
+    <p class="comment">人と話すのが好きなので楽しいお話しながら仲良くなれたら嬉しいです🫶💕 お酒もよく飲むので好きな方は是非一緒に飲みましょ〜☺️</p>
+    <p><span class="favorite-btn" data-id="313">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member312.html', '_blank')">
+    <div class='slide active'><img src='images/photo312_1.jpg'></div><div class='slide'><img src='images/photo312_2.jpg'></div><div class='slide'><img src='images/photo312_3.jpg'></div><div class='slide'><img src='images/photo312_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 312 黒川れい</p>
+    <p>162cm (84歳)</p>
+    <p>Dカップ, 85, 旅行, 57カップ</p>
+    <p class="comment">落ち着いていると言われます😌 よろしくお願いいたします☆</p>
+    <p><span class="favorite-btn" data-id="312">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member311.html', '_blank')">
+    <div class='slide active'><img src='images/photo311_1.jpg'></div><div class='slide'><img src='images/photo311_2.jpg'></div><div class='slide'><img src='images/photo311_3.jpg'></div><div class='slide'><img src='images/photo311_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 311 白山かなで </p>
+    <p>157cm (81歳)</p>
+    <p>Cカップ, 84, 乗馬、一人海外, 56カップ</p>
+    <p class="comment">明るくポジティブな性格で素直だと思います😌 人見知りもしないので、お誘いお待ちしてます✨</p>
+    <p><span class="favorite-btn" data-id="311">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member310.html', '_blank')">
+    <div class='slide active'><img src='images/photo310_1.jpg'></div><div class='slide'><img src='images/photo310_2.jpg'></div><div class='slide'><img src='images/photo310_3.jpg'></div><div class='slide'><img src='images/photo310_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 310 篠崎みゆ</p>
+    <p>158cm (86歳)</p>
+    <p>Dカップ, 82, 旅行、お出かけ, 57カップ</p>
+    <p class="comment">小顔でスタイル良いと言われます! あと、よく笑うと言われます！ 楽しいデートにしたいです✨</p>
+    <p><span class="favorite-btn" data-id="310">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member308.html', '_blank')">
+    <div class='slide active'><img src='images/photo308_1.jpg'></div><div class='slide'><img src='images/photo308_2.jpg'></div><div class='slide'><img src='images/photo308_3.jpg'></div><div class='slide'><img src='images/photo308_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 308 後藤あいり</p>
+    <p>165cm (85歳)</p>
+    <p>Dカップ, 95, ゴルフ、ミュージカル鑑、サッカー観戦, 58カップ</p>
+    <p class="comment">ミュージカルやサッカー観戦など、多趣味ではありますがその中でも特にゴルフが大好きで5年レッスンに通っています。コースに行き始めてまだ3年ほどですが、これからもっと上手になれたらなと思ってます！</p>
+    <p><span class="favorite-btn" data-id="308">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member307.html', '_blank')">
+    <div class='slide active'><img src='images/photo307_1.jpg'></div><div class='slide'><img src='images/photo307_2.jpg'></div><div class='slide'><img src='images/photo307_3.jpg'></div><div class='slide'><img src='images/photo307_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 307 佐伯みやび</p>
+    <p>166cm (85歳)</p>
+    <p>Eカップ, 88, サウナ, 56カップ</p>
+    <p class="comment">話しやすいとよく言われます😊 くびれとお尻が綺麗と言われます! よろしくお願いします✨</p>
+    <p><span class="favorite-btn" data-id="307">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member306.html', '_blank')">
+    <div class='slide active'><img src='images/photo306_1.jpg'></div><div class='slide'><img src='images/photo306_2.jpg'></div><div class='slide'><img src='images/photo306_3.jpg'></div><div class='slide'><img src='images/photo306_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 306 長谷ののか</p>
+    <p>163cm (88歳)</p>
+    <p>Gカップ, 88, , 57カップ</p>
+    <p class="comment">好奇心旺盛で色々なことに興味があります！あなたの好きな物を知るのもまた、あなたが知らないこと提供することが出来ます...！ 共に楽しく安らげる、そんな時間を過ごせたらいいなと思っています。</p>
+    <p><span class="favorite-btn" data-id="306">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member305.html', '_blank')">
+    <div class='slide active'><img src='images/photo305_1.jpg'></div><div class='slide'><img src='images/photo305_2.jpg'></div><div class='slide'><img src='images/photo305_3.jpg'></div><div class='slide'><img src='images/photo305_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 305 水嶋すみれ</p>
+    <p>164cm (90歳)</p>
+    <p>Gカップ, 93, 旅行、食べること、アニメや映画, 58カップ</p>
+    <p class="comment">素敵なデートをしたいです✨</p>
+    <p><span class="favorite-btn" data-id="305">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member304.html', '_blank')">
+    <div class='slide active'><img src='images/photo304_1.jpg'></div><div class='slide'><img src='images/photo304_2.jpg'></div><div class='slide'><img src='images/photo304_3.jpg'></div><div class='slide'><img src='images/photo304_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 304 一ノ瀬レイラ</p>
+    <p>167cm (83歳)</p>
+    <p>Dカップ, 84, 落ち着きのあるおっとりとした性格, 57カップ</p>
+    <p class="comment">初めまして、セイラです。基本的にはのんびりした性格で周りから猫っぽいって言われることが多いです🐈(猫2匹飼ってるから似てきたのかな？) 海外経験も長いのでそういったお話もできたら嬉しいです✈️ 素敵な男性と出会えますように！</p>
+    <p><span class="favorite-btn" data-id="304">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member303.html', '_blank')">
+    <div class='slide active'><img src='images/photo303_1.jpg'></div><div class='slide'><img src='images/photo303_2.jpg'></div><div class='slide'><img src='images/photo303_3.jpg'></div><div class='slide'><img src='images/photo303_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 303 藤本あみ</p>
+    <p>160cm (83歳)</p>
+    <p>Dカップ, 86, 料理, 56カップ</p>
+    <p class="comment">いつも笑顔でいます😊 よろしくお願いいたします✨</p>
+    <p><span class="favorite-btn" data-id="303">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member302.html', '_blank')">
+    <div class='slide active'><img src='images/photo302_1.jpg'></div><div class='slide'><img src='images/photo302_2.jpg'></div><div class='slide'><img src='images/photo302_3.jpg'></div><div class='slide'><img src='images/photo302_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 302 織田花</p>
+    <p>156cm (93歳)</p>
+    <p>Gカップ, 88, ゴルフ、ダイビング、旅行、料理, 57カップ</p>
+    <p class="comment">最近はワインの勉強をしていたり日本史が好きでお城巡りをしたり色んな好奇心があります！お金を貯めて自分の会社を作りたい夢があります☺️素敵な方とお会いできる事を楽しみにしております🌸</p>
+    <p><span class="favorite-btn" data-id="302">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member301.html', '_blank')">
+    <div class='slide active'><img src='images/photo301_1.jpg'></div><div class='slide'><img src='images/photo301_2.jpg'></div><div class='slide'><img src='images/photo301_3.jpg'></div><div class='slide'><img src='images/photo301_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 301 吉良ももみ</p>
+    <p>164cm (91歳)</p>
+    <p>Gカップ, 88, 美容、家事, 58カップ</p>
+    <p class="comment">はじめまして♡美容と料理がすきです♡性格はおっとりしていて明るいとよく言われます！紳士な男性と出会いたいです♡よろしくお願いします</p>
+    <p><span class="favorite-btn" data-id="301">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member300.html', '_blank')">
+    <div class='slide active'><img src='images/photo300_1.jpg'></div><div class='slide'><img src='images/photo300_2.jpg'></div><div class='slide'><img src='images/photo300_3.jpg'></div><div class='slide'><img src='images/photo300_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 300 香川理央</p>
+    <p>168cm (99歳)</p>
+    <p>Iカップ, 88, 歌、旅行, 58カップ</p>
+    <p class="comment">はじめまして、理央です。  明るくてよく喋る性格なので、一緒に楽しい時間を過ごせたら嬉しいです。ダンスで培ったスタイルと笑顔で癒しをお届けします♪  落ち着いた大人の男性と、ゆっくり過ごせるひとときを楽しみにしています！</p>
+    <p><span class="favorite-btn" data-id="300">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member209.html', '_blank')">
+    <div class='slide active'><img src='images/photo209_1.jpg'></div><div class='slide'><img src='images/photo209_2.jpg'></div><div class='slide'><img src='images/photo209_3.jpg'></div><div class='slide'><img src='images/photo209_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 209 橘はる</p>
+    <p>154cm (90歳)</p>
+    <p>Hカップ, 88, 海外旅行, 58カップ</p>
+    <p class="comment">料理が得意です🙌 素敵な方と出会いたいです✨ よろしくお願いいたします😊</p>
+    <p><span class="favorite-btn" data-id="209">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member208.html', '_blank')">
+    <div class='slide active'><img src='images/photo208_1.jpg'></div><div class='slide'><img src='images/photo208_2.jpg'></div><div class='slide'><img src='images/photo208_3.jpg'></div><div class='slide'><img src='images/photo208_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 208 白石もも  </p>
+    <p>170cm (90歳)</p>
+    <p>Dカップ, 90, カラオケ, 55カップ</p>
+    <p class="comment">素を出すことのできる優しい男性と出会いたいです。 よろしくお願いします☺️</p>
+    <p><span class="favorite-btn" data-id="208">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member207.html', '_blank')">
+    <div class='slide active'><img src='images/photo207_1.jpg'></div><div class='slide'><img src='images/photo207_2.jpg'></div><div class='slide'><img src='images/photo207_3.jpg'></div><div class='slide'><img src='images/photo207_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 207 斉藤るか </p>
+    <p>155cm (84歳)</p>
+    <p>Dカップ, 86, ライブ, 58カップ</p>
+    <p class="comment">るかです。宜しくお願い致します☆</p>
+    <p><span class="favorite-btn" data-id="207">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member206.html', '_blank')">
+    <div class='slide active'><img src='images/photo206_1.jpg'></div><div class='slide'><img src='images/photo206_2.jpg'></div><div class='slide'><img src='images/photo206_3.jpg'></div><div class='slide'><img src='images/photo206_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 206 西内さくら</p>
+    <p>163cm (90歳)</p>
+    <p>Gカップ, 86, 読書、映画、ご飯, 53カップ</p>
+    <p class="comment">人をあたたかい気持ちにさせることが得意です。 いい出会いがありますように⭐️ よろしくお願いします☺️</p>
+    <p><span class="favorite-btn" data-id="206">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member205.html', '_blank')">
+    <div class='slide active'><img src='images/photo205_1.jpg'></div><div class='slide'><img src='images/photo205_2.jpg'></div><div class='slide'><img src='images/photo205_3.jpg'></div><div class='slide'><img src='images/photo205_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 205 藤崎あいか</p>
+    <p>166cm (85歳)</p>
+    <p>Eカップ, 86, 筋トレ 旅行 美容, 57カップ</p>
+    <p class="comment">意外に天真爛漫でお話しも好きです☺️ 皆さんのいろんな経験や知識を教えてほしいです✨</p>
+    <p><span class="favorite-btn" data-id="205">♡</span></p>
+  </div>
+</div></div><div class="pagination"><a href="member_list.html" class="current">1</a><a href="member_list_page2.html" class="">2</a></div><script>
+document.querySelectorAll('.card-image').forEach(container => {
+  const slides = Array.from(container.querySelectorAll('.slide'));
+  if (slides.length <= 1) return;
+  let idx = 0;
+  slides[0].classList.add('active');
+  setInterval(() => {
+    slides[idx].classList.remove('active');
+    idx = (idx + 1) % slides.length;
+    slides[idx].classList.add('active');
+  }, 3000);
+});
+document.querySelectorAll('.favorite-btn').forEach(btn => {
+  const id = btn.dataset.id;
+  if (localStorage.getItem('fav-' + id)) btn.textContent = '❤️';
+  btn.addEventListener('click', () => {
+    if (localStorage.getItem('fav-' + id)) {
+      localStorage.removeItem('fav-' + id);
+      btn.textContent = '♡';
+    } else {
+      localStorage.setItem('fav-' + id, '1');
+      btn.textContent = '❤️';
     }
-    header img { height: 40px; }
-    nav a {
-      color: #f9f9f9; margin: 0 10px; text-decoration: none;
-    }
-    nav a:hover { text-decoration: underline; }
-    .banner {
-      width: 100%; height: 300px;
-      background: url('images/banner_3.png') center/cover no-repeat;
-    }
-    .cards {
-      display: flex; flex-wrap: wrap;
-      justify-content: center; padding: 20px; gap: 20px;
-    }
-    .card {
-      width: 220px; background-color: #2a2a2a;
-      border-radius: 10px; overflow: hidden;
-    }
-    .card img {
-      width: 100%; height: 300px; object-fit: cover;
-    }
-    .card-info { padding: 10px; }
-    .pagination {
-      text-align: center; padding: 20px;
-    }
-    .pagination a {
-      margin: 0 5px; padding: 5px 10px;
-      background-color: #444; color: white;
-      text-decoration: none; border-radius: 5px;
-    }
-    .pagination a.current {
-      background-color: #e60033; font-weight: bold;
-    }
-    @media (max-width: 768px) {
-      .cards { flex-direction: column; align-items: center; }
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <img src="images/logo_1.png" alt="PRIVATE SHIROKANE" />
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="top.html">Top</a>
-      <a href="guidance_men.html">男性入会</a>
-      <a href="guidance_women.html">女性入会</a>
-      <a href="system.html">システム</a>
-      <a href="pickup_member.html">PickUp</a>
-      <a href="members_only.html">会員専用</a>
-      <a href="contact.html">お問い合わせ</a>
-    </nav>
-  </header>
-  <div class="banner"></div>
-  <div class="cards"><div class="card">
-  <a href="memberkousai.kaiin.club@gmail.com.html">
-    <img src="images/photo327_1.jpg" alt="https://drive.google.com/open?id=1fE28LqXShVxu7hYqq6bEd2c5FtMK9YhA, https://drive.google.com/open?id=1uYAAXHmgVwczljgwTrPKTf6goTtpHkZY, https://drive.google.com/open?id=1uwZoVhqFWu88QodcfY03WBASlGXg1Xf5, https://drive.google.com/open?id=1aXdTKsZxD_hPTn2JgfyN8iLqCtNLHU2w, https://drive.google.com/open?id=1MHmUaPREp35oZS-mxICqW4bTuAqv72j3, https://drive.google.com/open?id=1SqkIQ2iifj-ZPXhJqiwb1XPH9NEws1WL" />
-    <div class="card-info">
-      <p><strong>https://drive.google.com/open?id=1fE28LqXShVxu7hYqq6bEd2c5FtMK9YhA, https://drive.google.com/open?id=1uYAAXHmgVwczljgwTrPKTf6goTtpHkZY, https://drive.google.com/open?id=1uwZoVhqFWu88QodcfY03WBASlGXg1Xf5, https://drive.google.com/open?id=1aXdTKsZxD_hPTn2JgfyN8iLqCtNLHU2w, https://drive.google.com/open?id=1MHmUaPREp35oZS-mxICqW4bTuAqv72j3, https://drive.google.com/open?id=1SqkIQ2iifj-ZPXhJqiwb1XPH9NEws1WL</strong></p>
-      <p>年齢: 327</p>
-      <p>身長: Cカップcm</p>
-      <p>スリーサイズ: 55/83/168/ピラティス 読書</p>
-    </div>
-  </a>
-</div><div class="card">
-  <a href="member0nakamura.keita@gmail.com.html">
-    <img src="images/photo326_1.jpg" alt="https://drive.google.com/open?id=1pglS3P4KPhQFp_2dyOO1CfXJI9B9s6vt, https://drive.google.com/open?id=1oJK_WWPvLMJqhgFjysFUOxxFdNaXDCyv, https://drive.google.com/open?id=1ZU_03-h0jCK0J9oySx8ipex-RIem1Wki, https://drive.google.com/open?id=1d2XFLPiK5wg-Vk7wtClANQgmsd7h_eF8, https://drive.google.com/open?id=17qP-QUf5Xz2x1elomJdD0gQ2eHN5OWHC" />
-    <div class="card-info">
-      <p><strong>https://drive.google.com/open?id=1pglS3P4KPhQFp_2dyOO1CfXJI9B9s6vt, https://drive.google.com/open?id=1oJK_WWPvLMJqhgFjysFUOxxFdNaXDCyv, https://drive.google.com/open?id=1ZU_03-h0jCK0J9oySx8ipex-RIem1Wki, https://drive.google.com/open?id=1d2XFLPiK5wg-Vk7wtClANQgmsd7h_eF8, https://drive.google.com/open?id=17qP-QUf5Xz2x1elomJdD0gQ2eHN5OWHC</strong></p>
-      <p>年齢: 326</p>
-      <p>身長: Eカップcm</p>
-      <p>スリーサイズ: 56/84/162/映画鑑賞</p>
-    </div>
-  </a>
-</div><div class="card">
-  <a href="member0nakamura.keita@gmail.com.html">
-    <img src="images/photo325_1.jpg" alt="https://drive.google.com/open?id=17Bh51MD7bEbNEHeSE4KSH-j6U83HwlEt, https://drive.google.com/open?id=1ryUqL9s18LGy1ynHre0JdIXOuZ-gkMou, https://drive.google.com/open?id=16VWFnOxjMP7jZyuiVCQuQe7xGGFls6Ct, https://drive.google.com/open?id=18cyK8ob7G_nw_AVzNiNU9mNllc_j1aPT" />
-    <div class="card-info">
-      <p><strong>https://drive.google.com/open?id=17Bh51MD7bEbNEHeSE4KSH-j6U83HwlEt, https://drive.google.com/open?id=1ryUqL9s18LGy1ynHre0JdIXOuZ-gkMou, https://drive.google.com/open?id=16VWFnOxjMP7jZyuiVCQuQe7xGGFls6Ct, https://drive.google.com/open?id=18cyK8ob7G_nw_AVzNiNU9mNllc_j1aPT</strong></p>
-      <p>年齢: 325</p>
-      <p>身長: Dカップcm</p>
-      <p>スリーサイズ: 57/86/166/料理、映画鑑賞</p>
-    </div>
-  </a>
-</div><div class="card">
-  <a href="member0nakamura.keita@gmail.com.html">
-    <img src="images/photo324_1.jpg" alt="https://drive.google.com/open?id=1cHKSE2zsSM5TH5lb7DNR8dpkpoDl6kq6, https://drive.google.com/open?id=1C_y-VXVwE3x2Ng-GJp8tZcBzSXJdqoG5, https://drive.google.com/open?id=1HFSPeWDwT4sh1obOfWnrvVldv3ST4_3O, https://drive.google.com/open?id=1irbQtgW5-bgOXs1wGdZdp1kgmeDMvpJp, https://drive.google.com/open?id=13zVq6jWf0JaJHoEWOleC81OSjRkpWfuj" />
-    <div class="card-info">
-      <p><strong>https://drive.google.com/open?id=1cHKSE2zsSM5TH5lb7DNR8dpkpoDl6kq6, https://drive.google.com/open?id=1C_y-VXVwE3x2Ng-GJp8tZcBzSXJdqoG5, https://drive.google.com/open?id=1HFSPeWDwT4sh1obOfWnrvVldv3ST4_3O, https://drive.google.com/open?id=1irbQtgW5-bgOXs1wGdZdp1kgmeDMvpJp, https://drive.google.com/open?id=13zVq6jWf0JaJHoEWOleC81OSjRkpWfuj</strong></p>
-      <p>年齢: 324</p>
-      <p>身長: Fカップcm</p>
-      <p>スリーサイズ: 58/88/157/美容</p>
-    </div>
-  </a>
-</div><div class="card">
-  <a href="memberkousai.kaiin.club@gmail.com.html">
-    <img src="images/photo323_1.jpg" alt="https://drive.google.com/open?id=1xk5PnJ2ZijMhhBQ8R_br2jw--lNrxcNg, https://drive.google.com/open?id=13EaOYJqgi7SUkSmW8P9oaP7nHMTm_Uzl, https://drive.google.com/open?id=1TatFhq0vicVdY53Dfjg0z87YE1BRfZNg, https://drive.google.com/open?id=1W_2-w3Qg-wPis38Wawo9qCssZrFH8UQy" />
-    <div class="card-info">
-      <p><strong>https://drive.google.com/open?id=1xk5PnJ2ZijMhhBQ8R_br2jw--lNrxcNg, https://drive.google.com/open?id=13EaOYJqgi7SUkSmW8P9oaP7nHMTm_Uzl, https://drive.google.com/open?id=1TatFhq0vicVdY53Dfjg0z87YE1BRfZNg, https://drive.google.com/open?id=1W_2-w3Qg-wPis38Wawo9qCssZrFH8UQy</strong></p>
-      <p>年齢: 323</p>
-      <p>身長: Eカップcm</p>
-      <p>スリーサイズ: 56/84/170/旅行、美味しいものを食べること</p>
-    </div>
-  </a>
-</div><div class="card">
-  <a href="memberkousai.kaiin.club@gmail.com.html">
-    <img src="images/photo322_1.jpg" alt="https://drive.google.com/open?id=1mh209lWE9c80w-INFp30b47h8OwVk_ix, https://drive.google.com/open?id=1VJddknQsjzdzMSVM86CztOGNbwd2vygF, https://drive.google.com/open?id=1mrCcGmRrmUYtzzb76PaKo7oXeYY9KhUq, https://drive.google.com/open?id=1bUxl5SgnJ3qSLb4IN_EbpaywrLS_5Qak, https://drive.google.com/open?id=1sAHepclBI7n1_wl24JMNxFB-WzqIFaJX" />
-    <div class="card-info">
-      <p><strong>https://drive.google.com/open?id=1mh209lWE9c80w-INFp30b47h8OwVk_ix, https://drive.google.com/open?id=1VJddknQsjzdzMSVM86CztOGNbwd2vygF, https://drive.google.com/open?id=1mrCcGmRrmUYtzzb76PaKo7oXeYY9KhUq, https://drive.google.com/open?id=1bUxl5SgnJ3qSLb4IN_EbpaywrLS_5Qak, https://drive.google.com/open?id=1sAHepclBI7n1_wl24JMNxFB-WzqIFaJX</strong></p>
-      <p>年齢: 322</p>
-      <p>身長: Dカップcm</p>
-      <p>スリーサイズ: 57/86/168/買い物、旅行、語学</p>
-    </div>
-  </a>
-</div><div class="card">
-  <a href="memberkousai.kaiin.club@gmail.com.html">
-    <img src="images/photo321_1.jpg" alt="https://drive.google.com/open?id=1Ad5wHXHM54CUzwt1OSfXaViWC7jPnKUA, https://drive.google.com/open?id=14RCleqbT0QyVppSQfh_1fcHIJOnLx4c4, https://drive.google.com/open?id=1388jmblCONZsmolv-fHu11X-TQ14I5AB, https://drive.google.com/open?id=1tCDAD__JfegpdqpQZAKI2mj4WHiCcwBE, https://drive.google.com/open?id=1Ce0YQSX26-RvgJwmNaW7spGdM8Xoh5WA" />
-    <div class="card-info">
-      <p><strong>https://drive.google.com/open?id=1Ad5wHXHM54CUzwt1OSfXaViWC7jPnKUA, https://drive.google.com/open?id=14RCleqbT0QyVppSQfh_1fcHIJOnLx4c4, https://drive.google.com/open?id=1388jmblCONZsmolv-fHu11X-TQ14I5AB, https://drive.google.com/open?id=1tCDAD__JfegpdqpQZAKI2mj4WHiCcwBE, https://drive.google.com/open?id=1Ce0YQSX26-RvgJwmNaW7spGdM8Xoh5WA</strong></p>
-      <p>年齢: 321</p>
-      <p>身長: Eカップcm</p>
-      <p>スリーサイズ: 55/87/173/ゴルフ レッスン</p>
-    </div>
-  </a>
-</div><div class="card">
-  <a href="memberkousai.kaiin.club@gmail.com.html">
-    <img src="images/photo320_1.jpg" alt="https://drive.google.com/open?id=1p3EuH1mmvHgwsEg7fON6S0aiPnbfCHZx, https://drive.google.com/open?id=1_HaoBbzWlEG-_3kjlwYh3DY1wuMqw9-x, https://drive.google.com/open?id=1xb9lddWVLJGF6XewVYILToy1PPQ8UTHJ, https://drive.google.com/open?id=165sZw7GUEMK9Ew0s0EbIhF48CAEpSsiS, https://drive.google.com/open?id=1uRsWD5sM1-BPVzZZoYfI4ZtHyIFRQBZE" />
-    <div class="card-info">
-      <p><strong>https://drive.google.com/open?id=1p3EuH1mmvHgwsEg7fON6S0aiPnbfCHZx, https://drive.google.com/open?id=1_HaoBbzWlEG-_3kjlwYh3DY1wuMqw9-x, https://drive.google.com/open?id=1xb9lddWVLJGF6XewVYILToy1PPQ8UTHJ, https://drive.google.com/open?id=165sZw7GUEMK9Ew0s0EbIhF48CAEpSsiS, https://drive.google.com/open?id=1uRsWD5sM1-BPVzZZoYfI4ZtHyIFRQBZE</strong></p>
-      <p>年齢: 320</p>
-      <p>身長: Dカップcm</p>
-      <p>スリーサイズ: 55/85/161/ピラティス、ヨガ、旅行</p>
-    </div>
-  </a>
-</div><div class="card">
-  <a href="memberkousai.kaiin.club@gmail.com.html">
-    <img src="images/photo319_1.jpg" alt="https://drive.google.com/open?id=11TkyuyJB1w7GsLkLuq8EVfSB1jBwS8iR, https://drive.google.com/open?id=1eZ0wwKI4_SLHUAtAAxKz7SFzxK8k61yK, https://drive.google.com/open?id=1RvQrFQUIbgRdF1XonmFwwHS2q-oNiC07, https://drive.google.com/open?id=1ohGketJ3gzpQLNMdcQpAV1Vzsnrgttt4, https://drive.google.com/open?id=1QGPM5Bj9MR3fekgRr5vSdRprPq3hrsdf" />
-    <div class="card-info">
-      <p><strong>https://drive.google.com/open?id=11TkyuyJB1w7GsLkLuq8EVfSB1jBwS8iR, https://drive.google.com/open?id=1eZ0wwKI4_SLHUAtAAxKz7SFzxK8k61yK, https://drive.google.com/open?id=1RvQrFQUIbgRdF1XonmFwwHS2q-oNiC07, https://drive.google.com/open?id=1ohGketJ3gzpQLNMdcQpAV1Vzsnrgttt4, https://drive.google.com/open?id=1QGPM5Bj9MR3fekgRr5vSdRprPq3hrsdf</strong></p>
-      <p>年齢: 319</p>
-      <p>身長: Fカップcm</p>
-      <p>スリーサイズ: 56/82/168/アニメ、映画鑑賞、パチンコ</p>
-    </div>
-  </a>
-</div><div class="card">
-  <a href="memberkousai.kaiin.club@gmail.com.html">
-    <img src="images/photo318_1.jpg" alt="https://drive.google.com/open?id=1uoK-DRI8HWccPdqaRppMufB_xFqsbRWB, https://drive.google.com/open?id=1qKIxllIS-pxm72tG3rnmibrGJuYdsCas, https://drive.google.com/open?id=1RgYo7Rli6uBf1ijXG0v8x-s4X_MstuzL, https://drive.google.com/open?id=1ZirKHOgLBDGDpM1NW2f4cmcAMBVZolbS, https://drive.google.com/open?id=1HgYVtNgpCL6DEjgTgXDvWerut7plaSBU" />
-    <div class="card-info">
-      <p><strong>https://drive.google.com/open?id=1uoK-DRI8HWccPdqaRppMufB_xFqsbRWB, https://drive.google.com/open?id=1qKIxllIS-pxm72tG3rnmibrGJuYdsCas, https://drive.google.com/open?id=1RgYo7Rli6uBf1ijXG0v8x-s4X_MstuzL, https://drive.google.com/open?id=1ZirKHOgLBDGDpM1NW2f4cmcAMBVZolbS, https://drive.google.com/open?id=1HgYVtNgpCL6DEjgTgXDvWerut7plaSBU</strong></p>
-      <p>年齢: 318</p>
-      <p>身長: Eカップcm</p>
-      <p>スリーサイズ: 55/86/163/ダンス</p>
-    </div>
-  </a>
-</div><div class="card">
-  <a href="memberkousai.kaiin.club@gmail.com.html">
-    <img src="images/photo317_1.jpg" alt="https://drive.google.com/open?id=14gVDNoIL6avGCiySoTNmGpsbdQfYyZ9Q, https://drive.google.com/open?id=1t1HWSAHvqKPR2zJyjtEvY8prCBsc_PPX, https://drive.google.com/open?id=1fIBEuQ0_BH5yqi2qSh2_3TT5LErQDGsl, https://drive.google.com/open?id=1ibQTO5USGi8UBRomZv1yV2SQhV3i5x-7, https://drive.google.com/open?id=1XmvjpIsyaEEDGwJL3x6JHZXfHVSBm1u8" />
-    <div class="card-info">
-      <p><strong>https://drive.google.com/open?id=14gVDNoIL6avGCiySoTNmGpsbdQfYyZ9Q, https://drive.google.com/open?id=1t1HWSAHvqKPR2zJyjtEvY8prCBsc_PPX, https://drive.google.com/open?id=1fIBEuQ0_BH5yqi2qSh2_3TT5LErQDGsl, https://drive.google.com/open?id=1ibQTO5USGi8UBRomZv1yV2SQhV3i5x-7, https://drive.google.com/open?id=1XmvjpIsyaEEDGwJL3x6JHZXfHVSBm1u8</strong></p>
-      <p>年齢: 317</p>
-      <p>身長: Gカップcm</p>
-      <p>スリーサイズ: 60/92/168/ガーデニング、ジム、旅行</p>
-    </div>
-  </a>
-</div><div class="card">
-  <a href="memberkousai.kaiin.club@gmail.com.html">
-    <img src="images/photo316_1.jpg" alt="https://drive.google.com/open?id=1j30widwFmDWij6ks04ZRxu_WkfdP-UU6, https://drive.google.com/open?id=1RTM_EfEbDs854IPn7Oc9D87KdCsYdiKY, https://drive.google.com/open?id=1eeFdO4nPB43tkvUe25tEHAOgN1ZYP1X1, https://drive.google.com/open?id=1PQKOPyJL5e10QtUmUlL4UQ1XUz63oE4N, https://drive.google.com/open?id=1fmNkDLxVgql7UTFCQ7i6fhwjQGvew1py" />
-    <div class="card-info">
-      <p><strong>https://drive.google.com/open?id=1j30widwFmDWij6ks04ZRxu_WkfdP-UU6, https://drive.google.com/open?id=1RTM_EfEbDs854IPn7Oc9D87KdCsYdiKY, https://drive.google.com/open?id=1eeFdO4nPB43tkvUe25tEHAOgN1ZYP1X1, https://drive.google.com/open?id=1PQKOPyJL5e10QtUmUlL4UQ1XUz63oE4N, https://drive.google.com/open?id=1fmNkDLxVgql7UTFCQ7i6fhwjQGvew1py</strong></p>
-      <p>年齢: 316</p>
-      <p>身長: Eカップcm</p>
-      <p>スリーサイズ: 57/89/161/美術館、旅行、クラシック、美容</p>
-    </div>
-  </a>
-</div><div class="card">
-  <a href="memberkousai.kaiin.club@gmail.com.html">
-    <img src="images/photo315_1.jpg" alt="https://drive.google.com/open?id=1wHzhEJvulh7dm3W88Wsclw8yNmEuUYkg, https://drive.google.com/open?id=1yQKIUOxxwW58kqH8l2bbcQtQ42KHlnlf, https://drive.google.com/open?id=1d0CDrl9jBb2vNG4fuulYromlKVa7lWAu, https://drive.google.com/open?id=1Y-lT35zk8HlDWETM6fK__QYjSJFmLFHw, https://drive.google.com/open?id=1uKMYYDtWrmhTHmjsj-NmRbMJh2-nxDUG" />
-    <div class="card-info">
-      <p><strong>https://drive.google.com/open?id=1wHzhEJvulh7dm3W88Wsclw8yNmEuUYkg, https://drive.google.com/open?id=1yQKIUOxxwW58kqH8l2bbcQtQ42KHlnlf, https://drive.google.com/open?id=1d0CDrl9jBb2vNG4fuulYromlKVa7lWAu, https://drive.google.com/open?id=1Y-lT35zk8HlDWETM6fK__QYjSJFmLFHw, https://drive.google.com/open?id=1uKMYYDtWrmhTHmjsj-NmRbMJh2-nxDUG</strong></p>
-      <p>年齢: 315</p>
-      <p>身長: Eカップcm</p>
-      <p>スリーサイズ: 55/80/157/カフェ巡り</p>
-    </div>
-  </a>
-</div><div class="card">
-  <a href="memberkousai.kaiin.club@gmail.com.html">
-    <img src="images/photo314_1.jpg" alt="https://drive.google.com/open?id=1p0aGPJpzBah81CWy1uXHI14IFXeAJfCh, https://drive.google.com/open?id=1KceJJ2bkkv39C9k5M_BFd2h49S-TXXSx, https://drive.google.com/open?id=1AewHuiMIApCsQWAVrUf0IAgptFIST5lj, https://drive.google.com/open?id=1pRNPUskIKzWRJlaI8ENekEhoqzWVPt2L, https://drive.google.com/open?id=11ks6ITmC8q7dTaOgQ2LjNDt8m7fj2tt3" />
-    <div class="card-info">
-      <p><strong>https://drive.google.com/open?id=1p0aGPJpzBah81CWy1uXHI14IFXeAJfCh, https://drive.google.com/open?id=1KceJJ2bkkv39C9k5M_BFd2h49S-TXXSx, https://drive.google.com/open?id=1AewHuiMIApCsQWAVrUf0IAgptFIST5lj, https://drive.google.com/open?id=1pRNPUskIKzWRJlaI8ENekEhoqzWVPt2L, https://drive.google.com/open?id=11ks6ITmC8q7dTaOgQ2LjNDt8m7fj2tt3</strong></p>
-      <p>年齢: 314</p>
-      <p>身長: Dカップcm</p>
-      <p>スリーサイズ: 57/87/170/ゴルフ、裁縫、海外旅行、美味しいご飯屋さん巡り</p>
-    </div>
-  </a>
-</div><div class="card">
-  <a href="memberkousai.kaiin.club@gmail.com.html">
-    <img src="images/photo313_1.jpg" alt="https://drive.google.com/open?id=1vxDt7NyPaTu2p50IfswlrJtsJNm2iDXh, https://drive.google.com/open?id=1EPtXOGhs866A-48AvttQvMwMPyAsw6Av, https://drive.google.com/open?id=1m35t2gThLeEY9e_gyldNyeRIKLzIslaR, https://drive.google.com/open?id=1wisg19RlPjTUhv0OJlvC6T30qLijL-NV, https://drive.google.com/open?id=1YvKcK3r7i8waZQID_ORTdqOmFPH2Ubre" />
-    <div class="card-info">
-      <p><strong>https://drive.google.com/open?id=1vxDt7NyPaTu2p50IfswlrJtsJNm2iDXh, https://drive.google.com/open?id=1EPtXOGhs866A-48AvttQvMwMPyAsw6Av, https://drive.google.com/open?id=1m35t2gThLeEY9e_gyldNyeRIKLzIslaR, https://drive.google.com/open?id=1wisg19RlPjTUhv0OJlvC6T30qLijL-NV, https://drive.google.com/open?id=1YvKcK3r7i8waZQID_ORTdqOmFPH2Ubre</strong></p>
-      <p>年齢: 313</p>
-      <p>身長: Eカップcm</p>
-      <p>スリーサイズ: 58/86/165/美容</p>
-    </div>
-  </a>
-</div><div class="card">
-  <a href="memberkousai.kaiin.club@gmail.com.html">
-    <img src="images/photo312_1.jpg" alt="https://drive.google.com/open?id=11q2-VkfRnE04Y1W3BgjHpJ9NvR7Osemm, https://drive.google.com/open?id=1F_OqhULRegArQG5IWLgFqK4xblwbHfsE, https://drive.google.com/open?id=163-nnNIvRfHehM77UN6DbcYod_J3t3Ma, https://drive.google.com/open?id=1MWjG-PtG7iVo5oMtagdkDKss20LvrrHj, https://drive.google.com/open?id=1smstpIJDyPZF4X40fsggdsRHJX5dvYP7" />
-    <div class="card-info">
-      <p><strong>https://drive.google.com/open?id=11q2-VkfRnE04Y1W3BgjHpJ9NvR7Osemm, https://drive.google.com/open?id=1F_OqhULRegArQG5IWLgFqK4xblwbHfsE, https://drive.google.com/open?id=163-nnNIvRfHehM77UN6DbcYod_J3t3Ma, https://drive.google.com/open?id=1MWjG-PtG7iVo5oMtagdkDKss20LvrrHj, https://drive.google.com/open?id=1smstpIJDyPZF4X40fsggdsRHJX5dvYP7</strong></p>
-      <p>年齢: 312</p>
-      <p>身長: Dカップcm</p>
-      <p>スリーサイズ: 57/85/162/旅行</p>
-    </div>
-  </a>
-</div><div class="card">
-  <a href="memberkousai.kaiin.club@gmail.com.html">
-    <img src="images/photo311_1.jpg" alt="https://drive.google.com/open?id=1Wl3QTYlcZNtBZRKKRzyvOY2M1BR5GelN, https://drive.google.com/open?id=1Ce8yuGt2t2fM3mNzd9AHr2Zh-o5RFjUw, https://drive.google.com/open?id=1w057Tp2cZ2zoq5_Fwkfp6u0LunJ_tytS, https://drive.google.com/open?id=1QReIdPIgIEDdb-vjNHy-IPSIfl93JMHn" />
-    <div class="card-info">
-      <p><strong>https://drive.google.com/open?id=1Wl3QTYlcZNtBZRKKRzyvOY2M1BR5GelN, https://drive.google.com/open?id=1Ce8yuGt2t2fM3mNzd9AHr2Zh-o5RFjUw, https://drive.google.com/open?id=1w057Tp2cZ2zoq5_Fwkfp6u0LunJ_tytS, https://drive.google.com/open?id=1QReIdPIgIEDdb-vjNHy-IPSIfl93JMHn</strong></p>
-      <p>年齢: 311</p>
-      <p>身長: Cカップcm</p>
-      <p>スリーサイズ: 56/84/157/乗馬、一人海外</p>
-    </div>
-  </a>
-</div><div class="card">
-  <a href="memberkousai.kaiin.club@gmail.com.html">
-    <img src="images/photo310_1.jpg" alt="https://drive.google.com/open?id=11vOKFBroryhsXM6nE3PcMw25wTbc4gSd, https://drive.google.com/open?id=1Tg-ocT9_DxmjVGkR-S7FtTd2-qRgsXbZ, https://drive.google.com/open?id=19kSIRjufsbM8ATvCDRWSBFBUK4-daNzI, https://drive.google.com/open?id=1gZcNi-F6mNdAUq7A1EhPE6AijIF7FMtM" />
-    <div class="card-info">
-      <p><strong>https://drive.google.com/open?id=11vOKFBroryhsXM6nE3PcMw25wTbc4gSd, https://drive.google.com/open?id=1Tg-ocT9_DxmjVGkR-S7FtTd2-qRgsXbZ, https://drive.google.com/open?id=19kSIRjufsbM8ATvCDRWSBFBUK4-daNzI, https://drive.google.com/open?id=1gZcNi-F6mNdAUq7A1EhPE6AijIF7FMtM</strong></p>
-      <p>年齢: 310</p>
-      <p>身長: Dカップcm</p>
-      <p>スリーサイズ: 57/82/158/旅行、お出かけ</p>
-    </div>
-  </a>
-</div><div class="card">
-  <a href="memberkousai.kaiin.club@gmail.com.html">
-    <img src="images/photo308_1.jpg" alt="https://drive.google.com/open?id=1oV_clp9hrITDh2SHxO96X_28-dUGGbbO, https://drive.google.com/open?id=13f7awjkuEqU9WAIxZhu7Wu6WNSDcvJkB, https://drive.google.com/open?id=1uVL6P4elPPnLMAUJv4qDqCKLbiDDbYNo, https://drive.google.com/open?id=1MHCbWL3rrF4oDjojhHviddMf5_MIhMNq, https://drive.google.com/open?id=1OSpsi5OtMWC8Li-Z80g593bFUYICyIhC" />
-    <div class="card-info">
-      <p><strong>https://drive.google.com/open?id=1oV_clp9hrITDh2SHxO96X_28-dUGGbbO, https://drive.google.com/open?id=13f7awjkuEqU9WAIxZhu7Wu6WNSDcvJkB, https://drive.google.com/open?id=1uVL6P4elPPnLMAUJv4qDqCKLbiDDbYNo, https://drive.google.com/open?id=1MHCbWL3rrF4oDjojhHviddMf5_MIhMNq, https://drive.google.com/open?id=1OSpsi5OtMWC8Li-Z80g593bFUYICyIhC</strong></p>
-      <p>年齢: 308</p>
-      <p>身長: Dカップcm</p>
-      <p>スリーサイズ: 58/95/165/ゴルフ、ミュージカル鑑、サッカー観戦</p>
-    </div>
-  </a>
-</div><div class="card">
-  <a href="memberkousai.kaiin.club@gmail.com.html">
-    <img src="images/photo307_1.jpg" alt="https://drive.google.com/open?id=1dTcEX-ckeac1phN1hRvfWeAjx7v0o4lm, https://drive.google.com/open?id=1DxFEr0_5yW65CFq2a528r_T7rH62FdZ6, https://drive.google.com/open?id=1tmK1FU4ygutiY71MyD9GBZLmJ6tVvBjt, https://drive.google.com/open?id=13B9jFxXVlk0nR2TQAzj7A2QbflxtXI4r, https://drive.google.com/open?id=1V1A6zziHKt8b3tYkXKF3KCkx3NhmljEB" />
-    <div class="card-info">
-      <p><strong>https://drive.google.com/open?id=1dTcEX-ckeac1phN1hRvfWeAjx7v0o4lm, https://drive.google.com/open?id=1DxFEr0_5yW65CFq2a528r_T7rH62FdZ6, https://drive.google.com/open?id=1tmK1FU4ygutiY71MyD9GBZLmJ6tVvBjt, https://drive.google.com/open?id=13B9jFxXVlk0nR2TQAzj7A2QbflxtXI4r, https://drive.google.com/open?id=1V1A6zziHKt8b3tYkXKF3KCkx3NhmljEB</strong></p>
-      <p>年齢: 307</p>
-      <p>身長: Eカップcm</p>
-      <p>スリーサイズ: 56/88/166/サウナ</p>
-    </div>
-  </a>
-</div><div class="card">
-  <a href="memberkousai.kaiin.club@gmail.com.html">
-    <img src="images/photo306_1.jpg" alt="https://drive.google.com/open?id=1olp3UHTTdIwqDiedQMic3NEp9IIyy_bJ, https://drive.google.com/open?id=1rDfFiyIOv84x2r80rzbDvWfsDg-p7okl, https://drive.google.com/open?id=1NXgJ5R8usS75Qoz4U6u4H-ETIh_ts8kP, https://drive.google.com/open?id=1tNxwJlLlvD19sCcE9wpP-txwxSAEJIb0, https://drive.google.com/open?id=1mNkBpvIu2tdbV0lCWuH6cfsSVzdeNT3z" />
-    <div class="card-info">
-      <p><strong>https://drive.google.com/open?id=1olp3UHTTdIwqDiedQMic3NEp9IIyy_bJ, https://drive.google.com/open?id=1rDfFiyIOv84x2r80rzbDvWfsDg-p7okl, https://drive.google.com/open?id=1NXgJ5R8usS75Qoz4U6u4H-ETIh_ts8kP, https://drive.google.com/open?id=1tNxwJlLlvD19sCcE9wpP-txwxSAEJIb0, https://drive.google.com/open?id=1mNkBpvIu2tdbV0lCWuH6cfsSVzdeNT3z</strong></p>
-      <p>年齢: 306</p>
-      <p>身長: Gカップcm</p>
-      <p>スリーサイズ: 57/88/163/</p>
-    </div>
-  </a>
-</div><div class="card">
-  <a href="memberkousai.kaiin.club@gmail.com.html">
-    <img src="images/photo305_1.jpg" alt="https://drive.google.com/open?id=1_eYIqOUw9VG7qe_7j3uaQe_eCGioLd-2, https://drive.google.com/open?id=1P5au3MYuEcwSiHh-c9oF3IywpQIeBKB_, https://drive.google.com/open?id=1MRpbV4_CamUUQdaIjRwzewqGo5xrPX80, https://drive.google.com/open?id=1os79g3e0PfbQ1zyZaFhFQfKTILWkSGW4, https://drive.google.com/open?id=1NvW3hb4k-gfpUKveHR0hadm4-dRlWhx7" />
-    <div class="card-info">
-      <p><strong>https://drive.google.com/open?id=1_eYIqOUw9VG7qe_7j3uaQe_eCGioLd-2, https://drive.google.com/open?id=1P5au3MYuEcwSiHh-c9oF3IywpQIeBKB_, https://drive.google.com/open?id=1MRpbV4_CamUUQdaIjRwzewqGo5xrPX80, https://drive.google.com/open?id=1os79g3e0PfbQ1zyZaFhFQfKTILWkSGW4, https://drive.google.com/open?id=1NvW3hb4k-gfpUKveHR0hadm4-dRlWhx7</strong></p>
-      <p>年齢: 305</p>
-      <p>身長: Gカップcm</p>
-      <p>スリーサイズ: 58/93/164/旅行、食べること、アニメや映画</p>
-    </div>
-  </a>
-</div><div class="card">
-  <a href="memberkousai.kaiin.club@gmail.com.html">
-    <img src="images/photo304_1.jpg" alt="https://drive.google.com/open?id=1xCOg0mWWxtBSmCV4bCDIvxCkjDeaLxBw, https://drive.google.com/open?id=1HOvdIPVt5zyxPQJz-f9gM7cYt8U1qYZp, https://drive.google.com/open?id=1loKpoKKJjJq4x-bgZHCbAl6Nb3teuo4M, https://drive.google.com/open?id=114l1HU3EyiuCBP98QckZPC_AgHLTFWbv, https://drive.google.com/open?id=1U95DpH4ovbsh68gNazi6N8VAquJbGBnE" />
-    <div class="card-info">
-      <p><strong>https://drive.google.com/open?id=1xCOg0mWWxtBSmCV4bCDIvxCkjDeaLxBw, https://drive.google.com/open?id=1HOvdIPVt5zyxPQJz-f9gM7cYt8U1qYZp, https://drive.google.com/open?id=1loKpoKKJjJq4x-bgZHCbAl6Nb3teuo4M, https://drive.google.com/open?id=114l1HU3EyiuCBP98QckZPC_AgHLTFWbv, https://drive.google.com/open?id=1U95DpH4ovbsh68gNazi6N8VAquJbGBnE</strong></p>
-      <p>年齢: 304</p>
-      <p>身長: Dカップcm</p>
-      <p>スリーサイズ: 57/84/167/落ち着きのあるおっとりとした性格</p>
-    </div>
-  </a>
-</div><div class="card">
-  <a href="memberkousai.kaiin.club@gmail.com.html">
-    <img src="images/photo303_1.jpg" alt="https://drive.google.com/open?id=1vWg39_YdRR5ly4B-xzHOUidVPuIIFvX2, https://drive.google.com/open?id=1oWff4DE1QQpDG3BpF_ps_pPDUE4sndbo, https://drive.google.com/open?id=1QcctjLF9vzQF5I2TaLV3oITMjHS1ZitI, https://drive.google.com/open?id=1N8OT-p1WcHqlF4bC2gMHuKPg1mCrItFb, https://drive.google.com/open?id=1xQiAZfIMdka0JnX9-S7RIRaEOKKRSAB0" />
-    <div class="card-info">
-      <p><strong>https://drive.google.com/open?id=1vWg39_YdRR5ly4B-xzHOUidVPuIIFvX2, https://drive.google.com/open?id=1oWff4DE1QQpDG3BpF_ps_pPDUE4sndbo, https://drive.google.com/open?id=1QcctjLF9vzQF5I2TaLV3oITMjHS1ZitI, https://drive.google.com/open?id=1N8OT-p1WcHqlF4bC2gMHuKPg1mCrItFb, https://drive.google.com/open?id=1xQiAZfIMdka0JnX9-S7RIRaEOKKRSAB0</strong></p>
-      <p>年齢: 303</p>
-      <p>身長: Dカップcm</p>
-      <p>スリーサイズ: 56/86/160/料理</p>
-    </div>
-  </a>
-</div><div class="card">
-  <a href="memberkousai.kaiin.club@gmail.com.html">
-    <img src="images/photo302_1.jpg" alt="https://drive.google.com/open?id=1eai5VMEsHevw0yJbLhneTSRTwZTXKk5n, https://drive.google.com/open?id=16BHmIViyObsQqdAbFJ8ljkjf9iqaBwsO, https://drive.google.com/open?id=1Xx1qC4GjyKp0eAj6odtddmQQjdMCGPIW, https://drive.google.com/open?id=1IoO_U2FIOLYQNodOJkJtB1WOWotqA9ZR, https://drive.google.com/open?id=1ZzHSWyDJvY5h6EyWeK_0CRyBVloiWcVi" />
-    <div class="card-info">
-      <p><strong>https://drive.google.com/open?id=1eai5VMEsHevw0yJbLhneTSRTwZTXKk5n, https://drive.google.com/open?id=16BHmIViyObsQqdAbFJ8ljkjf9iqaBwsO, https://drive.google.com/open?id=1Xx1qC4GjyKp0eAj6odtddmQQjdMCGPIW, https://drive.google.com/open?id=1IoO_U2FIOLYQNodOJkJtB1WOWotqA9ZR, https://drive.google.com/open?id=1ZzHSWyDJvY5h6EyWeK_0CRyBVloiWcVi</strong></p>
-      <p>年齢: 302</p>
-      <p>身長: Gカップcm</p>
-      <p>スリーサイズ: 57/88/156/ゴルフ、ダイビング、旅行、料理</p>
-    </div>
-  </a>
-</div><div class="card">
-  <a href="memberkousai.kaiin.club@gmail.com.html">
-    <img src="images/photo301_1.jpg" alt="https://drive.google.com/open?id=1mLg5hYoYjwXDRQOCNo_kwbXTUP0b1bSC, https://drive.google.com/open?id=1qWODbIQMTM2uuDx_A2Jxg61jP0cgLLlw, https://drive.google.com/open?id=1H4910GT54hguvw8P3jvbEPD9F1w-O0CV, https://drive.google.com/open?id=1-Ck8dqDJr-QzfjdsKN_4IAMIs63lSkLn, https://drive.google.com/open?id=1vf9hSSM34EMUATJHxV88DdBEp87-tHnS" />
-    <div class="card-info">
-      <p><strong>https://drive.google.com/open?id=1mLg5hYoYjwXDRQOCNo_kwbXTUP0b1bSC, https://drive.google.com/open?id=1qWODbIQMTM2uuDx_A2Jxg61jP0cgLLlw, https://drive.google.com/open?id=1H4910GT54hguvw8P3jvbEPD9F1w-O0CV, https://drive.google.com/open?id=1-Ck8dqDJr-QzfjdsKN_4IAMIs63lSkLn, https://drive.google.com/open?id=1vf9hSSM34EMUATJHxV88DdBEp87-tHnS</strong></p>
-      <p>年齢: 301</p>
-      <p>身長: Gカップcm</p>
-      <p>スリーサイズ: 58/88/164/美容、家事</p>
-    </div>
-  </a>
-</div><div class="card">
-  <a href="memberkousai.kaiin.club@gmail.com.html">
-    <img src="images/photo300_1.jpg" alt="https://drive.google.com/open?id=14QaXpCDDK6XT8Nc_83f45PK9_TVGBPtz, https://drive.google.com/open?id=1fdXL4xesEjnS3rWfEPFYAa6MnwwXKBcH, https://drive.google.com/open?id=11gJ7adw6zwroCJ-bZhXYMXOEucwHAQ3S, https://drive.google.com/open?id=1RCcwhKFJxePgWLBfKE3Wtp_B-AmYJqJO, https://drive.google.com/open?id=1wahydTp_9POahB1EtS_o4xrHj_y10_bi" />
-    <div class="card-info">
-      <p><strong>https://drive.google.com/open?id=14QaXpCDDK6XT8Nc_83f45PK9_TVGBPtz, https://drive.google.com/open?id=1fdXL4xesEjnS3rWfEPFYAa6MnwwXKBcH, https://drive.google.com/open?id=11gJ7adw6zwroCJ-bZhXYMXOEucwHAQ3S, https://drive.google.com/open?id=1RCcwhKFJxePgWLBfKE3Wtp_B-AmYJqJO, https://drive.google.com/open?id=1wahydTp_9POahB1EtS_o4xrHj_y10_bi</strong></p>
-      <p>年齢: 300</p>
-      <p>身長: Iカップcm</p>
-      <p>スリーサイズ: 58/88/168/歌、旅行</p>
-    </div>
-  </a>
-</div><div class="card">
-  <a href="memberclub.ajito2000@gmail.com.html">
-    <img src="images/photo209_1.jpg" alt="https://drive.google.com/open?id=1n7oCHJC0Uo09u-HWJQOwmRNSWEejaSSv, https://drive.google.com/open?id=1tpnwT6asbIDhiGZoQFMSBkVYPP05_0zE, https://drive.google.com/open?id=1moTE1C-hzgPvLA2b57dJWlbJVXMLpP0u, https://drive.google.com/open?id=1ycHhxG36oYnMaXQyxuFUlf_s5JmCGpK5" />
-    <div class="card-info">
-      <p><strong>https://drive.google.com/open?id=1n7oCHJC0Uo09u-HWJQOwmRNSWEejaSSv, https://drive.google.com/open?id=1tpnwT6asbIDhiGZoQFMSBkVYPP05_0zE, https://drive.google.com/open?id=1moTE1C-hzgPvLA2b57dJWlbJVXMLpP0u, https://drive.google.com/open?id=1ycHhxG36oYnMaXQyxuFUlf_s5JmCGpK5</strong></p>
-      <p>年齢: 209</p>
-      <p>身長: Hカップcm</p>
-      <p>スリーサイズ: 58/88/154/海外旅行</p>
-    </div>
-  </a>
-</div><div class="card">
-  <a href="memberclub.ajito2000@gmail.com.html">
-    <img src="images/photo208_1.jpg" alt="https://drive.google.com/open?id=1YLthCYo95svGtP0aCNj044E-ffRUEAo4, https://drive.google.com/open?id=1glLWXrc0oCc1DxY8rc2VTy3ibPOhmccC, https://drive.google.com/open?id=1VBLOc1e_nKcpuPE93J3FkldD8C4rGxeA, https://drive.google.com/open?id=1fjo1GkO-Aj8R5UkLKUWNaasR03TshgWM, https://drive.google.com/open?id=1d7o69I3TxTrNZ_D4MKvf8u_jv4sv3ulS" />
-    <div class="card-info">
-      <p><strong>https://drive.google.com/open?id=1YLthCYo95svGtP0aCNj044E-ffRUEAo4, https://drive.google.com/open?id=1glLWXrc0oCc1DxY8rc2VTy3ibPOhmccC, https://drive.google.com/open?id=1VBLOc1e_nKcpuPE93J3FkldD8C4rGxeA, https://drive.google.com/open?id=1fjo1GkO-Aj8R5UkLKUWNaasR03TshgWM, https://drive.google.com/open?id=1d7o69I3TxTrNZ_D4MKvf8u_jv4sv3ulS</strong></p>
-      <p>年齢: 208</p>
-      <p>身長: Dカップcm</p>
-      <p>スリーサイズ: 55/90/170/カラオケ</p>
-    </div>
-  </a>
-</div><div class="card">
-  <a href="memberclub.ajito2000@gmail.com.html">
-    <img src="images/photo207_1.jpg" alt="https://drive.google.com/open?id=1SuETEB_xWh7kaLqrkCIvC0fqPUwPgmdg, https://drive.google.com/open?id=1ky1Xq8RILB6U3uYGFke71NbX9Js29rF_, https://drive.google.com/open?id=1So8hbd7Fdya_2HJkJOMkbFl0Gya7zpt1, https://drive.google.com/open?id=128iKXswi4ycwEFbHy7YJtlDokpFf-T8z, https://drive.google.com/open?id=1S0HVOtiDBJ4JLRMMdUh-RPHGg44iUNsD" />
-    <div class="card-info">
-      <p><strong>https://drive.google.com/open?id=1SuETEB_xWh7kaLqrkCIvC0fqPUwPgmdg, https://drive.google.com/open?id=1ky1Xq8RILB6U3uYGFke71NbX9Js29rF_, https://drive.google.com/open?id=1So8hbd7Fdya_2HJkJOMkbFl0Gya7zpt1, https://drive.google.com/open?id=128iKXswi4ycwEFbHy7YJtlDokpFf-T8z, https://drive.google.com/open?id=1S0HVOtiDBJ4JLRMMdUh-RPHGg44iUNsD</strong></p>
-      <p>年齢: 207</p>
-      <p>身長: Dカップcm</p>
-      <p>スリーサイズ: 58/86/155/ライブ</p>
-    </div>
-  </a>
-</div><div class="card">
-  <a href="memberclub.ajito2000@gmail.com.html">
-    <img src="images/photo206_1.jpg" alt="https://drive.google.com/open?id=1dCRL2lTd1uOpp6U0TeV1fJr1ejMeKBQ3, https://drive.google.com/open?id=1snGiOaNzrjkPAlAAHy36nW9Zur_c472y, https://drive.google.com/open?id=1_3qN6FzudUHGDcZ-Zv7qfLRUwyma2PVN, https://drive.google.com/open?id=1MEMiJvHK4CNAEPh1ZBHyjxctF7tdPeYF, https://drive.google.com/open?id=1uAgtn3kcHUUdQCOO6Lng9Tj4rC9GDU_-" />
-    <div class="card-info">
-      <p><strong>https://drive.google.com/open?id=1dCRL2lTd1uOpp6U0TeV1fJr1ejMeKBQ3, https://drive.google.com/open?id=1snGiOaNzrjkPAlAAHy36nW9Zur_c472y, https://drive.google.com/open?id=1_3qN6FzudUHGDcZ-Zv7qfLRUwyma2PVN, https://drive.google.com/open?id=1MEMiJvHK4CNAEPh1ZBHyjxctF7tdPeYF, https://drive.google.com/open?id=1uAgtn3kcHUUdQCOO6Lng9Tj4rC9GDU_-</strong></p>
-      <p>年齢: 206</p>
-      <p>身長: Gカップcm</p>
-      <p>スリーサイズ: 53/86/163/読書、映画、ご飯</p>
-    </div>
-  </a>
-</div><div class="card">
-  <a href="membermasam762000@gmail.com.html">
-    <img src="images/photo205_1.jpg" alt="https://drive.google.com/open?id=1WtSmuSHFXs7x-m6UhbDl3VyfLyl1GsbQ, https://drive.google.com/open?id=1mGh0yl6YJj0-lulczkJDjXb4osy-_CRQ, https://drive.google.com/open?id=19C7faCSqseVOcSdThnSIdUYaA1KrunBQ, https://drive.google.com/open?id=1FHLnlWkIF1QArF3oBQcKC_QWY_1mD8Im, https://drive.google.com/open?id=1RyKro6j0kXFvrt2Nq6fuXis5ta1Q7ODM" />
-    <div class="card-info">
-      <p><strong>https://drive.google.com/open?id=1WtSmuSHFXs7x-m6UhbDl3VyfLyl1GsbQ, https://drive.google.com/open?id=1mGh0yl6YJj0-lulczkJDjXb4osy-_CRQ, https://drive.google.com/open?id=19C7faCSqseVOcSdThnSIdUYaA1KrunBQ, https://drive.google.com/open?id=1FHLnlWkIF1QArF3oBQcKC_QWY_1mD8Im, https://drive.google.com/open?id=1RyKro6j0kXFvrt2Nq6fuXis5ta1Q7ODM</strong></p>
-      <p>年齢: 205</p>
-      <p>身長: Eカップcm</p>
-      <p>スリーサイズ: 57/86/166/筋トレ 旅行 美容</p>
-    </div>
-  </a>
-</div></div><div class="pagination"><a href="member_list_page1.html" class="current">1</a><a href="member_list_page2.html" class="">2</a></div></body></html>
+  });
+});
+</script></body></html>
