@@ -459,14 +459,14 @@ document.querySelectorAll('.card-image').forEach(container => {
 });
 document.querySelectorAll('.favorite-btn').forEach(btn => {
   const id = btn.dataset.id;
-  if (localStorage.getItem('fav-' + id)) btn.textContent = '??';
+  if (localStorage.getItem('fav-' + id)) btn.textContent = '❤️';
   btn.addEventListener('click', () => {
     if (localStorage.getItem('fav-' + id)) {
       localStorage.removeItem('fav-' + id);
       btn.textContent = '?';
     } else {
       localStorage.setItem('fav-' + id, '1');
-      btn.textContent = '??';
+      btn.textContent = '❤️';
     }
   });
 });
