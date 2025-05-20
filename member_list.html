@@ -463,7 +463,7 @@ document.querySelectorAll('.favorite-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     if (localStorage.getItem('fav-' + id)) {
       localStorage.removeItem('fav-' + id);
-      btn.textContent = '?';
+      btn.textContent = '♡';
     } else {
       localStorage.setItem('fav-' + id, '1');
       btn.textContent = '❤️';
