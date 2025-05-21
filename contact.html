@@ -161,4 +161,44 @@
     <div class="hamburger" onclick="toggleMenu()">
       <span></span>
       <span></span>
-      <span
+      <span></span>
+    </div>
+  </header>
+
+  <div class="banner"></div>
+
+  <div class="form-container">
+    <h2>お問合せ</h2>
+    <form action="mailto:kousai.kaiin.club@gmail.com" method="POST" enctype="text/plain">
+      <input type="text" name="name" placeholder="お名前（必須）" required>
+      <input type="email" name="email" placeholder="メールアドレス（必須）" required>
+      <select name="topic" required>
+        <option value="">お問合せ項目を選択してください</option>
+        <option value="入会について">入会について</option>
+        <option value="セッティングについて">セッティングについて</option>
+        <option value="費用について">費用について</option>
+        <option value="その他">その他</option>
+      </select>
+      <input type="text" name="subject" placeholder="件名">
+      <textarea name="message" placeholder="お問合せ内容（必須）" required></textarea>
+      <button type="submit" class="submit-btn">送信 ▶</button>
+    </form>
+
+    <div class="line-link">
+      <p>
+        LINEでのお問合せはこちら →
+        <a href="https://lin.ee/TL18EfE" target="_blank" rel="noopener noreferrer">LINE公式アカウント</a>
+      </p>
+      <a href="https://lin.ee/TL18EfE" target="_blank" rel="noopener noreferrer">
+        <img src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" alt="友だち追加" height="36" border="0">
+      </a>
+    </div>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("navLinks").classList.toggle("active");
+    }
+  </script>
+</body>
+</html>
