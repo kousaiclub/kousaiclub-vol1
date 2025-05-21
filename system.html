@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="ja">
+<!DOCTYPE html>
+<html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,150 +13,157 @@
       background-color: #1c1c1c;
       color: #f9f9f9;
       font-family: 'Cormorant Garamond', serif;
-    }header {
-  background-color: #000;
-  padding: 10px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: relative;
-}
+    }
 
-header img {
-  height: 40px;
-}
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 10px 20px;
+      position: relative;
+      z-index: 10;
+    }
 
-nav {
-  display: flex;
-  flex-wrap: wrap;
-}
+    .nav-logo img {
+      height: 50px;
+      object-fit: contain;
+      filter: brightness(90%) drop-shadow(0 1px 1px #ccc);
+    }
 
-nav a {
-  color: #f9f9f9;
-  text-decoration: none;
-  margin: 0 10px;
-  font-size: 14px;
-}
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
 
-nav a:hover {
-  text-decoration: underline;
-}
+    .nav-links a {
+      color: #f9f9f9;
+      text-decoration: none;
+      font-size: 14px;
+    }
 
-.hamburger {
-  display: none;
-  flex-direction: column;
-  cursor: pointer;
-}
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
 
-.hamburger div {
-  width: 25px;
-  height: 3px;
-  background-color: #f9f9f9;
-  margin: 4px 0;
-}
+    .hamburger span {
+      height: 3px;
+      width: 25px;
+      background: #f9f9f9;
+      margin: 4px 0;
+    }
 
-.banner {
-  width: 100%;
-  height: 300px;
-  background: url('images/banner_2.png') center/cover no-repeat;
-}
+    @media screen and (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.9);
+        padding: 15px;
+      }
 
-.content {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 40px 20px;
-  text-align: center;
-}
+      .nav-links.active {
+        display: flex;
+      }
 
-h2 {
-  font-size: 28px;
-  margin-bottom: 40px;
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 10px;
-}
+      .hamburger {
+        display: flex;
+      }
+    }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 20px;
-}
+    .banner {
+      width: 100%;
+      height: 300px;
+      background: url('images/banner_2.png') center/cover no-repeat;
+    }
 
-th, td {
-  border: 1px solid #f9f9f9;
-  padding: 16px;
-  font-size: 19px;
-}
+    .content {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      text-align: center;
+    }
 
-th {
-  background-color: #333;
-}
+    h2 {
+      font-size: 28px;
+      margin-bottom: 40px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 10px;
+    }
 
-.note {
-  font-size: 14px;
-  margin-top: -10px;
-  margin-bottom: 40px;
-}
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
 
-.contact-btn {
-  display: inline-block;
-  padding: 10px 24px;
-  font-size: 16px;
-  background-color: #fff;
-  color: #000;
-  text-decoration: none;
-  border-radius: 4px;
-  margin-top: 20px;
-}
+    th, td {
+      border: 1px solid #f9f9f9;
+      padding: 16px;
+      font-size: 19px;
+    }
 
-@media screen and (max-width: 768px) {
-  nav {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    background-color: #000;
-  }
+    th {
+      background-color: #333;
+    }
 
-  nav a {
-    padding: 10px;
-    border-top: 1px solid #333;
-  }
+    .note {
+      font-size: 14px;
+      margin-top: -10px;
+      margin-bottom: 40px;
+    }
 
-  .hamburger {
-    display: flex;
-  }
-
-  nav.active {
-    display: flex;
-  }
-}
-
+    .contact-btn {
+      display: inline-block;
+      padding: 10px 24px;
+      font-size: 16px;
+      background-color: #fff;
+      color: #000;
+      text-decoration: none;
+      border-radius: 4px;
+      margin-top: 20px;
+    }
   </style>
   <script>
     function toggleMenu() {
-      const nav = document.getElementById('navMenu');
+      const nav = document.getElementById('navLinks');
       nav.classList.toggle('active');
     }
   </script>
 </head>
 <body>
-  <header>
-    <img src="images/logo_1.png" alt="PRIVATE SHIROKANE">
-    <div class="hamburger" onclick="toggleMenu()">
-      <div></div>
-      <div></div>
-      <div></div>
+
+  <header class="nav-container">
+    <div class="nav-logo">
+      <a href="top.html">
+        <img src="images/logo_1.png" alt="PRIVATE SHIROKANE Logo">
+      </a>
     </div>
-    <nav id="navMenu">
+    <nav class="nav-links" id="navLinks">
       <a href="index.html">Home</a>
       <a href="top.html">Top</a>
+      <a href="system.html">料金・システム</a>
       <a href="guidance_men.html">男性会員入会</a>
       <a href="guidance_women.html">女性会員入会</a>
-      <a href="system.html">料金・システム</a>
       <a href="pickup_member.html">注目会員様情報</a>
       <a href="members_only.html">会員専用Page</a>
-      <a href="https://kousaiclub.jp/contact.html">お問合せ</a>
+      <a href="contact.html">お問合せ</a>
     </nav>
-  </header>  <div class="banner"></div>  <div class="content">
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </header>
+
+  <div class="banner"></div>
+
+  <div class="content">
     <h2>SYSTEM（料金システム）</h2>
     <table>
       <tr>
@@ -187,5 +195,6 @@ th {
     <div class="note">※VIP会員は個別にご案内いたします。</div>
     <a href="https://kousaiclub.jp/contact.html" class="contact-btn">お問合せ ▶</a>
   </div>
+
 </body>
 </html>
