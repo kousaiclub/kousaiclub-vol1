@@ -14,95 +14,49 @@
       color: #f9f9f9;
       font-family: 'Cormorant Garamond', serif;
     }
-    header {
-      background-color: #000;
-      padding: 10px 20px;
+
+    .nav-container {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 10px 20px;
+      position: relative;
+      z-index: 10;
     }
-    header img {
-      height: 40px;
+
+    .nav-logo img {
+      height: 50px;
+      object-fit: contain;
+      filter: brightness(90%) drop-shadow(0 1px 1px #ccc);
     }
-    .menu-toggle {
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      color: #f9f9f9;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .hamburger {
       display: none;
       flex-direction: column;
       cursor: pointer;
     }
-    .menu-toggle div {
-      width: 25px;
+
+    .hamburger span {
       height: 3px;
-      background-color: #f9f9f9;
+      width: 25px;
+      background: #f9f9f9;
       margin: 4px 0;
     }
-    nav {
-      display: flex;
-      flex-wrap: wrap;
-    }
-    nav a {
-      color: #f9f9f9;
-      text-decoration: none;
-      margin: 0 10px;
-      font-size: 14px;
-    }
-    nav a:hover {
-      text-decoration: underline;
-    }
-    .banner {
-      width: 100%;
-      height: 300px;
-      background: url('images/banner_2.png') center/cover no-repeat;
-    }
-    .form-container {
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 40px 20px;
-      background-color: #2a2a2a;
-      border: 1px solid #f9f9f9;
-    }
-    h2 {
-      text-align: center;
-      font-size: 28px;
-      border-bottom: 1px solid #ccc;
-      padding-bottom: 10px;
-    }
-    form {
-      display: flex;
-      flex-direction: column;
-    }
-    input, select, textarea {
-      margin-bottom: 20px;
-      padding: 10px;
-      font-size: 16px;
-      border: none;
-      font-family: 'Cormorant Garamond', serif;
-    }
-    textarea {
-      height: 120px;
-      resize: vertical;
-    }
-    .submit-btn {
-      background-color: #fff;
-      color: #000;
-      padding: 12px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-    .line-link {
-      text-align: center;
-      margin-top: 30px;
-    }
-    .line-link p {
-      font-size: 16px;
-      color: #f9f9f9;
-      margin-bottom: 10px;
-    }
-    .line-link a {
-      color: #00ff00;
-      text-decoration: underline;
-    }
+
     @media screen and (max-width: 768px) {
-      nav {
+      .nav-links {
         display: none;
         flex-direction: column;
         width: 100%;
@@ -112,24 +66,89 @@
         background-color: rgba(0, 0, 0, 0.95);
         padding: 15px;
       }
-      nav.active {
+
+      .nav-links.active {
         display: flex;
       }
-      .menu-toggle {
+
+      .hamburger {
         display: flex;
       }
+    }
+
+    .banner {
+      width: 100%;
+      height: 300px;
+      background: url('images/banner_2.png') center/cover no-repeat;
+    }
+
+    .form-container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      background-color: #2a2a2a;
+      border: 1px solid #f9f9f9;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 28px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 10px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    input, select, textarea {
+      margin-bottom: 20px;
+      padding: 10px;
+      font-size: 16px;
+      border: none;
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    textarea {
+      height: 120px;
+      resize: vertical;
+    }
+
+    .submit-btn {
+      background-color: #fff;
+      color: #000;
+      padding: 12px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .line-link {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .line-link p {
+      font-size: 16px;
+      color: #f9f9f9;
+      margin-bottom: 10px;
+    }
+
+    .line-link a {
+      color: #00ff00;
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
-  <header>
-    <img src="images/logo_1.png" alt="PRIVATE SHIROKANE">
-    <div class="menu-toggle" onclick="toggleMenu()">
-      <div></div>
-      <div></div>
-      <div></div>
+
+  <header class="nav-container">
+    <div class="nav-logo">
+      <a href="top.html">
+        <img src="images/logo_1.png" alt="PRIVATE SHIROKANE Logo">
+      </a>
     </div>
-    <nav id="navLinks">
+    <nav class="nav-links" id="navLinks">
       <a href="index.html">Home</a>
       <a href="top.html">Top</a>
       <a href="guidance_men.html">男性入会</a>
@@ -139,43 +158,7 @@
       <a href="members_only.html">会員専用Page</a>
       <a href="contact.html">お問合せ</a>
     </nav>
-  </header>
-
-  <div class="banner"></div>
-
-  <div class="form-container">
-    <h2>お問合せ</h2>
-    <form action="mailto:kousai.kaiin.club@gmail.com" method="POST" enctype="text/plain">
-      <input type="text" name="name" placeholder="お名前（必須）" required>
-      <input type="email" name="email" placeholder="メールアドレス（必須）" required>
-      <select name="topic" required>
-        <option value="">お問合せ項目を選択してください</option>
-        <option value="入会について">入会について</option>
-        <option value="セッティングについて">セッティングについて</option>
-        <option value="費用について">費用について</option>
-        <option value="その他">その他</option>
-      </select>
-      <input type="text" name="subject" placeholder="件名">
-      <textarea name="message" placeholder="お問合せ内容（必須）" required></textarea>
-      <button type="submit" class="submit-btn">送信 ▶</button>
-    </form>
-
-    <div class="line-link">
-      <p>
-        LINEでのお問合せはこちら →
-        <a href="https://lin.ee/TL18EfE" target="_blank" rel="noopener noreferrer">LINE公式アカウント</a>
-      </p>
-      <a href="https://lin.ee/TL18EfE" target="_blank" rel="noopener noreferrer">
-        <img src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" alt="友だち追加" height="36" border="0">
-      </a>
-    </div>
-
-  </div>
-
-  <script>
-    function toggleMenu() {
-      document.getElementById("navLinks").classList.toggle("active");
-    }
-  </script>
-</body>
-</html>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span
