@@ -1,320 +1,342 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html><html lang="ja"><head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>members_list - Page 2</title>
-  <link rel="icon" href="images/logo_1.png">
+  <link rel="icon" href="images/logo_1.png" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: #1c1c1c;
-      color: #f9f9f9;
-      font-family: 'Cormorant Garamond', serif;
+    body { margin:0;padding:0;background:#1c1c1c;color:#f9f9f9;font-family:'Cormorant Garamond',serif;font-size:14px;line-height:1.8; }
+    .nav-container { display:flex;align-items:center;justify-content:space-between;background:#0009;padding:5px 20px; }
+    .nav-logo img { height:50px;filter:brightness(90%) drop-shadow(0 1px 1px #ccc); }
+    .nav-links { display:flex;gap:20px; }
+    .nav-links a { color:#f0f0f0;text-decoration:none; }
+    .hamburger { display:none;flex-direction:column;cursor:pointer; }
+    .hamburger span { height:3px;width:25px;background:#f9f9f9;margin:4px 0; }
+    @media (max-width:768px) {
+      .nav-links { display:none;flex-direction:column;width:100%;position:absolute;top:60px;left:0;background:#000;padding:15px; }
+      .nav-links.active { display:flex; }
+      .hamburger { display:flex; }
     }
-    header {
-      background-color: #000;
-      padding: 10px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+    .banner { background:url('images/banner_3.png') no-repeat center center;background-size:cover;height:340px; }
+    .search-link-wrapper { text-align:center;margin:20px 0; }
+    .search-button { padding:10px 20px;background:#f9f9f9;color:#1c1c1c;border-radius:6px;text-decoration:none;font-weight:bold;font-size:14px; }
+    .card-container { display:flex;flex-wrap:wrap;justify-content:space-evenly;max-width:1280px;margin:0 auto;gap:20px;padding:20px; }
+    .card { width:22%;min-width:280px;background:#1c1c1c;border:1px solid #f9f9f9;border-radius:12px;margin-bottom:20px;overflow:hidden; }
+    .card-image { position:relative;width:100%;height:360px;overflow:hidden;cursor:pointer; }
+    .slide { position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;transition:opacity 0.6s ease-in-out; }
+    .slide.active { opacity:1; }
+    .slide img { width:100%;height:100%;object-fit:cover; }
+    .card-text { padding:8px;text-align:center; }
+    .favorite-btn { font-size:18px;color:#FF69B4;cursor:pointer; }
+    .comment { display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;text-overflow:ellipsis; }
+    .pagination { text-align:center;margin:20px; }
+    .pagination a { color:#f9f9f9;padding:6px 12px;border:1px solid #f9f9f9;border-radius:6px;margin:0 5px;text-decoration:none; }
+    .pagination a.current { background:#f9f9f9;color:#1c1c1c;font-weight:bold; }
+    @media (max-width:768px) {
+      .card-container { justify-content:space-between; }
+      .card { width:calc(48% - 10px);min-width:0 !important; }
+      .card-image { height:300px !important; }
     }
-    header img {
-      height: 40px;
-    }
-    .card-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-evenly;
-      padding: 40px 0;
-      max-width: 1280px;
-      margin: 0 auto;
-    }
-    .card {
-      background-color: #2e2e2e;
-      border-radius: 12px;
-      overflow: hidden;
-      margin: 10px;
-      width: calc(25% - 20px);
-      min-width: 288px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.5);
-    }
-    .card img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-    .info {
-      padding: 10px;
-      text-align: center;
-      font-size: 14px;
-    }
-    .pagination {
-      text-align: center;
-      margin: 20px 0;
-    }
-    .pagination a {
-      color: #fff;
-      background-color: #444;
-      padding: 6px 12px;
-      border-radius: 4px;
-      margin: 0 5px;
-      text-decoration: none;
-    }
-    @media screen and (max-width: 768px) {
-      .card {
-        width: calc(50% - 20px);
-        min-width: 0;
-      }
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <img src="images/logo_1.png" alt="PRIVATE SHIROKANE">
+  </style></head><body>
+  <header class="nav-container">
+    <div class="nav-logo"><a href="top.html"><img src="images/logo_1.png" alt="PRIVATE SHIROKANE"></a></div>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">Home</a><a href="top.html">Top</a>
+      <a href="guidance_men.html">男性会員入会</a><a href="guidance_women.html">女性会員入会</a>
+      <a href="system.html">料金・システム</a><a href="pickup_member.html">注目会員様情報</a>
+      <a href="members_only.html">会員専用Page</a><a href="contact.html">お問合せ</a>
+    </nav>
+    <div class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('active')">
+      <span></span><span></span><span></span>
+    </div>
   </header>
-  <main>
-    <div class="pagination"><a href="../member_search.html">会員検索はこちら</a></div>
-    <div class="card-container">
+  <div class="banner"></div>
+  <div class="search-link-wrapper">
+    <a href="search_result.html" class="search-button">会員検索はこちら</a>
+  </div><div class="card-container">
 
       <div class="card">
-        <img src="images/photo318_1.jpg" alt="今井なみの">
-        <div class="info">
-          <p>No. 318 今井なみの</p>
-          <p>10.00（E歳）</p>
-          <p>photo318_1.jpg, photo318_2.jpg, photo318_3.jpg, photo318_4.jpg, photo318_5.jpg</p>
+        <div class="card-image" onclick="window.open('member318.html', '_blank')"><div class='slide active'><img src='images/photo318_1.jpg'></div><div class='slide'><img src='images/photo318_2.jpg'></div><div class='slide'><img src='images/photo318_3.jpg'></div><div class='slide'><img src='images/photo318_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 318 今井なみの</p>
+          <p>87cm (E歳)</p>
+          <p>55cm, 86cm, 163cm, ダンスカップ</p>
+          <p class="comment">愛嬌があり、人見知りをしない、明るい</p>
+          <p><span class="favorite-btn" data-id="318">♡</span></p>
         </div>
       </div>
-
       <div class="card">
-        <img src="images/photo317_1.jpg" alt="清木場ゆり">
-        <div class="info">
-          <p>No. 317 清木場ゆり</p>
-          <p>8.00（G歳）</p>
-          <p>photo317_1.jpg, photo317_2.jpg, photo317_3.jpg, photo317_4.jpg, photo317_5.jpg</p>
+        <div class="card-image" onclick="window.open('member317.html', '_blank')"><div class='slide active'><img src='images/photo317_1.jpg'></div><div class='slide'><img src='images/photo317_2.jpg'></div><div class='slide'><img src='images/photo317_3.jpg'></div><div class='slide'><img src='images/photo317_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 317 清木場ゆり</p>
+          <p>91cm (G歳)</p>
+          <p>60cm, 92cm, 168cm, ガーデニング、ジム、旅行カップ</p>
+          <p class="comment">明るい、好奇心旺盛</p>
+          <p><span class="favorite-btn" data-id="317">♡</span></p>
         </div>
       </div>
-
       <div class="card">
-        <img src="images/photo316_1.jpg" alt="宮本めいみ">
-        <div class="info">
-          <p>No. 316 宮本めいみ</p>
-          <p>6.00（E歳）</p>
-          <p>photo316_1.jpg, photo316_2.jpg, photo316_3.jpg, photo316_4.jpg, photo316_5.jpg</p>
+        <div class="card-image" onclick="window.open('member316.html', '_blank')"><div class='slide active'><img src='images/photo316_1.jpg'></div><div class='slide'><img src='images/photo316_2.jpg'></div><div class='slide'><img src='images/photo316_3.jpg'></div><div class='slide'><img src='images/photo316_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 316 宮本めいみ</p>
+          <p>85cm (E歳)</p>
+          <p>57cm, 89cm, 161cm, 美術館、旅行、クラシック、美容カップ</p>
+          <p class="comment">好奇心旺盛</p>
+          <p><span class="favorite-btn" data-id="316">♡</span></p>
         </div>
       </div>
-
       <div class="card">
-        <img src="images/photo315_1.jpg" alt="小川りの">
-        <div class="info">
-          <p>No. 315 小川りの</p>
-          <p>12.00（E歳）</p>
-          <p>photo315_1.jpg, photo315_2.jpg, photo315_3.jpg, photo315_4.jpg, photo315_5.jpg</p>
+        <div class="card-image" onclick="window.open('member315.html', '_blank')"><div class='slide active'><img src='images/photo315_1.jpg'></div><div class='slide'><img src='images/photo315_2.jpg'></div><div class='slide'><img src='images/photo315_3.jpg'></div><div class='slide'><img src='images/photo315_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 315 小川りの</p>
+          <p>95cm (E歳)</p>
+          <p>55cm, 80cm, 157cm, カフェ巡りカップ</p>
+          <p class="comment">猫みたい、気まぐれ</p>
+          <p><span class="favorite-btn" data-id="315">♡</span></p>
         </div>
       </div>
-
       <div class="card">
-        <img src="images/photo314_1.jpg" alt="北川ゆな">
-        <div class="info">
-          <p>No. 314 北川ゆな</p>
-          <p>9.00（D歳）</p>
-          <p>photo314_1.jpg, photo314_2.jpg, photo314_3.jpg, photo314_4.jpg, photo314_5.jpg</p>
+        <div class="card-image" onclick="window.open('member314.html', '_blank')"><div class='slide active'><img src='images/photo314_1.jpg'></div><div class='slide'><img src='images/photo314_2.jpg'></div><div class='slide'><img src='images/photo314_3.jpg'></div><div class='slide'><img src='images/photo314_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 314 北川ゆな</p>
+          <p>86cm (D歳)</p>
+          <p>57cm, 87cm, 170cm, ゴルフ、裁縫、海外旅行、美味しいご飯屋さん巡りカップ</p>
+          <p class="comment">礼儀正しく人見知りもしない</p>
+          <p><span class="favorite-btn" data-id="314">♡</span></p>
         </div>
       </div>
-
       <div class="card">
-        <img src="images/photo313_1.jpg" alt="小川ありさ">
-        <div class="info">
-          <p>No. 313 小川ありさ</p>
-          <p>8.00（E歳）</p>
-          <p>photo313_1.jpg, photo313_2.jpg, photo313_3.jpg, photo313_4.jpg, photo313_5.jpg</p>
+        <div class="card-image" onclick="window.open('member313.html', '_blank')"><div class='slide active'><img src='images/photo313_1.jpg'></div><div class='slide'><img src='images/photo313_2.jpg'></div><div class='slide'><img src='images/photo313_3.jpg'></div><div class='slide'><img src='images/photo313_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 313 小川ありさ</p>
+          <p>85cm (E歳)</p>
+          <p>58cm, 86cm, 165cm, 美容カップ</p>
+          <p class="comment">人と話すのが好き</p>
+          <p><span class="favorite-btn" data-id="313">♡</span></p>
         </div>
       </div>
-
       <div class="card">
-        <img src="images/photo312_1.jpg" alt="黒川れい">
-        <div class="info">
-          <p>No. 312 黒川れい</p>
-          <p>８（D歳）</p>
-          <p>photo312_1.jpg, photo312_2.jpg, photo312_3.jpg, photo312_4.jpg, photo312_5.jpg</p>
+        <div class="card-image" onclick="window.open('member312.html', '_blank')"><div class='slide active'><img src='images/photo312_1.jpg'></div><div class='slide'><img src='images/photo312_2.jpg'></div><div class='slide'><img src='images/photo312_3.jpg'></div><div class='slide'><img src='images/photo312_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 312 黒川れい</p>
+          <p>84cm (D歳)</p>
+          <p>57cm, 85cm, 162cm, 旅行カップ</p>
+          <p class="comment">落ち着いていると言われます</p>
+          <p><span class="favorite-btn" data-id="312">♡</span></p>
         </div>
       </div>
-
       <div class="card">
-        <img src="images/photo311_1.jpg" alt="白山かなで ">
-        <div class="info">
-          <p>No. 311 白山かなで </p>
-          <p>8.00（C歳）</p>
-          <p>photo311_1.jpg, photo311_2.jpg, photo311_3.jpg, photo311_4.jpg</p>
+        <div class="card-image" onclick="window.open('member311.html', '_blank')"><div class='slide active'><img src='images/photo311_1.jpg'></div><div class='slide'><img src='images/photo311_2.jpg'></div><div class='slide'><img src='images/photo311_3.jpg'></div><div class='slide'><img src='images/photo311_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 311 白山かなで </p>
+          <p>81cm (C歳)</p>
+          <p>56cm, 84cm, 157cm, 乗馬、一人海外カップ</p>
+          <p class="comment">明るくポジティブ</p>
+          <p><span class="favorite-btn" data-id="311">♡</span></p>
         </div>
       </div>
-
       <div class="card">
-        <img src="images/photo310_1.jpg" alt="篠崎みゆ">
-        <div class="info">
-          <p>No. 310 篠崎みゆ</p>
-          <p>10.00（D歳）</p>
-          <p>photo310_1.jpg, photo310_2.jpg, photo310_3.jpg, photo310_4.jpg</p>
+        <div class="card-image" onclick="window.open('member310.html', '_blank')"><div class='slide active'><img src='images/photo310_1.jpg'></div><div class='slide'><img src='images/photo310_2.jpg'></div><div class='slide'><img src='images/photo310_3.jpg'></div><div class='slide'><img src='images/photo310_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 310 篠崎みゆ</p>
+          <p>86cm (D歳)</p>
+          <p>57cm, 82cm, 158cm, 旅行、お出かけカップ</p>
+          <p class="comment">ポジティブな性格で人見知りしない</p>
+          <p><span class="favorite-btn" data-id="310">♡</span></p>
         </div>
       </div>
-
       <div class="card">
-        <img src="images/photo308_1.jpg" alt="後藤あいり">
-        <div class="info">
-          <p>No. 308 後藤あいり</p>
-          <p>6.00（D歳）</p>
-          <p>photo308_1.jpg, photo308_2.jpg, photo308_3.jpg, photo308_4.jpg, photo308_5.jpg</p>
+        <div class="card-image" onclick="window.open('member308.html', '_blank')"><div class='slide active'><img src='images/photo308_1.jpg'></div><div class='slide'><img src='images/photo308_2.jpg'></div><div class='slide'><img src='images/photo308_3.jpg'></div><div class='slide'><img src='images/photo308_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 308 後藤あいり</p>
+          <p>85cm (D歳)</p>
+          <p>58cm, 95cm, 165cm, ゴルフ、ミュージカル鑑、サッカー観戦カップ</p>
+          <p class="comment">アクティブで多趣味</p>
+          <p><span class="favorite-btn" data-id="308">♡</span></p>
         </div>
       </div>
-
       <div class="card">
-        <img src="images/photo307_1.jpg" alt="佐伯みやび">
-        <div class="info">
-          <p>No. 307 佐伯みやび</p>
-          <p>10.00（E歳）</p>
-          <p>photo307_1.jpg, photo307_2.jpg, photo307_3.jpg, photo307_4.jpg, photo307_5.jpg</p>
+        <div class="card-image" onclick="window.open('member307.html', '_blank')"><div class='slide active'><img src='images/photo307_1.jpg'></div><div class='slide'><img src='images/photo307_2.jpg'></div><div class='slide'><img src='images/photo307_3.jpg'></div><div class='slide'><img src='images/photo307_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 307 佐伯みやび</p>
+          <p>85cm (E歳)</p>
+          <p>56cm, 88cm, 166cm, サウナカップ</p>
+          <p class="comment">明るい、人懐っこい</p>
+          <p><span class="favorite-btn" data-id="307">♡</span></p>
         </div>
       </div>
-
       <div class="card">
-        <img src="images/photo306_1.jpg" alt="長谷ののか">
-        <div class="info">
-          <p>No. 306 長谷ののか</p>
-          <p>8.00（G歳）</p>
-          <p>photo306_1.jpg, photo306_2.jpg, photo306_3.jpg, photo306_4.jpg, photo306_5.jpg</p>
+        <div class="card-image" onclick="window.open('member306.html', '_blank')"><div class='slide active'><img src='images/photo306_1.jpg'></div><div class='slide'><img src='images/photo306_2.jpg'></div><div class='slide'><img src='images/photo306_3.jpg'></div><div class='slide'><img src='images/photo306_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 306 長谷ののか</p>
+          <p>88cm (G歳)</p>
+          <p>57cm, 88cm, 163cm, カップ</p>
+          <p class="comment">好奇心旺盛、明るくおおらか</p>
+          <p><span class="favorite-btn" data-id="306">♡</span></p>
         </div>
       </div>
-
       <div class="card">
-        <img src="images/photo305_1.jpg" alt="水嶋すみれ">
-        <div class="info">
-          <p>No. 305 水嶋すみれ</p>
-          <p>8.00（G歳）</p>
-          <p>photo305_1.jpg, photo305_2.jpg, photo305_3.jpg, photo305_4.jpg, photo305_5.jpg</p>
+        <div class="card-image" onclick="window.open('member305.html', '_blank')"><div class='slide active'><img src='images/photo305_1.jpg'></div><div class='slide'><img src='images/photo305_2.jpg'></div><div class='slide'><img src='images/photo305_3.jpg'></div><div class='slide'><img src='images/photo305_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 305 水嶋すみれ</p>
+          <p>90cm (G歳)</p>
+          <p>58cm, 93cm, 164cm, 旅行、食べること、アニメや映画カップ</p>
+          <p class="comment"></p>
+          <p><span class="favorite-btn" data-id="305">♡</span></p>
         </div>
       </div>
-
       <div class="card">
-        <img src="images/photo304_1.jpg" alt="一ノ瀬レイラ">
-        <div class="info">
-          <p>No. 304 一ノ瀬レイラ</p>
-          <p>9.00（D歳）</p>
-          <p>photo304_1.jpg, photo304_2.jpg, photo304_3.jpg, photo304_4.jpg, photo304_5.jpg</p>
+        <div class="card-image" onclick="window.open('member304.html', '_blank')"><div class='slide active'><img src='images/photo304_1.jpg'></div><div class='slide'><img src='images/photo304_2.jpg'></div><div class='slide'><img src='images/photo304_3.jpg'></div><div class='slide'><img src='images/photo304_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 304 一ノ瀬レイラ</p>
+          <p>83cm (D歳)</p>
+          <p>57cm, 84cm, 167cm, 落ち着きのあるおっとりとした性格カップ</p>
+          <p class="comment">のんびりした性格、猫っぽい</p>
+          <p><span class="favorite-btn" data-id="304">♡</span></p>
         </div>
       </div>
-
       <div class="card">
-        <img src="images/photo303_1.jpg" alt="藤本あみ">
-        <div class="info">
-          <p>No. 303 藤本あみ</p>
-          <p>9.00（D歳）</p>
-          <p>photo303_1.jpg, photo303_2.jpg, photo303_3.jpg, photo303_4.jpg, photo303_5.jpg</p>
+        <div class="card-image" onclick="window.open('member303.html', '_blank')"><div class='slide active'><img src='images/photo303_1.jpg'></div><div class='slide'><img src='images/photo303_2.jpg'></div><div class='slide'><img src='images/photo303_3.jpg'></div><div class='slide'><img src='images/photo303_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 303 藤本あみ</p>
+          <p>83cm (D歳)</p>
+          <p>56cm, 86cm, 160cm, 料理カップ</p>
+          <p class="comment">明るく、癒し系</p>
+          <p><span class="favorite-btn" data-id="303">♡</span></p>
         </div>
       </div>
-
       <div class="card">
-        <img src="images/photo302_1.jpg" alt="織田花">
-        <div class="info">
-          <p>No. 302 織田花</p>
-          <p>9.00（G歳）</p>
-          <p>photo302_1.jpg, photo302_2.jpg, photo302_3.jpg, photo302_4.jpg, photo302_5.jpg</p>
+        <div class="card-image" onclick="window.open('member302.html', '_blank')"><div class='slide active'><img src='images/photo302_1.jpg'></div><div class='slide'><img src='images/photo302_2.jpg'></div><div class='slide'><img src='images/photo302_3.jpg'></div><div class='slide'><img src='images/photo302_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 302 織田花</p>
+          <p>93cm (G歳)</p>
+          <p>57cm, 88cm, 156cm, ゴルフ、ダイビング、旅行、料理カップ</p>
+          <p class="comment">好奇心旺盛</p>
+          <p><span class="favorite-btn" data-id="302">♡</span></p>
         </div>
       </div>
-
       <div class="card">
-        <img src="images/photo301_1.jpg" alt="吉良ももみ">
-        <div class="info">
-          <p>No. 301 吉良ももみ</p>
-          <p>9.00（G歳）</p>
-          <p>photo301_1.jpg, photo301_2.jpg, photo301_3.jpg, photo301_4.jpg, photo301_5.jpg</p>
+        <div class="card-image" onclick="window.open('member301.html', '_blank')"><div class='slide active'><img src='images/photo301_1.jpg'></div><div class='slide'><img src='images/photo301_2.jpg'></div><div class='slide'><img src='images/photo301_3.jpg'></div><div class='slide'><img src='images/photo301_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 301 吉良ももみ</p>
+          <p>91cm (G歳)</p>
+          <p>58cm, 88cm, 164cm, 美容、家事カップ</p>
+          <p class="comment">おっとりしていて明るい</p>
+          <p><span class="favorite-btn" data-id="301">♡</span></p>
         </div>
       </div>
-
       <div class="card">
-        <img src="images/photo300_1.jpg" alt="香川理央">
-        <div class="info">
-          <p>No. 300 香川理央</p>
-          <p>8.00（I歳）</p>
-          <p>photo300_1.jpg, photo300_2.jpg, photo300_3.jpg, photo300_4.jpg, photo300_5.jpg</p>
+        <div class="card-image" onclick="window.open('member300.html', '_blank')"><div class='slide active'><img src='images/photo300_1.jpg'></div><div class='slide'><img src='images/photo300_2.jpg'></div><div class='slide'><img src='images/photo300_3.jpg'></div><div class='slide'><img src='images/photo300_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 300 香川理央</p>
+          <p>99cm (I歳)</p>
+          <p>58cm, 88cm, 168cm, 歌、旅行カップ</p>
+          <p class="comment">明るい、ハキハキしている</p>
+          <p><span class="favorite-btn" data-id="300">♡</span></p>
         </div>
       </div>
-
       <div class="card">
-        <img src="images/photo209_1.jpg" alt="橘はる">
-        <div class="info">
-          <p>No. 209 橘はる</p>
-          <p>8.00（H歳）</p>
-          <p>photo209_1.jpg, photo209_2.jpg, photo209_3.jpg, photo209_4.jpg</p>
+        <div class="card-image" onclick="window.open('member209.html', '_blank')"><div class='slide active'><img src='images/photo209_1.jpg'></div><div class='slide'><img src='images/photo209_2.jpg'></div><div class='slide'><img src='images/photo209_3.jpg'></div><div class='slide'><img src='images/photo209_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 209 橘はる</p>
+          <p>90cm (H歳)</p>
+          <p>58cm, 88cm, 154cm, 海外旅行カップ</p>
+          <p class="comment">ハキハキ</p>
+          <p><span class="favorite-btn" data-id="209">♡</span></p>
         </div>
       </div>
-
       <div class="card">
-        <img src="images/photo208_1.jpg" alt="白石もも  ">
-        <div class="info">
-          <p>No. 208 白石もも  </p>
-          <p>10.00（D歳）</p>
-          <p>photo208_1.jpg, photo208_2.jpg, photo208_3.jpg, photo208_4.jpg, photo208_5.jpg</p>
+        <div class="card-image" onclick="window.open('member208.html', '_blank')"><div class='slide active'><img src='images/photo208_1.jpg'></div><div class='slide'><img src='images/photo208_2.jpg'></div><div class='slide'><img src='images/photo208_3.jpg'></div><div class='slide'><img src='images/photo208_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 208 白石もも  </p>
+          <p>90cm (D歳)</p>
+          <p>55cm, 90cm, 170cm, カラオケカップ</p>
+          <p class="comment">おっとり</p>
+          <p><span class="favorite-btn" data-id="208">♡</span></p>
         </div>
       </div>
-
       <div class="card">
-        <img src="images/photo207_1.jpg" alt="斉藤るか ">
-        <div class="info">
-          <p>No. 207 斉藤るか </p>
-          <p>8.00（D歳）</p>
-          <p>photo207_1.jpg, photo207_2.jpg, photo207_3.jpg, photo207_4.jpg, photo207_5.jpg</p>
+        <div class="card-image" onclick="window.open('member207.html', '_blank')"><div class='slide active'><img src='images/photo207_1.jpg'></div><div class='slide'><img src='images/photo207_2.jpg'></div><div class='slide'><img src='images/photo207_3.jpg'></div><div class='slide'><img src='images/photo207_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 207 斉藤るか </p>
+          <p>84cm (D歳)</p>
+          <p>58cm, 86cm, 155cm, ライブカップ</p>
+          <p class="comment">ハキハキ</p>
+          <p><span class="favorite-btn" data-id="207">♡</span></p>
         </div>
       </div>
-
       <div class="card">
-        <img src="images/photo206_1.jpg" alt="西内さくら">
-        <div class="info">
-          <p>No. 206 西内さくら</p>
-          <p>8.00（G歳）</p>
-          <p>photo206_1.jpg, photo206_2.jpg, photo206_3.jpg, photo206_4.jpg, photo206_5.jpg</p>
+        <div class="card-image" onclick="window.open('member206.html', '_blank')"><div class='slide active'><img src='images/photo206_1.jpg'></div><div class='slide'><img src='images/photo206_2.jpg'></div><div class='slide'><img src='images/photo206_3.jpg'></div><div class='slide'><img src='images/photo206_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 206 西内さくら</p>
+          <p>90cm (G歳)</p>
+          <p>53cm, 86cm, 163cm, 読書、映画、ご飯カップ</p>
+          <p class="comment">癒し系</p>
+          <p><span class="favorite-btn" data-id="206">♡</span></p>
         </div>
       </div>
-
       <div class="card">
-        <img src="images/photo205_1.jpg" alt="藤崎あいか">
-        <div class="info">
-          <p>No. 205 藤崎あいか</p>
-          <p>7.00（E歳）</p>
-          <p>photo205_1.jpg, photo205_2.jpg, photo205_3.jpg, photo205_4.jpg, photo205_5.jpg</p>
+        <div class="card-image" onclick="window.open('member205.html', '_blank')"><div class='slide active'><img src='images/photo205_1.jpg'></div><div class='slide'><img src='images/photo205_2.jpg'></div><div class='slide'><img src='images/photo205_3.jpg'></div><div class='slide'><img src='images/photo205_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 205 藤崎あいか</p>
+          <p>85cm (E歳)</p>
+          <p>57cm, 86cm, 166cm, 筋トレ 旅行 美容カップ</p>
+          <p class="comment">ハキハキ</p>
+          <p><span class="favorite-btn" data-id="205">♡</span></p>
         </div>
       </div>
-
       <div class="card">
-        <img src="images/photo204_1.jpg" alt="水咲ななせ">
-        <div class="info">
-          <p>No. 204 水咲ななせ</p>
-          <p>10.00（D歳）</p>
-          <p>photo204_1.jpg, photo204_2.jpg, photo204_3.jpg, photo204_4.jpg, photo204_5.jpg</p>
+        <div class="card-image" onclick="window.open('member204.html', '_blank')"><div class='slide active'><img src='images/photo204_1.jpg'></div><div class='slide'><img src='images/photo204_2.jpg'></div><div class='slide'><img src='images/photo204_3.jpg'></div><div class='slide'><img src='images/photo204_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 204 水咲ななせ</p>
+          <p>83cm (D歳)</p>
+          <p>57cm, 85cm, 163cm, ピアノカップ</p>
+          <p class="comment">おっとり</p>
+          <p><span class="favorite-btn" data-id="204">♡</span></p>
         </div>
       </div>
-
       <div class="card">
-        <img src="images/photo202_1.jpg" alt="水乃なのは">
-        <div class="info">
-          <p>No. 202 水乃なのは</p>
-          <p>8.00（F歳）</p>
-          <p>photo202_1.jpg, photo202_2.jpg, photo202_3.jpg, photo202_4.jpg</p>
+        <div class="card-image" onclick="window.open('member202.html', '_blank')"><div class='slide active'><img src='images/photo202_1.jpg'></div><div class='slide'><img src='images/photo202_2.jpg'></div><div class='slide'><img src='images/photo202_3.jpg'></div><div class='slide'><img src='images/photo202_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 202 水乃なのは</p>
+          <p>87cm (F歳)</p>
+          <p>57cm, 85cm, 162cm,  旅行カップ</p>
+          <p class="comment">おっとり</p>
+          <p><span class="favorite-btn" data-id="202">♡</span></p>
         </div>
       </div>
-
       <div class="card">
-        <img src="images/photo201_1.jpg" alt="本田ゆうり">
-        <div class="info">
-          <p>No. 201 本田ゆうり</p>
-          <p>8.00（E歳）</p>
-          <p>photo201_1.jpg, photo201_2.jpg, photo201_3.jpg, photo201_4.jpg, photo201_5.jpg</p>
+        <div class="card-image" onclick="window.open('member201.html', '_blank')"><div class='slide active'><img src='images/photo201_1.jpg'></div><div class='slide'><img src='images/photo201_2.jpg'></div><div class='slide'><img src='images/photo201_3.jpg'></div><div class='slide'><img src='images/photo201_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 201 本田ゆうり</p>
+          <p>84cm (E歳)</p>
+          <p>56cm, 84cm, 158cm,  買い物  美容カップ</p>
+          <p class="comment">フレンドリー</p>
+          <p><span class="favorite-btn" data-id="201">♡</span></p>
         </div>
-      </div></div>
-  <div class="pagination">
-    <a href="member_list_page1.html">前へ</a>
-  </div>
-  </main>
-</body>
-</html>
+      </div></div><div class="pagination"><a href="member_list.html" class="">1</a><a href="member_list_page2.html" class="current">2</a></div><script>
+    document.querySelectorAll('.card-image').forEach(container => {
+      const slides = Array.from(container.querySelectorAll('.slide'));
+      if (slides.length <= 1) return;
+      let idx = 0;
+      slides[0].classList.add('active');
+      setInterval(() => {
+        slides[idx].classList.remove('active');
+        idx = (idx + 1) % slides.length;
+        slides[idx].classList.add('active');
+      }, 3000);
+    });
+    document.querySelectorAll('.favorite-btn').forEach(btn => {
+      const id = btn.dataset.id;
+      if (localStorage.getItem('fav-' + id)) btn.textContent = '❤️';
+      btn.addEventListener('click', () => {
+        if (localStorage.getItem('fav-' + id)) {
+          localStorage.removeItem('fav-' + id);
+          btn.textContent = '♡';
+        } else {
+          localStorage.setItem('fav-' + id, '1');
+          btn.textContent = '❤️';
+        }
+      });
+    });
+  </script>
+</body></html>
