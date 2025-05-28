@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PRIVATE SHIROKANE - PickUp会員認証</title>
+  <link rel="icon" href="images/logo_1.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      background-color: #1c1c1c;
+      color: #f9f9f9;
+      font-family: 'Cormorant Garamond', serif;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    .container {
+      max-width: 400px;
+      margin: 80px auto;
+      padding: 20px;
+      background-color: #2a2a2a;
+      border-radius: 8px;
+    }
+    input[type="password"], input[type="submit"] {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      font-size: 16px;
+      border: none;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    input[type="password"] {
+      background-color: #fff;
+      color: #000;
+    }
+    input[type="submit"] {
+      background-color: #b22222;
+      color: #fff;
+      cursor: pointer;
+    }
+    p.info {
+      margin-top: 15px;
+      font-size: 13px;
+      color: #ccc;
+    }
+    a.contact-link {
+      color: #ffd700;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2 style="color:#ffd700;">会員専用ページ</h2>
+    <p>この女性の詳細情報を閲覧するにはパスワードが必要です。</p>
+    <form onsubmit="return checkPassword(event)">
+      <input type="password" id="password" placeholder="パスワードを入力" required />
+      <input type="submit" value="Login" />
+    </form>
+    <p class="info">
+      会員登録がまだの方は<br>
+      <a href="https://kousaiclub.jp/contact.html" class="contact-link">お問合せはこちら</a>
+    </p>
+  </div>
+
+  <script>
+    function checkPassword(e) {
+      e.preventDefault();
+      const input = document.getElementById("password").value;
+      const correctPassword = "Aa1"; // 適宜変更
+      const url = new URL(window.location.href);
+      const target = url.searchParams.get("target");
+
+      if (input === correctPassword && target) {
+        window.location.href = target;
+      } else {
+        alert("パスワードが違います。");
+      }
+    }
+  </script>
+</body>
+</html>
