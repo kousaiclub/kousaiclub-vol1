@@ -152,19 +152,23 @@
       document.getElementById("navLinks").classList.toggle("active");
     }
 
-    function checkPassword(e) {
-      e.preventDefault();
-      const input = document.getElementById("password").value;
-      const correctPassword = "Aa1"; // 必要に応じて変更
-      const url = new URL(window.location.href);
-      const target = url.searchParams.get("target");
+function checkPassword(e) {
+  e.preventDefault();
+  const input = document.getElementById("password").value;
+  const correctPassword = "Aa1"; // ← 必要に応じて変更
+  const url = new URL(window.location.href);
+  const target = url.searchParams.get("target");
 
-      if (input === correctPassword && target) {
-        window.location.href = target;
-      } else {
-        alert("パスワードが違います。");
-      }
+  if (input === correctPassword) {
+    if (target) {
+      window.location.href = target;
+    } else {
+      window.location.href = "member_list.html";
     }
+  } else {
+    alert("パスワードが違います。");
+  }
+}
   </script>
 
 </body>
