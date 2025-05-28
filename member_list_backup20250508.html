@@ -194,37 +194,431 @@
   </div>
 
   <div class="card-container">
-    <!-- ▼ ここに各.card 要素を追加 -->
+<div class="card">
+  <div class="card-image" onclick="window.open('member343.html', '_blank')">
+    <div class='slide active'><img src='images/photo343_1.jpg'></div><div class='slide'><img src='images/photo343_2.jpg'></div><div class='slide'><img src='images/photo343_3.jpg'></div><div class='slide'><img src='images/photo343_4.jpg'></div>
   </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 343 青山さり</p>
+    <p>160cm (24歳)</p>
+    <p>85cm, 53cm, 86cm, Eカップ</p>
+    <p class="comment">はじめまして、青山さりです🌸
+モデルやタレントのお仕事をしています✨24歳です。
 
-  <div class="pagination">
-    <a href="member_list.html" class="current">1</a>
-    <a href="member_list_page2.html">2</a>
+出身はアメリカで、英語はネイティブレベル🗽✈️
+帰国子女ならではの感性を活かして、グローバルな出会いや会話も大好きです💬💕
+
+身長160cm、スラリとしたプロポーションにEカップのボディラインがチャームポイントです👠
+
+性格は落ち着いていますが、親しみやすく自然体でいられる時間を大切にしています🍃
+お話しや食事、ご一緒できる時間を楽しみにしています🍽️✨
+どうぞよろしくお願いします🕊️</p>
+<p><span class="favorite-btn" data-id="343">♡</span></p>
   </div>
-
-  <script>
-    document.querySelectorAll('.card-image').forEach(container => {
-      const slides = Array.from(container.querySelectorAll('.slide'));
-      if (slides.length <= 1) return;
-      let idx = 0;
-      slides[0].classList.add('active');
-      setInterval(() => {
-        slides[idx].classList.remove('active');
-        idx = (idx + 1) % slides.length;
-        slides[idx].classList.add('active');
-      }, 3000);
-    });
-
-    document.querySelectorAll('.favorite-btn').forEach(btn => {
-      const id = btn.dataset.id;
-      if (localStorage.getItem('fav-' + id)) btn.textContent = '❤️';
-      btn.addEventListener('click', () => {
-        if (localStorage.getItem('fav-' + id)) {
-          localStorage.removeItem('fav-' + id);
-          btn.textContent = '♡';
-        } else {
-          localStorage.setItem('fav-' + id, '1');
-          btn.textContent = '❤️';
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member344.html', '_blank')">
+    <div class='slide active'><img src='images/photo344_1.jpg'></div><div class='slide'><img src='images/photo344_2.jpg'></div><div class='slide'><img src='images/photo344_3.jpg'></div><div class='slide'><img src='images/photo344_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 344 橋本こころ  </p>
+    <p>163cm (26歳)</p>
+    <p>82cm, 57cm, 83cm, Cカップ</p>
+    <p class="comment">長く楽しくお付き合いできる人と出逢いたいです✨ 色んなお話しを楽しみたいです☺️</p>
+<p><span class="favorite-btn" data-id="344">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member224.html', '_blank')">
+    <div class='slide active'><img src='images/photo224_1.jpg'></div><div class='slide'><img src='images/photo224_2.jpg'></div><div class='slide'><img src='images/photo224_3.jpg'></div><div class='slide'><img src='images/photo224_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 224 町田もも</p>
+    <p>164cm (26歳)</p>
+    <p>110cm, 62cm, 101cm, Kカップ</p>
+    <p class="comment">早慶卒で、ある程度の教養と知的好奇心が自慢です✨</p>
+<p><span class="favorite-btn" data-id="224">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member327.html', '_blank')">
+    <div class='slide active'><img src='images/photo327_1.jpg'></div><div class='slide'><img src='images/photo327_2.jpg'></div><div class='slide'><img src='images/photo327_3.jpg'></div><div class='slide'><img src='images/photo327_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 327 渡辺りり</p>
+    <p>170cm (21歳)</p>
+    <p>84cm, 57cm, 90cm, Eカップ</p>
+    <p class="comment">高身長でスタイルと顔の小ささには自信があります！ よろしくお願いいたします😊</p>
+<p><span class="favorite-btn" data-id="327">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member337.html', '_blank')">
+    <div class='slide active'><img src='images/photo337_1.jpg'></div><div class='slide'><img src='images/photo337_2.jpg'></div><div class='slide'><img src='images/photo337_3.jpg'></div><div class='slide'><img src='images/photo337_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 337 山下みお</p>
+    <p>165cm (23歳)</p>
+    <p>88cm, 56cm, 85cm, Gカップ</p>
+    <p class="comment">よく見た目からクールな印象を持たれますが、実際は明るくてよく笑うタイプで、話しやすいと言われます！ 好奇心旺盛なので、知らない世界の話を聞くのが大好きです✨ 最近は難しい資格取得のため勉強にも励んでいます。 ここで素敵な方と出会えますように♪お誘いお待ちしております🌸</p>
+<p><span class="favorite-btn" data-id="337">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member336.html', '_blank')">
+    <div class='slide active'><img src='images/photo336_1.jpg'></div><div class='slide'><img src='images/photo336_2.jpg'></div><div class='slide'><img src='images/photo336_3.jpg'></div><div class='slide'><img src='images/photo336_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 336 天江ゆい</p>
+    <p>90cm (22歳)</p>
+    <p>155cm, Fcm, 55cm, 85カップ</p>
+    <p class="comment">素敵な方にお会いしたくて登録しました。 よろしくお願いします！</p>
+<p><span class="favorite-btn" data-id="336">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member212.html', '_blank')">
+    <div class='slide active'><img src='images/photo212_1.jpg'></div><div class='slide'><img src='images/photo212_2.jpg'></div><div class='slide'><img src='images/photo212_3.jpg'></div><div class='slide'><img src='images/photo212_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 212 黒木もも</p>
+    <p>166cm (24歳)</p>
+    <p>88cm, 57cm, 90cm, Fカップ</p>
+    <p class="comment">好奇心盛な性格です✨ よろしくお願いします😊</p>
+<p><span class="favorite-btn" data-id="212">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member210.html', '_blank')">
+    <div class='slide active'><img src='images/photo210_1.jpg'></div><div class='slide'><img src='images/photo210_2.jpg'></div><div class='slide'><img src='images/photo210_3.jpg'></div><div class='slide'><img src='images/photo210_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 210 伊達まりえ</p>
+    <p>160cm (26歳)</p>
+    <p>100cm, 56cm, 88cm, Gカップ</p>
+    <p class="comment">初めまして！まりえです☺️ 趣味はアンティークの茶器集め、編み物、温泉巡りです♨️ アイドル・アニメ・漫画も好きなので、会話の引き出しは多い方だと思います。 大学では英語科を専攻し、イギリスに短期留学の経験もあります。 古典や現代文学、最近では建築にも興味があります。 楽しい時間をご一緒できれば嬉しいです。よろしくお願いいたします☺️</p>
+<p><span class="favorite-btn" data-id="210">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member342.html', '_blank')">
+    <div class='slide active'><img src='images/photo342_1.jpg'></div><div class='slide'><img src='images/photo342_2.jpg'></div><div class='slide'><img src='images/photo342_3.jpg'></div><div class='slide'><img src='images/photo342_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 342 水嶋すみれ  </p>
+    <p>164cm (26歳)</p>
+    <p>90cm, 58cm, 93cm, Gカップ</p>
+    <p class="comment">素敵なデートをしたいです✨</p>
+<p><span class="favorite-btn" data-id="342">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member341.html', '_blank')">
+    <div class='slide active'><img src='images/photo341_1.jpg'></div><div class='slide'><img src='images/photo341_2.jpg'></div><div class='slide'><img src='images/photo341_3.jpg'></div><div class='slide'><img src='images/photo341_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 341 三浦あやな</p>
+    <p>165cm (29歳)</p>
+    <p>105cm, 60cm, 95cm, Jカップ</p>
+    <p class="comment">天然物です🥰💓 お誘いお待ちしています✨</p>
+<p><span class="favorite-btn" data-id="341">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member340.html', '_blank')">
+    <div class='slide active'><img src='images/photo340_1.jpg'></div><div class='slide'><img src='images/photo340_2.jpg'></div><div class='slide'><img src='images/photo340_3.jpg'></div><div class='slide'><img src='images/photo340_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 340 白石美波</p>
+    <p>157cm (29歳)</p>
+    <p>83cm, 57cm, 87cm, Dカップ</p>
+    <p class="comment">まだ未熟な部分が多い私ですが、一緒に楽しい時間を過ごせたら嬉しいです。</p>
+<p><span class="favorite-btn" data-id="340">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member339.html', '_blank')">
+    <div class='slide active'><img src='images/photo339_1.jpg'></div><div class='slide'><img src='images/photo339_2.jpg'></div><div class='slide'><img src='images/photo339_3.jpg'></div><div class='slide'><img src='images/photo339_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 339 竹内 りり</p>
+    <p>168cm (25歳)</p>
+    <p>99cm, 58cm, 88cm, Hカップ</p>
+    <p class="comment">はじめまして、りりです💕 グラビアのお仕事をしています✨ 25歳です☺️  グラマー体型で、スタイルには自信あります💋 Fカップのバストもよく褒めていただきます…🙈💗  明るくて人懐っこい性格なので、楽しく過ごせると思います🌈 お会いできるのを楽しみにしています🕊️ よろしくお願いします❣️</p>
+<p><span class="favorite-btn" data-id="339">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member338.html', '_blank')">
+    <div class='slide active'><img src='images/photo338_1.jpg'></div><div class='slide'><img src='images/photo338_2.jpg'></div><div class='slide'><img src='images/photo338_3.jpg'></div><div class='slide'><img src='images/photo338_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 338 真白まこ</p>
+    <p>165cm (28歳)</p>
+    <p>92cm, 58cm, 88cm, Gカップ</p>
+    <p class="comment">紳士で優しい方と非日常で刺激的で…でも安心できるような素敵な時間を過ごしたいと思っています。よろしくお願いします。</p>
+<p><span class="favorite-btn" data-id="338">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member337.html', '_blank')">
+    <div class='slide active'><img src='images/photo337_1.jpg'></div><div class='slide'><img src='images/photo337_2.jpg'></div><div class='slide'><img src='images/photo337_3.jpg'></div><div class='slide'><img src='images/photo337_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 337 桜木あみ</p>
+    <p>162cm (30歳)</p>
+    <p>86cm, 57cm, 83cm, Gカップ</p>
+    <p class="comment">初めまして！私は美味しいご飯を食べることが好きで一緒に楽しい時間を共有出来る人と出会えたら嬉しいと思ってます！ スタイルと明るさには自信があります！ よろしくお願いいたします😊✨</p>
+<p><span class="favorite-btn" data-id="337">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member336.html', '_blank')">
+    <div class='slide active'><img src='images/photo336_1.jpg'></div><div class='slide'><img src='images/photo336_2.jpg'></div><div class='slide'><img src='images/photo336_3.jpg'></div><div class='slide'><img src='images/photo336_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 336 水原さつき</p>
+    <p>167cm (25歳)</p>
+    <p>92cm, 57cm, 88cm, Gカップ</p>
+    <p class="comment">はじめまして！ 癒されると言われることが多いです😌 よろしくお願い致します✨</p>
+<p><span class="favorite-btn" data-id="336">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member335.html', '_blank')">
+    <div class='slide active'><img src='images/photo335_1.jpg'></div><div class='slide'><img src='images/photo335_2.jpg'></div><div class='slide'><img src='images/photo335_3.jpg'></div><div class='slide'><img src='images/photo335_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 335 藤咲いちか</p>
+    <p>166cm (30歳)</p>
+    <p>82cm, 57cm, 90cm, Cカップ</p>
+    <p class="comment">チャームポイントは目と白い肌です。 楽しい場所や人とお話するのがすきなので色々教えてください＾＾ よろしくお願いします。</p>
+<p><span class="favorite-btn" data-id="335">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member334.html', '_blank')">
+    <div class='slide active'><img src='images/photo334_1.jpg'></div><div class='slide'><img src='images/photo334_2.jpg'></div><div class='slide'><img src='images/photo334_3.jpg'></div><div class='slide'><img src='images/photo334_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 334 長谷川しおり</p>
+    <p>163cm (24歳)</p>
+    <p>84cm, 57cm, 86cm, Dカップ</p>
+    <p class="comment">少し緊張しいではありますが、慣れてくればお話し大好きです☺️ 現役モデルなのでSTYLEには自信があります✨</p>
+<p><span class="favorite-btn" data-id="334">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member333.html', '_blank')">
+    <div class='slide active'><img src='images/photo333_1.jpg'></div><div class='slide'><img src='images/photo333_2.jpg'></div><div class='slide'><img src='images/photo333_3.jpg'></div><div class='slide'><img src='images/photo333_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 333 望月みゆ </p>
+    <p>155cm (29歳)</p>
+    <p>83cm, 56cm, 82cm, Cカップ</p>
+    <p class="comment">一緒にいる時は充実した時間にしたいと思っていますので、どうぞよろしくお願します！！</p>
+<p><span class="favorite-btn" data-id="333">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member332.html', '_blank')">
+    <div class='slide active'><img src='images/photo332_1.jpg'></div><div class='slide'><img src='images/photo332_2.jpg'></div><div class='slide'><img src='images/photo332_3.jpg'></div><div class='slide'><img src='images/photo332_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 332 東堂青</p>
+    <p>160cm (24歳)</p>
+    <p>75cm, 53cm, 75cm, Bカップ</p>
+    <p class="comment">お互いにとって癒し、幸せな関係が長期的に続けられれば嬉しいです😌</p>
+<p><span class="favorite-btn" data-id="332">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member331.html', '_blank')">
+    <div class='slide active'><img src='images/photo331_1.jpg'></div><div class='slide'><img src='images/photo331_2.jpg'></div><div class='slide'><img src='images/photo331_3.jpg'></div><div class='slide'><img src='images/photo331_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 331 清水はるか</p>
+    <p>158cm (29歳)</p>
+    <p>87cm, 57cm, 87cm, Fカップ</p>
+    <p class="comment">はじめまして、はるかです🌙 芸能のお仕事を10年ほど続けています🎬 モデルや女優など…幅広く活動中です✨  スレンダーな体型にFの天然バスト、そしてロングヘアは私のトレードマーク💋 美に対する意識はずっと高く、外見だけでなく内面の品も大切にしています🌹  落ち着いた大人の時間をご一緒できたら嬉しいです☕ よろしくお願いします🕊️</p>
+<p><span class="favorite-btn" data-id="331">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member330.html', '_blank')">
+    <div class='slide active'><img src='images/photo330_1.jpg'></div><div class='slide'><img src='images/photo330_2.jpg'></div><div class='slide'><img src='images/photo330_3.jpg'></div><div class='slide'><img src='images/photo330_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 330 橋本由香</p>
+    <p>172cm (25歳)</p>
+    <p>84cm, 55cm, 84cm, Eカップ</p>
+    <p class="comment">友達思いと言われます！ 明るい性格なので一緒にいて楽しい時間になると思います😌 よろしくお願いいたします✨</p>
+<p><span class="favorite-btn" data-id="330">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member329.html', '_blank')">
+    <div class='slide active'><img src='images/photo329_1.jpg'></div><div class='slide'><img src='images/photo329_2.jpg'></div><div class='slide'><img src='images/photo329_3.jpg'></div><div class='slide'><img src='images/photo329_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 329 篠原ケイ</p>
+    <p>158cm (21歳)</p>
+    <p>75cm, 55cm, 84cm, Aカップ</p>
+    <p class="comment">中国とロシアのハーフでモデル活動していました！ お仕事を一生懸命されている方大好きです！ マッサージ得意なのでそう言った面でも癒しを与えることできます✨ 日本語勉強中ですが、日常会話なら不自由なくできると思います！ あと、バーとかオシャレレストラン好きですので興味ある方一緒に行きましょう！ 沢山可愛がってくれたら嬉しいです！</p>
+<p><span class="favorite-btn" data-id="329">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member328.html', '_blank')">
+    <div class='slide active'><img src='images/photo328_1.jpg'></div><div class='slide'><img src='images/photo328_2.jpg'></div><div class='slide'><img src='images/photo328_3.jpg'></div><div class='slide'><img src='images/photo328_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 328 瀬田あゆ</p>
+    <p>160cm (26歳)</p>
+    <p>86cm, 56cm, 86cm, Fカップ</p>
+    <p class="comment">はじめまして、あゆです🌸 モデルをしています。現在26歳です✨  見た目は“可愛い”と言われることが多いですが、実はFで手足も長く、ちょっとしたギャップがあるみたいです💋 肌や髪のケアは毎日のルーティンで、内面も外見も磨き続けています🪞  落ち着いた空間で、心地よい時間をご一緒できたら嬉しいです☕ よろしくお願いします🕊️</p>
+<p><span class="favorite-btn" data-id="328">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member327.html', '_blank')">
+    <div class='slide active'><img src='images/photo327_1.jpg'></div><div class='slide'><img src='images/photo327_2.jpg'></div><div class='slide'><img src='images/photo327_3.jpg'></div><div class='slide'><img src='images/photo327_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 327 桜井もか</p>
+    <p>168cm (23歳)</p>
+    <p>82cm, 55cm, 83cm, Cカップ</p>
+    <p class="comment">はじめまして、もかです🌸 23歳です✨ ピラティスと読書が好き📚 高身長スレンダーで、美脚が自慢です👠💓 大きな目と美肌をよく褒められます☺️ アイドル顔って言われることも…👀💫 落ち着いた時間を一緒に過ごせたら嬉しいです🕊️ よろしくお願いします🌷</p>
+<p><span class="favorite-btn" data-id="327">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member326.html', '_blank')">
+    <div class='slide active'><img src='images/photo326_1.jpg'></div><div class='slide'><img src='images/photo326_2.jpg'></div><div class='slide'><img src='images/photo326_3.jpg'></div><div class='slide'><img src='images/photo326_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 326 篠田もも</p>
+    <p>162cm (21歳)</p>
+    <p>84cm, 56cm, 84cm, Eカップ</p>
+    <p class="comment">はじめまして、ももです🍑
+モデルをしています👠 21歳です✨
+ダンスが得意で、体を動かすのが大好き💃
+よく「クールビューティだけど笑顔が可愛いね」って言われます☺️
+スレンダーな体型とE、引き締まったウエストが自慢です💓
+素敵な時間を一緒に過ごせたら嬉しいです🌷 よろしくお願いします🕊️</p>
+<p><span class="favorite-btn" data-id="326">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member325.html', '_blank')">
+    <div class='slide active'><img src='images/photo325_1.jpg'></div><div class='slide'><img src='images/photo325_2.jpg'></div><div class='slide'><img src='images/photo325_3.jpg'></div><div class='slide'><img src='images/photo325_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 325 村上こころ</p>
+    <p>166cm (27歳)</p>
+    <p>84cm, 57cm, 86cm, Dカップ</p>
+    <p class="comment">初めての登録で緊張しますが、よろしくお願いいたします🤗</p>
+<p><span class="favorite-btn" data-id="325">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member324.html', '_blank')">
+    <div class='slide active'><img src='images/photo324_1.jpg'></div><div class='slide'><img src='images/photo324_2.jpg'></div><div class='slide'><img src='images/photo324_3.jpg'></div><div class='slide'><img src='images/photo324_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 324 石田ニコル</p>
+    <p>157cm (20歳)</p>
+    <p>86cm, 58cm, 88cm, Fカップ</p>
+    <p class="comment">初めてで緊張しますが、よろしくお願いします😊</p>
+<p><span class="favorite-btn" data-id="324">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member323.html', '_blank')">
+    <div class='slide active'><img src='images/photo323_1.jpg'></div><div class='slide'><img src='images/photo323_2.jpg'></div><div class='slide'><img src='images/photo323_3.jpg'></div><div class='slide'><img src='images/photo323_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 323 観月愛奈</p>
+    <p>170cm (26歳)</p>
+    <p>85cm, 56cm, 84cm, Eカップ</p>
+    <p class="comment">初めまして‼️愛奈です🙂‍↕️✨ よろしくお願いします！</p>
+<p><span class="favorite-btn" data-id="323">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member322.html', '_blank')">
+    <div class='slide active'><img src='images/photo322_1.jpg'></div><div class='slide'><img src='images/photo322_2.jpg'></div><div class='slide'><img src='images/photo322_3.jpg'></div><div class='slide'><img src='images/photo322_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 322 成田かほ</p>
+    <p>168cm (27歳)</p>
+    <p>84cm, 57cm, 86cm, Dカップ</p>
+    <p class="comment">天真爛漫な性格で会うと元気になると言われることが多いです。お話を聞くのもするのも大好きです。お互いにとって楽しい有意義な時間になれば良いなと思います☺️よろしくお願いいたします。</p>
+<p><span class="favorite-btn" data-id="322">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member321.html', '_blank')">
+    <div class='slide active'><img src='images/photo321_1.jpg'></div><div class='slide'><img src='images/photo321_2.jpg'></div><div class='slide'><img src='images/photo321_3.jpg'></div><div class='slide'><img src='images/photo321_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 321 三上藍</p>
+    <p>173cm (24歳)</p>
+    <p>85cm, 55cm, 87cm, Eカップ</p>
+    <p class="comment">はじめまして、藍です✨
+グラビアのお仕事をしています👙24歳です♪
+身長173cmの高身長スレンダー👠 美脚が自慢です🦵💎
+色白もち肌＆おでこの丸みもよく褒められます☺️
+お酒が大好きなのでBARデートも大歓迎🍸✨
+好奇心旺盛で、いろんな出会いを楽しみにしています🌈 よろしくお願いします🕊️</p>
+<p><span class="favorite-btn" data-id="321">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member320.html', '_blank')">
+    <div class='slide active'><img src='images/photo320_1.jpg'></div><div class='slide'><img src='images/photo320_2.jpg'></div><div class='slide'><img src='images/photo320_3.jpg'></div><div class='slide'><img src='images/photo320_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 320 前田さおり </p>
+    <p>161cm (28歳)</p>
+    <p>82cm, 55cm, 85cm, Dカップ</p>
+    <p class="comment">こんにちは！さおりと申します❤️ 明るくどんな方でも喋りやすく楽しくて落ち着くと言われます！顔立ちがしっかりしていて綺麗でスタイル良いねとお褒めのお言葉をよく言われます！ リードしてくれる方もリードしてもらいたい方も大歓迎です🙆‍♀️ 貴重なお時間頂くので、素敵なお時間を過ごせるようお会いした方には尽くしたいと思っております🩷</p>
+<p><span class="favorite-btn" data-id="320">♡</span></p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-image" onclick="window.open('member319.html', '_blank')">
+    <div class='slide active'><img src='images/photo319_1.jpg'></div><div class='slide'><img src='images/photo319_2.jpg'></div><div class='slide'><img src='images/photo319_3.jpg'></div><div class='slide'><img src='images/photo319_4.jpg'></div>
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> 319 立宮ゆず</p>
+    <p>168cm (21歳)</p>
+    <p>86cm, 56cm, 82cm, Fカップ</p>
+    <p class="comment">目と唇が魅力的と言われることが多いです。無整形です🙌 お誘いお待ちしてます😊</p>
+<p><span class="favorite-btn" data-id="319">♡</span></p>
+  </div>
+</div></div><div class="pagination"><a href="member_list.html" class="current">1</a><a href="member_list_page2.html" class="">2</a></div><script>
+document.querySelectorAll('.card-image').forEach(container => {
+  const slides = Array.from(container.querySelectorAll('.slide'));
+  if (slides.length <= 1) return;
+  let idx = 0;
+  slides[0].classList.add('active');
+  setInterval(() => {
+    slides[idx].classList.remove('active');
+    idx = (idx + 1) % slides.length;
+    slides[idx].classList.add('active');
+  }, 3000);
+});
+document.querySelectorAll('.favorite-btn').forEach(btn => {
+  const id = btn.dataset.id;
+  if (localStorage.getItem('fav-' + id)) btn.textContent = '❤️';
+  btn.addEventListener('click', () => {
+    if (localStorage.getItem('fav-' + id)) {
+      localStorage.removeItem('fav-' + id);
+      btn.textContent = '♡';
+    } else {
+      localStorage.setItem('fav-' + id, '1');
+      btn.textContent = '❤️';
         }
       });
     });
