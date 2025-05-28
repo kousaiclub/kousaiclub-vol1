@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>members_only - PRIVATE SHIROKANE</title>
+  <title>members_only_pickup - PRIVATE SHIROKANE</title>
   <link rel="icon" href="images/logo_1.png" type="image/png" />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     body {
       margin: 0;
@@ -108,10 +108,10 @@
     }
 
     input[type="submit"] {
-      background-color: #333;
-      color: #f9f9f9;
+      background-color: #b22222;
+      color: #fff;
       cursor: pointer;
-      border: 1px solid #f9f9f9;
+      border: none;
     }
 
     .contact-link {
@@ -129,11 +129,9 @@
 <body>
 
   <header>
-    <img src="images/logo_1.png" alt="PRIVATE SHIROKANE Logo">
+    <img src="images/logo_1.png" alt="PRIVATE SHIROKANE Logo" />
     <div class="menu-toggle" onclick="toggleMenu()">
-      <div></div>
-      <div></div>
-      <div></div>
+      <div></div><div></div><div></div>
     </div>
     <nav id="navLinks">
       <a href="index.html">Home</a>
@@ -151,4 +149,34 @@
 
   <div class="form-wrapper">
     <form onsubmit="return checkPassword(event)">
-      <input type="password" id="p
+      <input type="password" id="password" placeholder="パスワードを入力" required />
+      <input type="submit" value="Login" />
+    </form>
+
+    <p class="contact-link">
+      会員登録がまだの方は <a href="https://kousaiclub.jp/contact.html">お問合せはこちら</a>
+    </p>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("navLinks").classList.toggle("active");
+    }
+
+    function checkPassword(e) {
+      e.preventDefault();
+      const input = document.getElementById("password").value;
+      const correctPassword = "Aa1"; // 必要に応じて変更
+      const url = new URL(window.location.href);
+      const target = url.searchParams.get("target");
+
+      if (input === correctPassword && target) {
+        window.location.href = target;
+      } else {
+        alert("パスワードが違います。");
+      }
+    }
+  </script>
+
+</body>
+</html>
