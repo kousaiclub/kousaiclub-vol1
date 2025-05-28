@@ -16,7 +16,6 @@
       font-size: 14px;
       line-height: 1.8;
     }
-
     header {
       display: flex;
       align-items: center;
@@ -24,38 +23,31 @@
       background-color: #000;
       padding: 10px 20px;
     }
-
     header img {
       height: 40px;
     }
-
     .menu-toggle {
       display: none;
       flex-direction: column;
       cursor: pointer;
     }
-
     .menu-toggle div {
       width: 25px;
       height: 3px;
       background-color: #f9f9f9;
       margin: 4px 0;
     }
-
     nav {
       display: flex;
       gap: 20px;
     }
-
     nav a {
       color: #f9f9f9;
       text-decoration: none;
     }
-
     nav a:hover {
       text-decoration: underline;
     }
-
     @media screen and (max-width: 768px) {
       nav {
         display: none;
@@ -67,21 +59,17 @@
         background-color: rgba(0, 0, 0, 0.95);
         padding: 15px;
       }
-
       nav.active {
         display: flex;
       }
-
       .menu-toggle {
         display: flex;
       }
     }
-
     .banner {
       background: url('images/banner_3.png') center center / cover no-repeat;
       height: 300px;
     }
-
     .form-wrapper {
       max-width: 400px;
       margin: 40px auto;
@@ -90,7 +78,6 @@
       border-radius: 8px;
       text-align: center;
     }
-
     input[type="password"],
     input[type="submit"] {
       width: 100%;
@@ -101,28 +88,30 @@
       font-size: 16px;
       box-sizing: border-box;
     }
-
     input[type="password"] {
       background-color: #fff;
       color: #000;
     }
-
     input[type="submit"] {
-      background-color: #b22222;
-      color: #fff;
+      background-color: #333;
+      color: #f9f9f9;
       cursor: pointer;
-      border: none;
+      border: 1px solid #f9f9f9;
     }
-
     .contact-link {
-      font-size: 13px;
-      color: #ccc;
       margin-top: 20px;
     }
-
     .contact-link a {
+      display: inline-block;
+      background-color: #444;
       color: #ffd700;
-      text-decoration: underline;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-size: 13px;
+    }
+    .contact-link a:hover {
+      background-color: #666;
     }
   </style>
 </head>
@@ -153,9 +142,9 @@
       <input type="submit" value="Login" />
     </form>
 
-    <p class="contact-link">
-      会員登録がまだの方は <a href="https://kousaiclub.jp/contact.html">お問合せはこちら</a>
-    </p>
+    <div class="contact-link">
+      <a href="https://kousaiclub.jp/contact.html">ログインできないなどの方はこちら</a>
+    </div>
   </div>
 
   <script>
