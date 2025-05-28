@@ -54,18 +54,18 @@
       background: url('images/banner_3.png') center/cover no-repeat;
     }
     .pickup-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
       gap: 30px;
       padding: 40px 20px;
+      justify-content: center;
     }
     .pickup-card {
       position: relative;
       background-color: #2a2a2a;
-      border: 2px solid #1c1c1c;
+      border: 2px solid #800000;
       border-radius: 12px;
-      width: 520px;
+      width: 100%;
       text-align: center;
       overflow: hidden;
       box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
@@ -90,34 +90,17 @@
       position: absolute;
       top: 10px;
       left: 10px;
-      background-color: #1c1c1c;
-      color: #ffffff;
-      font-size: 12px;
-      font-weight: bold;
-      padding: 4px 8px;
-      border-radius: 4px;
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+      width: 40px;
+      height: 40px;
+      background: url('images/pickup_badge.png') center/contain no-repeat;
       z-index: 10;
     }
     .highlight-comment {
+      font-family: 'Meiryo', sans-serif;
+      font-size: 16px;
+      text-align: left;
       color: #ffd700;
-      font-style: italic;
-      margin-top: 10px;
-    }
-    .pickup-contact {
-      margin-top: 15px;
-    }
-    .pickup-contact a {
-      display: inline-block;
-      background-color: #444;
-      color: #ffd700;
-      padding: 10px 20px;
-      border-radius: 5px;
-      text-decoration: none;
-      font-size: 13px;
-    }
-    .pickup-contact a:hover {
-      background-color: #666;
+      margin: 10px 0;
     }
     @media (max-width: 768px) {
       .menu-toggle {
@@ -135,11 +118,7 @@
         margin: 10px 0;
       }
       .pickup-container {
-        flex-direction: column;
-        align-items: center;
-      }
-      .pickup-card {
-        width: 95%;
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -167,7 +146,7 @@
   <div class="pickup-container">
 
       <div class="pickup-card">
-        <div class="pickup-badge">PICK UP</div>
+        <div class="pickup-badge"></div>
         <a href="members_only_pickup.html?target=member324.html">
           <img src="images/photo324_5.jpg" alt="石田ニコル">
         </a>
@@ -177,13 +156,10 @@
           <p>B:86(F) / W:58 / H:88</p>
           <p class="highlight-comment">初めてで緊張しますが、よろしくお願いします😊</p>
         </div>
-        <div class="pickup-contact">
-          <a href="https://kousaiclub.jp/contact.html">ログインできない方はこちら</a>
-        </div>
       </div>
     
       <div class="pickup-card">
-        <div class="pickup-badge">PICK UP</div>
+        <div class="pickup-badge"></div>
         <a href="members_only_pickup.html?target=member319.html">
           <img src="images/photo319_5.jpg" alt="立宮ゆず">
         </a>
@@ -193,13 +169,10 @@
           <p>B:86(F) / W:56 / H:82</p>
           <p class="highlight-comment">目と唇が魅力的と言われることが多いです。無整形です🙌 お誘いお待ちしてます😊</p>
         </div>
-        <div class="pickup-contact">
-          <a href="https://kousaiclub.jp/contact.html">ログインできない方はこちら</a>
-        </div>
       </div>
     
       <div class="pickup-card">
-        <div class="pickup-badge">PICK UP</div>
+        <div class="pickup-badge"></div>
         <a href="members_only_pickup.html?target=member302.html">
           <img src="images/photo302_5.jpg" alt="織田花">
         </a>
@@ -209,13 +182,10 @@
           <p>B:93(G) / W:57 / H:88</p>
           <p class="highlight-comment">最近はワインの勉強をしていたり日本史が好きでお城巡りをしたり色んな好奇心があります！お金を貯めて自分の会社を作りたい夢があります☺️素敵な方とお会いできる事を楽しみにしております🌸</p>
         </div>
-        <div class="pickup-contact">
-          <a href="https://kousaiclub.jp/contact.html">ログインできない方はこちら</a>
-        </div>
       </div>
     
       <div class="pickup-card">
-        <div class="pickup-badge">PICK UP</div>
+        <div class="pickup-badge"></div>
         <a href="members_only_pickup.html?target=member301.html">
           <img src="images/photo301_5.jpg" alt="吉良ももみ">
         </a>
@@ -224,9 +194,6 @@
           <p>T:164cm</p>
           <p>B:91(G) / W:58 / H:88</p>
           <p class="highlight-comment">はじめまして♡美容と料理がすきです♡性格はおっとりしていて明るいとよく言われます！紳士な男性と出会いたいです♡よろしくお願いします</p>
-        </div>
-        <div class="pickup-contact">
-          <a href="https://kousaiclub.jp/contact.html">ログインできない方はこちら</a>
         </div>
       </div>
     
