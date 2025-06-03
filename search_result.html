@@ -94,31 +94,26 @@
     }
 
     .heart {
-      font-size: 24px;
-      cursor: pointer;
-      color: #ccc;
+      font-size: 22px;
+      color: #FF69B4;
       position: absolute;
-      top: 10px;
+      top: 8px;
       right: 10px;
       z-index: 10;
-    }
-
-    .heart.active {
-      color: red;
+      cursor: pointer;
     }
 
     .card-text {
       padding: 10px;
       text-align: center;
-      position: relative;
     }
 
-    .comment {
+    .card-text .comment {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
       overflow: hidden;
-      white-space: nowrap;
       text-overflow: ellipsis;
-      max-width: 100%;
-      display: inline-block;
     }
 
     .no-results {
@@ -150,6 +145,7 @@
   </style>
 </head>
 <body>
+
   <div class="search-wrapper">
     <form id="searchForm">
       <label>年齢（From / To）</label>
@@ -189,9 +185,9 @@
 
   <div id="resultsContainer" class="results"></div>
 
-  <!-- 🔙 会員一覧へ戻るボタン -->
   <div class="back-button-wrapper">
     <a href="https://kousaiclub.jp/member_list.html">会員一覧へ戻る</a>
   </div>
+
 </body>
 </html>
