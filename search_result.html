@@ -3,43 +3,137 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>会員検索結果</title>
+  <title>検索結果 | KOUSAI Club</title>
+  <link rel="stylesheet" href="styles/style.css" />
   <link rel="icon" href="images/logo_1.png" type="image/png" />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      background-color: #1c1c1c;
+      color: #f9f9f9;
+      font-family: 'Cormorant Garamond', serif;
+      margin: 0;
+      padding: 0;
+    }
+    .search-form {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 20px;
+      background-color: #2a2a3b;
+    }
+    .search-form select {
+      margin: 5px;
+      padding: 8px;
+      border-radius: 4px;
+      border: none;
+      font-size: 14px;
+    }
+    .search-form button {
+      margin: 5px;
+      padding: 8px 16px;
+      border-radius: 4px;
+      border: none;
+      background-color: #f9f9f9;
+      color: #1c1c1c;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    .member-card {
+      background-color: #2a2a3b;
+      border-radius: 16px;
+      padding: 12px;
+      margin: 10px;
+      width: 280px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+    .member-photo {
+      width: 100%;
+      border-radius: 12px;
+      object-fit: cover;
+    }
+    .member-name {
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 8px;
+    }
+    .member-info {
+      font-size: 14px;
+      margin: 4px 0;
+    }
+    .member-comment {
+      font-size: 13px;
+      text-align: center;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .favorite {
+      margin-top: 8px;
+      font-size: 20px;
+      text-align: center;
+    }
+    .results-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 20px;
+    }
+    @media screen and (max-width: 600px) {
+      .member-card {
+        width: 45%;
+        margin: 10px 5px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <header class="nav-container">
-    <div class="nav-logo">
-      <a href="top.html"><img src="images/logo_1.png" alt="PRIVATE SHIROKANE" /></a>
-    </div>
-    <nav class="nav-links" id="navLinks">
-      <a href="index.html">Home</a>
-      <a href="top.html">Top</a>
-      <a href="guidance_men.html">男性会員入会</a>
-      <a href="guidance_women.html">女性会員入会</a>
-      <a href="system.html">料金・システム</a>
-      <a href="pickup_member.html">注目会員様情報</a>
-      <a href="members_only.html">会員専用Page</a>
-      <a href="contact.html">お問合せ</a>
-    </nav>
-    <div class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('active')">
-      <span></span><span></span><span></span>
-    </div>
-  </header>
-
-  <div class="banner"></div>
-
   <main>
-    <section class="search-results">
-      <h1>検索結果</h1>
-      <div id="resultsContainer" class="card-container"></div>
-      <div class="back-link">
-        <a href="member_list.html" class="search-button">会員一覧に戻る</a>
-      </div>
-    </section>
+    <form class="search-form" id="searchForm">
+      <select name="age">
+        <option value="">年齢</option>
+        <option value="20">20歳</option>
+        <option value="21">21歳</option>
+        <!-- 他の年齢オプション -->
+      </select>
+      <select name="height">
+        <option value="">身長</option>
+        <option value="150">150cm</option>
+        <option value="160">160cm</option>
+        <!-- 他の身長オプション -->
+      </select>
+      <select name="cup">
+        <option value="">カップ</option>
+        <option value="A">Aカップ</option>
+        <option value="B">Bカップ</option>
+        <!-- 他のカップオプション -->
+      </select>
+      <select name="area">
+        <option value="">エリア</option>
+        <option value="東京">東京</option>
+        <option value="大阪">大阪</option>
+        <!-- 他のエリアオプション -->
+      </select>
+      <select name="smoking">
+        <option value="">喫煙</option>
+        <option value="はい">はい</option>
+        <option value="いいえ">いいえ</option>
+      </select>
+      <select name="drinking">
+        <option value="">飲酒</option>
+        <option value="はい">はい</option>
+        <option value="いいえ">いいえ</option>
+      </select>
+      <button type="submit">検索</button>
+    </form>
+    <section id="resultsContainer" class="results-container"></section>
+    <div id="noResults" style="text-align:center; display:none;">該当する会員が見つかりませんでした。</div>
   </main>
-
-  <script src="search.js"></script>
+  <script src="scripts/search.js"></script>
 </body>
 </html>
