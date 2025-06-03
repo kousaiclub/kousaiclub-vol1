@@ -39,8 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
     select.innerHTML = '<option value=""></option>';
     groups.forEach(([start, end]) => {
       const option = document.createElement('option');
-      option.value = ${start}-${end};
-      option.textContent = ${start}?${end};
+      option.value = `${start}-${end}`;
+      option.textContent = `${start}〜${end}`;
       select.appendChild(option);
     });
   }
@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       for (let i = 1; i <= 4; i++) {
         const img = document.createElement('img');
-        img.src = /images/photo${memberNo}_${i}.jpg;
+        img.src = `/images/photo${memberNo}_${i}.jpg`;
         img.onerror = () => img.remove();
         if (i === 1) img.classList.add('active');
         slideshow.appendChild(img);
@@ -165,16 +165,16 @@ document.addEventListener('DOMContentLoaded', () => {
       const cup = m['スリーサイズ（Cup）'];
       const comment = m['本人コメント'];
 
-      info.innerHTML = 
+      info.innerHTML = `
         <p>${no} ${name}</p>
         <p>${height}cm (${age}歳)</p>
         <p>${b}/${w}/${h}/${cup}カップ</p>
         <p>${comment}</p>
-        <div class="heart" onclick="toggleFavorite(this, '${no}')">?</div>
-      ;
+        <div class="heart" onclick="toggleFavorite(this, '${no}')"></div>
+      `;
 
       const link = document.createElement('a');
-      link.href = https://kousaiclub.jp/member${no}.html;
+      link.href = `https://kousaiclub.jp/member${no}.html`;
       link.target = '_blank';
       link.appendChild(slideshow);
 
@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
       card.appendChild(info);
       resultsContainer.appendChild(card);
 
-      if (localStorage.getItem(fav_${no}) === '1') {
+      if (localStorage.getItem(`fav_${no}`) === '1') {
         info.querySelector('.heart').classList.add('active');
       }
     });
@@ -190,7 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function toggleFavorite(el, no) {
-  const key = fav_${no};
+  const key = `fav_${no}`;
   const active = el.classList.toggle('active');
   localStorage.setItem(key, active ? '1' : '0');
 }
