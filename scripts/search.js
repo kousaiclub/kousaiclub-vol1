@@ -1,3 +1,5 @@
+// scripts/search.js（完全修正版・renderResults 含む）
+
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('searchForm');
   const resultsContainer = document.getElementById('resultsContainer');
@@ -167,7 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       info.innerHTML = 
         <p>${no} ${name}</p>
-        <p>${height}cm (${age}歳)</p>
+        <p>${height}cm (${age}歳）</p>
         <p>${b}/${w}/${h}/${cup}カップ</p>
         <p>${comment}</p>
         <div class="heart" onclick="toggleFavorite(this, '${no}')">♥</div>
