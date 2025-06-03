@@ -1,16 +1,17 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>members_list - Page 1</title>
-  <link rel="icon" href="images/logo_1.png">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PRIVATE SHIROKANE - 注目女性会員</title>
+  <link rel="icon" href="images/logo_2.jpg" type="image/jpeg" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     body {
       margin: 0;
       padding: 0;
-      background-color: #1c1c1c;
+      background-color: #0d0d0d;
       color: #f9f9f9;
       font-family: 'Cormorant Garamond', serif;
     }
@@ -24,351 +25,180 @@
     header img {
       height: 40px;
     }
-    .card-container {
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    .menu-toggle div {
+      width: 25px;
+      height: 3px;
+      background-color: #f9f9f9;
+      margin: 4px 0;
+    }
+    nav {
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-evenly;
-      padding: 40px 0;
-      max-width: 1280px;
-      margin: 0 auto;
     }
-    .card {
-      background-color: #2e2e2e;
-      border-radius: 12px;
-      overflow: hidden;
-      margin: 10px;
-      width: calc(25% - 20px);
-      min-width: 288px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.5);
-    }
-    .card img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-    .info {
-      padding: 10px;
-      text-align: center;
+    nav a {
+      color: #f9f9f9;
+      text-decoration: none;
+      margin: 0 10px;
       font-size: 14px;
     }
-    .pagination {
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .banner {
+      width: 100%;
+      height: 300px;
+      background: url('images/banner_3.png') center/cover no-repeat;
+    }
+    .pickup-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      padding: 60px 40px;
+    }
+    .pickup-card {
+      position: relative;
+      background-color: #2a2a2a;
+      border: 2px solid #800000;
+      border-radius: 12px;
+      width: 640px;
       text-align: center;
-      margin: 20px 0;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+      transition: transform 0.3s ease-in-out;
     }
-    .pagination a {
-      color: #fff;
-      background-color: #444;
-      padding: 6px 12px;
-      border-radius: 4px;
-      margin: 0 5px;
-      text-decoration: none;
+    .pickup-card:hover {
+      transform: scale(1.05);
     }
-    @media screen and (max-width: 768px) {
-      .card {
-        width: calc(50% - 20px);
-        min-width: 0;
+    .pickup-card img {
+      width: 100%;
+      height: 800px;
+      object-fit: cover;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+      cursor: pointer;
+    }
+    .pickup-info {
+      padding: 15px;
+      font-size: 16px;
+    }
+    .pickup-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 60px;
+      height: 60px;
+      background: url('images/pickup_badge.png') center/contain no-repeat;
+      z-index: 10;
+    }
+    .highlight-comment {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px;
+      text-align: left;
+      color: #fff797;
+      margin: 10px 0;
+    }
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: flex;
+      }
+      nav {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+      }
+      nav.active {
+        display: flex;
+      }
+      nav a {
+        margin: 10px 0;
+      }
+      .pickup-container {
+        flex-direction: column;
+        align-items: center;
       }
     }
   </style>
+  <script>
+    function toggleMenu() {
+      const nav = document.querySelector('nav');
+      nav.classList.toggle('active');
+    }
+  </script>
 </head>
 <body>
   <header>
     <img src="images/logo_1.png" alt="PRIVATE SHIROKANE">
+    <div class="menu-toggle" onclick="toggleMenu()">
+      <div></div><div></div><div></div>
+    </div>
+    <nav>
+      <a href="index.html">Home</a><a href="top.html">Top</a>
+      <a href="guidance_men.html">男性会員入会</a><a href="guidance_women.html">女性会員入会</a>
+      <a href="system.html">料金・システム</a><a href="pickup_member.html">注目会員様情報</a>
+      <a href="members_only.html">会員専用Page</a><a href="contact.html">お問合せ</a>
+    </nav>
   </header>
-  <main>
-    <div class="pagination"><a href="../member_search.html">会員検索はこちら</a></div>
-    <div class="card-container">
+  <div class="banner"></div>
+  <div class="pickup-container">
 
-      <div class="card">
-        <img src="images/photo343_1.jpg" alt="青山さり">
-        <div class="info">
-          <p>No. 343 青山さり</p>
-          <p>6（E歳）</p>
-          <p>photo343_1.jpg, photo343_2.jpg, photo343_3.jpg, photo343_4.jpg</p>
+      <div class="pickup-card">
+        <div class="pickup-badge"></div>
+        <a href="members_only_pickup.html?target=member324.html">
+          <img src="images/photo324_5.jpg" alt="石田ニコル">
+        </a>
+        <div class="pickup-info">
+          <p>No.324 石田ニコル（20歳）</p>
+          <p>T:157cm</p>
+          <p>B:86(F) / W:58 / H:88</p>
+          <p class="highlight-comment">初めてで緊張しますが、よろしくお願いします😊</p>
         </div>
       </div>
-
-      <div class="card">
-        <img src="images/photo344_1.jpg" alt="橋本こころ  ">
-        <div class="info">
-          <p>No. 344 橋本こころ  </p>
-          <p>8（C歳）</p>
-          <p>photo344_1.jpg, photo344_2.jpg, photo344_3.jpg, photo344_4.jpg, photo344_5.jpg</p>
+    
+      <div class="pickup-card">
+        <div class="pickup-badge"></div>
+        <a href="members_only_pickup.html?target=member319.html">
+          <img src="images/photo319_5.jpg" alt="立宮ゆず">
+        </a>
+        <div class="pickup-info">
+          <p>No.319 立宮ゆず（21歳）</p>
+          <p>T:168cm</p>
+          <p>B:86(F) / W:56 / H:82</p>
+          <p class="highlight-comment">目と唇が魅力的と言われることが多いです。無整形です🙌 お誘いお待ちしてます😊</p>
         </div>
       </div>
-
-      <div class="card">
-        <img src="images/photo224_1.jpg" alt="町田もも">
-        <div class="info">
-          <p>No. 224 町田もも</p>
-          <p>５（K歳）</p>
-          <p>photo224_1.jpg, photo224_2.jpg, photo224_3.jpg, photo224_4.jpg, photo224_5.jpg, photo224_6.jpg</p>
+    
+      <div class="pickup-card">
+        <div class="pickup-badge"></div>
+        <a href="members_only_pickup.html?target=member302.html">
+          <img src="images/photo302_5.jpg" alt="織田花">
+        </a>
+        <div class="pickup-info">
+          <p>No.302 織田花（27歳）</p>
+          <p>T:156cm</p>
+          <p>B:93(G) / W:57 / H:88</p>
+          <p class="highlight-comment">最近はワインの勉強をしていたり日本史が好きでお城巡りをしたり色んな好奇心があります！お金を貯めて自分の会社を作りたい夢があります☺️素敵な方とお会いできる事を楽しみにしております🌸</p>
         </div>
       </div>
-
-      <div class="card">
-        <img src="images/photo327_1.jpg" alt="渡辺りり">
-        <div class="info">
-          <p>No. 327 渡辺りり</p>
-          <p>8（E歳）</p>
-          <p>photo327_1.jpg, photo327_2.jpg, photo327_3.jpg, photo327_4.jpg, photo327_5.jpg</p>
+    
+      <div class="pickup-card">
+        <div class="pickup-badge"></div>
+        <a href="members_only_pickup.html?target=member301.html">
+          <img src="images/photo301_5.jpg" alt="吉良ももみ">
+        </a>
+        <div class="pickup-info">
+          <p>No.301 吉良ももみ（24歳）</p>
+          <p>T:164cm</p>
+          <p>B:91(G) / W:58 / H:88</p>
+          <p class="highlight-comment">はじめまして♡美容と料理がすきです♡性格はおっとりしていて明るいとよく言われます！紳士な男性と出会いたいです♡よろしくお願いします</p>
         </div>
       </div>
-
-      <div class="card">
-        <img src="images/photo337_1.jpg" alt="山下みお">
-        <div class="info">
-          <p>No. 337 山下みお</p>
-          <p>６（G歳）</p>
-          <p>photo337_1.jpg, photo337_2.jpg, photo337_3.jpg, photo337_4.jpg</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="images/photo336_1.jpg" alt="天江ゆい">
-        <div class="info">
-          <p>No. 336 天江ゆい</p>
-          <p>10（85歳）</p>
-          <p>photo336_1.jpg, photo336_2.jpg, photo336_3.jpg, photo336_4.jpg, photo336_5.jpg</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="images/photo212_1.jpg" alt="黒木もも">
-        <div class="info">
-          <p>No. 212 黒木もも</p>
-          <p>12（F歳）</p>
-          <p>photo212_1.jpg, photo212_2.jpg, photo212_3.jpg, photo212_4.jpg, photo212_5.jpg, photo212_6.jpg, photo212_7.jpg, photo212_8.jpg</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="images/photo210_1.jpg" alt="伊達まりえ">
-        <div class="info">
-          <p>No. 210 伊達まりえ</p>
-          <p>8（G歳）</p>
-          <p>photo210_1.jpg, photo210_2.jpg, photo210_3.jpg, photo210_4.jpg</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="images/photo342_1.jpg" alt="水嶋すみれ  ">
-        <div class="info">
-          <p>No. 342 水嶋すみれ  </p>
-          <p>8（G歳）</p>
-          <p>photo342_1.jpg, photo342_2.jpg, photo342_3.jpg, photo342_4.jpg, photo342_5.jpg</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="images/photo341_1.jpg" alt="三浦あやな">
-        <div class="info">
-          <p>No. 341 三浦あやな</p>
-          <p>15（J歳）</p>
-          <p>photo341_1.jpg, photo341_2.jpg, photo341_3.jpg, photo341_4.jpg, photo341_5.jpg</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="images/photo340_1.jpg" alt="白石美波">
-        <div class="info">
-          <p>No. 340 白石美波</p>
-          <p>15（D歳）</p>
-          <p>photo340_1.jpg, photo340_2.jpg, photo340_3.jpg, photo340_4.jpg, photo340_5.jpg</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="images/photo339_1.jpg" alt="竹内 りり">
-        <div class="info">
-          <p>No. 339 竹内 りり</p>
-          <p>8（H歳）</p>
-          <p>photo339_1.jpg, photo339_2.jpg, photo339_3.jpg, photo339_4.jpg</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="images/photo338_1.jpg" alt="真白まこ">
-        <div class="info">
-          <p>No. 338 真白まこ</p>
-          <p>8（G歳）</p>
-          <p>photo338_1.jpg, photo338_2.jpg, photo338_3.jpg, photo338_4.jpg</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="images/photo337_1.jpg" alt="桜木あみ">
-        <div class="info">
-          <p>No. 337 桜木あみ</p>
-          <p>8（G歳）</p>
-          <p>photo337_1.jpg, photo337_2.jpg, photo337_3.jpg, photo337_4.jpg, photo337_5.jpg</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="images/photo336_1.jpg" alt="水原さつき">
-        <div class="info">
-          <p>No. 336 水原さつき</p>
-          <p>8（G歳）</p>
-          <p>photo336_1.jpg, photo336_2.jpg, photo336_3.jpg, photo336_4.jpg, photo336_5.jpg, photo336_6.jpg, photo336_7.jpg, photo336_8.jpg, photo336_9.jpg, photo336_10.jpg</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="images/photo335_1.jpg" alt="藤咲いちか">
-        <div class="info">
-          <p>No. 335 藤咲いちか</p>
-          <p>10.00（C歳）</p>
-          <p>photo335_1.jpg, photo335_2.jpg, photo335_3.jpg, photo335_4.jpg</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="images/photo334_1.jpg" alt="長谷川しおり">
-        <div class="info">
-          <p>No. 334 長谷川しおり</p>
-          <p>8.00（D歳）</p>
-          <p>photo334_1.jpg, photo334_2.jpg, photo334_3.jpg, photo334_4.jpg, photo334_5.jpg</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="images/photo333_1.jpg" alt="望月みゆ ">
-        <div class="info">
-          <p>No. 333 望月みゆ </p>
-          <p>6.00（C歳）</p>
-          <p>photo333_1.jpg, photo333_2.jpg, photo333_3.jpg, photo333_4.jpg, photo333_5.jpg</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="images/photo332_1.jpg" alt="東堂青">
-        <div class="info">
-          <p>No. 332 東堂青</p>
-          <p>10.00（B歳）</p>
-          <p>photo332_1.jpg, photo332_2.jpg, photo332_3.jpg, photo332_4.jpg</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="images/photo331_1.jpg" alt="清水はるか">
-        <div class="info">
-          <p>No. 331 清水はるか</p>
-          <p>10.00（F歳）</p>
-          <p>photo331_1.jpg, photo331_2.jpg, photo331_3.jpg, photo331_4.jpg</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="images/photo330_1.jpg" alt="橋本由香">
-        <div class="info">
-          <p>No. 330 橋本由香</p>
-          <p>10.00（E歳）</p>
-          <p>photo330_1.jpg, photo330_2.jpg, photo330_3.jpg, photo330_4.jpg</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="images/photo329_1.jpg" alt="篠原ケイ">
-        <div class="info">
-          <p>No. 329 篠原ケイ</p>
-          <p>7.00（A歳）</p>
-          <p>photo329_1.jpg, photo329_2.jpg, photo329_3.jpg, photo329_4.jpg</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="images/photo328_1.jpg" alt="瀬田あゆ">
-        <div class="info">
-          <p>No. 328 瀬田あゆ</p>
-          <p>8.00（F歳）</p>
-          <p>photo328_1.jpg, photo328_2.jpg, photo328_3.jpg, photo328_4.jpg, photo328_5.jpg</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="images/photo327_1.jpg" alt="桜井もか">
-        <div class="info">
-          <p>No. 327 桜井もか</p>
-          <p>10.00（C歳）</p>
-          <p>photo327_1.jpg, photo327_2.jpg, photo327_3.jpg, photo327_4.jpg, photo327_5.jpg, photo327_6.jpg</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="images/photo326_1.jpg" alt="篠田もも">
-        <div class="info">
-          <p>No. 326 篠田もも</p>
-          <p>10.00（E歳）</p>
-          <p>photo326_1.jpg, photo326_2.jpg, photo326_3.jpg, photo326_4.jpg, photo326_5.jpg</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="images/photo325_1.jpg" alt="村上こころ">
-        <div class="info">
-          <p>No. 325 村上こころ</p>
-          <p>6.00（D歳）</p>
-          <p>photo325_1.jpg, photo325_2.jpg, photo325_3.jpg, photo325_4.jpg</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="images/photo324_1.jpg" alt="石田ニコル">
-        <div class="info">
-          <p>No. 324 石田ニコル</p>
-          <p>7.00（F歳）</p>
-          <p>photo324_1.jpg, photo324_2.jpg, photo324_3.jpg, photo324_4.jpg, photo324_5.jpg</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="images/photo323_1.jpg" alt="観月愛奈">
-        <div class="info">
-          <p>No. 323 観月愛奈</p>
-          <p>9.00（E歳）</p>
-          <p>photo323_1.jpg, photo323_2.jpg, photo323_3.jpg, photo323_4.jpg</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="images/photo322_1.jpg" alt="成田かほ">
-        <div class="info">
-          <p>No. 322 成田かほ</p>
-          <p>8.00（D歳）</p>
-          <p>photo322_1.jpg, photo322_2.jpg, photo322_3.jpg, photo322_4.jpg, photo322_5.jpg</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="images/photo321_1.jpg" alt="三上藍">
-        <div class="info">
-          <p>No. 321 三上藍</p>
-          <p>10.00（E歳）</p>
-          <p>photo321_1.jpg, photo321_2.jpg, photo321_3.jpg, photo321_4.jpg, photo321_5.jpg</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="images/photo320_1.jpg" alt="前田さおり ">
-        <div class="info">
-          <p>No. 320 前田さおり </p>
-          <p>7.00（D歳）</p>
-          <p>photo320_1.jpg, photo320_2.jpg, photo320_3.jpg, photo320_4.jpg, photo320_5.jpg</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="images/photo319_1.jpg" alt="立宮ゆず">
-        <div class="info">
-          <p>No. 319 立宮ゆず</p>
-          <p>12.00（F歳）</p>
-          <p>photo319_1.jpg, photo319_2.jpg, photo319_3.jpg, photo319_4.jpg, photo319_5.jpg</p>
-        </div>
-      </div></div>
-  <div class="pagination">
-    <a href="member_list_page2.html">次へ</a>
-  </div>
-  </main>
-</body>
+    
+    </div>
+  </body>
 </html>
