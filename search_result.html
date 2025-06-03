@@ -1,198 +1,216 @@
-// scripts/search.js（完全修正版・renderResults 含む）
-
-document.addEventListener('DOMContentLoaded', () => {
-  const form = document.getElementById('searchForm');
-  const resultsContainer = document.getElementById('resultsContainer');
-  const noResults = document.getElementById('noResults');
-
-  populateDropdowns();
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const query = getSearchConditions();
-    const members = await fetchMembers();
-    const filtered = filterMembers(members, query);
-    renderResults(filtered);
-  });
-
-  async function fetchMembers() {
-    const response = await fetch('/data/members.json');
-    return await response.json();
-  }
-
-  function populateDropdowns() {
-    populateGroupedOptions('ageFrom');
-    populateGroupedOptions('ageTo');
-    populateOptions('heightFrom', 140, 180, 5);
-    populateOptions('heightTo', 140, 180, 5);
-    populateOptions('bustFrom', 70, 110, 5);
-    populateOptions('bustTo', 70, 110, 5);
-    populateOptions('waistFrom', 40, 80, 5);
-    populateOptions('waistTo', 40, 80, 5);
-    populateOptions('hipFrom', 70, 110, 5);
-    populateOptions('hipTo', 70, 110, 5);
-    populateCupOptions('cupFrom');
-    populateCupOptions('cupTo');
-  }
-
-  function populateGroupedOptions(id) {
-    const select = document.getElementById(id);
-    const groups = [ [18,19], [20,24], [25,29], [30,34], [35,39], [40,44], [45,50] ];
-    select.innerHTML = '<option value=""></option>';
-    groups.forEach(([start, end]) => {
-      const option = document.createElement('option');
-      option.value = ${start}-${end};
-      option.textContent = ${start}〜${end};
-      select.appendChild(option);
-    });
-  }
-
-  function populateOptions(id, from, to, step) {
-    const select = document.getElementById(id);
-    select.innerHTML = '<option value=""></option>';
-    for (let i = from; i <= to; i += step) {
-      const option = document.createElement('option');
-      option.value = i;
-      option.textContent = i;
-      select.appendChild(option);
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>会員検索結果</title>
+  <link rel="icon" href="images/logo_1.png" type="image/png" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style_combined.css" />
+  <script defer src="scripts/search.js"></script>
+  <style>
+    body {
+      margin: 0;
+      background-color: #1c1c1c;
+      color: #f9f9f9;
+      font-family: 'Cormorant Garamond', 'メイリオ', sans-serif;
     }
-  }
 
-  function populateCupOptions(id) {
-    const select = document.getElementById(id);
-    const cups = ['A','B','C','D','E','F','G','H','I','J'];
-    select.innerHTML = '<option value=""></option>';
-    cups.forEach(c => {
-      const option = document.createElement('option');
-      option.value = c;
-      option.textContent = c;
-      select.appendChild(option);
-    });
-  }
+    .search-wrapper {
+      padding: 20px;
+      background-color: #1c1c1c;
+      display: flex;
+      justify-content: center;
+    }
 
-  function parseAge(value) {
-    if (!value) return null;
-    const [start, end] = value.split('-').map(Number);
-    return { start, end };
-  }
+    #searchForm {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 100%;
+      max-width: 400px;
+    }
 
-  function getSearchConditions() {
-    const ageFrom = parseAge(document.getElementById('ageFrom').value)?.start;
-    const ageTo = parseAge(document.getElementById('ageTo').value)?.end;
-    return {
-      ageFrom,
-      ageTo,
-      heightFrom: parseInt(document.getElementById('heightFrom').value) || null,
-      heightTo: parseInt(document.getElementById('heightTo').value) || null,
-      bustFrom: parseInt(document.getElementById('bustFrom').value) || null,
-      bustTo: parseInt(document.getElementById('bustTo').value) || null,
-      waistFrom: parseInt(document.getElementById('waistFrom').value) || null,
-      waistTo: parseInt(document.getElementById('waistTo').value) || null,
-      hipFrom: parseInt(document.getElementById('hipFrom').value) || null,
-      hipTo: parseInt(document.getElementById('hipTo').value) || null,
-      cupFrom: document.getElementById('cupFrom').value.trim(),
-      cupTo: document.getElementById('cupTo').value.trim(),
-      hobby: document.getElementById('hobby').value.trim(),
-    };
-  }
+    #searchForm label {
+      font-size: 14px;
+      margin-bottom: 2px;
+    }
 
-  function filterMembers(members, query) {
-    return members.filter(m => {
-      const age = parseInt(m['年齢'] || '');
-      const height = parseInt(m['身長'] || '');
-      const b = parseInt(m['スリーサイズ（B）'] || '');
-      const w = parseInt(m['スリーサイズ（W）'] || '');
-      const h = parseInt(m['スリーサイズ（H）'] || '');
-      const cup = (m['スリーサイズ（Cup）'] || '').trim();
-      const hobby = (m['趣味'] || '').trim();
+    #searchForm select,
+    #searchForm input,
+    #searchForm button {
+      padding: 8px;
+      border: none;
+      border-radius: 4px;
+      font-size: 14px;
+      font-family: 'Cormorant Garamond', 'メイリオ', sans-serif;
+    }
 
-      return (
-        (!query.ageFrom || age >= query.ageFrom) &&
-        (!query.ageTo || age <= query.ageTo) &&
-        (!query.heightFrom || height >= query.heightFrom) &&
-        (!query.heightTo || height <= query.heightTo) &&
-        (!query.bustFrom || b >= query.bustFrom) &&
-        (!query.bustTo || b <= query.bustTo) &&
-        (!query.waistFrom || w >= query.waistFrom) &&
-        (!query.waistTo || w <= query.waistTo) &&
-        (!query.hipFrom || h >= query.hipFrom) &&
-        (!query.hipTo || h <= query.hipTo) &&
-        (!query.cupFrom || cup >= query.cupFrom) &&
-        (!query.cupTo || cup <= query.cupTo) &&
-        (!query.hobby || hobby.includes(query.hobby))
-      );
-    });
-  }
+    #searchForm button {
+      background-color: #f9f9f9;
+      color: #1c1c1c;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+    }
 
-  function renderResults(members) {
-    resultsContainer.innerHTML = '';
-    noResults.style.display = members.length === 0 ? 'block' : 'none';
+    .results {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 20px;
+    }
 
-    members.forEach(m => {
-      const card = document.createElement('div');
-      card.className = 'card';
+    .card {
+      width: 280px;
+      margin: 10px;
+      background-color: transparent;
+      border: 1px solid #f9f9f9;
+      border-radius: 12px;
+      overflow: hidden;
+      color: #f9f9f9;
+      position: relative;
+      padding-bottom: 40px; /* ♥スペース確保 */
+    }
 
-      const slideshow = document.createElement('div');
-      slideshow.className = 'slideshow';
+    .slideshow {
+      position: relative;
+      width: 100%;
+      height: 300px;
+      background-color: #000;
+    }
 
-      const memberNo = m['会員No'].padStart(3, '0');
+    .slideshow img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
 
-      for (let i = 1; i <= 4; i++) {
-        const img = document.createElement('img');
-        img.src = /images/photo${memberNo}_${i}.jpg;
-        img.onerror = () => img.remove();
-        if (i === 1) img.classList.add('active');
-        slideshow.appendChild(img);
+    .slideshow img.active {
+      display: block;
+    }
+
+    .heart {
+      font-size: 22px;
+      color: #FF69B4;
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      cursor: pointer;
+    }
+
+    .card-text {
+      padding: 10px;
+      text-align: center;
+    }
+
+    .card-text .comment {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .no-results {
+      font-size: 16px;
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .back-button-wrapper {
+      text-align: center;
+      margin: 40px 0;
+    }
+
+    .back-button-wrapper a {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #f9f9f9;
+      color: #1c1c1c;
+      border-radius: 6px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    @media (max-width: 600px) {
+      .card {
+        width: 90%;
       }
+    }
+  </style>
+  <script>
+    // 🔍 URLに検索条件を付加して遷移する処理（search.jsと連携）
+    window.addEventListener("DOMContentLoaded", () => {
+      const form = document.getElementById("searchForm");
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const params = new URLSearchParams();
 
-      let index = 0;
-      setInterval(() => {
-        const imgs = slideshow.querySelectorAll('img');
-        const visibleImgs = Array.from(imgs);
-        if (visibleImgs.length <= 1) return;
-        visibleImgs.forEach(img => img.classList.remove('active'));
-        visibleImgs[index = (index + 1) % visibleImgs.length].classList.add('active');
-      }, 3000);
+        [
+          "ageFrom", "ageTo", "heightFrom", "heightTo",
+          "bustFrom", "bustTo", "waistFrom", "waistTo",
+          "hipFrom", "hipTo", "cupFrom", "cupTo", "hobby"
+        ].forEach((id) => {
+          const el = document.getElementById(id);
+          if (el && el.value) params.set(id, el.value);
+        });
 
-      const info = document.createElement('div');
-      info.className = 'card-text';
-
-      const no = m['会員No'];
-      const name = m['氏名'];
-      const age = m['年齢'];
-      const height = m['身長'];
-      const b = m['スリーサイズ（B）'];
-      const w = m['スリーサイズ（W）'];
-      const h = m['スリーサイズ（H）'];
-      const cup = m['スリーサイズ（Cup）'];
-      const comment = m['本人コメント'];
-
-      info.innerHTML = 
-        <p>${no} ${name}</p>
-        <p>${height}cm (${age}歳）</p>
-        <p>${b}/${w}/${h}/${cup}カップ</p>
-        <p>${comment}</p>
-        <div class="heart" onclick="toggleFavorite(this, '${no}')">♥</div>
-      ;
-
-      const link = document.createElement('a');
-      link.href = https://kousaiclub.jp/member${no}.html;
-      link.target = '_blank';
-      link.appendChild(slideshow);
-
-      card.appendChild(link);
-      card.appendChild(info);
-      resultsContainer.appendChild(card);
-
-      if (localStorage.getItem(fav_${no}) === '1') {
-        info.querySelector('.heart').classList.add('active');
-      }
+        location.href = `search_result.html?${params.toString()}`;
+      });
     });
-  }
-});
+  </script>
+</head>
+<body>
 
-function toggleFavorite(el, no) {
-  const key = fav_${no};
-  const active = el.classList.toggle('active');
-  localStorage.setItem(key, active ? '1' : '0');
-}
+  <div class="search-wrapper">
+    <form id="searchForm">
+      <label>年齢（From / To）</label>
+      <select id="ageFrom"></select>
+      <select id="ageTo"></select>
+
+      <label>身長（From / To）</label>
+      <select id="heightFrom"></select>
+      <select id="heightTo"></select>
+
+      <label>B（From / To）</label>
+      <select id="bustFrom"></select>
+      <select id="bustTo"></select>
+
+      <label>W（From / To）</label>
+      <select id="waistFrom"></select>
+      <select id="waistTo"></select>
+
+      <label>H（From / To）</label>
+      <select id="hipFrom"></select>
+      <select id="hipTo"></select>
+
+      <label>Cup（From / To）</label>
+      <select id="cupFrom"></select>
+      <select id="cupTo"></select>
+
+      <label>趣味</label>
+      <input id="hobby" type="text" placeholder="例：カフェ 美容">
+
+      <button type="submit">検索</button>
+    </form>
+  </div>
+
+  <div id="noResults" class="no-results" style="display:none;">
+    該当する会員が見つかりませんでした。
+  </div>
+
+  <div id="resultsContainer" class="results"></div>
+
+  <div class="back-button-wrapper">
+    <a href="https://kousaiclub.jp/member_list.html">会員一覧へ戻る</a>
+  </div>
+
+</body>
+</html>
