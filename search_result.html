@@ -1,64 +1,45 @@
-<!DOCTYPE html>More actions
+<!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>会員検索結果</title>
-  <link rel="stylesheet" href="../style_combined.css" />
-  <script defer src="../scripts/search.js"></script>
   <link rel="icon" href="images/logo_1.png" type="image/png" />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style_combined.css" />
-  <script defer src="scripts/search.js"></script>
-  <style>
-    body {
-      margin: 0;
-      background-color: #1c1c1c;
-      color: #f9f9f9;
-      font-family: 'UD新ゴ', 'Meiryo', sans-serif;
-      font-family: 'Cormorant Garamond', sans-serif;
-    }
-
-    .search-wrapper {
-@@ -116,6 +118,21 @@
-      margin: 20px 0;
-    }
-
-    .back-button-wrapper {
-      text-align: center;
-      margin: 40px 0;
-    }
-
-    .back-button-wrapper a {
-      display: inline-block;
-      padding: 10px 20px;
-      background-color: #f9f9f9;
-      color: #1c1c1c;
-      border-radius: 6px;
-      font-weight: bold;
-      text-decoration: none;
-    }
-
-    @media (max-width: 600px) {
-      .card {
-        width: 90%;
-@@ -124,6 +141,7 @@
-  </style>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <header class="nav-container">
+    <div class="nav-logo">
+      <a href="top.html"><img src="images/logo_1.png" alt="PRIVATE SHIROKANE" /></a>
+    </div>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="top.html">Top</a>
+      <a href="guidance_men.html">男性会員入会</a>
+      <a href="guidance_women.html">女性会員入会</a>
+      <a href="system.html">料金・システム</a>
+      <a href="pickup_member.html">注目会員様情報</a>
+      <a href="members_only.html">会員専用Page</a>
+      <a href="contact.html">お問合せ</a>
+    </nav>
+    <div class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('active')">
+      <span></span><span></span><span></span>
+    </div>
+  </header>
 
-  <div class="search-wrapper">
-    <form id="searchForm">
-      <label>年齢（From / To）</label>
-@@ -162,5 +180,11 @@
-  </div>
+  <div class="banner"></div>
 
-  <div id="resultsContainer" class="results"></div>
+  <main>
+    <section class="search-results">
+      <h1>検索結果</h1>
+      <div id="resultsContainer" class="card-container"></div>
+      <div class="back-link">
+        <a href="member_list.html" class="search-button">会員一覧に戻る</a>
+      </div>
+    </section>
+  </main>
 
-  <!-- ?? 会員一覧へ戻るボタン -->
-  <div class="back-button-wrapper">
-    <a href="https://kousaiclub.jp/member_list.html">会員一覧へ戻る</a>
-  </div>
-
+  <script src="search.js"></script>
 </body>
 </html>
