@@ -3,188 +3,64 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>会員検索結果</title>
-  <link rel="icon" href="images/logo_1.png" type="image/png" />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style_combined.css" />
+  <title>会員検索</title>
+  <link rel="stylesheet" href="styles/search.css" />
   <script defer src="scripts/search.js"></script>
-  <style>
-    body {
-      margin: 0;
-      background-color: #1c1c1c;
-      color: #f9f9f9;
-      font-family: 'Cormorant Garamond', sans-serif;
-    }
-
-    .search-wrapper {
-      padding: 20px;
-      background-color: #1c1c1c;
-      display: flex;
-      justify-content: center;
-    }
-
-    #searchForm {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      width: 100%;
-      max-width: 400px;
-    }
-
-    #searchForm label {
-      font-size: 14px;
-      margin-bottom: 2px;
-    }
-
-    #searchForm select,
-    #searchForm input,
-    #searchForm button {
-      padding: 8px;
-      border: none;
-      border-radius: 4px;
-      font-size: 14px;
-      font-family: 'Cormorant Garamond', sans-serif;
-    }
-
-    #searchForm button {
-      background-color: #f9f9f9;
-      color: #1c1c1c;
-      font-weight: bold;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-
-    .results {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      padding: 20px;
-    }
-
-    .card {
-      width: 280px;
-      margin: 10px;
-      background-color: transparent;
-      border: 1px solid #f9f9f9;
-      border-radius: 12px;
-      overflow: hidden;
-      color: #f9f9f9;
-    }
-
-    .slideshow {
-      position: relative;
-      width: 100%;
-      height: 300px;
-      background-color: #000;
-    }
-
-    .slideshow img {
-      width: 100%;
-      height: 300px;
-      object-fit: cover;
-      display: none;
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-
-    .slideshow img.active {
-      display: block;
-    }
-
-    .card-text {
-      padding: 10px;
-      text-align: center;
-      position: relative;
-    }
-
-    .heart {
-      font-size: 24px;
-      cursor: pointer;
-      color: #ccc;
-      position: absolute;
-      bottom: 5px;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    .heart.active {
-      color: red;
-    }
-
-    .no-results {
-      font-size: 16px;
-      text-align: center;
-      margin: 20px 0;
-    }
-
-    .back-button-wrapper {
-      text-align: center;
-      margin: 40px 0;
-    }
-
-    .back-button-wrapper a {
-      display: inline-block;
-      padding: 10px 20px;
-      background-color: #f9f9f9;
-      color: #1c1c1c;
-      border-radius: 6px;
-      font-weight: bold;
-      text-decoration: none;
-    }
-
-    @media (max-width: 600px) {
-      .card {
-        width: 90%;
-      }
-    }
-  </style>
 </head>
 <body>
+  <header>
+    <img src="images/banner_3.png" alt="バナー" class="banner">
+    <nav>
+      <ul class="nav">
+        <li><a href="index.html">TOP</a></li>
+        <li><a href="member_list.html">会員一覧</a></li>
+        <li><a href="pickup_member.html">注目会員</a></li>
+        <li><a href="contact.html">お問い合わせ</a></li>
+      </ul>
+    </nav>
+  </header>
 
-  <div class="search-wrapper">
-    <form id="searchForm">
-      <label>年齢（From / To）</label>
-      <select id="ageFrom"></select>
-      <select id="ageTo"></select>
-
-      <label>身長（From / To）</label>
-      <select id="heightFrom"></select>
-      <select id="heightTo"></select>
-
-      <label>B（From / To）</label>
-      <select id="bustFrom"></select>
-      <select id="bustTo"></select>
-
-      <label>W（From / To）</label>
-      <select id="waistFrom"></select>
-      <select id="waistTo"></select>
-
-      <label>H（From / To）</label>
-      <select id="hipFrom"></select>
-      <select id="hipTo"></select>
-
-      <label>Cup（From / To）</label>
-      <select id="cupFrom"></select>
-      <select id="cupTo"></select>
-
-      <label>趣味</label>
-      <input id="hobby" type="text" placeholder="例：カフェ 美容">
-
-      <button type="submit">検索</button>
+  <main>
+    <form id="searchForm" class="search-form">
+      <div class="row">
+        <label>年齢:</label>
+        <select id="ageFrom"></select> 〜 <select id="ageTo"></select>
+      </div>
+      <div class="row">
+        <label>身長:</label>
+        <select id="heightFrom"></select> 〜 <select id="heightTo"></select>
+      </div>
+      <div class="row">
+        <label>バスト:</label>
+        <select id="bustFrom"></select> 〜 <select id="bustTo"></select>
+      </div>
+      <div class="row">
+        <label>ウエスト:</label>
+        <select id="waistFrom"></select> 〜 <select id="waistTo"></select>
+      </div>
+      <div class="row">
+        <label>ヒップ:</label>
+        <select id="hipFrom"></select> 〜 <select id="hipTo"></select>
+      </div>
+      <div class="row">
+        <label>カップ:</label>
+        <select id="cupFrom"></select> 〜 <select id="cupTo"></select>
+      </div>
+      <div class="row">
+        <label>趣味:</label>
+        <input type="text" id="hobby" placeholder="例：料理・映画など" />
+      </div>
+      <div class="row">
+        <button type="submit">検索</button>
+      </div>
     </form>
-  </div>
 
-  <div id="noResults" class="no-results" style="display:none;">
-    該当する会員が見つかりませんでした。
-  </div>
+    <section id="noResults" style="display: none;">該当する会員が見つかりませんでした。</section>
+    <div id="resultsContainer" class="results"></div>
+  </main>
 
-  <div id="resultsContainer" class="results"></div>
-
-  <!-- 🔙 会員一覧へ戻るボタン -->
-  <div class="back-button-wrapper">
-    <a href="https://kousaiclub.jp/member_list.html">会員一覧へ戻る</a>
-  </div>
-
+  <footer>
+    <p>&copy; 2025 kousaiclub.jp</p>
+  </footer>
 </body>
 </html>
