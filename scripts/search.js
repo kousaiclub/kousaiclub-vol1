@@ -97,9 +97,25 @@ function getSearchConditions() {
   };
 }
 
+const memberAgeMap = {
+  "343": 24,
+  "344": 23,
+  "224": 26,
+  "327": 25,
+  "337": 24,
+  "336": 22,
+  "212": 27,
+  // 必要に応じて追加
+};
+
+function getValidAge(member) {
+  const id = member.memberNo;
+  return memberAgeMap[id] || null;
+}
+
 function filterMembers(members, query) {
   return members.filter(m => {
-    const age = parseInt(m['age'] || '');
+    const age = getValidAge(m);
     const height = parseInt(m['height'] || '');
     const b = parseInt(m['bust'] || '');
     const w = parseInt(m['waist'] || '');
@@ -157,7 +173,7 @@ function renderResults(members) {
 
     info.innerHTML = `
       <p>${m['memberNo']} ${m['name']}</p>
-      <p>${m['height']}cm (${m['age']}歳）</p>
+      <p>${m['height']}cm (${getValidAge(m)}歳）</p>
       <p>${m['bust']}/${m['waist']}/${m['hip']}/${m['cup']}カップ</p>
       <p class="comment">${m['comment']}</p>
     `;
