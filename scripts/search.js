@@ -35,7 +35,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function populateGroupedOptions(id) {
     const select = document.getElementById(id);
-    const groups = [ [18,19], [20,24], [25,29], [30,34], [35,39], [40,44], [45,50] ];
+    const groups = [
+      [18, 19], [20, 24], [25, 29], [30, 34],
+      [35, 39], [40, 44], [45, 50]
+    ];
     select.innerHTML = '<option value=""></option>';
     groups.forEach(([start, end]) => {
       const option = document.createElement('option');
@@ -169,8 +172,8 @@ document.addEventListener('DOMContentLoaded', () => {
         <p>${no} ${name}</p>
         <p>${height}cm (${age}歳)</p>
         <p>${b}/${w}/${h}/${cup}カップ</p>
-        <p>${comment}</p>
-        <div class="heart" onclick="toggleFavorite(this, '${no}')"></div>
+        <p class="comment">${comment}</p>
+        <div class="heart" onclick="toggleFavorite(this, '${no}')">♥</div>
       `;
 
       const link = document.createElement('a');
