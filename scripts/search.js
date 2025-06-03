@@ -99,13 +99,13 @@ function getSearchConditions() {
 
 function filterMembers(members, query) {
   return members.filter(m => {
-    const age = parseInt(m['年齢'] || '');
-    const height = parseInt(m['身長'] || '');
-    const b = parseInt(m['スリーサイズ（B）'] || '');
-    const w = parseInt(m['スリーサイズ（W）'] || '');
-    const h = parseInt(m['スリーサイズ（H）'] || '');
-    const cup = (m['スリーサイズ（Cup）'] || '').trim();
-    const hobby = (m['趣味'] || '').trim();
+    const age = parseInt(m['age'] || '');
+    const height = parseInt(m['height'] || '');
+    const b = parseInt(m['bust'] || '');
+    const w = parseInt(m['waist'] || '');
+    const h = parseInt(m['hip'] || '');
+    const cup = (m['cup'] || '').trim();
+    const hobby = (m['hobby'] || '').trim();
 
     return (
       (!query.ageFrom || age >= query.ageFrom) &&
@@ -137,7 +137,7 @@ function renderResults(members) {
 
     const slideshow = document.createElement('div');
     slideshow.className = 'slideshow';
-    const memberNo = m['会員No'].padStart(3, '0');
+    const memberNo = m['memberNo'].padStart(3, '0');
 
     for (let i = 1; i <= 4; i++) {
       const img = document.createElement('img');
@@ -156,10 +156,10 @@ function renderResults(members) {
     info.className = 'card-text';
 
     info.innerHTML = `
-      <p>${m['会員No']} ${m['氏名']}</p>
-      <p>${m['身長']}cm (${m['年齢']}歳)</p>
-      <p>${m['スリーサイズ（B）']}/${m['スリーサイズ（W）']}/${m['スリーサイズ（H）']}/${m['スリーサイズ（Cup）']}カップ</p>
-      <p class="comment">${m['本人コメント']}</p>
+      <p>${m['memberNo']} ${m['name']}</p>
+      <p>${m['height']}cm (${m['age']}歳）</p>
+      <p>${m['bust']}/${m['waist']}/${m['hip']}/${m['cup']}カップ</p>
+      <p class="comment">${m['comment']}</p>
     `;
 
     const heart = document.createElement('div');
@@ -172,12 +172,12 @@ function renderResults(members) {
     heart.style.cursor = 'pointer';
 
     heart.addEventListener('click', () => {
-      const key = `fav_${m['会員No']}`;
+      const key = `fav_${m['memberNo']}`;
       const isActive = heart.classList.toggle('active');
       localStorage.setItem(key, isActive ? '1' : '0');
     });
 
-    if (localStorage.getItem(`fav_${m['会員No']}`) === '1') {
+    if (localStorage.getItem(`fav_${m['memberNo']}`) === '1') {
       heart.classList.add('active');
     }
 
