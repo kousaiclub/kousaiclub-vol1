@@ -1,9 +1,11 @@
-<!DOCTYPE html>
+<!DOCTYPE html>More actions
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>会員検索結果</title>
+  <link rel="stylesheet" href="../style_combined.css" />
+  <script defer src="../scripts/search.js"></script>
   <link rel="icon" href="images/logo_1.png" type="image/png" />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style_combined.css" />
@@ -13,112 +15,12 @@
       margin: 0;
       background-color: #1c1c1c;
       color: #f9f9f9;
-      font-family: 'Cormorant Garamond', 'メイリオ', sans-serif;
+      font-family: 'UD新ゴ', 'Meiryo', sans-serif;
+      font-family: 'Cormorant Garamond', sans-serif;
     }
 
     .search-wrapper {
-      padding: 20px;
-      background-color: #1c1c1c;
-      display: flex;
-      justify-content: center;
-    }
-
-    #searchForm {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      width: 100%;
-      max-width: 400px;
-    }
-
-    #searchForm label {
-      font-size: 14px;
-      margin-bottom: 2px;
-    }
-
-    #searchForm select,
-    #searchForm input,
-    #searchForm button {
-      padding: 8px;
-      border: none;
-      border-radius: 4px;
-      font-size: 14px;
-      font-family: 'Cormorant Garamond', 'メイリオ', sans-serif;
-    }
-
-    #searchForm button {
-      background-color: #f9f9f9;
-      color: #1c1c1c;
-      font-weight: bold;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-
-    .results {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      padding: 20px;
-    }
-
-    .card {
-      width: 280px;
-      margin: 10px;
-      background-color: transparent;
-      border: 1px solid #f9f9f9;
-      border-radius: 12px;
-      overflow: hidden;
-      color: #f9f9f9;
-      position: relative;
-    }
-
-    .slideshow {
-      position: relative;
-      width: 100%;
-      height: 300px;
-      background-color: #000;
-    }
-
-    .slideshow img {
-      width: 100%;
-      height: 300px;
-      object-fit: cover;
-      display: none;
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-
-    .slideshow img.active {
-      display: block;
-    }
-
-    .heart {
-      font-size: 22px;
-      color: #FF69B4;
-      position: absolute;
-      top: 8px;
-      right: 10px;
-      z-index: 10;
-      cursor: pointer;
-    }
-
-    .card-text {
-      padding: 10px;
-      text-align: center;
-    }
-
-    .card-text .comment {
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .no-results {
-      font-size: 16px;
-      text-align: center;
+@@ -116,6 +118,21 @@
       margin: 20px 0;
     }
 
@@ -140,8 +42,7 @@
     @media (max-width: 600px) {
       .card {
         width: 90%;
-      }
-    }
+@@ -124,6 +141,7 @@
   </style>
 </head>
 <body>
@@ -149,42 +50,12 @@
   <div class="search-wrapper">
     <form id="searchForm">
       <label>年齢（From / To）</label>
-      <select id="ageFrom"></select>
-      <select id="ageTo"></select>
-
-      <label>身長（From / To）</label>
-      <select id="heightFrom"></select>
-      <select id="heightTo"></select>
-
-      <label>B（From / To）</label>
-      <select id="bustFrom"></select>
-      <select id="bustTo"></select>
-
-      <label>W（From / To）</label>
-      <select id="waistFrom"></select>
-      <select id="waistTo"></select>
-
-      <label>H（From / To）</label>
-      <select id="hipFrom"></select>
-      <select id="hipTo"></select>
-
-      <label>Cup（From / To）</label>
-      <select id="cupFrom"></select>
-      <select id="cupTo"></select>
-
-      <label>趣味</label>
-      <input id="hobby" type="text" placeholder="例：カフェ 美容">
-
-      <button type="submit">検索</button>
-    </form>
-  </div>
-
-  <div id="noResults" class="no-results" style="display:none;">
-    該当する会員が見つかりませんでした。
+@@ -162,5 +180,11 @@
   </div>
 
   <div id="resultsContainer" class="results"></div>
 
+  <!-- ?? 会員一覧へ戻るボタン -->
   <div class="back-button-wrapper">
     <a href="https://kousaiclub.jp/member_list.html">会員一覧へ戻る</a>
   </div>
