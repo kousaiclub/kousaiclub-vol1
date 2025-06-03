@@ -1,86 +1,69 @@
-// scripts/search.js（完全復旧版）Add commentMore actions
-// scripts/search.js（完全修正版・renderResults 含む）
-
 document.addEventListener('DOMContentLoaded', () => {
-  const form = document.getElementById('searchForm');
   const resultsContainer = document.getElementById('resultsContainer');
   const noResults = document.getElementById('noResults');
-  const pagination = document.getElementById('pagination');
 
-  populateDropdowns();
+  fetch('/data/members.json')
+    .then(response => response.json())
+    .then(data => {
+      const params = new URLSearchParams(window.location.search);
+      const filters = {
+        age: params.get('age'),
+        height: params.get('height'),
+        cup: params.get('cup'),
+        area: params.get('area'),
+        smoking: params.get('smoking'),
+        drinking: params.get('drinking'),
+      };
 
-@@ -128,7 +127,72 @@ document.addEventListener('DOMContentLoaded', () => {
-  function renderResults(members) {
-    resultsContainer.innerHTML = '';
-    noResults.style.display = members.length === 0 ? 'block' : 'none';
-    // ページネーションや結果描画は別関数に分離可能
-    // 必要であれば追加します
+      const filteredMembers = data.filter(member => {
+        return (!filters.age || member.age === filters.age) &&
+               (!filters.height || member.height === filters.height) &&
+               (!filters.cup || member.cup === filters.cup) &&
+               (!filters.area || member.area === filters.area) &&
+               (!filters.smoking || member.smoking === filters.smoking) &&
+               (!filters.drinking || member.drinking === filters.drinking);
+      });
 
-    members.forEach(m => {
-      const card = document.createElement('div');
-      card.className = 'card';
+      if (filteredMembers.length === 0) {
+        noResults.style.display = 'block';
+        return;
+      }
 
-      const slideshow = document.createElement('div');
-      slideshow.className = 'slideshow';
+      filteredMembers.forEach(member => {
+        const card = document.createElement('div');
+        card.className = 'member-card';
 
-      const memberNo = m['会員No'].padStart(3, '0');
-
-      for (let i = 1; i <= 4; i++) {
         const img = document.createElement('img');
-        img.src = `/images/photo${memberNo}_${i}.jpg`;
-        img.onerror = () => img.remove();
-        if (i === 1) img.classList.add('active');
-        slideshow.appendChild(img);
-      }
+        img.src = `images/${member.photo}`;
+        img.alt = member.name;
+        img.className = 'member-photo';
 
-      let index = 0;
-      setInterval(() => {
-        const imgs = slideshow.querySelectorAll('img');
-        const visibleImgs = Array.from(imgs);
-        if (visibleImgs.length <= 1) return;
-        visibleImgs.forEach(img => img.classList.remove('active'));
-        visibleImgs[index = (index + 1) % visibleImgs.length].classList.add('active');
-      }, 3000);
+        const name = document.createElement('div');
+        name.className = 'member-name';
+        name.textContent = member.name;
 
-      const info = document.createElement('div');
-      info.className = 'card-text';
+        const info = document.createElement('div');
+        info.className = 'member-info';
+        info.textContent = `${member.age}歳 / ${member.height}cm / ${member.cup}カップ`;
 
-      const no = m['会員No'];
-      const name = m['氏名'];
-      const age = m['年齢'];
-      const height = m['身長'];
-      const b = m['スリーサイズ（B）'];
-      const w = m['スリーサイズ（W）'];
-      const h = m['スリーサイズ（H）'];
-      const cup = m['スリーサイズ（Cup）'];
-      const comment = m['本人コメント'];
+        const comment = document.createElement('div');
+        comment.className = 'member-comment';
+        comment.textContent = member.comment;
 
-      info.innerHTML = `
-        <p>${no} ${name}</p>
-        <p>${height}cm (${age}歳）</p>
-        <p>${b}/${w}/${h}/${cup}カップ</p>
-        <p>${comment}</p>
-        <div class="heart" onclick="toggleFavorite(this, '${no}')">♥</div>
-      `;
+        const fav = document.createElement('div');
+        fav.className = 'favorite';
+        fav.innerHTML = '❤️';
 
-      const link = document.createElement('a');
-      link.href = `https://kousaiclub.jp/member${no}.html`;
-      link.target = '_blank';
-      link.appendChild(slideshow);
-
-      card.appendChild(link);
-      card.appendChild(info);
-      resultsContainer.appendChild(card);
-
-      if (localStorage.getItem(`fav_${no}`) === '1') {
-        info.querySelector('.heart').classList.add('active');
-      }
+        card.appendChild(img);
+        card.appendChild(name);
+        card.appendChild(info);
+        card.appendChild(comment);
+        card.appendChild(fav);
+        resultsContainer.appendChild(card);
+      });
+    })
+    .catch(error => {
+      console.error('検索結果の読み込みに失敗しました:', error);
+      noResults.style.display = 'block';
     });
-  }
 });
-
-function toggleFavorite(el, no) {
-  const key = `fav_${no}`;
-  const active = el.classList.toggle('active');
-  localStorage.setItem(key, active ? '1' : '0');
-}
