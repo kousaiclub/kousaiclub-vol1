@@ -163,8 +163,10 @@ function renderResults(members) {
 
     const info = document.createElement('div');
     info.className = 'card-text';
-    info.style.fontFamily = '"メイリオ", sans-serif';
     info.style.fontSize = '13px';
+    info.style.fontFamily = "'Cormorant Garamond', serif";
+    info.style.paddingBottom = '20px';
+    info.style.minHeight = '140px';
 
     info.innerHTML = `
       <p>${m['memberNo']} ${m['name']}</p>
