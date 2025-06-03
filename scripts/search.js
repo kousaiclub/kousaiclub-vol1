@@ -1,198 +1,130 @@
-// scripts/search.js（完全修正版・renderResults 含む）
+function generateMemberListPages_ver1_3_20250519_1245() {
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("会員データ");
+  const data = sheet.getDataRange().getValues();
 
-document.addEventListener('DOMContentLoaded', () => {
-  const form = document.getElementById('searchForm');
-  const resultsContainer = document.getElementById('resultsContainer');
-  const noResults = document.getElementById('noResults');
+  const folder = DriveApp.getFolderById("1-gUaf8cYe5PV90LY4XdMiDK-8oh0d19E");
+  const members = data.slice(1).filter(row => row[3] !== "");  // 会員No（D列）ありの行
 
-  populateDropdowns();
+  const cardsPerPage = 32;
+  const totalPages = Math.ceil(members.length / cardsPerPage);
 
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const query = getSearchConditions();
-    const members = await fetchMembers();
-    const filtered = filterMembers(members, query);
-    renderResults(filtered);
-  });
+  for (let p = 0; p < totalPages; p++) {
+    const pageMembers = members.slice(p * cardsPerPage, (p + 1) * cardsPerPage);
+    let html = <!DOCTYPE html><html lang="ja"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>members_list - Page ${p + 1}</title>
+<link rel="icon" href="images/logo_1.png" type="image/png">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
+<style>
+body { margin:0;padding:0;background:#1c1c1c;color:#f9f9f9;font-family:'Cormorant Garamond',serif;font-size:14px;line-height:1.8; }
+.nav-container { display:flex;align-items:center;justify-content:space-between;background:#0009;padding:5px 20px; }
+.nav-logo img { height:50px;filter:brightness(90%) drop-shadow(0 1px 1px #ccc); }
+.nav-links { display:flex;gap:20px; }
+.nav-links a { color:#f0f0f0;text-decoration:none; }
+.hamburger { display:none;flex-direction:column;cursor:pointer; }
+.hamburger span { height:3px;width:25px;background:#f9f9f9;margin:4px 0; }
+@media (max-width:768px) {
+  .nav-links { display:none;flex-direction:column;width:100%;position:absolute;top:60px;left:0;background:#000;padding:15px; }
+  .nav-links.active { display:flex; }
+  .hamburger { display:flex; }
+}
+.banner { background:url('images/banner_3.png') no-repeat center center;background-size:cover;height:340px; }
+.search-link-wrapper { text-align:center;margin:20px 0; }
+.search-button { padding:10px 20px;background:#f9f9f9;color:#1c1c1c;border-radius:6px;text-decoration:none;font-weight:bold;font-size:14px; }
+.card-container { display:flex;flex-wrap:wrap;justify-content:flex-start;gap:1%;padding:20px; }
+.card { width:22%;background:#1c1c1c;border:1px solid #f9f9f9;border-radius:12px;margin-bottom:20px;overflow:hidden; }
+.card-image { position:relative;aspect-ratio:3/4;overflow:hidden;cursor:pointer; }
+.slide { position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;transition:opacity 0.6s ease-in-out; }
+.slide.active { opacity:1; }
+.slide img { width:100%;height:100%;object-fit:cover; }
+.card-text { padding:8px;text-align:center; }
+.favorite-btn { font-size:18px;color:#FF69B4;cursor:pointer; }
+.comment { display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;text-overflow:ellipsis; }
+.pagination { text-align:center;margin:20px; }
+.pagination a { color:#f9f9f9;padding:6px 12px;border:1px solid #f9f9f9;border-radius:6px;margin:0 5px;text-decoration:none; }
+.pagination a.current { background:#f9f9f9;color:#1c1c1c;font-weight:bold; }
+@media (max-width:768px) { .card { width:48%; } }
+</style></head><body>
+<header class="nav-container">
+  <div class="nav-logo"><a href="top.html"><img src="images/logo_1.png" alt="PRIVATE SHIROKANE"></a></div>
+  <nav class="nav-links" id="navLinks">
+    <a href="index.html">Home</a><a href="top.html">Top</a>
+    <a href="guidance_men.html">男性会員入会</a><a href="guidance_women.html">女性会員入会</a>
+    <a href="system.html">料金・システム</a><a href="pickup_member.html">注目会員様情報</a>
+    <a href="members_only.html">会員専用Page</a><a href="contact.html">お問合せ</a>
+  </nav>
+  <div class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('active')"><span></span><span></span><span></span></div>
+</header>
+<div class="banner"></div>
+<div class="search-link-wrapper"><a href="search_result.html" class="search-button">会員検索はこちら</a></div>
+<div class="card-container">
+;
 
-  async function fetchMembers() {
-    const response = await fetch('/data/members.json');
-    return await response.json();
-  }
+    for (const row of pageMembers) {
+      const no = row[3];
+      const name = row[4];
+      const age = row[19];
+      const height = row[9];
+      const bust = row[5], cup = row[6], waist = row[7], hip = row[8];
+      const comment = row[16] || "";
 
-  function populateDropdowns() {
-    populateGroupedOptions('ageFrom');
-    populateGroupedOptions('ageTo');
-    populateOptions('heightFrom', 140, 180, 5);
-    populateOptions('heightTo', 140, 180, 5);
-    populateOptions('bustFrom', 70, 110, 5);
-    populateOptions('bustTo', 70, 110, 5);
-    populateOptions('waistFrom', 40, 80, 5);
-    populateOptions('waistTo', 40, 80, 5);
-    populateOptions('hipFrom', 70, 110, 5);
-    populateOptions('hipTo', 70, 110, 5);
-    populateCupOptions('cupFrom');
-    populateCupOptions('cupTo');
-  }
-
-  function populateGroupedOptions(id) {
-    const select = document.getElementById(id);
-    const groups = [ [18,19], [20,24], [25,29], [30,34], [35,39], [40,44], [45,50] ];
-    select.innerHTML = '<option value=""></option>';
-    groups.forEach(([start, end]) => {
-      const option = document.createElement('option');
-      option.value = ${start}-${end};
-      option.textContent = ${start}〜${end};
-      select.appendChild(option);
-    });
-  }
-
-  function populateOptions(id, from, to, step) {
-    const select = document.getElementById(id);
-    select.innerHTML = '<option value=""></option>';
-    for (let i = from; i <= to; i += step) {
-      const option = document.createElement('option');
-      option.value = i;
-      option.textContent = i;
-      select.appendChild(option);
-    }
-  }
-
-  function populateCupOptions(id) {
-    const select = document.getElementById(id);
-    const cups = ['A','B','C','D','E','F','G','H','I','J'];
-    select.innerHTML = '<option value=""></option>';
-    cups.forEach(c => {
-      const option = document.createElement('option');
-      option.value = c;
-      option.textContent = c;
-      select.appendChild(option);
-    });
-  }
-
-  function parseAge(value) {
-    if (!value) return null;
-    const [start, end] = value.split('-').map(Number);
-    return { start, end };
-  }
-
-  function getSearchConditions() {
-    const ageFrom = parseAge(document.getElementById('ageFrom').value)?.start;
-    const ageTo = parseAge(document.getElementById('ageTo').value)?.end;
-    return {
-      ageFrom,
-      ageTo,
-      heightFrom: parseInt(document.getElementById('heightFrom').value) || null,
-      heightTo: parseInt(document.getElementById('heightTo').value) || null,
-      bustFrom: parseInt(document.getElementById('bustFrom').value) || null,
-      bustTo: parseInt(document.getElementById('bustTo').value) || null,
-      waistFrom: parseInt(document.getElementById('waistFrom').value) || null,
-      waistTo: parseInt(document.getElementById('waistTo').value) || null,
-      hipFrom: parseInt(document.getElementById('hipFrom').value) || null,
-      hipTo: parseInt(document.getElementById('hipTo').value) || null,
-      cupFrom: document.getElementById('cupFrom').value.trim(),
-      cupTo: document.getElementById('cupTo').value.trim(),
-      hobby: document.getElementById('hobby').value.trim(),
-    };
-  }
-
-  function filterMembers(members, query) {
-    return members.filter(m => {
-      const age = parseInt(m['年齢'] || '');
-      const height = parseInt(m['身長'] || '');
-      const b = parseInt(m['スリーサイズ（B）'] || '');
-      const w = parseInt(m['スリーサイズ（W）'] || '');
-      const h = parseInt(m['スリーサイズ（H）'] || '');
-      const cup = (m['スリーサイズ（Cup）'] || '').trim();
-      const hobby = (m['趣味'] || '').trim();
-
-      return (
-        (!query.ageFrom || age >= query.ageFrom) &&
-        (!query.ageTo || age <= query.ageTo) &&
-        (!query.heightFrom || height >= query.heightFrom) &&
-        (!query.heightTo || height <= query.heightTo) &&
-        (!query.bustFrom || b >= query.bustFrom) &&
-        (!query.bustTo || b <= query.bustTo) &&
-        (!query.waistFrom || w >= query.waistFrom) &&
-        (!query.waistTo || w <= query.waistTo) &&
-        (!query.hipFrom || h >= query.hipFrom) &&
-        (!query.hipTo || h <= query.hipTo) &&
-        (!query.cupFrom || cup >= query.cupFrom) &&
-        (!query.cupTo || cup <= query.cupTo) &&
-        (!query.hobby || hobby.includes(query.hobby))
-      );
-    });
-  }
-
-  function renderResults(members) {
-    resultsContainer.innerHTML = '';
-    noResults.style.display = members.length === 0 ? 'block' : 'none';
-
-    members.forEach(m => {
-      const card = document.createElement('div');
-      card.className = 'card';
-
-      const slideshow = document.createElement('div');
-      slideshow.className = 'slideshow';
-
-      const memberNo = m['会員No'].padStart(3, '0');
-
+      let slides = "";
       for (let i = 1; i <= 4; i++) {
-        const img = document.createElement('img');
-        img.src = /images/photo${memberNo}_${i}.jpg;
-        img.onerror = () => img.remove();
-        if (i === 1) img.classList.add('active');
-        slideshow.appendChild(img);
+        const imagePath = images/photo${no}_${i}.jpg;
+        slides += <div class='slide${i === 1 ? " active" : ""}'><img src='${imagePath}'></div>;
       }
 
-      let index = 0;
-      setInterval(() => {
-        const imgs = slideshow.querySelectorAll('img');
-        const visibleImgs = Array.from(imgs);
-        if (visibleImgs.length <= 1) return;
-        visibleImgs.forEach(img => img.classList.remove('active'));
-        visibleImgs[index = (index + 1) % visibleImgs.length].classList.add('active');
-      }, 3000);
+      html += 
+<div class="card">
+  <div class="card-image" onclick="window.open('member${no}.html', '_blank')">
+    ${slides}
+  </div>
+  <div class="card-text">
+    <p><strong>No.</strong> ${no} ${name}</p>
+    <p>${height}cm (${age}歳)</p>
+    <p>${bust}cm, ${waist}cm, ${hip}cm, ${cup}カップ</p>
+    <p class="comment">${comment}</p>
+<p><span class="favorite-btn" data-id="${no}">♡</span></p>
+  </div>
+</div>;
+    }
 
-      const info = document.createElement('div');
-      info.className = 'card-text';
 
-      const no = m['会員No'];
-      const name = m['氏名'];
-      const age = m['年齢'];
-      const height = m['身長'];
-      const b = m['スリーサイズ（B）'];
-      const w = m['スリーサイズ（W）'];
-      const h = m['スリーサイズ（H）'];
-      const cup = m['スリーサイズ（Cup）'];
-      const comment = m['本人コメント'];
+    html += </div><div class="pagination">;
+    for (let i = 0; i < totalPages; i++) {
+      const pageName = i === 0 ? "member_list.html" : member_list_page${i + 1}.html;
+      const activeClass = i === p ? "current" : "";
+      html += <a href="${pageName}" class="${activeClass}">${i + 1}</a>;
+    }
 
-      info.innerHTML = 
-        <p>${no} ${name}</p>
-        <p>${height}cm (${age}歳）</p>
-        <p>${b}/${w}/${h}/${cup}カップ</p>
-        <p>${comment}</p>
-        <div class="heart" onclick="toggleFavorite(this, '${no}')">♥</div>
-      ;
-
-      const link = document.createElement('a');
-      link.href = https://kousaiclub.jp/member${no}.html;
-      link.target = '_blank';
-      link.appendChild(slideshow);
-
-      card.appendChild(link);
-      card.appendChild(info);
-      resultsContainer.appendChild(card);
-
-      if (localStorage.getItem(fav_${no}) === '1') {
-        info.querySelector('.heart').classList.add('active');
-      }
-    });
-  }
+    html += </div><script>
+document.querySelectorAll('.card-image').forEach(container => {
+  const slides = Array.from(container.querySelectorAll('.slide'));
+  if (slides.length <= 1) return;
+  let idx = 0;
+  slides[0].classList.add('active');
+  setInterval(() => {
+    slides[idx].classList.remove('active');
+    idx = (idx + 1) % slides.length;
+    slides[idx].classList.add('active');
+  }, 3000);
 });
+document.querySelectorAll('.favorite-btn').forEach(btn => {
+  const id = btn.dataset.id;
+  if (localStorage.getItem('fav-' + id)) btn.textContent = '❤️';
+  btn.addEventListener('click', () => {
+    if (localStorage.getItem('fav-' + id)) {
+      localStorage.removeItem('fav-' + id);
+      btn.textContent = '♡';
+    } else {
+      localStorage.setItem('fav-' + id, '1');
+      btn.textContent = '❤️';
+    }
+  });
+});
+</script></body></html>;
 
-function toggleFavorite(el, no) {
-  const key = fav_${no};
-  const active = el.classList.toggle('active');
-  localStorage.setItem(key, active ? '1' : '0');
+    const fileName = p === 0 ? "member_list.html" : member_list_page${p + 1}.html;
+    folder.createFile(fileName, html, MimeType.HTML);
+  }
 }
