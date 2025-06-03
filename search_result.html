@@ -3,151 +3,188 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>検索結果 | KOUSAI Club</title>
-  <link rel="stylesheet" href="styles/style.css" />
+  <title>会員検索結果</title>
   <link rel="icon" href="images/logo_1.png" type="image/png" />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style_combined.css" />
+  <script defer src="scripts/search.js"></script>
   <style>
     body {
+      margin: 0;
       background-color: #1c1c1c;
       color: #f9f9f9;
-      font-family: 'Cormorant Garamond', serif;
-      margin: 0;
-      padding: 0;
+      font-family: 'Cormorant Garamond', sans-serif;
     }
-    .search-form {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
+
+    .search-wrapper {
       padding: 20px;
-      background-color: #2a2a3b;
+      background-color: #1c1c1c;
+      display: flex;
+      justify-content: center;
     }
-    .search-form select {
-      margin: 5px;
-      padding: 8px;
-      border-radius: 4px;
-      border: none;
-      font-size: 14px;
-    }
-    .search-form button {
-      margin: 5px;
-      padding: 8px 16px;
-      border-radius: 4px;
-      border: none;
-      background-color: #f9f9f9;
-      color: #1c1c1c;
-      font-size: 14px;
-      cursor: pointer;
-    }
-    .member-card {
-      background-color: #2a2a3b;
-      border-radius: 16px;
-      padding: 12px;
-      margin: 10px;
-      width: 280px;
+
+    #searchForm {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-    }
-    .member-photo {
+      gap: 10px;
       width: 100%;
-      border-radius: 12px;
-      object-fit: cover;
+      max-width: 400px;
     }
-    .member-name {
-      font-size: 18px;
-      font-weight: bold;
-      margin-top: 8px;
-    }
-    .member-info {
+
+    #searchForm label {
       font-size: 14px;
-      margin: 4px 0;
+      margin-bottom: 2px;
     }
-    .member-comment {
-      font-size: 13px;
-      text-align: center;
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      text-overflow: ellipsis;
+
+    #searchForm select,
+    #searchForm input,
+    #searchForm button {
+      padding: 8px;
+      border: none;
+      border-radius: 4px;
+      font-size: 14px;
+      font-family: 'Cormorant Garamond', sans-serif;
     }
-    .favorite {
-      margin-top: 8px;
-      font-size: 20px;
-      text-align: center;
+
+    #searchForm button {
+      background-color: #f9f9f9;
+      color: #1c1c1c;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
     }
-    .results-container {
+
+    .results {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       padding: 20px;
     }
-    @media screen and (max-width: 600px) {
-      .member-card {
-        width: 45%;
-        margin: 10px 5px;
+
+    .card {
+      width: 280px;
+      margin: 10px;
+      background-color: transparent;
+      border: 1px solid #f9f9f9;
+      border-radius: 12px;
+      overflow: hidden;
+      color: #f9f9f9;
+    }
+
+    .slideshow {
+      position: relative;
+      width: 100%;
+      height: 300px;
+      background-color: #000;
+    }
+
+    .slideshow img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .slideshow img.active {
+      display: block;
+    }
+
+    .card-text {
+      padding: 10px;
+      text-align: center;
+      position: relative;
+    }
+
+    .heart {
+      font-size: 24px;
+      cursor: pointer;
+      color: #ccc;
+      position: absolute;
+      bottom: 5px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .heart.active {
+      color: red;
+    }
+
+    .no-results {
+      font-size: 16px;
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .back-button-wrapper {
+      text-align: center;
+      margin: 40px 0;
+    }
+
+    .back-button-wrapper a {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #f9f9f9;
+      color: #1c1c1c;
+      border-radius: 6px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    @media (max-width: 600px) {
+      .card {
+        width: 90%;
       }
     }
   </style>
 </head>
 <body>
-  <main>
-    <form class="search-form" id="searchForm">
-      <select name="ageRange">
-        <option value="">年齢</option>
-        <option value="18-19">18～19歳</option>
-        <option value="20-24">20～24歳</option>
-        <option value="25-29">25～29歳</option>
-        <option value="30-34">30～34歳</option>
-        <option value="35-39">35～39歳</option>
-        <option value="40-44">40～44歳</option>
-        <option value="45-49">45～49歳</option>
-        <option value="50-54">50～54歳</option>
-        <option value="55-59">55～59歳</option>
-        <option value="60-64">60～64歳</option>
-        <option value="65-69">65～69歳</option>
-        <option value="70-74">70～74歳</option>
-        <option value="75-79">75～79歳</option>
-        <option value="80-84">80～84歳</option>
-        <option value="85-89">85～89歳</option>
-        <option value="90-94">90～94歳</option>
-        <option value="95-99">95～99歳</option>
-      </select>
-      <select name="height">
-        <option value="">身長</option>
-        <option value="150">150cm</option>
-        <option value="160">160cm</option>
-        <!-- 他の身長オプション -->
-      </select>
-      <select name="cup">
-        <option value="">カップ</option>
-        <option value="A">Aカップ</option>
-        <option value="B">Bカップ</option>
-        <!-- 他のカップオプション -->
-      </select>
-      <select name="area">
-        <option value="">エリア</option>
-        <option value="東京">東京</option>
-        <option value="大阪">大阪</option>
-        <!-- 他のエリアオプション -->
-      </select>
-      <select name="smoking">
-        <option value="">喫煙</option>
-        <option value="はい">はい</option>
-        <option value="いいえ">いいえ</option>
-      </select>
-      <select name="drinking">
-        <option value="">飲酒</option>
-        <option value="はい">はい</option>
-        <option value="いいえ">いいえ</option>
-      </select>
+
+  <div class="search-wrapper">
+    <form id="searchForm">
+      <label>年齢（From / To）</label>
+      <select id="ageFrom"></select>
+      <select id="ageTo"></select>
+
+      <label>身長（From / To）</label>
+      <select id="heightFrom"></select>
+      <select id="heightTo"></select>
+
+      <label>B（From / To）</label>
+      <select id="bustFrom"></select>
+      <select id="bustTo"></select>
+
+      <label>W（From / To）</label>
+      <select id="waistFrom"></select>
+      <select id="waistTo"></select>
+
+      <label>H（From / To）</label>
+      <select id="hipFrom"></select>
+      <select id="hipTo"></select>
+
+      <label>Cup（From / To）</label>
+      <select id="cupFrom"></select>
+      <select id="cupTo"></select>
+
+      <label>趣味</label>
+      <input id="hobby" type="text" placeholder="例：カフェ 美容">
+
       <button type="submit">検索</button>
     </form>
-    <section id="resultsContainer" class="results-container"></section>
-    <div id="noResults" style="text-align:center; display:none;">該当する会員が見つかりませんでした。</div>
-  </main>
-  <script src="scripts/search.js"></script>
+  </div>
+
+  <div id="noResults" class="no-results" style="display:none;">
+    該当する会員が見つかりませんでした。
+  </div>
+
+  <div id="resultsContainer" class="results"></div>
+
+  <!-- 🔙 会員一覧へ戻るボタン -->
+  <div class="back-button-wrapper">
+    <a href="https://kousaiclub.jp/member_list.html">会員一覧へ戻る</a>
+  </div>
+
 </body>
 </html>
