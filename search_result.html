@@ -1,197 +1,618 @@
-
-document.addEventListener('DOMContentLoaded', () => {
-  const form = document.getElementById('searchForm');
-  const resultsContainer = document.getElementById('resultsContainer');
-  const noResults = document.getElementById('noResults');
-
-  populateDropdowns();
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const query = getSearchConditions();
-    const members = await fetchMembers();
-    const filtered = filterMembers(members, query);
-    renderResults(filtered);
-  });
-
-  async function fetchMembers() {
-    const response = await fetch('/data/members.json');
-    return await response.json();
-  }
-
-  function populateDropdowns() {
-    populateGroupedOptions('ageFrom');
-    populateGroupedOptions('ageTo');
-    populateOptions('heightFrom', 140, 180, 5);
-    populateOptions('heightTo', 140, 180, 5);
-    populateOptions('bustFrom', 70, 110, 5);
-    populateOptions('bustTo', 70, 110, 5);
-    populateOptions('waistFrom', 40, 80, 5);
-    populateOptions('waistTo', 40, 80, 5);
-    populateOptions('hipFrom', 70, 110, 5);
-    populateOptions('hipTo', 70, 110, 5);
-    populateCupOptions('cupFrom');
-    populateCupOptions('cupTo');
-  }
-
-  function populateGroupedOptions(id) {
-    const select = document.getElementById(id);
-    const groups = [ [18,19], [20,24], [25,29], [30,34], [35,39], [40,44], [45,50] ];
-    select.innerHTML = '<option value=""></option>';
-    groups.forEach(([start, end]) => {
-      const option = document.createElement('option');
-      option.value = `${start}-${end}`;
-      option.textContent = `${start}?${end}`;
-      select.appendChild(option);
-    });
-  }
-
-  function populateOptions(id, from, to, step) {
-    const select = document.getElementById(id);
-    select.innerHTML = '<option value=""></option>';
-    for (let i = from; i <= to; i += step) {
-      const option = document.createElement('option');
-      option.value = i;
-      option.textContent = i;
-      select.appendChild(option);
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>会員検索結果</title>
+  <link rel="icon" href="images/logo_1.png" type="image/png" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style_combined.css" />
+  <script defer src="scripts/search.js"></script>
+  <style>
+    body {
+      margin: 0;
+      background-color: #1c1c1c;
+      color: #f9f9f9;
+      font-family: 'Cormorant Garamond', 'メイリオ', sans-serif;
     }
-  }
 
-  function populateCupOptions(id) {
-    const select = document.getElementById(id);
-    const cups = ['A','B','C','D','E','F','G','H','I','J'];
-    select.innerHTML = '<option value=""></option>';
-    cups.forEach(c => {
-      const option = document.createElement('option');
-      option.value = c;
-      option.textContent = c;
-      select.appendChild(option);
-    });
-  }
+    .search-wrapper {
+      padding: 20px;
+      background-color: #1c1c1c;
+      display: flex;
+      justify-content: center;
+    }
 
-  function parseAge(value) {
-    if (!value) return null;
-    const [start, end] = value.split('-').map(Number);
-    return { start, end };
-  }
+    #searchForm {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 100%;
+      max-width: 400px;
+    }
 
-  function getSearchConditions() {
-    const ageFrom = parseAge(document.getElementById('ageFrom').value)?.start;
-    const ageTo = parseAge(document.getElementById('ageTo').value)?.end;
-    return {
-      ageFrom,
-      ageTo,
-      heightFrom: parseInt(document.getElementById('heightFrom').value) || null,
-      heightTo: parseInt(document.getElementById('heightTo').value) || null,
-      bustFrom: parseInt(document.getElementById('bustFrom').value) || null,
-      bustTo: parseInt(document.getElementById('bustTo').value) || null,
-      waistFrom: parseInt(document.getElementById('waistFrom').value) || null,
-      waistTo: parseInt(document.getElementById('waistTo').value) || null,
-      hipFrom: parseInt(document.getElementById('hipFrom').value) || null,
-      hipTo: parseInt(document.getElementById('hipTo').value) || null,
-      cupFrom: document.getElementById('cupFrom').value.trim(),
-      cupTo: document.getElementById('cupTo').value.trim(),
-      hobby: document.getElementById('hobby').value.trim(),
-    };
-  }
+    #searchForm label {
+      font-size: 14px;
+      margin-bottom: 2px;
+    }
 
-  function filterMembers(members, query) {
-    return members.filter(m => {
-      const age = parseInt(m['年齢'] || '');
-      const height = parseInt(m['身長'] || '');
-      const b = parseInt(m['スリーサイズ（B）'] || '');
-      const w = parseInt(m['スリーサイズ（W）'] || '');
-      const h = parseInt(m['スリーサイズ（H）'] || '');
-      const cup = (m['スリーサイズ（Cup）'] || '').trim();
-      const hobby = (m['趣味'] || '').trim();
+    #searchForm select,
+    #searchForm input,
+    #searchForm button {
+      padding: 8px;
+      border: none;
+      border-radius: 4px;
+      font-size: 14px;
+      font-family: 'Cormorant Garamond', 'メイリオ', sans-serif;
+    }
 
-      return (
-        (!query.ageFrom || age >= query.ageFrom) &&
-        (!query.ageTo || age <= query.ageTo) &&
-        (!query.heightFrom || height >= query.heightFrom) &&
-        (!query.heightTo || height <= query.heightTo) &&
-        (!query.bustFrom || b >= query.bustFrom) &&
-        (!query.bustTo || b <= query.bustTo) &&
-        (!query.waistFrom || w >= query.waistFrom) &&
-        (!query.waistTo || w <= query.waistTo) &&
-        (!query.hipFrom || h >= query.hipFrom) &&
-        (!query.hipTo || h <= query.hipTo) &&
-        (!query.cupFrom || cup >= query.cupFrom) &&
-        (!query.cupTo || cup <= query.cupTo) &&
-        (!query.hobby || hobby.includes(query.hobby))
-      );
-    });
-  }
+    #searchForm button {
+      background-color: #f9f9f9;
+      color: #1c1c1c;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+    }
 
-  function renderResults(members) {
-    resultsContainer.innerHTML = '';
-    noResults.style.display = members.length === 0 ? 'block' : 'none';
+    .results {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 20px;
+    }
 
-    members.forEach(m => {
-      const card = document.createElement('div');
-      card.className = 'card';
+    .card {
+      width: 280px;
+      margin: 10px;
+      background-color: transparent;
+      border: 1px solid #f9f9f9;
+      border-radius: 12px;
+      overflow: hidden;
+      color: #f9f9f9;
+      position: relative;
+    }
 
-      const slideshow = document.createElement('div');
-      slideshow.className = 'slideshow';
+    .slideshow {
+      position: relative;
+      width: 100%;
+      height: 300px;
+      background-color: #000;
+    }
 
-      const memberNo = m['会員No'].padStart(3, '0');
+    .slideshow img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
 
-      for (let i = 1; i <= 4; i++) {
-        const img = document.createElement('img');
-        img.src = `/images/photo${memberNo}_${i}.jpg`;
-        img.onerror = () => img.remove();
-        if (i === 1) img.classList.add('active');
-        slideshow.appendChild(img);
+    .slideshow img.active {
+      display: block;
+    }
+
+    .heart {
+      font-size: 22px;
+      color: #FF69B4;
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      z-index: 10;
+      cursor: pointer;
+    }
+
+    .card-text {
+      padding: 10px;
+      text-align: center;
+    }
+
+    .card-text .comment {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .no-results {
+      font-size: 16px;
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .back-button-wrapper {
+      text-align: center;
+      margin: 40px 0;
+    }
+
+    .back-button-wrapper a {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #f9f9f9;
+      color: #1c1c1c;
+      border-radius: 6px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    @media (max-width: 600px) {
+      .card {
+        width: 90%;
       }
+    }
+  </style>
+</head>
+<body>
 
-      let index = 0;
+  <div class="search-wrapper">
+    <form id="searchForm">
+      <label>年齢（From / To）</label>
+      <select id="ageFrom"></select>
+      <select id="ageTo"></select>
+
+      <label>身長（From / To）</label>
+      <select id="heightFrom"></select>
+      <select id="heightTo"></select>
+
+      <label>B（From / To）</label>
+      <select id="bustFrom"></select>
+      <select id="bustTo"></select>
+
+      <label>W（From / To）</label>
+      <select id="waistFrom"></select>
+      <select id="waistTo"></select>
+
+      <label>H（From / To）</label>
+      <select id="hipFrom"></select>
+      <select id="hipTo"></select>
+
+      <label>Cup（From / To）</label>
+      <select id="cupFrom"></select>
+      <select id="cupTo"></select>
+
+      <label>趣味</label>
+      <input id="hobby" type="text" placeholder="例：カフェ 美容">
+
+      <button type="submit">検索</button>
+    </form>
+  </div>
+
+  <div id="noResults" class="no-results" style="display:none;">
+    該当する会員が見つかりませんでした。
+  </div>
+
+  <div id="resultsContainer" class="results"></div>
+
+  <div class="back-button-wrapper">
+    <a href="https://kousaiclub.jp/member_list.html">会員一覧へ戻る</a>
+  </div>
+
+</body>
+</html>
+
+〇参考にするテンプレページ・会員一覧（https://kousaiclub.jp/member_list.html）のHTML
+↓
+<!DOCTYPE html><html lang="ja"><head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>members_list - Page 1</title>
+  <link rel="icon" href="images/logo_1.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body { margin:0;padding:0;background:#1c1c1c;color:#f9f9f9;font-family:'Cormorant Garamond',serif;font-size:14px;line-height:1.8; }
+    .nav-container { display:flex;align-items:center;justify-content:space-between;background:#0009;padding:5px 20px; }
+    .nav-logo img { height:50px;filter:brightness(90%) drop-shadow(0 1px 1px #ccc); }
+    .nav-links { display:flex;gap:20px; }
+    .nav-links a { color:#f0f0f0;text-decoration:none; }
+    .hamburger { display:none;flex-direction:column;cursor:pointer; }
+    .hamburger span { height:3px;width:25px;background:#f9f9f9;margin:4px 0; }
+    @media (max-width:768px) {
+      .nav-links { display:none;flex-direction:column;width:100%;position:absolute;top:60px;left:0;background:#000;padding:15px; }
+      .nav-links.active { display:flex; }
+      .hamburger { display:flex; }
+    }
+    .banner { background:url('images/banner_3.png') no-repeat center center;background-size:cover;height:340px; }
+    .search-link-wrapper { text-align:center;margin:20px 0; }
+    .search-button { padding:10px 20px;background:#f9f9f9;color:#1c1c1c;border-radius:6px;text-decoration:none;font-weight:bold;font-size:14px; }
+    .card-container { display:flex;flex-wrap:wrap;justify-content:space-evenly;max-width:1280px;margin:0 auto;gap:20px;padding:20px; }
+    .card { width:22%;min-width:280px;background:#1c1c1c;border:1px solid #f9f9f9;border-radius:12px;margin-bottom:20px;overflow:hidden; }
+    .card-image { position:relative;width:100%;height:360px;overflow:hidden;cursor:pointer; }
+    .slide { position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;transition:opacity 0.6s ease-in-out; }
+    .slide.active { opacity:1; }
+    .slide img { width:100%;height:100%;object-fit:cover; }
+    .card-text { padding:8px;text-align:center; }
+    .favorite-btn { font-size:18px;color:#FF69B4;cursor:pointer; }
+    .comment { display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;text-overflow:ellipsis; }
+    .pagination { text-align:center;margin:20px; }
+    .pagination a { color:#f9f9f9;padding:6px 12px;border:1px solid #f9f9f9;border-radius:6px;margin:0 5px;text-decoration:none; }
+    .pagination a.current { background:#f9f9f9;color:#1c1c1c;font-weight:bold; }
+    @media (max-width:768px) {
+      .card-container { justify-content:space-between; }
+      .card { width:calc(48% - 10px);min-width:0 !important; }
+      .card-image { height:300px !important; }
+    }
+  </style></head><body>
+  <header class="nav-container">
+    <div class="nav-logo"><a href="top.html"><img src="images/logo_1.png" alt="PRIVATE SHIROKANE"></a></div>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">Home</a><a href="top.html">Top</a>
+      <a href="guidance_men.html">男性会員入会</a><a href="guidance_women.html">女性会員入会</a>
+      <a href="system.html">料金・システム</a><a href="pickup_member.html">注目会員様情報</a>
+      <a href="members_only.html">会員専用Page</a><a href="contact.html">お問合せ</a>
+    </nav>
+    <div class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('active')">
+      <span></span><span></span><span></span>
+    </div>
+  </header>
+  <div class="banner"></div>
+  <div class="search-link-wrapper">
+    <a href="search_result.html" class="search-button">会員検索はこちら</a>
+  </div><div class="card-container">
+
+      <div class="card">
+        <div class="card-image" onclick="window.open('member343.html', '_blank')"><div class='slide active'><img src='images/photo343_1.jpg'></div><div class='slide'><img src='images/photo343_2.jpg'></div><div class='slide'><img src='images/photo343_3.jpg'></div><div class='slide'><img src='images/photo343_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 343 青山さり</p>
+          <p>160cm (24歳)</p>
+          <p>85cm, 53cm, 86cm, Eカップ</p>
+          <p class="comment">はじめまして、青山さりです🌸
+モデルやタレントのお仕事をしています✨24歳です。
+
+出身はアメリカで、英語はネイティブレベル🗽✈️
+帰国子女ならではの感性を活かして、グローバルな出会いや会話も大好きです💬💕
+
+身長160cm、スラリとしたプロポーションにEカップのボディラインがチャームポイントです👠
+
+性格は落ち着いていますが、親しみやすく自然体でいられる時間を大切にしています🍃
+お話しや食事、ご一緒できる時間を楽しみにしています🍽️✨
+どうぞよろしくお願いします🕊️</p>
+          <p><span class="favorite-btn" data-id="343">♡</span></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-image" onclick="window.open('member344.html', '_blank')"><div class='slide active'><img src='images/photo344_1.jpg'></div><div class='slide'><img src='images/photo344_2.jpg'></div><div class='slide'><img src='images/photo344_3.jpg'></div><div class='slide'><img src='images/photo344_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 344 橋本こころ  </p>
+          <p>163cm (26歳)</p>
+          <p>82cm, 57cm, 83cm, Cカップ</p>
+          <p class="comment">長く楽しくお付き合いできる人と出逢いたいです✨ 色んなお話しを楽しみたいです☺️</p>
+          <p><span class="favorite-btn" data-id="344">♡</span></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-image" onclick="window.open('member224.html', '_blank')"><div class='slide active'><img src='images/photo224_1.jpg'></div><div class='slide'><img src='images/photo224_2.jpg'></div><div class='slide'><img src='images/photo224_3.jpg'></div><div class='slide'><img src='images/photo224_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 224 町田もも</p>
+          <p>164cm (26歳)</p>
+          <p>110cm, 62cm, 101cm, Kカップ</p>
+          <p class="comment">早慶卒で、ある程度の教養と知的好奇心が自慢です✨</p>
+          <p><span class="favorite-btn" data-id="224">♡</span></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-image" onclick="window.open('member327.html', '_blank')"><div class='slide active'><img src='images/photo327_1.jpg'></div><div class='slide'><img src='images/photo327_2.jpg'></div><div class='slide'><img src='images/photo327_3.jpg'></div><div class='slide'><img src='images/photo327_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 327 渡辺りり</p>
+          <p>170cm (21歳)</p>
+          <p>84cm, 57cm, 90cm, Eカップ</p>
+          <p class="comment">高身長でスタイルと顔の小ささには自信があります！ よろしくお願いいたします😊</p>
+          <p><span class="favorite-btn" data-id="327">♡</span></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-image" onclick="window.open('member337.html', '_blank')"><div class='slide active'><img src='images/photo337_1.jpg'></div><div class='slide'><img src='images/photo337_2.jpg'></div><div class='slide'><img src='images/photo337_3.jpg'></div><div class='slide'><img src='images/photo337_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 337 山下みお</p>
+          <p>165cm (23歳)</p>
+          <p>88cm, 56cm, 85cm, Gカップ</p>
+          <p class="comment">よく見た目からクールな印象を持たれますが、実際は明るくてよく笑うタイプで、話しやすいと言われます！ 好奇心旺盛なので、知らない世界の話を聞くのが大好きです✨ 最近は難しい資格取得のため勉強にも励んでいます。 ここで素敵な方と出会えますように♪お誘いお待ちしております🌸</p>
+          <p><span class="favorite-btn" data-id="337">♡</span></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-image" onclick="window.open('member336.html', '_blank')"><div class='slide active'><img src='images/photo336_1.jpg'></div><div class='slide'><img src='images/photo336_2.jpg'></div><div class='slide'><img src='images/photo336_3.jpg'></div><div class='slide'><img src='images/photo336_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 336 天江ゆい</p>
+          <p>155cm (22歳)</p>
+          <p>85cm, 55cm, 90cm, Fカップ</p>
+          <p class="comment">素敵な方にお会いしたくて登録しました。 よろしくお願いします！</p>
+          <p><span class="favorite-btn" data-id="336">♡</span></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-image" onclick="window.open('member212.html', '_blank')"><div class='slide active'><img src='images/photo212_1.jpg'></div><div class='slide'><img src='images/photo212_2.jpg'></div><div class='slide'><img src='images/photo212_3.jpg'></div><div class='slide'><img src='images/photo212_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 212 黒木もも</p>
+          <p>166cm (24歳)</p>
+          <p>88cm, 57cm, 90cm, Fカップ</p>
+          <p class="comment">好奇心盛な性格です✨ よろしくお願いします😊</p>
+          <p><span class="favorite-btn" data-id="212">♡</span></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-image" onclick="window.open('member210.html', '_blank')"><div class='slide active'><img src='images/photo210_1.jpg'></div><div class='slide'><img src='images/photo210_2.jpg'></div><div class='slide'><img src='images/photo210_3.jpg'></div><div class='slide'><img src='images/photo210_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 210 伊達まりえ</p>
+          <p>160cm (26歳)</p>
+          <p>100cm, 56cm, 88cm, Gカップ</p>
+          <p class="comment">初めまして！まりえです☺️ 趣味はアンティークの茶器集め、編み物、温泉巡りです♨️ アイドル・アニメ・漫画も好きなので、会話の引き出しは多い方だと思います。 大学では英語科を専攻し、イギリスに短期留学の経験もあります。 古典や現代文学、最近では建築にも興味があります。 楽しい時間をご一緒できれば嬉しいです。よろしくお願いいたします☺️</p>
+          <p><span class="favorite-btn" data-id="210">♡</span></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-image" onclick="window.open('member342.html', '_blank')"><div class='slide active'><img src='images/photo342_1.jpg'></div><div class='slide'><img src='images/photo342_2.jpg'></div><div class='slide'><img src='images/photo342_3.jpg'></div><div class='slide'><img src='images/photo342_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 342 水嶋すみれ  </p>
+          <p>164cm (26歳)</p>
+          <p>90cm, 58cm, 93cm, Gカップ</p>
+          <p class="comment">素敵なデートをしたいです✨</p>
+          <p><span class="favorite-btn" data-id="342">♡</span></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-image" onclick="window.open('member341.html', '_blank')"><div class='slide active'><img src='images/photo341_1.jpg'></div><div class='slide'><img src='images/photo341_2.jpg'></div><div class='slide'><img src='images/photo341_3.jpg'></div><div class='slide'><img src='images/photo341_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 341 三浦あやな</p>
+          <p>165cm (29歳)</p>
+          <p>105cm, 60cm, 95cm, Jカップ</p>
+          <p class="comment">天然物です🥰💓 お誘いお待ちしています✨</p>
+          <p><span class="favorite-btn" data-id="341">♡</span></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-image" onclick="window.open('member340.html', '_blank')"><div class='slide active'><img src='images/photo340_1.jpg'></div><div class='slide'><img src='images/photo340_2.jpg'></div><div class='slide'><img src='images/photo340_3.jpg'></div><div class='slide'><img src='images/photo340_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 340 白石美波</p>
+          <p>157cm (29歳)</p>
+          <p>83cm, 57cm, 87cm, Dカップ</p>
+          <p class="comment">まだ未熟な部分が多い私ですが、一緒に楽しい時間を過ごせたら嬉しいです。</p>
+          <p><span class="favorite-btn" data-id="340">♡</span></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-image" onclick="window.open('member339.html', '_blank')"><div class='slide active'><img src='images/photo339_1.jpg'></div><div class='slide'><img src='images/photo339_2.jpg'></div><div class='slide'><img src='images/photo339_3.jpg'></div><div class='slide'><img src='images/photo339_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 339 竹内 りり</p>
+          <p>168cm (25歳)</p>
+          <p>99cm, 58cm, 88cm, Hカップ</p>
+          <p class="comment">はじめまして、りりです💕 グラビアのお仕事をしています✨ 25歳です☺️  グラマー体型で、スタイルには自信あります💋 Fカップのバストもよく褒めていただきます…🙈💗  明るくて人懐っこい性格なので、楽しく過ごせると思います🌈 お会いできるのを楽しみにしています🕊️ よろしくお願いします❣️</p>
+          <p><span class="favorite-btn" data-id="339">♡</span></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-image" onclick="window.open('member338.html', '_blank')"><div class='slide active'><img src='images/photo338_1.jpg'></div><div class='slide'><img src='images/photo338_2.jpg'></div><div class='slide'><img src='images/photo338_3.jpg'></div><div class='slide'><img src='images/photo338_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 338 真白まこ</p>
+          <p>165cm (28歳)</p>
+          <p>92cm, 58cm, 88cm, Gカップ</p>
+          <p class="comment">紳士で優しい方と非日常で刺激的で…でも安心できるような素敵な時間を過ごしたいと思っています。よろしくお願いします。</p>
+          <p><span class="favorite-btn" data-id="338">♡</span></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-image" onclick="window.open('member337.html', '_blank')"><div class='slide active'><img src='images/photo337_1.jpg'></div><div class='slide'><img src='images/photo337_2.jpg'></div><div class='slide'><img src='images/photo337_3.jpg'></div><div class='slide'><img src='images/photo337_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 337 桜木あみ</p>
+          <p>162cm (30歳)</p>
+          <p>86cm, 57cm, 83cm, Gカップ</p>
+          <p class="comment">初めまして！私は美味しいご飯を食べることが好きで一緒に楽しい時間を共有出来る人と出会えたら嬉しいと思ってます！ スタイルと明るさには自信があります！ よろしくお願いいたします😊✨</p>
+          <p><span class="favorite-btn" data-id="337">♡</span></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-image" onclick="window.open('member336.html', '_blank')"><div class='slide active'><img src='images/photo336_1.jpg'></div><div class='slide'><img src='images/photo336_2.jpg'></div><div class='slide'><img src='images/photo336_3.jpg'></div><div class='slide'><img src='images/photo336_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 336 水原さつき</p>
+          <p>167cm (25歳)</p>
+          <p>92cm, 57cm, 88cm, Gカップ</p>
+          <p class="comment">はじめまして！ 癒されると言われることが多いです😌 よろしくお願い致します✨</p>
+          <p><span class="favorite-btn" data-id="336">♡</span></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-image" onclick="window.open('member335.html', '_blank')"><div class='slide active'><img src='images/photo335_1.jpg'></div><div class='slide'><img src='images/photo335_2.jpg'></div><div class='slide'><img src='images/photo335_3.jpg'></div><div class='slide'><img src='images/photo335_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 335 藤咲いちか</p>
+          <p>166cm (30歳)</p>
+          <p>82cm, 57cm, 90cm, Cカップ</p>
+          <p class="comment">チャームポイントは目と白い肌です。 楽しい場所や人とお話するのがすきなので色々教えてください＾＾ よろしくお願いします。</p>
+          <p><span class="favorite-btn" data-id="335">♡</span></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-image" onclick="window.open('member334.html', '_blank')"><div class='slide active'><img src='images/photo334_1.jpg'></div><div class='slide'><img src='images/photo334_2.jpg'></div><div class='slide'><img src='images/photo334_3.jpg'></div><div class='slide'><img src='images/photo334_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 334 長谷川しおり</p>
+          <p>163cm (24歳)</p>
+          <p>84cm, 57cm, 86cm, Dカップ</p>
+          <p class="comment">少し緊張しいではありますが、慣れてくればお話し大好きです☺️ 現役モデルなのでSTYLEには自信があります✨</p>
+          <p><span class="favorite-btn" data-id="334">♡</span></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-image" onclick="window.open('member333.html', '_blank')"><div class='slide active'><img src='images/photo333_1.jpg'></div><div class='slide'><img src='images/photo333_2.jpg'></div><div class='slide'><img src='images/photo333_3.jpg'></div><div class='slide'><img src='images/photo333_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 333 望月みゆ </p>
+          <p>155cm (29歳)</p>
+          <p>83cm, 56cm, 82cm, Cカップ</p>
+          <p class="comment">一緒にいる時は充実した時間にしたいと思っていますので、どうぞよろしくお願します！！</p>
+          <p><span class="favorite-btn" data-id="333">♡</span></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-image" onclick="window.open('member332.html', '_blank')"><div class='slide active'><img src='images/photo332_1.jpg'></div><div class='slide'><img src='images/photo332_2.jpg'></div><div class='slide'><img src='images/photo332_3.jpg'></div><div class='slide'><img src='images/photo332_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 332 東堂青</p>
+          <p>160cm (24歳)</p>
+          <p>75cm, 53cm, 75cm, Bカップ</p>
+          <p class="comment">お互いにとって癒し、幸せな関係が長期的に続けられれば嬉しいです😌</p>
+          <p><span class="favorite-btn" data-id="332">♡</span></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-image" onclick="window.open('member331.html', '_blank')"><div class='slide active'><img src='images/photo331_1.jpg'></div><div class='slide'><img src='images/photo331_2.jpg'></div><div class='slide'><img src='images/photo331_3.jpg'></div><div class='slide'><img src='images/photo331_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 331 清水はるか</p>
+          <p>158cm (29歳)</p>
+          <p>87cm, 57cm, 87cm, Fカップ</p>
+          <p class="comment">はじめまして、はるかです🌙 芸能のお仕事を10年ほど続けています🎬 モデルや女優など…幅広く活動中です✨  スレンダーな体型にFの天然バスト、そしてロングヘアは私のトレードマーク💋 美に対する意識はずっと高く、外見だけでなく内面の品も大切にしています🌹  落ち着いた大人の時間をご一緒できたら嬉しいです☕ よろしくお願いします🕊️</p>
+          <p><span class="favorite-btn" data-id="331">♡</span></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-image" onclick="window.open('member330.html', '_blank')"><div class='slide active'><img src='images/photo330_1.jpg'></div><div class='slide'><img src='images/photo330_2.jpg'></div><div class='slide'><img src='images/photo330_3.jpg'></div><div class='slide'><img src='images/photo330_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 330 橋本由香</p>
+          <p>172cm (25歳)</p>
+          <p>84cm, 55cm, 84cm, Eカップ</p>
+          <p class="comment">友達思いと言われます！ 明るい性格なので一緒にいて楽しい時間になると思います😌 よろしくお願いいたします✨</p>
+          <p><span class="favorite-btn" data-id="330">♡</span></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-image" onclick="window.open('member329.html', '_blank')"><div class='slide active'><img src='images/photo329_1.jpg'></div><div class='slide'><img src='images/photo329_2.jpg'></div><div class='slide'><img src='images/photo329_3.jpg'></div><div class='slide'><img src='images/photo329_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 329 篠原ケイ</p>
+          <p>158cm (21歳)</p>
+          <p>75cm, 55cm, 84cm, Aカップ</p>
+          <p class="comment">中国とロシアのハーフでモデル活動していました！ お仕事を一生懸命されている方大好きです！ マッサージ得意なのでそう言った面でも癒しを与えることできます✨ 日本語勉強中ですが、日常会話なら不自由なくできると思います！ あと、バーとかオシャレレストラン好きですので興味ある方一緒に行きましょう！ 沢山可愛がってくれたら嬉しいです！</p>
+          <p><span class="favorite-btn" data-id="329">♡</span></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-image" onclick="window.open('member328.html', '_blank')"><div class='slide active'><img src='images/photo328_1.jpg'></div><div class='slide'><img src='images/photo328_2.jpg'></div><div class='slide'><img src='images/photo328_3.jpg'></div><div class='slide'><img src='images/photo328_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 328 瀬田あゆ</p>
+          <p>160cm (26歳)</p>
+          <p>86cm, 56cm, 86cm, Fカップ</p>
+          <p class="comment">はじめまして、あゆです🌸 モデルをしています。現在26歳です✨  見た目は“可愛い”と言われることが多いですが、実はFで手足も長く、ちょっとしたギャップがあるみたいです💋 肌や髪のケアは毎日のルーティンで、内面も外見も磨き続けています🪞  落ち着いた空間で、心地よい時間をご一緒できたら嬉しいです☕ よろしくお願いします🕊️</p>
+          <p><span class="favorite-btn" data-id="328">♡</span></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-image" onclick="window.open('member327.html', '_blank')"><div class='slide active'><img src='images/photo327_1.jpg'></div><div class='slide'><img src='images/photo327_2.jpg'></div><div class='slide'><img src='images/photo327_3.jpg'></div><div class='slide'><img src='images/photo327_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 327 桜井もか</p>
+          <p>168cm (23歳)</p>
+          <p>82cm, 55cm, 83cm, Cカップ</p>
+          <p class="comment">はじめまして、もかです🌸 23歳です✨ ピラティスと読書が好き📚 高身長スレンダーで、美脚が自慢です👠💓 大きな目と美肌をよく褒められます☺️ アイドル顔って言われることも…👀💫 落ち着いた時間を一緒に過ごせたら嬉しいです🕊️ よろしくお願いします🌷</p>
+          <p><span class="favorite-btn" data-id="327">♡</span></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-image" onclick="window.open('member326.html', '_blank')"><div class='slide active'><img src='images/photo326_1.jpg'></div><div class='slide'><img src='images/photo326_2.jpg'></div><div class='slide'><img src='images/photo326_3.jpg'></div><div class='slide'><img src='images/photo326_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 326 篠田もも</p>
+          <p>162cm (21歳)</p>
+          <p>84cm, 56cm, 84cm, Eカップ</p>
+          <p class="comment">はじめまして、ももです🍑
+モデルをしています👠 21歳です✨
+ダンスが得意で、体を動かすのが大好き💃
+よく「クールビューティだけど笑顔が可愛いね」って言われます☺️
+スレンダーな体型とE、引き締まったウエストが自慢です💓
+素敵な時間を一緒に過ごせたら嬉しいです🌷 よろしくお願いします🕊️</p>
+          <p><span class="favorite-btn" data-id="326">♡</span></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-image" onclick="window.open('member325.html', '_blank')"><div class='slide active'><img src='images/photo325_1.jpg'></div><div class='slide'><img src='images/photo325_2.jpg'></div><div class='slide'><img src='images/photo325_3.jpg'></div><div class='slide'><img src='images/photo325_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 325 村上こころ</p>
+          <p>166cm (27歳)</p>
+          <p>84cm, 57cm, 86cm, Dカップ</p>
+          <p class="comment">初めての登録で緊張しますが、よろしくお願いいたします🤗</p>
+          <p><span class="favorite-btn" data-id="325">♡</span></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-image" onclick="window.open('member324.html', '_blank')"><div class='slide active'><img src='images/photo324_1.jpg'></div><div class='slide'><img src='images/photo324_2.jpg'></div><div class='slide'><img src='images/photo324_3.jpg'></div><div class='slide'><img src='images/photo324_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 324 石田ニコル</p>
+          <p>157cm (20歳)</p>
+          <p>86cm, 58cm, 88cm, Fカップ</p>
+          <p class="comment">初めてで緊張しますが、よろしくお願いします😊</p>
+          <p><span class="favorite-btn" data-id="324">♡</span></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-image" onclick="window.open('member323.html', '_blank')"><div class='slide active'><img src='images/photo323_1.jpg'></div><div class='slide'><img src='images/photo323_2.jpg'></div><div class='slide'><img src='images/photo323_3.jpg'></div><div class='slide'><img src='images/photo323_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 323 観月愛奈</p>
+          <p>170cm (26歳)</p>
+          <p>85cm, 56cm, 84cm, Eカップ</p>
+          <p class="comment">初めまして‼️愛奈です🙂‍↕️✨ よろしくお願いします！</p>
+          <p><span class="favorite-btn" data-id="323">♡</span></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-image" onclick="window.open('member322.html', '_blank')"><div class='slide active'><img src='images/photo322_1.jpg'></div><div class='slide'><img src='images/photo322_2.jpg'></div><div class='slide'><img src='images/photo322_3.jpg'></div><div class='slide'><img src='images/photo322_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 322 成田かほ</p>
+          <p>168cm (27歳)</p>
+          <p>84cm, 57cm, 86cm, Dカップ</p>
+          <p class="comment">天真爛漫な性格で会うと元気になると言われることが多いです。お話を聞くのもするのも大好きです。お互いにとって楽しい有意義な時間になれば良いなと思います☺️よろしくお願いいたします。</p>
+          <p><span class="favorite-btn" data-id="322">♡</span></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-image" onclick="window.open('member321.html', '_blank')"><div class='slide active'><img src='images/photo321_1.jpg'></div><div class='slide'><img src='images/photo321_2.jpg'></div><div class='slide'><img src='images/photo321_3.jpg'></div><div class='slide'><img src='images/photo321_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 321 三上藍</p>
+          <p>173cm (24歳)</p>
+          <p>85cm, 55cm, 87cm, Eカップ</p>
+          <p class="comment">はじめまして、藍です✨
+グラビアのお仕事をしています👙24歳です♪
+身長173cmの高身長スレンダー👠 美脚が自慢です🦵💎
+色白もち肌＆おでこの丸みもよく褒められます☺️
+お酒が大好きなのでBARデートも大歓迎🍸✨
+好奇心旺盛で、いろんな出会いを楽しみにしています🌈 よろしくお願いします🕊️</p>
+          <p><span class="favorite-btn" data-id="321">♡</span></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-image" onclick="window.open('member320.html', '_blank')"><div class='slide active'><img src='images/photo320_1.jpg'></div><div class='slide'><img src='images/photo320_2.jpg'></div><div class='slide'><img src='images/photo320_3.jpg'></div><div class='slide'><img src='images/photo320_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 320 前田さおり </p>
+          <p>161cm (28歳)</p>
+          <p>82cm, 55cm, 85cm, Dカップ</p>
+          <p class="comment">こんにちは！さおりと申します❤️ 明るくどんな方でも喋りやすく楽しくて落ち着くと言われます！顔立ちがしっかりしていて綺麗でスタイル良いねとお褒めのお言葉をよく言われます！ リードしてくれる方もリードしてもらいたい方も大歓迎です🙆‍♀️ 貴重なお時間頂くので、素敵なお時間を過ごせるようお会いした方には尽くしたいと思っております🩷</p>
+          <p><span class="favorite-btn" data-id="320">♡</span></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-image" onclick="window.open('member319.html', '_blank')"><div class='slide active'><img src='images/photo319_1.jpg'></div><div class='slide'><img src='images/photo319_2.jpg'></div><div class='slide'><img src='images/photo319_3.jpg'></div><div class='slide'><img src='images/photo319_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 319 立宮ゆず</p>
+          <p>168cm (21歳)</p>
+          <p>86cm, 56cm, 82cm, Fカップ</p>
+          <p class="comment">目と唇が魅力的と言われることが多いです。無整形です🙌 お誘いお待ちしてます😊</p>
+          <p><span class="favorite-btn" data-id="319">♡</span></p>
+        </div>
+      </div></div><div class="pagination"><a href="member_list.html" class="current">1</a><a href="member_list_page2.html" class="">2</a></div><script>
+    document.querySelectorAll('.card-image').forEach(container => {
+      const slides = Array.from(container.querySelectorAll('.slide'));
+      if (slides.length <= 1) return;
+      let idx = 0;
+      slides[0].classList.add('active');
       setInterval(() => {
-        const imgs = slideshow.querySelectorAll('img');
-        const visibleImgs = Array.from(imgs);
-        if (visibleImgs.length <= 1) return;
-        visibleImgs.forEach(img => img.classList.remove('active'));
-        visibleImgs[index = (index + 1) % visibleImgs.length].classList.add('active');
+        slides[idx].classList.remove('active');
+        idx = (idx + 1) % slides.length;
+        slides[idx].classList.add('active');
       }, 3000);
-
-      const info = document.createElement('div');
-      info.className = 'card-text';
-
-      const no = m['会員No'];
-      const name = m['氏名'];
-      const age = m['年齢'];
-      const height = m['身長'];
-      const b = m['スリーサイズ（B）'];
-      const w = m['スリーサイズ（W）'];
-      const h = m['スリーサイズ（H）'];
-      const cup = m['スリーサイズ（Cup）'];
-      const comment = m['本人コメント'];
-
-      info.innerHTML = `
-        <p>${no} ${name}</p>
-        <p>${height}cm (${age}歳)</p>
-        <p>${b}/${w}/${h}/${cup}カップ</p>
-        <p>${comment}</p>
-        <div class="heart" onclick="toggleFavorite(this, '${no}')">?</div>
-      `;
-
-      const link = document.createElement('a');
-      link.href = `https://kousaiclub.jp/member${no}.html`;
-      link.target = '_blank';
-      link.appendChild(slideshow);
-
-      card.appendChild(link);
-      card.appendChild(info);
-      resultsContainer.appendChild(card);
-
-      if (localStorage.getItem(`fav_${no}`) === '1') {
-        info.querySelector('.heart').classList.add('active');
-      }
     });
-  }
-});
-
-function toggleFavorite(el, no) {
-  const key = `fav_${no}`;
-  const active = el.classList.toggle('active');
-  localStorage.setItem(key, active ? '1' : '0');
-}
+    document.querySelectorAll('.favorite-btn').forEach(btn => {
+      const id = btn.dataset.id;
+      if (localStorage.getItem('fav-' + id)) btn.textContent = '❤️';
+      btn.addEventListener('click', () => {
+        if (localStorage.getItem('fav-' + id)) {
+          localStorage.removeItem('fav-' + id);
+          btn.textContent = '♡';
+        } else {
+          localStorage.setItem('fav-' + id, '1');
+          btn.textContent = '❤️';
+        }
+      });
+    });
+  </script>
+</body></html>
