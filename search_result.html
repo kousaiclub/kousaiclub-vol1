@@ -3,123 +3,61 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>会員検索結果</title>
-  <link rel="icon" href="images/logo_1.png" type="image/png" />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/styles/common.css" />
+  <title>検索結果</title>
   <style>
     body {
-      margin: 0;
-      padding: 0;
-      background: #1c1c1c;
-      color: #f9f9f9;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 14px;
-    }
-
-    header, nav {
-      padding: 20px;
-      text-align: center;
-    }
-
-    h1 {
-      margin: 20px 0;
-      font-size: 24px;
-      font-weight: 700;
+      font-family: "メイリオ", sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+      margin: 20px;
     }
 
     form {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      padding: 20px;
+      margin-bottom: 20px;
     }
 
-    form select, form input {
-      padding: 6px;
-      border-radius: 4px;
-      border: none;
-      min-width: 100px;
+    select, input[type="text"] {
+      margin: 4px;
     }
 
     button {
+      margin-top: 10px;
       padding: 6px 12px;
-      border: none;
-      border-radius: 4px;
-      background: #f9f9f9;
-      color: #1c1c1c;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    #resultsContainer {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-      padding: 20px;
-      justify-items: center;
-    }
-
-    @media (max-width: 768px) {
-      #resultsContainer {
-        grid-template-columns: repeat(2, 1fr);
-      }
+      font-size: 14px;
     }
 
     .card {
-      background: #2a2a2a;
-      border-radius: 16px;
-      overflow: hidden;
-      width: 90%;
-      max-width: 240px;
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      padding-bottom: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.4);
+      background: #fff;
+      margin: 10px 0;
+      border-radius: 8px;
+      box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
     }
 
     .slideshow {
+      width: 200px;
       position: relative;
-      width: 100%;
-      height: 320px;
-      overflow: hidden;
     }
 
     .slideshow img {
       width: 100%;
-      height: 320px;
-      object-fit: cover;
-      position: absolute;
-      top: 0;
-      left: 0;
-      opacity: 0;
-      transition: opacity 0.6s ease-in-out;
+      display: none;
     }
 
     .slideshow img.active {
-      opacity: 1;
+      display: block;
     }
 
     .card-text {
       padding: 10px;
-    }
-
-    .comment {
-      overflow: hidden;
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-      text-overflow: ellipsis;
+      flex-grow: 1;
     }
 
     .heart {
-      font-size: 18px;
-      margin-top: 8px;
       cursor: pointer;
-      color: #aaa;
+      font-size: 20px;
+      text-align: center;
     }
 
     .heart.active {
@@ -127,39 +65,34 @@
     }
 
     #noResults {
-      text-align: center;
-      margin-top: 40px;
-      font-size: 16px;
-      color: #ccc;
-      display: none;
+      color: red;
+      margin-top: 10px;
     }
   </style>
+  <script src="scripts/search.js" defer></script>
 </head>
 <body>
-  <header>
-    <h1>会員検索</h1>
-  </header>
+  <h1>会員検索</h1>
 
   <form id="searchForm">
-    <select id="ageFrom"></select>
-    <select id="ageTo"></select>
-    <select id="heightFrom"></select>
-    <select id="heightTo"></select>
-    <select id="bustFrom"></select>
-    <select id="bustTo"></select>
-    <select id="waistFrom"></select>
-    <select id="waistTo"></select>
-    <select id="hipFrom"></select>
-    <select id="hipTo"></select>
-    <select id="cupFrom"></select>
-    <select id="cupTo"></select>
-    <input type="text" id="hobby" placeholder="趣味キーワード" />
+    年齢：
+    <select id="ageFrom"></select> 〜 <select id="ageTo"></select><br>
+    身長：
+    <select id="heightFrom"></select> 〜 <select id="heightTo"></select><br>
+    バスト：
+    <select id="bustFrom"></select> 〜 <select id="bustTo"></select><br>
+    ウエスト：
+    <select id="waistFrom"></select> 〜 <select id="waistTo"></select><br>
+    ヒップ：
+    <select id="hipFrom"></select> 〜 <select id="hipTo"></select><br>
+    カップ：
+    <select id="cupFrom"></select> 〜 <select id="cupTo"></select><br>
+    趣味：
+    <input type="text" id="hobby" /><br>
     <button type="submit">検索</button>
   </form>
 
-  <div id="noResults">該当する会員が見つかりませんでした。</div>
+  <div id="noResults" style="display:none;">該当者がいません。</div>
   <div id="resultsContainer"></div>
-
-  <script src="/scripts/search.js"></script>
 </body>
 </html>
