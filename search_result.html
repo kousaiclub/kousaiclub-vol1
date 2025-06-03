@@ -6,8 +6,6 @@
   <title>会員検索結果</title>
   <link rel="icon" href="images/logo_1.png" type="image/png" />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style_combined.css" />
-  <script defer src="scripts/search.js"></script>
   <style>
     body {
       margin: 0;
@@ -70,7 +68,6 @@
       overflow: hidden;
       color: #f9f9f9;
       position: relative;
-      padding-bottom: 40px; /* ♥スペース確保 */
     }
 
     .slideshow {
@@ -101,7 +98,6 @@
       bottom: 10px;
       left: 50%;
       transform: translateX(-50%);
-      z-index: 10;
       cursor: pointer;
     }
 
@@ -145,27 +141,7 @@
       }
     }
   </style>
-  <script>
-    // 🔍 URLに検索条件を付加して遷移する処理（search.jsと連携）
-    window.addEventListener("DOMContentLoaded", () => {
-      const form = document.getElementById("searchForm");
-      form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        const params = new URLSearchParams();
-
-        [
-          "ageFrom", "ageTo", "heightFrom", "heightTo",
-          "bustFrom", "bustTo", "waistFrom", "waistTo",
-          "hipFrom", "hipTo", "cupFrom", "cupTo", "hobby"
-        ].forEach((id) => {
-          const el = document.getElementById(id);
-          if (el && el.value) params.set(id, el.value);
-        });
-
-        location.href = `search_result.html?${params.toString()}`;
-      });
-    });
-  </script>
+  <script defer src="scripts/search.js"></script>
 </head>
 <body>
 
@@ -196,7 +172,7 @@
       <select id="cupTo"></select>
 
       <label>趣味</label>
-      <input id="hobby" type="text" placeholder="例：カフェ 美容">
+      <input id="hobby" type="text" placeholder="例：カフェ 美容" />
 
       <button type="submit">検索</button>
     </form>
