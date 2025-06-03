@@ -130,25 +130,32 @@ document.addEventListener('DOMContentLoaded', () => {
       const card = document.createElement('div');
       card.className = 'card';
 
-      const imageDiv = document.createElement('div');
-      imageDiv.className = 'card-image';
-      imageDiv.onclick = () => window.open(`member${m['会員No']}.html`, '_blank');
+      const slideshow = document.createElement('div');
+      slideshow.className = 'slideshow';
 
       const memberNo = m['会員No'].padStart(3, '0');
+
       for (let i = 1; i <= 4; i++) {
-        const slide = document.createElement('div');
-        slide.className = 'slide' + (i === 1 ? ' active' : '');
         const img = document.createElement('img');
-        img.src = `images/photo${memberNo}_${i}.jpg`;
-        img.onerror = () => slide.remove();
-        img.alt = `photo${memberNo}_${i}`;
-        slide.appendChild(img);
-        imageDiv.appendChild(slide);
+        img.src = `/images/photo${memberNo}_${i}.jpg`;
+        img.onerror = () => img.remove();
+        if (i === 1) img.classList.add('active');
+        slideshow.appendChild(img);
       }
 
-      const textDiv = document.createElement('div');
-      textDiv.className = 'card-text';
+      let index = 0;
+      setInterval(() => {
+        const imgs = slideshow.querySelectorAll('img');
+        const visibleImgs = Array.from(imgs);
+        if (visibleImgs.length <= 1) return;
+        visibleImgs.forEach(img => img.classList.remove('active'));
+        visibleImgs[index = (index + 1) % visibleImgs.length].classList.add('active');
+      }, 3000);
 
+      const info = document.createElement('div');
+      info.className = 'card-text';
+
+      const no = m['会員No'];
       const name = m['氏名'];
       const age = m['年齢'];
       const height = m['身長'];
@@ -156,45 +163,34 @@ document.addEventListener('DOMContentLoaded', () => {
       const w = m['スリーサイズ（W）'];
       const h = m['スリーサイズ（H）'];
       const cup = m['スリーサイズ（Cup）'];
-      const comment = m['本人コメント'] || '';
-      const commentHTML = `<p class="comment">${comment}</p>`;
+      const comment = m['本人コメント'];
 
-      textDiv.innerHTML = `
-        <p><strong>No.</strong> ${m['会員No']} ${name}</p>
+      info.innerHTML = `
+        <p>${no} ${name}</p>
         <p>${height}cm (${age}歳)</p>
-        <p>${b}cm, ${w}cm, ${h}cm, ${cup}カップ</p>
-        ${commentHTML}
-        <p><span class="favorite-btn" data-id="${m['会員No']}">♡</span></p>
+        <p>${b}/${w}/${h}/${cup}カップ</p>
+        <p>${comment}</p>
+        <div class="heart" onclick="toggleFavorite(this, '${no}')">♥</div>
       `;
 
-      card.appendChild(imageDiv);
-      card.appendChild(textDiv);
+      const link = document.createElement('a');
+      link.href = `https://kousaiclub.jp/member${no}.html`;
+      link.target = '_blank';
+      link.appendChild(slideshow);
+
+      card.appendChild(link);
+      card.appendChild(info);
       resultsContainer.appendChild(card);
 
-      // スライド自動切替
-      const slides = imageDiv.querySelectorAll('.slide');
-      let index = 0;
-      if (slides.length > 1) {
-        setInterval(() => {
-          slides[index].classList.remove('active');
-          index = (index + 1) % slides.length;
-          slides[index].classList.add('active');
-        }, 3000);
+      if (localStorage.getItem(`fav_${no}`) === '1') {
+        info.querySelector('.heart').classList.add('active');
       }
-
-      // お気に入り表示
-      const favBtn = textDiv.querySelector('.favorite-btn');
-      const favKey = `fav-${m['会員No']}`;
-      if (localStorage.getItem(favKey)) favBtn.textContent = '❤️';
-      favBtn.addEventListener('click', () => {
-        if (localStorage.getItem(favKey)) {
-          localStorage.removeItem(favKey);
-          favBtn.textContent = '♡';
-        } else {
-          localStorage.setItem(favKey, '1');
-          favBtn.textContent = '❤️';
-        }
-      });
     });
   }
 });
+
+function toggleFavorite(el, no) {
+  const key = `fav_${no}`;
+  const active = el.classList.toggle('active');
+  localStorage.setItem(key, active ? '1' : '0');
+}
