@@ -13,7 +13,7 @@
       margin: 0;
       background-color: #1c1c1c;
       color: #f9f9f9;
-      font-family: 'Cormorant Garamond', sans-serif;
+      font-family: 'Cormorant Garamond', 'メイリオ', sans-serif;
     }
 
     .search-wrapper {
@@ -43,7 +43,7 @@
       border: none;
       border-radius: 4px;
       font-size: 14px;
-      font-family: 'Cormorant Garamond', sans-serif;
+      font-family: 'Cormorant Garamond', 'メイリオ', sans-serif;
     }
 
     #searchForm button {
@@ -69,6 +69,7 @@
       border-radius: 12px;
       overflow: hidden;
       color: #f9f9f9;
+      position: relative;
     }
 
     .slideshow {
@@ -92,24 +93,32 @@
       display: block;
     }
 
+    .heart {
+      font-size: 24px;
+      cursor: pointer;
+      color: #ccc;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 10;
+    }
+
+    .heart.active {
+      color: red;
+    }
+
     .card-text {
       padding: 10px;
       text-align: center;
       position: relative;
     }
 
-    .heart {
-      font-size: 24px;
-      cursor: pointer;
-      color: #ccc;
-      position: absolute;
-      bottom: 5px;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    .heart.active {
-      color: red;
+    .comment {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      max-width: 100%;
+      display: inline-block;
     }
 
     .no-results {
@@ -141,7 +150,6 @@
   </style>
 </head>
 <body>
-
   <div class="search-wrapper">
     <form id="searchForm">
       <label>年齢（From / To）</label>
@@ -185,6 +193,5 @@
   <div class="back-button-wrapper">
     <a href="https://kousaiclub.jp/member_list.html">会員一覧へ戻る</a>
   </div>
-
 </body>
 </html>
