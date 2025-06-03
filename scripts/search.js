@@ -97,20 +97,13 @@ function getSearchConditions() {
   };
 }
 
-const memberAgeMap = {
-  "343": 24,
-  "344": 23,
-  "224": 26,
-  "327": 25,
-  "337": 24,
-  "336": 22,
-  "212": 27,
-  // 必要に応じて追加
-};
+function parseAgeFromComment(comment) {
+  const match = comment.match(/(\d{1,2})歳/);
+  return match ? parseInt(match[1]) : null;
+}
 
 function getValidAge(member) {
-  const id = member.memberNo;
-  return memberAgeMap[id] || null;
+  return parseAgeFromComment(member.comment || '');
 }
 
 function filterMembers(members, query) {
@@ -170,6 +163,8 @@ function renderResults(members) {
 
     const info = document.createElement('div');
     info.className = 'card-text';
+    info.style.fontFamily = '"メイリオ", sans-serif';
+    info.style.fontSize = '13px';
 
     info.innerHTML = `
       <p>${m['memberNo']} ${m['name']}</p>
@@ -182,7 +177,7 @@ function renderResults(members) {
     heart.className = 'heart';
     heart.innerHTML = '♥';
     heart.style.position = 'absolute';
-    heart.style.bottom = '10px';
+    heart.style.bottom = '5px';
     heart.style.left = '50%';
     heart.style.transform = 'translateX(-50%)';
     heart.style.cursor = 'pointer';
