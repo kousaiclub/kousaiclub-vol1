@@ -5,139 +5,186 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>会員検索結果</title>
   <link rel="icon" href="images/logo_1.png" type="image/png" />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style_combined.css" />
+  <script defer src="scripts/search.js"></script>
   <style>
     body {
-      background: #1c1c1c;
-      color: #f9f9f9;
-      font-family: 'Cormorant Garamond', serif;
       margin: 0;
-      padding: 20px;
-    }
-    .search-form {
-      margin-bottom: 20px;
-    }
-    .search-form select {
-      margin-right: 10px;
-      padding: 6px;
-    }
-    .member-card {
-      background: #2a2a3b;
-      border-radius: 16px;
-      padding: 16px;
-      margin: 10px;
-      width: calc(25% - 20px);
-      box-sizing: border-box;
-      display: inline-block;
-      vertical-align: top;
-      position: relative;
-    }
-    .member-card h3 {
-      margin: 10px 0 5px;
-      font-size: 18px;
-    }
-    .member-card p {
-      font-size: 14px;
-      line-height: 1.4em;
-      max-height: 4.2em;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .heart-icon {
-      position: absolute;
-      bottom: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 20px;
-    }
-    .results-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-    }
-    #noResults {
-      margin-top: 20px;
-      color: #ccc;
+      background-color: #1c1c1c;
+      color: #f9f9f9;
+      font-family: 'Cormorant Garamond', sans-serif;
     }
 
-    @media (max-width: 768px) {
-      .member-card {
-        width: calc(50% - 20px);
+    .search-wrapper {
+      padding: 20px;
+      background-color: #1c1c1c;
+      display: flex;
+      justify-content: center;
+    }
+
+    #searchForm {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    #searchForm label {
+      font-size: 14px;
+      margin-bottom: 2px;
+    }
+
+    #searchForm select,
+    #searchForm input,
+    #searchForm button {
+      padding: 8px;
+      border: none;
+      border-radius: 4px;
+      font-size: 14px;
+      font-family: 'Cormorant Garamond', sans-serif;
+    }
+
+    #searchForm button {
+      background-color: #f9f9f9;
+      color: #1c1c1c;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .results {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .card {
+      width: 280px;
+      margin: 10px;
+      background-color: transparent;
+      border: 1px solid #f9f9f9;
+      border-radius: 12px;
+      overflow: hidden;
+      color: #f9f9f9;
+    }
+
+    .slideshow {
+      position: relative;
+      width: 100%;
+      height: 300px;
+      background-color: #000;
+    }
+
+    .slideshow img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .slideshow img.active {
+      display: block;
+    }
+
+    .card-text {
+      padding: 10px;
+      text-align: center;
+      position: relative;
+    }
+
+    .heart {
+      font-size: 24px;
+      cursor: pointer;
+      color: #ccc;
+      position: absolute;
+      bottom: 5px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .heart.active {
+      color: red;
+    }
+
+    .no-results {
+      font-size: 16px;
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .back-button-wrapper {
+      text-align: center;
+      margin: 40px 0;
+    }
+
+    .back-button-wrapper a {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #f9f9f9;
+      color: #1c1c1c;
+      border-radius: 6px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    @media (max-width: 600px) {
+      .card {
+        width: 90%;
       }
     }
   </style>
 </head>
 <body>
-  <form id="searchForm" class="search-form">
-    <select id="age">
-      <option value="">年齢</option>
-      <option value="20代">20代</option>
-      <option value="30代">30代</option>
-    </select>
-    <select id="height">
-      <option value="">身長</option>
-      <option value="150cm以下">150cm以下</option>
-      <option value="160cm以上">160cm以上</option>
-    </select>
-    <button type="submit">検索</button>
-  </form>
 
-  <div id="resultsContainer" class="results-container"></div>
-  <div id="noResults" style="display:none;">該当する会員が見つかりませんでした。</div>
+  <div class="search-wrapper">
+    <form id="searchForm">
+      <label>年齢（From / To）</label>
+      <select id="ageFrom"></select>
+      <select id="ageTo"></select>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const form = document.getElementById('searchForm');
-      const resultsContainer = document.getElementById('resultsContainer');
-      const noResults = document.getElementById('noResults');
+      <label>身長（From / To）</label>
+      <select id="heightFrom"></select>
+      <select id="heightTo"></select>
 
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const members = await fetchMembers();
-        const query = getConditions();
-        const filtered = filterMembers(members, query);
-        renderResults(filtered);
-      });
+      <label>B（From / To）</label>
+      <select id="bustFrom"></select>
+      <select id="bustTo"></select>
 
-      function getConditions() {
-        return {
-          age: document.getElementById('age').value,
-          height: document.getElementById('height').value,
-        };
-      }
+      <label>W（From / To）</label>
+      <select id="waistFrom"></select>
+      <select id="waistTo"></select>
 
-      async function fetchMembers() {
-        const res = await fetch('/data/members.json');
-        return await res.json();
-      }
+      <label>H（From / To）</label>
+      <select id="hipFrom"></select>
+      <select id="hipTo"></select>
 
-      function filterMembers(data, query) {
-        return data.filter(m => {
-          return (!query.age || m.age === query.age) &&
-                 (!query.height || m.height === query.height);
-        });
-      }
+      <label>Cup（From / To）</label>
+      <select id="cupFrom"></select>
+      <select id="cupTo"></select>
 
-      function renderResults(members) {
-        resultsContainer.innerHTML = '';
-        if (members.length === 0) {
-          noResults.style.display = 'block';
-          return;
-        }
-        noResults.style.display = 'none';
+      <label>趣味</label>
+      <input id="hobby" type="text" placeholder="例：カフェ 美容">
 
-        members.forEach(m => {
-          const card = document.createElement('div');
-          card.className = 'member-card';
-          card.innerHTML = `
-            <h3>${m.name}</h3>
-            <p>${m.comment}</p>
-            <div class="heart-icon">♥</div>
-          `;
-          resultsContainer.appendChild(card);
-        });
-      }
-    });
-  </script>
+      <button type="submit">検索</button>
+    </form>
+  </div>
+
+  <div id="noResults" class="no-results" style="display:none;">
+    該当する会員が見つかりませんでした。
+  </div>
+
+  <div id="resultsContainer" class="results"></div>
+
+  <!-- 🔙 会員一覧へ戻るボタン -->
+  <div class="back-button-wrapper">
+    <a href="https://kousaiclub.jp/member_list.html">会員一覧へ戻る</a>
+  </div>
+
 </body>
 </html>
