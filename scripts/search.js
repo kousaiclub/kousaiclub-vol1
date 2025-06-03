@@ -1,86 +1,198 @@
-// scripts/search.js（完全版：GitHubコピペ対応）
+// scripts/search.js（完全修正版・renderResults 含む）
 
-document.addEventListener("DOMContentLoaded", () => {
-  fetch("members.json")
-    .then((response) => response.json())
-    .then((data) => {
-      const searchParams = new URLSearchParams(window.location.search);
-      const keyword = searchParams.get("keyword") || "";
-      const area = searchParams.get("area") || "";
-      const age = searchParams.get("age") || "";
-      const size = searchParams.get("size") || "";
-      const filteredMembers = filterMembers(data, { keyword, area, age, size });
-      renderResults(filteredMembers);
-    });
-});
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('searchForm');
+  const resultsContainer = document.getElementById('resultsContainer');
+  const noResults = document.getElementById('noResults');
 
-function filterMembers(members, filters) {
-  return members.filter((member) => {
-    const matchKeyword =
-      !filters.keyword ||
-      member.name.includes(filters.keyword) ||
-      member.comment.includes(filters.keyword);
-    const matchArea = !filters.area || member.area === filters.area;
-    const matchAge = !filters.age || member.age.toString() === filters.age;
-    const matchSize = !filters.size || member.size === filters.size;
-    return matchKeyword && matchArea && matchAge && matchSize;
+  populateDropdowns();
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const query = getSearchConditions();
+    const members = await fetchMembers();
+    const filtered = filterMembers(members, query);
+    renderResults(filtered);
   });
-}
 
-function renderResults(members) {
-  const container = document.getElementById("resultsContainer");
-  const noResults = document.getElementById("noResults");
-  container.innerHTML = "";
-
-  if (!members || members.length === 0) {
-    noResults.style.display = "block";
-    return;
-  } else {
-    noResults.style.display = "none";
+  async function fetchMembers() {
+    const response = await fetch('/data/members.json');
+    return await response.json();
   }
 
-  members.forEach((member) => {
-    const card = document.createElement("div");
-    card.className = "card";
+  function populateDropdowns() {
+    populateGroupedOptions('ageFrom');
+    populateGroupedOptions('ageTo');
+    populateOptions('heightFrom', 140, 180, 5);
+    populateOptions('heightTo', 140, 180, 5);
+    populateOptions('bustFrom', 70, 110, 5);
+    populateOptions('bustTo', 70, 110, 5);
+    populateOptions('waistFrom', 40, 80, 5);
+    populateOptions('waistTo', 40, 80, 5);
+    populateOptions('hipFrom', 70, 110, 5);
+    populateOptions('hipTo', 70, 110, 5);
+    populateCupOptions('cupFrom');
+    populateCupOptions('cupTo');
+  }
 
-    const slideshow = document.createElement("div");
-    slideshow.className = "slideshow";
-    for (let i = 1; i <= 4; i++) {
-      const img = document.createElement("img");
-      img.src = `images/photo${member.id}_${i}.jpg`;
-      img.alt = `${member.name}の写真${i}`;
-      if (i === 1) img.classList.add("active");
-      img.onerror = () => img.remove();
-      slideshow.appendChild(img);
-    }
-    card.appendChild(slideshow);
-
-    const textBlock = document.createElement("div");
-    textBlock.className = "card-text";
-    textBlock.innerHTML = `
-      <p style="font-family: 'Cormorant Garamond', serif;"><strong>${member.name}</strong></p>
-      <p style="font-family: 'Cormorant Garamond', serif;">${member.age}歳／${member.size}／${member.area}</p>
-      <p style="font-family: 'Cormorant Garamond', serif;">${member.job}</p>
-      <p class="comment" style="font-family: 'Cormorant Garamond', serif; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">${member.comment}</p>
-    `;
-    card.appendChild(textBlock);
-
-    const heart = document.createElement("div");
-    heart.className = "heart";
-    heart.innerHTML = "&#10084;";
-    heart.style.textAlign = "center";
-    heart.addEventListener("click", () => {
-      heart.classList.toggle("active");
-      const key = `fav_${member.id}`;
-      localStorage.setItem(key, heart.classList.contains("active") ? "1" : "0");
+  function populateGroupedOptions(id) {
+    const select = document.getElementById(id);
+    const groups = [ [18,19], [20,24], [25,29], [30,34], [35,39], [40,44], [45,50] ];
+    select.innerHTML = '<option value=""></option>';
+    groups.forEach(([start, end]) => {
+      const option = document.createElement('option');
+      option.value = ${start}-${end};
+      option.textContent = ${start}〜${end};
+      select.appendChild(option);
     });
+  }
 
-    // 保存されていれば active を付加
-    if (localStorage.getItem(`fav_${member.id}`) === "1") {
-      heart.classList.add("active");
+  function populateOptions(id, from, to, step) {
+    const select = document.getElementById(id);
+    select.innerHTML = '<option value=""></option>';
+    for (let i = from; i <= to; i += step) {
+      const option = document.createElement('option');
+      option.value = i;
+      option.textContent = i;
+      select.appendChild(option);
     }
+  }
 
-    card.appendChild(heart);
-    container.appendChild(card);
-  });
+  function populateCupOptions(id) {
+    const select = document.getElementById(id);
+    const cups = ['A','B','C','D','E','F','G','H','I','J'];
+    select.innerHTML = '<option value=""></option>';
+    cups.forEach(c => {
+      const option = document.createElement('option');
+      option.value = c;
+      option.textContent = c;
+      select.appendChild(option);
+    });
+  }
+
+  function parseAge(value) {
+    if (!value) return null;
+    const [start, end] = value.split('-').map(Number);
+    return { start, end };
+  }
+
+  function getSearchConditions() {
+    const ageFrom = parseAge(document.getElementById('ageFrom').value)?.start;
+    const ageTo = parseAge(document.getElementById('ageTo').value)?.end;
+    return {
+      ageFrom,
+      ageTo,
+      heightFrom: parseInt(document.getElementById('heightFrom').value) || null,
+      heightTo: parseInt(document.getElementById('heightTo').value) || null,
+      bustFrom: parseInt(document.getElementById('bustFrom').value) || null,
+      bustTo: parseInt(document.getElementById('bustTo').value) || null,
+      waistFrom: parseInt(document.getElementById('waistFrom').value) || null,
+      waistTo: parseInt(document.getElementById('waistTo').value) || null,
+      hipFrom: parseInt(document.getElementById('hipFrom').value) || null,
+      hipTo: parseInt(document.getElementById('hipTo').value) || null,
+      cupFrom: document.getElementById('cupFrom').value.trim(),
+      cupTo: document.getElementById('cupTo').value.trim(),
+      hobby: document.getElementById('hobby').value.trim(),
+    };
+  }
+
+  function filterMembers(members, query) {
+    return members.filter(m => {
+      const age = parseInt(m['年齢'] || '');
+      const height = parseInt(m['身長'] || '');
+      const b = parseInt(m['スリーサイズ（B）'] || '');
+      const w = parseInt(m['スリーサイズ（W）'] || '');
+      const h = parseInt(m['スリーサイズ（H）'] || '');
+      const cup = (m['スリーサイズ（Cup）'] || '').trim();
+      const hobby = (m['趣味'] || '').trim();
+
+      return (
+        (!query.ageFrom || age >= query.ageFrom) &&
+        (!query.ageTo || age <= query.ageTo) &&
+        (!query.heightFrom || height >= query.heightFrom) &&
+        (!query.heightTo || height <= query.heightTo) &&
+        (!query.bustFrom || b >= query.bustFrom) &&
+        (!query.bustTo || b <= query.bustTo) &&
+        (!query.waistFrom || w >= query.waistFrom) &&
+        (!query.waistTo || w <= query.waistTo) &&
+        (!query.hipFrom || h >= query.hipFrom) &&
+        (!query.hipTo || h <= query.hipTo) &&
+        (!query.cupFrom || cup >= query.cupFrom) &&
+        (!query.cupTo || cup <= query.cupTo) &&
+        (!query.hobby || hobby.includes(query.hobby))
+      );
+    });
+  }
+
+  function renderResults(members) {
+    resultsContainer.innerHTML = '';
+    noResults.style.display = members.length === 0 ? 'block' : 'none';
+
+    members.forEach(m => {
+      const card = document.createElement('div');
+      card.className = 'card';
+
+      const slideshow = document.createElement('div');
+      slideshow.className = 'slideshow';
+
+      const memberNo = m['会員No'].padStart(3, '0');
+
+      for (let i = 1; i <= 4; i++) {
+        const img = document.createElement('img');
+        img.src = /images/photo${memberNo}_${i}.jpg;
+        img.onerror = () => img.remove();
+        if (i === 1) img.classList.add('active');
+        slideshow.appendChild(img);
+      }
+
+      let index = 0;
+      setInterval(() => {
+        const imgs = slideshow.querySelectorAll('img');
+        const visibleImgs = Array.from(imgs);
+        if (visibleImgs.length <= 1) return;
+        visibleImgs.forEach(img => img.classList.remove('active'));
+        visibleImgs[index = (index + 1) % visibleImgs.length].classList.add('active');
+      }, 3000);
+
+      const info = document.createElement('div');
+      info.className = 'card-text';
+
+      const no = m['会員No'];
+      const name = m['氏名'];
+      const age = m['年齢'];
+      const height = m['身長'];
+      const b = m['スリーサイズ（B）'];
+      const w = m['スリーサイズ（W）'];
+      const h = m['スリーサイズ（H）'];
+      const cup = m['スリーサイズ（Cup）'];
+      const comment = m['本人コメント'];
+
+      info.innerHTML = 
+        <p>${no} ${name}</p>
+        <p>${height}cm (${age}歳）</p>
+        <p>${b}/${w}/${h}/${cup}カップ</p>
+        <p>${comment}</p>
+        <div class="heart" onclick="toggleFavorite(this, '${no}')">♥</div>
+      ;
+
+      const link = document.createElement('a');
+      link.href = https://kousaiclub.jp/member${no}.html;
+      link.target = '_blank';
+      link.appendChild(slideshow);
+
+      card.appendChild(link);
+      card.appendChild(info);
+      resultsContainer.appendChild(card);
+
+      if (localStorage.getItem(fav_${no}) === '1') {
+        info.querySelector('.heart').classList.add('active');
+      }
+    });
+  }
+});
+
+function toggleFavorite(el, no) {
+  const key = fav_${no};
+  const active = el.classList.toggle('active');
+  localStorage.setItem(key, active ? '1' : '0');
 }
