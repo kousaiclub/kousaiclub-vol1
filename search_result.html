@@ -3,96 +3,141 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>検索結果</title>
+  <title>会員検索結果</title>
+  <link rel="icon" href="images/logo_1.png" type="image/png" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: "メイリオ", sans-serif;
-      background-color: #f9f9f9;
-      color: #333;
-      margin: 20px;
+      background: #1c1c1c;
+      color: #f9f9f9;
+      font-family: 'Cormorant Garamond', serif;
+      margin: 0;
+      padding: 20px;
     }
-
-    form {
+    .search-form {
       margin-bottom: 20px;
     }
-
-    select, input[type="text"] {
-      margin: 4px;
+    .search-form select {
+      margin-right: 10px;
+      padding: 6px;
     }
-
-    button {
-      margin-top: 10px;
-      padding: 6px 12px;
-      font-size: 14px;
-    }
-
-    .card {
-      display: flex;
-      background: #fff;
-      margin: 10px 0;
-      border-radius: 8px;
-      box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
-    }
-
-    .slideshow {
-      width: 200px;
+    .member-card {
+      background: #2a2a3b;
+      border-radius: 16px;
+      padding: 16px;
+      margin: 10px;
+      width: calc(25% - 20px);
+      box-sizing: border-box;
+      display: inline-block;
+      vertical-align: top;
       position: relative;
     }
-
-    .slideshow img {
-      width: 100%;
-      display: none;
+    .member-card h3 {
+      margin: 10px 0 5px;
+      font-size: 18px;
     }
-
-    .slideshow img.active {
-      display: block;
+    .member-card p {
+      font-size: 14px;
+      line-height: 1.4em;
+      max-height: 4.2em;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
-
-    .card-text {
-      padding: 10px;
-      flex-grow: 1;
-    }
-
-    .heart {
-      cursor: pointer;
+    .heart-icon {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
       font-size: 20px;
-      text-align: center;
     }
-
-    .heart.active {
-      color: red;
+    .results-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
     }
-
     #noResults {
-      color: red;
-      margin-top: 10px;
+      margin-top: 20px;
+      color: #ccc;
+    }
+
+    @media (max-width: 768px) {
+      .member-card {
+        width: calc(50% - 20px);
+      }
     }
   </style>
-  <script src="scripts/search.js" defer></script>
 </head>
 <body>
-  <h1>会員検索</h1>
-
-  <form id="searchForm">
-    年齢：
-    <select id="ageFrom"></select> 〜 <select id="ageTo"></select><br>
-    身長：
-    <select id="heightFrom"></select> 〜 <select id="heightTo"></select><br>
-    バスト：
-    <select id="bustFrom"></select> 〜 <select id="bustTo"></select><br>
-    ウエスト：
-    <select id="waistFrom"></select> 〜 <select id="waistTo"></select><br>
-    ヒップ：
-    <select id="hipFrom"></select> 〜 <select id="hipTo"></select><br>
-    カップ：
-    <select id="cupFrom"></select> 〜 <select id="cupTo"></select><br>
-    趣味：
-    <input type="text" id="hobby" /><br>
+  <form id="searchForm" class="search-form">
+    <select id="age">
+      <option value="">年齢</option>
+      <option value="20代">20代</option>
+      <option value="30代">30代</option>
+    </select>
+    <select id="height">
+      <option value="">身長</option>
+      <option value="150cm以下">150cm以下</option>
+      <option value="160cm以上">160cm以上</option>
+    </select>
     <button type="submit">検索</button>
   </form>
 
-  <div id="noResults" style="display:none;">該当者がいません。</div>
-  <div id="resultsContainer"></div>
+  <div id="resultsContainer" class="results-container"></div>
+  <div id="noResults" style="display:none;">該当する会員が見つかりませんでした。</div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('searchForm');
+      const resultsContainer = document.getElementById('resultsContainer');
+      const noResults = document.getElementById('noResults');
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const members = await fetchMembers();
+        const query = getConditions();
+        const filtered = filterMembers(members, query);
+        renderResults(filtered);
+      });
+
+      function getConditions() {
+        return {
+          age: document.getElementById('age').value,
+          height: document.getElementById('height').value,
+        };
+      }
+
+      async function fetchMembers() {
+        const res = await fetch('/data/members.json');
+        return await res.json();
+      }
+
+      function filterMembers(data, query) {
+        return data.filter(m => {
+          return (!query.age || m.age === query.age) &&
+                 (!query.height || m.height === query.height);
+        });
+      }
+
+      function renderResults(members) {
+        resultsContainer.innerHTML = '';
+        if (members.length === 0) {
+          noResults.style.display = 'block';
+          return;
+        }
+        noResults.style.display = 'none';
+
+        members.forEach(m => {
+          const card = document.createElement('div');
+          card.className = 'member-card';
+          card.innerHTML = `
+            <h3>${m.name}</h3>
+            <p>${m.comment}</p>
+            <div class="heart-icon">♥</div>
+          `;
+          resultsContainer.appendChild(card);
+        });
+      }
+    });
+  </script>
 </body>
 </html>
