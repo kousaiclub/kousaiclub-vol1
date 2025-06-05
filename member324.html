@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>member324 - PRIVATE SHIROKANE</title>
+  <link rel="icon" href="images/logo_1.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      background-color: #1c1c1c;
+      color: #f9f9f9;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 15px;
+    }
+    header {
+      background-color: #000;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+    }
+    header img {
+      height: 40px;
+    }
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    .menu-toggle div {
+      width: 25px;
+      height: 3px;
+      background-color: #f9f9f9;
+      margin: 4px 0;
+    }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    nav a {
+      color: #f9f9f9;
+      text-decoration: none;
+      margin: 0 10px;
+      font-size: 14px;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .banner {
+      width: 100%;
+      height: 300px;
+      background: url('images/banner_3.png') center/cover no-repeat;
+    }
+    .container {
+      display: flex;
+      flex-direction: row;
+      padding: 20px;
+      gap: 20px;
+    }
+    .slider {
+      flex: 1;
+      max-width: 50%;
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+    }
+    .slide {
+      display: none;
+      width: 100%;
+    }
+    .slide img {
+      width: 100%;
+      border-radius: 12px;
+    }
+    .info {
+      flex: 1;
+      background-color: #2a2a2a;
+      padding: 20px;
+      border-radius: 12px;
+    }
+    .info p {
+      margin: 10px 0;
+    }
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+      .slider, .info {
+        max-width: 100%;
+      }
+      nav {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.95);
+        width: 100%;
+        padding: 15px;
+      }
+      nav.active {
+        display: flex;
+      }
+      .menu-toggle {
+        display: flex;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="images/logo_1.png" alt="PRIVATE SHIROKANE">
+    <div class="menu-toggle" onclick="toggleMenu()">
+      <div></div><div></div><div></div>
+    </div>
+    <nav id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="top.html">Top</a>
+      <a href="guidance_men.html">男性会員入会</a>
+      <a href="guidance_women.html">女性会員入会</a>
+      <a href="system.html">料金・システム</a>
+      <a href="pickup_member.html">注目会員様情報</a>
+      <a href="members_only.html">会員専用Page</a>
+      <a href="contact.html">問合せ</a>
+    </nav>
+  </header>
+  <div class="banner"></div>
+  <div class="container">
+    <div class="slider" id="slider"><div class="slide" style="display:block;"><img src="images/photo324_1.jpg" /></div>
+<div class="slide"><img src="images/photo324_2.jpg" /></div>
+<div class="slide"><img src="images/photo324_3.jpg" /></div>
+<div class="slide"><img src="images/photo324_4.jpg" /></div>
+</div>
+    <div class="info">
+      <p><strong>登録No.：</strong>324</p>
+      <p><strong>氏名：</strong>橋本こころ  </p>
+      <p><strong>年齢：</strong>26</p>
+      <p><strong>身長：</strong>163</p>
+      <p><strong>スリーサイズ：</strong>82 / C / 57 / 83</p>
+      <p><strong>趣味：</strong>スポーツ、美味しいものを食べること、買い物</p>
+      <p><strong>性格：</strong>周りを巻き込む明るさの持ち主☀️  パッと明るい可愛らしい笑顔でよく笑うこころさんのご紹介です⭐️  美味しい食べ物を食べることが大好きで とっても美味しそうな表情で食べてくれるのですごく嬉しくなります✨  運動もされており体のメンテナンスもしっかりされてます‼️</p>
+      <p><strong>タバコ：</strong>吸いません。</p>
+      <p><strong>お酒：</strong>お付き合い程度に飲みます。</p>
+      <p><strong>セッティング費用：</strong>8</p>
+      <p><strong>デート代：</strong>8</p>
+      <p><strong>【本人コメント】</strong><br>長く楽しくお付き合いできる人と出逢いたいです✨ 色んなお話しを楽しみたいです☺️</p>
+      <p><strong>【スタッフコメント】</strong><br>モデルとしてご活躍中✨ルックス抜群スタイル抜群な癒し系美女のあゆさんのご紹介です✨ 可愛らしい容姿とはギャップの手足が長くFcupの大きな美巨乳がとてもセクシーで素敵な女性です❤️ 見た目や美容にも気を使っていて綺麗なうる艶髪やお肌の調子も良く、大人っぽさも感じられる表情はまさしくモデルさんです😊</p>
+    </div>
+  </div>
+  <script>
+    function toggleMenu() {
+      document.getElementById("navLinks").classList.toggle("active");
+    }
+    const slides = document.querySelectorAll('.slide');
+    let currentSlide = 0;
+    if (slides.length > 1) {
+      slides[currentSlide].style.display = 'block';
+      setInterval(() => {
+        slides[currentSlide].style.display = 'none';
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].style.display = 'block';
+      }, 4000);
+    } else if (slides.length === 1) {
+      slides[0].style.display = 'block';
+    }
+  </script>
+</body>
+</html>

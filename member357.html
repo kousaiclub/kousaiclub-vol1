@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>member357 - PRIVATE SHIROKANE</title>
+  <link rel="icon" href="images/logo_1.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      background-color: #1c1c1c;
+      color: #f9f9f9;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 15px;
+    }
+    header {
+      background-color: #000;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+    }
+    header img {
+      height: 40px;
+    }
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    .menu-toggle div {
+      width: 25px;
+      height: 3px;
+      background-color: #f9f9f9;
+      margin: 4px 0;
+    }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    nav a {
+      color: #f9f9f9;
+      text-decoration: none;
+      margin: 0 10px;
+      font-size: 14px;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .banner {
+      width: 100%;
+      height: 300px;
+      background: url('images/banner_3.png') center/cover no-repeat;
+    }
+    .container {
+      display: flex;
+      flex-direction: row;
+      padding: 20px;
+      gap: 20px;
+    }
+    .slider {
+      flex: 1;
+      max-width: 50%;
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+    }
+    .slide {
+      display: none;
+      width: 100%;
+    }
+    .slide img {
+      width: 100%;
+      border-radius: 12px;
+    }
+    .info {
+      flex: 1;
+      background-color: #2a2a2a;
+      padding: 20px;
+      border-radius: 12px;
+    }
+    .info p {
+      margin: 10px 0;
+    }
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+      .slider, .info {
+        max-width: 100%;
+      }
+      nav {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.95);
+        width: 100%;
+        padding: 15px;
+      }
+      nav.active {
+        display: flex;
+      }
+      .menu-toggle {
+        display: flex;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="images/logo_1.png" alt="PRIVATE SHIROKANE">
+    <div class="menu-toggle" onclick="toggleMenu()">
+      <div></div><div></div><div></div>
+    </div>
+    <nav id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="top.html">Top</a>
+      <a href="guidance_men.html">男性会員入会</a>
+      <a href="guidance_women.html">女性会員入会</a>
+      <a href="system.html">料金・システム</a>
+      <a href="pickup_member.html">注目会員様情報</a>
+      <a href="members_only.html">会員専用Page</a>
+      <a href="contact.html">問合せ</a>
+    </nav>
+  </header>
+  <div class="banner"></div>
+  <div class="container">
+    <div class="slider" id="slider"><div class="slide" style="display:block;"><img src="images/photo357_1.jpg" /></div>
+<div class="slide"><img src="images/photo357_2.jpg" /></div>
+<div class="slide"><img src="images/photo357_3.jpg" /></div>
+<div class="slide"><img src="images/photo357_4.jpg" /></div>
+</div>
+    <div class="info">
+      <p><strong>登録No.：</strong>357</p>
+      <p><strong>氏名：</strong>青山さり</p>
+      <p><strong>年齢：</strong>24</p>
+      <p><strong>身長：</strong>160</p>
+      <p><strong>スリーサイズ：</strong>85 / E / 53 / 86</p>
+      <p><strong>趣味：</strong>旅行、スポーツ観戦、ショッピング</p>
+      <p><strong>性格：</strong>親しみやすい</p>
+      <p><strong>タバコ：</strong></p>
+      <p><strong>お酒：</strong></p>
+      <p><strong>セッティング費用：</strong>6</p>
+      <p><strong>デート代：</strong>3</p>
+      <p><strong>【本人コメント】</strong><br>はじめまして、青山さりです🌸
+モデルやタレントのお仕事をしています✨24歳です。
+
+出身はアメリカで、英語はネイティブレベル🗽✈️
+帰国子女ならではの感性を活かして、グローバルな出会いや会話も大好きです💬💕
+
+身長160cm、スラリとしたプロポーションにEカップのボディラインがチャームポイントです👠
+
+性格は落ち着いていますが、親しみやすく自然体でいられる時間を大切にしています🍃
+お話しや食事、ご一緒できる時間を楽しみにしています🍽️✨
+どうぞよろしくお願いします🕊️</p>
+      <p><strong>【スタッフコメント】</strong><br>圧倒的な美貌とスタイルを誇るモデル、さりさんのご紹介です🌸✨
+
+スラリとした抜群のプロポーションに、女性らしさを引き立てるEカップの魅力的なボディライン。
+街を歩けば振り返られること間違いなしの美人オーラをまとった、まさに憧れの存在です。
+
+さらに、帰国子女の彼女は英語がネイティブレベル。
+グローバルな感性を持ち合わせており、どんなシーンでもスマートで洗練された対応ができるのも魅力の一つ‼️
+
+品のある落ち着いた雰囲気の中に、自然体で親しみやすい一面もあり、会話も心から楽しめる女性です☺️✨</p>
+    </div>
+  </div>
+  <script>
+    function toggleMenu() {
+      document.getElementById("navLinks").classList.toggle("active");
+    }
+    const slides = document.querySelectorAll('.slide');
+    let currentSlide = 0;
+    if (slides.length > 1) {
+      slides[currentSlide].style.display = 'block';
+      setInterval(() => {
+        slides[currentSlide].style.display = 'none';
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].style.display = 'block';
+      }, 4000);
+    } else if (slides.length === 1) {
+      slides[0].style.display = 'block';
+    }
+  </script>
+</body>
+</html>
