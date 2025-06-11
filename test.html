@@ -1,221 +1,168 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PRIVATE SHIROKANE - 注目女性会員</title>
-  <link rel="icon" href="images/logo_2.jpg" type="image/jpeg" />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet" />
-
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TYH55NY6N0"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-TYH55NY6N0');
-  </script>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PRIVATE SHIROKANE - Top</title>
+  <link rel="icon" href="images/logo_1.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      padding: 0;
-      background-color: #0d0d0d;
+      background-color: #1c1c1c;
       color: #f9f9f9;
       font-family: 'Cormorant Garamond', serif;
     }
-    header {
-      background-color: #000;
-      padding: 10px 20px;
+
+    .nav-container {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 10px 20px;
+      position: relative;
+      z-index: 10;
     }
-    header img {
-      height: 40px;
+
+    .nav-logo img {
+      height: 50px;
+      object-fit: contain;
+      filter: brightness(90%) drop-shadow(0 1px 1px #ccc);
     }
-    .menu-toggle {
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      color: #f9f9f9;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .hamburger {
       display: none;
       flex-direction: column;
       cursor: pointer;
     }
-    .menu-toggle div {
-      width: 25px;
+
+    .hamburger span {
       height: 3px;
-      background-color: #f9f9f9;
+      width: 25px;
+      background: #f9f9f9;
       margin: 4px 0;
     }
-    nav {
-      display: flex;
-      flex-wrap: wrap;
+
+    @media screen and (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.9);
+        padding: 15px;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .hamburger {
+        display: flex;
+      }
     }
-    nav a {
-      color: #f9f9f9;
-      text-decoration: none;
-      margin: 0 10px;
-      font-size: 14px;
-    }
-    nav a:hover {
-      text-decoration: underline;
-    }
+
     .banner {
-      width: 100%;
-      height: 300px;
-      background: url('images/banner_3.png') center/cover no-repeat;
+      background: url('images/banner_1.png') no-repeat center center;
+      background-size: cover;
+      height: 340px;
     }
-    .pickup-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 40px;
-      padding: 60px 40px;
+
+    @media (max-width: 768px) {
+      .banner {
+        background-position: center top;
+        background-size: contain;
+        height: 300px;
+      }
     }
-    .pickup-card {
-      position: relative;
-      background-color: #2a2a2a;
-      border: 2px solid #800000;
-      border-radius: 12px;
-      width: 640px;
+
+    .news-section {
+      padding: 50px 20px;
+      background-color: #1c1c1c;
+    }
+
+    .news-title {
+      font-size: 24px;
       text-align: center;
-      overflow: hidden;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-      transition: transform 0.3s ease-in-out;
+      margin-bottom: 30px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 10px;
     }
-    .pickup-card:hover {
-      transform: scale(1.05);
+
+    details {
+      margin: 10px 0;
+      background: #2a2a2a;
+      padding: 10px 15px;
+      border-radius: 6px;
     }
-    .pickup-card img {
-      width: 100%;
-      height: 800px;
-      object-fit: cover;
-      border-top-left-radius: 12px;
-      border-top-right-radius: 12px;
+
+    summary {
+      font-size: 16px;
       cursor: pointer;
     }
-    .pickup-info {
-      padding: 15px;
-      font-size: 16px;
-    }
-    .pickup-badge {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      width: 60px;
-      height: 60px;
-      background: url('images/pickup_badge.png') center/contain no-repeat;
-      z-index: 10;
-    }
-    .highlight-comment {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 16px;
-      text-align: left;
-      color: #fff797;
-      margin: 10px 0;
-    }
-    @media (max-width: 768px) {
-      .menu-toggle {
-        display: flex;
-      }
-      nav {
-        display: none;
-        width: 100%;
-        flex-direction: column;
-      }
-      nav.active {
-        display: flex;
-      }
-      nav a {
-        margin: 10px 0;
-      }
-      .pickup-container {
-        flex-direction: column;
-        align-items: center;
-        padding: 20px;
-      }
-      .pickup-card {
-        width: 90%;
-        height: auto;
-      }
-      .pickup-card img {
-        height: auto;
-      }
-    }
   </style>
-  <script>
-    function toggleMenu() {
-      const nav = document.querySelector('nav');
-      nav.classList.toggle('active');
-    }
-  </script>
 </head>
 <body>
-  <header>
-    <img src="images/logo_1.png" alt="PRIVATE SHIROKANE">
-    <div class="menu-toggle" onclick="toggleMenu()">
-      <div></div><div></div><div></div>
+  <header class="nav-container">
+    <div class="nav-logo">
+      <a href="top.html">
+        <img src="images/logo_1.png" alt="PRIVATE SHIROKANE Logo">
+      </a>
     </div>
-    <nav>
-      <a href="index.html">Home</a><a href="top.html">Top</a>
-      <a href="guidance_men.html">男性会員入会</a><a href="guidance_women.html">女性会員入会</a>
-      <a href="system.html">料金・システム</a><a href="pickup_member.html">注目会員様情報</a>
-      <a href="members_only.html">会員専用Page</a><a href="contact.html">お問合せ</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="top.html">Top</a>
+      <a href="system.html">料金・システム</a>
+      <a href="guidance_men.html">男性会員入会</a>
+      <a href="guidance_women.html">女性会員入会</a>
+      <a href="pickup_member.html">注目会員様情報</a>
+      <a href="members_only.html">会員専用Page</a>
+      <a href="contact.html">お問合せ</a>
     </nav>
+    <div class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('active')">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
   </header>
+
   <div class="banner"></div>
-  <div class="pickup-container">
 
-    <div class="pickup-card">
-      <div class="pickup-badge"></div>
-      <a href="members_only_pickup.html?target=member358.html">
-        <img src="images/photo358_5.jpg" alt="吉良ももみ">
-      </a>
-      <div class="pickup-info">
-        <p>No.358 吉良ももみ（24歳）</p>
-        <p>T:164cm</p>
-        <p>B:91(G) / W:58 / H:88</p>
-        <p class="highlight-comment">はじめまして♡美容と料理がすきです♡性格はおっとりしていて明るいとよく言われます！紳士な男性と出会いたいです♡よろしくお願いします</p>
-      </div>
-    </div>
-
-    <div class="pickup-card">
-      <div class="pickup-badge"></div>
-      <a href="members_only_pickup.html?target=member352.html">
-        <img src="images/photo352_5.jpg" alt="立宮ゆず">
-      </a>
-      <div class="pickup-info">
-        <p>No.352 立宮ゆず（21歳）</p>
-        <p>T:168cm</p>
-        <p>B:86(F) / W:56 / H:82</p>
-        <p class="highlight-comment">目と唇が魅力的と言われることが多いです。無整形です🙌 お誘いお待ちしてます😊</p>
-      </div>
-    </div>
-
-    <div class="pickup-card">
-      <div class="pickup-badge"></div>
-      <a href="members_only_pickup.html?target=member347.html">
-        <img src="images/photo347_5.jpg" alt="石田ニコル">
-      </a>
-      <div class="pickup-info">
-        <p>No.347 石田ニコル（20歳）</p>
-        <p>T:157cm</p>
-        <p>B:86(F) / W:58 / H:88</p>
-        <p class="highlight-comment">初めてで緊張しますが、よろしくお願いします😊</p>
-      </div>
-    </div>
-
-    <div class="pickup-card">
-      <div class="pickup-badge"></div>
-      <a href="members_only_pickup.html?target=member343.html">
-        <img src="images/photo343_5.jpg" alt="織田花">
-      </a>
-      <div class="pickup-info">
-        <p>No.343 織田花（27歳）</p>
-        <p>T:156cm</p>
-        <p>B:93(G) / W:57 / H:88</p>
-        <p class="highlight-comment">最近はワインの勉強をしていたり日本史が好きでお城巡りをしたり色んな好奇心があります！お金を貯めて自分の会社を作りたい夢があります☺️素敵な方とお会いできる事を楽しみにしております🌸</p>
-      </div>
-    </div>
-
-  </div>
+  <section class="news-section">
+    <div class="news-title">最新のお知らせ</div>
+    <details>
+      <summary>2025年 6月10日　新規会員受付</summary>
+       <p>ご案内済の一部の方に加え、公式サイトからもエントリー可能です。<br><br>
+    　　　 完全紹介制・審査制となっております。<br>
+           ご興味のある方は、以下よりお問合せください。
+            👉<li><a href="https://kousaiclub.jp/guidance_men.html">▶ GUIDANCE MEN</a></li>
+            👉<li><a href="https://kousaiclub.jp/guidance_women.html">▶ 女性会員入会</a></li>
+            👉<li><a href="https://kousaiclub.jp/contact.html">▶ お問い合わせ</a></li>
+  　　</p>
+    </details>
+    <details>
+      <summary>2025年 5月10日　公式ＬＩＮＥアカウントを開設しました。</summary>
+      <p>公式ＬＩＮＥからのご予約・お問合せが可能です。</p>
+    </details>
+    <details>
+      <summary>2025年 5月 5日　本サイト（PRIVATE SHIROKANE）をオープンしました。</summary>
+      <p>ご利用ありがとうございます。今後ともよろしくお願いいたします。</p>
+    </details>
+  </section>
 </body>
+
+  
 </html>
