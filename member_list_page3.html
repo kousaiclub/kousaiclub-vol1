@@ -1,0 +1,137 @@
+<!DOCTYPE html><html lang="ja"><head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>members_list - Page 3</title>
+  <link rel="icon" href="images/logo_1.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body { margin:0;padding:0;background:#1c1c1c;color:#f9f9f9;font-family:'Cormorant Garamond',serif;font-size:14px;line-height:1.8; }
+    .nav-container { display:flex;align-items:center;justify-content:space-between;background:#0009;padding:5px 20px; }
+    .nav-logo img { height:50px;filter:brightness(90%) drop-shadow(0 1px 1px #ccc); }
+    .nav-links { display:flex;gap:20px; }
+    .nav-links a { color:#f0f0f0;text-decoration:none; }
+    .hamburger { display:none;flex-direction:column;cursor:pointer; }
+    .hamburger span { height:3px;width:25px;background:#f9f9f9;margin:4px 0; }
+    @media (max-width:768px) {
+      .nav-links { display:none;flex-direction:column;width:100%;position:absolute;top:60px;left:0;background:#000;padding:15px; }
+      .nav-links.active { display:flex; }
+      .hamburger { display:flex; }
+    }
+    .banner { background:url('images/banner_3.png') no-repeat center center;background-size:cover;height:340px; }
+    .search-link-wrapper { text-align:center;margin:20px 0; }
+    .search-button { padding:10px 20px;background:#f9f9f9;color:#1c1c1c;border-radius:6px;text-decoration:none;font-weight:bold;font-size:14px; }
+    .card-container { display:flex;flex-wrap:wrap;justify-content:space-evenly;max-width:1280px;margin:0 auto;gap:20px;padding:20px; }
+    .card { width:22%;min-width:280px;background:#1c1c1c;border:1px solid #f9f9f9;border-radius:12px;margin-bottom:20px;overflow:hidden; }
+    .card-image { position:relative;width:100%;height:360px;overflow:hidden;cursor:pointer; }
+    .slide { position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;transition:opacity 0.6s ease-in-out; }
+    .slide.active { opacity:1; }
+    .slide img { width:100%;height:100%;object-fit:cover; }
+    .card-text { padding:8px;text-align:center; }
+    .favorite-btn { font-size:18px;color:#FF69B4;cursor:pointer; }
+    .comment { display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;text-overflow:ellipsis; }
+    .pagination { text-align:center;margin:20px; }
+    .pagination a { color:#f9f9f9;padding:6px 12px;border:1px solid #f9f9f9;border-radius:6px;margin:0 5px;text-decoration:none; }
+    .pagination a.current { background:#f9f9f9;color:#1c1c1c;font-weight:bold; }
+    @media (max-width:768px) {
+      .card-container { justify-content:space-between; }
+      .card { width:calc(48% - 10px);min-width:0 !important; }
+      .card-image { height:300px !important; }
+    }
+  </style></head><body>
+  <header class="nav-container">
+    <div class="nav-logo"><a href="top.html"><img src="images/logo_1.png" alt="PRIVATE SHIROKANE"></a></div>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">Home</a><a href="top.html">Top</a>
+      <a href="guidance_men.html">男性会員入会</a><a href="guidance_women.html">女性会員入会</a>
+      <a href="system.html">料金・システム</a><a href="pickup_member.html">注目会員様情報</a>
+      <a href="members_only.html">会員専用Page</a><a href="contact.html">お問合せ</a>
+    </nav>
+    <div class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('active')">
+      <span></span><span></span><span></span>
+    </div>
+  </header>
+  <div class="banner"></div>
+  <div class="search-link-wrapper">
+    <a href="search_result.html" class="search-button">会員検索はこちら</a>
+  </div><div class="card-container">
+
+      <div class="card">
+        <div class="card-image" onclick="window.open('member305.html', '_blank')"><div class='slide active'><img src='images/photo305_1.jpg'></div><div class='slide'><img src='images/photo305_2.jpg'></div><div class='slide'><img src='images/photo305_3.jpg'></div><div class='slide'><img src='images/photo305_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 305 三上藍</p>
+          <p>173cm (24歳)</p>
+          <p>85cm, 55cm, 87cm, Eカップ</p>
+          <p class="comment">はじめまして、藍です✨
+グラビアのお仕事をしています👙24歳です♪
+身長173cmの高身長スレンダー👠 美脚が自慢です🦵💎
+色白もち肌＆おでこの丸みもよく褒められます☺️
+お酒が大好きなのでBARデートも大歓迎🍸✨
+好奇心旺盛で、いろんな出会いを楽しみにしています🌈 よろしくお願いします🕊️</p>
+          <p><span class="favorite-btn" data-id="305">♡</span></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-image" onclick="window.open('member304.html', '_blank')"><div class='slide active'><img src='images/photo304_1.jpg'></div><div class='slide'><img src='images/photo304_2.jpg'></div><div class='slide'><img src='images/photo304_3.jpg'></div><div class='slide'><img src='images/photo304_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 304 清木場ゆり</p>
+          <p>168cm (29歳)</p>
+          <p>91cm, 60cm, 92cm, Gカップ</p>
+          <p class="comment">初めまして、ゆりです。 モデルとレースクイーンのお仕事もしています。 素敵な男性との出会いを楽しみにしています。</p>
+          <p><span class="favorite-btn" data-id="304">♡</span></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-image" onclick="window.open('member303.html', '_blank')"><div class='slide active'><img src='images/photo303_1.jpg'></div><div class='slide'><img src='images/photo303_2.jpg'></div><div class='slide'><img src='images/photo303_3.jpg'></div><div class='slide'><img src='images/photo303_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 303 小川りの</p>
+          <p>157cm (32歳)</p>
+          <p>95cm, 55cm, 80cm, Eカップ</p>
+          <p class="comment">笑上戸で、はじめは緊張すると思いますが慣れてくると仲良くなれます！ よろしくお願いいたします</p>
+          <p><span class="favorite-btn" data-id="303">♡</span></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-image" onclick="window.open('member302.html', '_blank')"><div class='slide active'><img src='images/photo302_1.jpg'></div><div class='slide'><img src='images/photo302_2.jpg'></div><div class='slide'><img src='images/photo302_3.jpg'></div><div class='slide'><img src='images/photo302_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 302 長谷ののか</p>
+          <p>163cm (23歳)</p>
+          <p>88cm, 57cm, 88cm, Gカップ</p>
+          <p class="comment">好奇心旺盛で色々なことに興味があります！あなたの好きな物を知るのもまた、あなたが知らないこと提供することが出来ます...！ 共に楽しく安らげる、そんな時間を過ごせたらいいなと思っています。</p>
+          <p><span class="favorite-btn" data-id="302">♡</span></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-image" onclick="window.open('member301.html', '_blank')"><div class='slide active'><img src='images/photo301_1.jpg'></div><div class='slide'><img src='images/photo301_2.jpg'></div><div class='slide'><img src='images/photo301_3.jpg'></div><div class='slide'><img src='images/photo301_4.jpg'></div></div>
+        <div class="card-text">
+          <p><strong>No.</strong> 301 水嶋すみれ</p>
+          <p>164cm (26歳)</p>
+          <p>90cm, 58cm, 93cm, Gカップ</p>
+          <p class="comment">素敵なデートをしたいです✨</p>
+          <p><span class="favorite-btn" data-id="301">♡</span></p>
+        </div>
+      </div></div><div class="pagination"><a href="member_list.html" class="">1</a><a href="member_list_page2.html" class="">2</a><a href="member_list_page3.html" class="current">3</a></div><script>
+    document.querySelectorAll('.card-image').forEach(container => {
+      const slides = Array.from(container.querySelectorAll('.slide'));
+      if (slides.length <= 1) return;
+      let idx = 0;
+      slides[0].classList.add('active');
+      setInterval(() => {
+        slides[idx].classList.remove('active');
+        idx = (idx + 1) % slides.length;
+        slides[idx].classList.add('active');
+      }, 3000);
+    });
+    document.querySelectorAll('.favorite-btn').forEach(btn => {
+      const id = btn.dataset.id;
+      if (localStorage.getItem('fav-' + id)) btn.textContent = '❤️';
+      btn.addEventListener('click', () => {
+        if (localStorage.getItem('fav-' + id)) {
+          localStorage.removeItem('fav-' + id);
+          btn.textContent = '♡';
+        } else {
+          localStorage.setItem('fav-' + id, '1');
+          btn.textContent = '❤️';
+        }
+      });
+    });
+  </script>
+</body></html>
